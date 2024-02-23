@@ -1,10 +1,32 @@
 {
   "compilerOptions": {
-    "lib": ["ES2015", "DOM"],
-    "baseUrl": ".",
+    "lib": ["ESNext", "DOM"],
+    "target": "esnext",
+    "module": "esnext",
+    "strict": false,
+    "jsx": "preserve",
+    "moduleResolution": "node",
+    "baseUrl": "./",
     "paths": {
-      "@/*": ["src/*"] ,
+      "@/*": ["src/*"],
+      "@c/*": ["src/components/*"],
+      "@s/*": ["src/store/*"],
+      "@h/*": ["src/hooks/*"],
       "#/*": ["types/*"]
     }
-  }
+  },
+  "include": [
+    "tests/**/*.ts",
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/**/*.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
+    "types/**/*.d.ts",
+    "types/**/*.ts",
+    "build/**/*.ts",
+    "build/**/*.d.ts",
+    "vite.config.ts",
+    "*.d.ts",
+  ]
 }

@@ -4,6 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "start": "pnpm run dev",
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview"
@@ -11,11 +12,13 @@
   "dependencies": {
     "ant-design-vue": "^4.1.2",
     "pinia": "^2.1.7",
+    "pinia-plugin-persistedstate": "^3.2.1",
     "vue": "^3.4.15",
     "vue-router": "4"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.0.3",
+    "less": "^4.2.0",
     "vite": "^5.1.0"
   }
 }
