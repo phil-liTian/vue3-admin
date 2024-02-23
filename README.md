@@ -31,7 +31,7 @@ resolve: {
 },
 ```
 
-2.在import ts文件时还是会保存, 需要在tsconfig.json中添加如下配置
+2.在import ts文件时还是会报错, 需要在tsconfig.json中添加如下配置
 
 ```json
 "compilerOptions": {
@@ -61,4 +61,16 @@ css: {
     }
   }
 }
+```
+
+## 引入unocss可快速开发样式
+
+在vite.config.js中进行如下配置
+```js
+import UnoCss from 'unocss/vite'
+plugins: [UnoCss()],
+```
+在main.ts中引入样式即可
+```js
+import 'uno.css'
 ```

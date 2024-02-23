@@ -6,12 +6,14 @@
     "strict": false,
     "jsx": "preserve",
     "moduleResolution": "node",
+    "types": ["vite/client"],
     "baseUrl": "./",
     "paths": {
       "@/*": ["src/*"],
       "@c/*": ["src/components/*"],
       "@s/*": ["src/store/*"],
       "@h/*": ["src/hooks/*"],
+      "@u/*": ["src/utils/*"],
       "#/*": ["types/*"]
     }
   },

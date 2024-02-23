@@ -4,8 +4,8 @@
  */
 import { createApp } from 'vue'
 import App from './App.vue'
-// import '@/design/index.less'
-import './design/index.less'
+import 'uno.css'
+import '@/design/index.less'
 import { setupStore } from '@/store'
 import { setupRouter } from '@/router'
 

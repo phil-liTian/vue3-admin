@@ -3,9 +3,10 @@
  * @LastEditors: phil_litian
 -->
 <template>
-  <div :class="prefixCls">
-    <AppLogo />
-    
+  <div :class="[prefixCls, 'w-full', 'h-full', 'relative']">
+    <div class=""></div>
+
+    <app-logo />
   </div>
 </template>
   
@@ -20,9 +21,25 @@
 </script>
   
 <style lang='less'>
-  // @prefix-cls: ~'@{namespce}-login';
+  @prefix-cls: ~'@{namespace}-login';
+  @logo-prefix-cls: ~'@{namespace}-app-logo';
 
-  // .@{prefix-cls} {
-  //   // color: @main-color;
-  // }
+  .@{prefix-cls} {
+    height: 100vh;
+    overflow: hidden;
+
+    
+    &::before {
+      content: '';
+      display: block;
+      width: 100%;
+      height: 100%;
+      background-image: url('@/assets/svg/login-bg.svg');
+    }
+
+    .@{logo-prefix-cls} {
+      position: absolute;
+      top: 12px;
+    }
+  }
 </style>

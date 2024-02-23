@@ -4,11 +4,11 @@
  */
 import { resolve } from 'path'
 import { defineConfig } from 'vite'
+import UnoCss from 'unocss/vite'
 import vue from '@vitejs/plugin-vue'
-
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [vue()],
+  plugins: [vue(), UnoCss()],
   resolve: {
     alias: {
       '@': resolve(__dirname, 'src'),
@@ -16,6 +16,7 @@ export default defineConfig({
       '@v': resolve(__dirname, 'src/views'),
       '@s': resolve(__dirname, 'src/store'),
       '@h': resolve(__dirname, 'src/hooks'),
+      '@u': resolve(__dirname, 'src/utils'),
       '#': resolve(__dirname, 'src/types'),
     }
   },

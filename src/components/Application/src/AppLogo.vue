@@ -4,7 +4,8 @@
 -->
 <template>
   <div @click="goHome" :class="getAppLogoClass">
-    <div :class="getTitleClass">title</div>
+    <img src="../../../assets/images/logo.png" />
+    <div :class="getTitleClass" class="flex ml-2" v-if="showTitle">{{ title }}</div>
   </div>
 </template>
   
@@ -12,11 +13,26 @@
   import { computed, defineProps } from 'vue'
   import { useGo } from '@h/web/usePage'
   import { useDesign } from '@h/web/useDesign'
+  import { useGlobalSetting } from '@h/setting/index'
   const { prefixCls } = useDesign('app-logo')
   const { go } = useGo()
+  const { title } = useGlobalSetting()
 
   const props = defineProps({
+    // 主题
+    theme: {
+      type: String,
+      default: '',
+      validator: (val: string): boolean => {
+        return ['dark', 'light'].includes(val)
+      }
+    },  
 
+    // 是否展示标题
+    showTitle: {
+      type: Boolean,
+      default: true
+    }
   })
 
   // applogo的类
@@ -39,5 +55,19 @@
 </script>
   
 <style lang='less' scoped>
-  
+  @prefix-cls: ~'@{namespace}-app-logo';
+
+  .@{prefix-cls} {
+    display: flex;
+    align-items: center;
+    padding-left: 7px;
+
+    img {
+      width: 32px;
+    }
+
+    &__title {
+      color: @white;
+    }
+  }
 </style>
