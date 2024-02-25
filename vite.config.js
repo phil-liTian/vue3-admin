@@ -4,11 +4,18 @@
  */
 import { resolve } from 'path'
 import { defineConfig } from 'vite'
+import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 import UnoCss from 'unocss/vite'
 import vue from '@vitejs/plugin-vue'
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [vue(), UnoCss()],
+  plugins: [
+    vue(), 
+    UnoCss(),
+    createSvgIconsPlugin({
+      iconDirs: [resolve(__dirname, 'src/assets/icons')]
+    })
+  ],
   resolve: {
     alias: {
       '@': resolve(__dirname, 'src'),
@@ -17,6 +24,7 @@ export default defineConfig({
       '@s': resolve(__dirname, 'src/store'),
       '@h': resolve(__dirname, 'src/hooks'),
       '@u': resolve(__dirname, 'src/utils'),
+      '@e': resolve(__dirname, 'src/enums'),
       '#': resolve(__dirname, 'src/types'),
     }
   },
@@ -30,5 +38,6 @@ export default defineConfig({
         javascriptEnabled: true,
       }
     }
-  }
+  },
+
 })

@@ -1,0 +1,23 @@
+.enter-x {
+  transform: translateX(50px);
+}
+
+.-enter-x {
+  transform: translateX(-50px);
+}
+
+.enter-x, .-enter-x {
+  opacity: 0;
+  animation: enter-x-animation 0.4s ease-out .3s;
+  // 在动画结束后 将应用动画结束时的属性值
+  animation-fill-mode: forwards;
+  animation-delay: .1s;
+}
+
+
+@keyframes enter-x-animation {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}

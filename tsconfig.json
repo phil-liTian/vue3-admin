@@ -14,6 +14,7 @@
       "@s/*": ["src/store/*"],
       "@h/*": ["src/hooks/*"],
       "@u/*": ["src/utils/*"],
+      "@e/*": ["src/enums/*"],
       "#/*": ["types/*"]
     }
   },

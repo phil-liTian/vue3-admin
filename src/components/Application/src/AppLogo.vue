@@ -22,7 +22,7 @@
     // 主题
     theme: {
       type: String,
-      default: '',
+      default: 'dark',
       validator: (val: string): boolean => {
         return ['dark', 'light'].includes(val)
       }
