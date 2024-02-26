@@ -3,6 +3,7 @@
  * @LastEditors: phil_litian
  */
 
+import { withInstall } from '@/utils'
 import basicButton from './src/BasicButton.vue'
 
-export const BasicButton = basicButton
+export const PButton = withInstall(basicButton)

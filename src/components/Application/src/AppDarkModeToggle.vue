@@ -16,6 +16,7 @@
   import { useRootSetting } from '@h/setting/useRootSetting'
   import { SvgIcon } from '@c/Icon/index'
   import { ThemeEnum } from '@/enums/appEnum'
+  import { updateDarkTheme } from '@/logics/theme/dark'
   const { prefixCls } = useDesign('dark-switch')
 
   const { getDarkMode, setDarkMode } = useRootSetting()
@@ -36,12 +37,19 @@
   const onToggleDarkMode = () => {
     const mode = unref(isDark) ? ThemeEnum.LIGHT : ThemeEnum.DARK
     setDarkMode(mode)
+    updateDarkTheme(mode)
   }
 
 </script>
   
 <style lang='less' scoped>
   @prefix-cls: ~'@{namespace}-dark-switch';
+
+  html[data-theme='dark'] {
+    .@{prefix-cls} {
+      border: 1px solid #fff;
+    }
+  }
 
   .@{prefix-cls} {
     display: flex;

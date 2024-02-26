@@ -20,13 +20,13 @@
 
     <ARow :gutter="[16,16]">
       <ACol :md="8" :xs="24">
-        <Button>手机登录</Button>
+        <Button block>手机登录</Button>
       </ACol>
       <ACol :md="8" :xs="24">
-        <Button>二维码登录</Button>
+        <Button block>二维码登录</Button>
       </ACol>
       <ACol :md="8" :xs="24">
-        <Button>注册</Button>
+        <Button block>注册</Button>
       </ACol>
     </ARow>
 

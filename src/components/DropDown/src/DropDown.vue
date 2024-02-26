@@ -3,7 +3,7 @@
  * @LastEditors: phil_litian
 -->
 <template>
-  <a-drop-down>
+  <a-drop-down v-bind="$attrs">
     <slot></slot>
     <template #overlay>
       <a-menu>

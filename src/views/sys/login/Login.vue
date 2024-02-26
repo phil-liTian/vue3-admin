@@ -53,6 +53,31 @@
 <style lang='less'>
   @prefix-cls: ~'@{namespace}-login';
   @logo-prefix-cls: ~'@{namespace}-app-logo';
+  @dark-bg: #293146;
+
+  html[data-theme='dark'] {
+    .@{prefix-cls} {
+      background-color: @dark-bg;
+
+      &::before {
+        background-image: url('@/assets/svg/login-bg-dark.svg');
+      }
+
+      .ant-input,
+      .ant-input-password {
+        background-color: #232a3b;
+      }
+
+      &-form {
+        background: transparent !important;
+        color: #888;
+
+        .ant-divider-inner-text {
+          color: @text-color-secondary;
+        }
+      }
+    }
+  }
 
   .@{prefix-cls} {
     height: 100vh;
@@ -95,6 +120,10 @@
           width: 48px;
         }
       }
+    }
+
+    input {
+      // min-width: 360px;
     }
   }
 </style>

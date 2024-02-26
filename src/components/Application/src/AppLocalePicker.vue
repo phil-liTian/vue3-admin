@@ -3,7 +3,9 @@
  * @LastEditors: phil_litian
 -->
 <template>
-  <DropDown :drop-menu-list="LocalList">
+  <DropDown 
+    :drop-menu-list="LocalList"
+    overlayClassName="app-locale-picker-overlay">
     <span class="cursor-pointer">
       <Icon icon="ion:language" />
     </span>
@@ -18,6 +20,10 @@
 
 </script>
   
-<style lang='less' scoped>
-  
+<style lang='less'>
+  .app-locale-picker-overlay {
+    .ant-dropdown-menu-item {
+      min-width: 120px;
+    }
+  }
 </style>

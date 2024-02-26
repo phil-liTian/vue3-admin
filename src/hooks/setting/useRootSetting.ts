@@ -16,7 +16,6 @@ export const useRootSetting = () => {
   // 设置主题模式
   const setDarkMode = (mode: ThemeEnum) => appStore.setDarkMode(mode)
 
-  
   return {
     getDarkMode,
     setDarkMode

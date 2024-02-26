@@ -12,11 +12,20 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import { setupStore } from '@/store'
 import { setupRouter } from '@/router'
+import { registerGlobComps } from '@c/registerGlobComponents'
+import { initAppConfig } from './logics/initAppConfig'
 
 const bootstrap = () => {
   const app = createApp(App)
   // 配置store
   setupStore(app)
+
+  // 初始化全局性的配置
+  initAppConfig()
+
+  // 配置全局组件
+  registerGlobComps(app)
+
 
   // 配置路由
   setupRouter(app)
@@ -25,3 +34,6 @@ const bootstrap = () => {
 }
 
 bootstrap()
+
+// todos: 1.切换主题 2. 语言配置 3.路由配置
+
