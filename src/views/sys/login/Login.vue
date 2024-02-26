@@ -3,7 +3,7 @@
  * @LastEditors: phil_litian
 -->
 <template>
-  <div :class="[prefixCls, 'w-full', 'h-full', 'relative']">
+  <div :class="[prefixCls, 'w-full', 'h-full', 'relative']" v-if="false">
     <div class="absolute flex flex-items-center right-4 top-4">
       <AppDarkModeToggle class="enter-x mr-2"/>
       <AppLocalePicker class="xl:text-gray-600"/>

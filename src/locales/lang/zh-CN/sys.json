@@ -1,0 +1,9 @@
+{
+  "login": {
+    "SignInTitle": "后台管理系统",
+    "signInFormTitle": "登录"
+  },
+  "lock": {
+    "unlock": "点击解锁"
+  }
+}

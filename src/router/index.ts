@@ -8,14 +8,15 @@ import { createRouter, createWebHistory } from 'vue-router'
 import { basicRoutes } from './routes'
 
 const router = createRouter({
-  history: createWebHistory(),
-  routes: basicRoutes as RouteRecordRaw[]
+  history: createWebHistory(import.meta.env.VITE_PUBLIC_PATH),
+  routes: basicRoutes as RouteRecordRaw[],
+  // 是否禁止尾部斜线。
+  strict: true,
+  // 当在页面之间导航时控制滚动的功能
+  scrollBehavior: () => ({ top: 0, left: 0 }),
 })
 
 
 export const setupRouter = (app: App) => {
-  console.log('router', router);
-  console.log('import', import.meta);
-  
   app.use(router)
 }

@@ -14,8 +14,10 @@ import { setupStore } from '@/store'
 import { setupRouter } from '@/router'
 import { registerGlobComps } from '@c/registerGlobComponents'
 import { initAppConfig } from './logics/initAppConfig'
+import { setUpI18n } from '@/locales/index'
 
-const bootstrap = () => {
+
+const bootstrap = async () => {
   const app = createApp(App)
   // 配置store
   setupStore(app)
@@ -26,14 +28,16 @@ const bootstrap = () => {
   // 配置全局组件
   registerGlobComps(app)
 
-
   // 配置路由
   setupRouter(app)
+
+  // 引入语言配置 实现国际化
+  setUpI18n(app)
 
   app.mount('#app')
 }
 
 bootstrap()
 
-// todos: 1.切换主题 2. 语言配置 3.路由配置
+// todos: 2. 语言配置 3.路由配置
 

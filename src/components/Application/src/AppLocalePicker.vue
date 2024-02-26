@@ -4,7 +4,7 @@
 -->
 <template>
   <DropDown 
-    :drop-menu-list="LocalList"
+    :drop-menu-list="LocaleList"
     overlayClassName="app-locale-picker-overlay">
     <span class="cursor-pointer">
       <Icon icon="ion:language" />
@@ -14,7 +14,7 @@
   
 <script lang='ts' setup>
   import { DropDown } from '@c/DropDown/index'
-  import { LocalList } from '@/settings/localeSetting'
+  import { LocaleList } from '@/settings/localeSetting'
   import Icon from '@c/Icon/Icon.vue'
 
 

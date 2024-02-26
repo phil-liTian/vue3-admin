@@ -14,6 +14,7 @@
 5. store 状态管理
 6. utils 工具类
 7. assets 存放一些静态资源 eg:图片
+8. locales 语言配置
 
 ## 引入文件定义别名
 1.在vite.config.js中添加如下配置
@@ -74,3 +75,69 @@ plugins: [UnoCss()],
 ```js
 import 'uno.css'
 ```
+
+
+## 使用vue-i18n库实现国际化
+
+```js
+const createI18nOptions = async () => {
+  const locale = getLocale
+  const defaultLocale = await import(`./lang/${locale}.ts`)
+  const messages = defaultLocale?.default?.message ?? {}
+  
+  return {
+    locale, // 当前语言类型
+    fallbackLocale: locale, // 后备的语言类型
+    // messages: {
+    //   'zh': {
+    //     i18n: {
+    //       bread: '面包',
+    //       btn: '切换按钮'
+    //     }
+    //   },
+    //   'en': {
+    //     i18n: {
+    //       bread: 'bread'
+    //     }
+    //   }
+    // }
+    messages: { // 不同语言环境下消息转换的对象
+      [locale]: messages
+    }, 
+    silentTranslationWarn: true,
+    silentFallbackWarn: true,
+    missingWarn: false
+  }
+}
+
+// 国际化设置
+export const setUpI18n = async (app: App) => {
+  const options = await createI18nOptions()
+  const i18n = createI18n(options)
+  app.use(i18n)
+}
+```
+
+## vue-router
+
+```js
+const router = createRouter({
+  history: createWebHistory(import.meta.env.VITE_PUBLIC_PATH),
+  routes: basicRoutes as RouteRecordRaw[],
+  // 是否禁止尾部斜线。
+  strict: true,
+  // 当在页面之间导航时控制滚动的功能
+  scrollBehavior: () => ({ top: 0, left: 0 }),
+})
+
+
+export const setupRouter = (app: App) => {
+  app.use(router)
+}
+```
+
+重定向
+```js
+  path: '/redirect/:path(.*)/:_redirect_type(.*)?/:_origin_params(.*)?', 
+```
+

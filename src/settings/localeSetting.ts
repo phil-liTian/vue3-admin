@@ -3,8 +3,10 @@
  * @LastEditors: phil_litian
  */
 
+import { LocalSetting, LocalType } from "#/config"
 
-export const LocalList = [
+
+export const LocaleList = [
   {
     text: '简体中文'
   },
@@ -12,3 +14,14 @@ export const LocalList = [
     text: 'English'
   },
 ]
+
+export const LOCALE: { [key: string]: LocalType } = {
+  ZH_CN: 'zh-CN',
+  EN: 'en'
+}
+
+// locale的默认配置
+export const localeSetting: LocalSetting = {
+  locale: LOCALE.ZH_CN,
+  fallback: LOCALE.ZH_CN
+}
