@@ -27,7 +27,6 @@ export const useAppStore = defineStore({
     getDarkMode(state): 'light' | 'dark' | string {
       return state.darkMode
     }
-
   },
   
   actions: {

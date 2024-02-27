@@ -4,7 +4,6 @@
  */
 
 import dropDown from './src/DropDown.vue'
-console.log('dropDown', dropDown);
 
 
 export const DropDown = dropDown

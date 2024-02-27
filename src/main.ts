@@ -16,7 +16,6 @@ import { registerGlobComps } from '@c/registerGlobComponents'
 import { initAppConfig } from './logics/initAppConfig'
 import { setUpI18n } from '@/locales/index'
 
-
 const bootstrap = async () => {
   const app = createApp(App)
   // 配置store
@@ -38,6 +37,3 @@ const bootstrap = async () => {
 }
 
 bootstrap()
-
-// todos: 2. 语言配置 3.路由配置
-

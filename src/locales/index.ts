@@ -11,6 +11,7 @@ import { useLocalStoreWithout } from '@s/modules/locale'
 
 const { getLocale } = useLocalStoreWithout()
 
+export let i18n;
 
 const createI18nOptions = async () => {
   const locale = getLocale
@@ -18,6 +19,7 @@ const createI18nOptions = async () => {
   const messages = defaultLocale?.default?.message ?? {}
   
   return {
+    // legacy: false, // 设置为false 启用composition API模式
     locale, // 当前语言类型
     fallbackLocale: locale, // 后备的语言类型
     // messages: {
@@ -45,6 +47,6 @@ const createI18nOptions = async () => {
 // 国际化设置
 export const setUpI18n = async (app: App) => {
   const options = await createI18nOptions()
-  const i18n = createI18n(options)
+  i18n = createI18n(options)
   app.use(i18n)
 }

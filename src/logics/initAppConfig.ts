@@ -5,7 +5,6 @@
 
 import { updateDarkTheme } from './theme/dark'
 
-
 // 初始化app的配置
 export const initAppConfig = () => {
   updateDarkTheme()

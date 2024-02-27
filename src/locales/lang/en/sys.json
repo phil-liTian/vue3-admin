@@ -2,5 +2,8 @@
   "login": {
     "SignInTitle": "BackStage Management System",
     "signInFormTitle": "Sign in"
+  },
+  "lock": {
+    "unlock": "unlock"
   }
 }

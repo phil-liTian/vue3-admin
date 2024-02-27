@@ -46,7 +46,14 @@
   import { useAppStore } from '@s/modules/app'
   import { useDesign } from '@h/web/useDesign'
   import { store } from '@s/index'
+  import { useLocale } from '@/locales/useLocale'
+  const { changeLocale } = useLocale()
   const { prefixCls } = useDesign('login')
+
+  const onChangeLocale = async () => {
+    await changeLocale('en')
+    // location.reload()
+  }
   
 </script>
   

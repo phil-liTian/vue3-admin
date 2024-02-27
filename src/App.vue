@@ -3,13 +3,31 @@
  * @LastEditors: phil_litian
 -->
 <template>
-  <AppProvider>
-    <RouterView />  
-  </AppProvider>
+  <!-- ant-design提供的国际化组件 -->
+  <ConfigProvider :locale="getAntdLocale" :theme="themeConfig">
+    <!-- 可实现全局注入一些数据 -->
+    <AppProvider>
+      <RouterView />  
+    </AppProvider>
+  </ConfigProvider>
 </template>
   
 <script lang='ts' setup>
+import { ConfigProvider } from 'ant-design-vue'
+import { computed } from 'vue'
 import AppProvider from '@c/Application/src/AppProvider.vue'
+import { useLocale } from '@/locales/useLocale'
+const { getAntdLocale, changeLocale } = useLocale()
+
+
+const themeConfig = computed(() => {
+  return {
+    token: {
+      colorPrimary: '#3370FF'
+    }
+  }
+})
+
 </script>
   
 <style lang='less' scoped>

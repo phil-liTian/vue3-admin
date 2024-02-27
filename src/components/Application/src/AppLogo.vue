@@ -10,7 +10,7 @@
 </template>
   
 <script lang='ts' setup>
-  import { computed, defineProps } from 'vue'
+  import { computed } from 'vue'
   import { useGo } from '@h/web/usePage'
   import { useDesign } from '@h/web/useDesign'
   import { useGlobalSetting } from '@h/setting/index'
