@@ -10,9 +10,6 @@ import { LocalType } from '#/config'
 
 const setI18nLanguage = (locale: LocalType) => {
   const { setLocaleInfo } = useLocalStoreWithout()
-  // if ( i18n.mode === 'composition') {
-    
-  // }
   // 关键点: 设置i18n的语种
   i18n.global.locale = locale
   
@@ -21,10 +18,10 @@ const setI18nLanguage = (locale: LocalType) => {
 
 export const useLocale = () => {
   const { getLocale: locale } = useLocalStoreWithout()
-
+  
   // 获取ant-design的语言文件
   const getAntdLocale = computed(() => {
-    const localMessage = i18n.global.getLocaleMessage(locale)
+    const localMessage = i18n.global?.getLocaleMessage(locale)
     return localMessage?.antdLocale || {}
   })
 

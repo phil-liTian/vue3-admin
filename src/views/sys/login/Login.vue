@@ -3,6 +3,8 @@
  * @LastEditors: phil_litian
 -->
 <template>
+  <!-- type="primary"  -->
+  <p-button color="error">phil</p-button>
   <div :class="[prefixCls, 'w-full', 'h-full', 'relative']" v-if="false">
     <div class="absolute flex flex-items-center right-4 top-4">
       <AppDarkModeToggle class="enter-x mr-2"/>
@@ -47,8 +49,10 @@
   import { useDesign } from '@h/web/useDesign'
   import { store } from '@s/index'
   import { useLocale } from '@/locales/useLocale'
+  import { useI18n } from '@h/web/useI18n'
   const { changeLocale } = useLocale()
   const { prefixCls } = useDesign('login')
+  const { t } = useI18n('sys')
 
   const onChangeLocale = async () => {
     await changeLocale('en')

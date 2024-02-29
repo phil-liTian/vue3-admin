@@ -27,11 +27,12 @@ const bootstrap = async () => {
   // 配置全局组件
   registerGlobComps(app)
 
+  // 引入语言配置 实现国际化 await是很有必要的, 否则可能导致app.vue文件中useLocale()报错
+  // 因为setUpI18n存在异步import语言配置相关文件
+  await setUpI18n(app)
+
   // 配置路由
   setupRouter(app)
-
-  // 引入语言配置 实现国际化
-  setUpI18n(app)
 
   app.mount('#app')
 }

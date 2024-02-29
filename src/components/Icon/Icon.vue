@@ -14,6 +14,9 @@
   import type { PropType } from 'vue'
   // 当前包可根据ion生成一个图标
   import Iconfiy from '@purge-icons/generated'
+  defineOptions({
+    name: 'PIcon'
+  })
   const props = defineProps({
     icon: String,
     color: {

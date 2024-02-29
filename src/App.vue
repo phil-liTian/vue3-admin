@@ -15,10 +15,11 @@
 <script lang='ts' setup>
 import { ConfigProvider } from 'ant-design-vue'
 import { computed } from 'vue'
-import AppProvider from '@c/Application/src/AppProvider.vue'
 import { useLocale } from '@/locales/useLocale'
-const { getAntdLocale, changeLocale } = useLocale()
+import { useTitle } from '@h/web/useTitle'
+import AppProvider from '@c/Application/src/AppProvider.vue'
 
+const { getAntdLocale } = useLocale()
 
 const themeConfig = computed(() => {
   return {
@@ -27,6 +28,8 @@ const themeConfig = computed(() => {
     }
   }
 })
+
+useTitle()
 
 </script>
   

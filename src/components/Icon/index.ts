@@ -3,5 +3,9 @@
  * @LastEditors: phil_litian
  */
 import SvgIcon from './src/SvgIcon.vue'
+import pIcon from './Icon.vue'
+import { withInstall } from '@/utils'
 
-export { SvgIcon }
+const PIcon = withInstall(pIcon)
+
+export { SvgIcon, PIcon }
