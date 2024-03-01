@@ -7,11 +7,14 @@
     "start": "pnpm run dev",
     "dev": "vite",
     "build": "vite build",
+    "preinstall": "npx only-allow pnpm",
+    "postinstall": "turbo run stub",
     "preview": "vite preview"
   },
   "dependencies": {
     "@ant-design/icons-vue": "^7.0.1",
     "@purge-icons/generated": "^0.10.0",
+    "@vitejs/plugin-vue-jsx": "^3.1.0",
     "@vueuse/core": "^10.9.0",
     "ant-design-vue": "^4.1.2",
     "lodash-es": "^4.17.21",
@@ -21,8 +24,7 @@
     "unocss": "^0.58.5",
     "vue": "^3.4.15",
     "vue-i18n": "^9.9.1",
-    "vue-router": "4",
-    "@vben/hooks": "workspace:*"
+    "vue-router": "4"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.0.3",

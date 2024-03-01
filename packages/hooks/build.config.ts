@@ -2,7 +2,7 @@
  * @Date: 2024-02-28 18:09:46
  * @LastEditors: phil_litian
  */
-import { defineBuildConfig } from 'unbuild'
+import { defineBuildConfig } from 'unbuild';
 
 export default defineBuildConfig({
   clean: true,
@@ -11,4 +11,5 @@ export default defineBuildConfig({
   rollup: {
     emitCJS: true,
   },
-})
+});
+

@@ -6,6 +6,11 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "exports": {
+    ".": {
+      "default": "./src/index"
+    }
+  },
   "keywords": [],
   "author": "",
   "license": "ISC"

@@ -4,7 +4,8 @@
 -->
 <template>
   <!-- type="primary"  -->
-  <p-button color="error">phil</p-button>
+  <!-- <PPopConfirmButton :enable="false">111</PPopConfirmButton> -->
+  <PBasicHelp></PBasicHelp>
   <div :class="[prefixCls, 'w-full', 'h-full', 'relative']" v-if="false">
     <div class="absolute flex flex-items-center right-4 top-4">
       <AppDarkModeToggle class="enter-x mr-2"/>
@@ -48,12 +49,13 @@
   import { useAppStore } from '@s/modules/app'
   import { useDesign } from '@h/web/useDesign'
   import { store } from '@s/index'
+  import { PPopConfirmButton } from '@c/Button/index'
   import { useLocale } from '@/locales/useLocale'
   import { useI18n } from '@h/web/useI18n'
   const { changeLocale } = useLocale()
   const { prefixCls } = useDesign('login')
   const { t } = useI18n('sys')
-
+  
   const onChangeLocale = async () => {
     await changeLocale('en')
     // location.reload()

@@ -22,9 +22,8 @@
   // import { useAttrs } from '@phil/hooks'
   // useAttrs()
   const attrs = useAttrs()
-  console.log('attrs', attrs);
-  const emit = defineEmits(['onClick'])
   
+  const emit = defineEmits(['onClick'])
   
   defineOptions({
     name: 'PButton',

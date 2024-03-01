@@ -7,6 +7,7 @@ import { defineConfig } from 'vite'
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 import UnoCss from 'unocss/vite'
 import vue from '@vitejs/plugin-vue'
+import vueJsx from '@vitejs/plugin-vue-jsx';
 // https://vitejs.dev/config/
 export default defineConfig({
   server: {
@@ -15,6 +16,7 @@ export default defineConfig({
   plugins: [
     vue(), 
     UnoCss(),
+    vueJsx(),
     createSvgIconsPlugin({
       iconDirs: [resolve(__dirname, 'src/assets/icons')]
     })

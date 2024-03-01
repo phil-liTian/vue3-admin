@@ -17,6 +17,5 @@ export default {
     validator: v => validColors.includes(v),
     default: ''
   },
-  
-  
+    
 }
