@@ -3,7 +3,6 @@
  * @LastEditors: phil_litian
  */
 
-
 export const updateDarkTheme = (mode: string | null = 'light') => {
   const htmlRoot = document.querySelector('#htmlRoot')
   

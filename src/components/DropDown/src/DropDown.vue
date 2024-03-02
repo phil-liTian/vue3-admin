@@ -6,11 +6,13 @@
   <a-drop-down v-bind="$attrs">
     <slot></slot>
     <template #overlay>
-      <a-menu>
+      <a-menu
+        :selectedKeys="selectedKeys">
         <a-menu-item 
           v-for="menu in dropMenuList" 
-          :key="menu.text"
-          :disabled="menu.disabled">
+          :key="menu.key"
+          :disabled="menu.disabled"
+          @click="handleMenuClick(menu)">
           {{ menu.text }}
         </a-menu-item>
       </a-menu>
@@ -27,15 +29,27 @@
   const AMenu = Menu
   const AMenuItem = Menu.Item
   
+  const emits = defineEmits(['menuClick']);
+
   const props = defineProps({
     dropMenuList: {
       type: Array as PropType<DropMenu[]>,
       default: []
+    },
+
+    selectedKeys: {
+      type: Array as PropType<(string | number)[]>,
+      default: () => {
+        return []
+      }
     }
   })
 
+  const handleMenuClick = (item: DropMenu) => {
+    emits('menuClick', item)
+  }
+
   onMounted(() => {
-    console.log('ADropDown', ADropDown);
   })
 </script>
   

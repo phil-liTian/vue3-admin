@@ -2,7 +2,7 @@
  * @Date: 2024-02-27 09:26:14
  * @LastEditors: phil_litian
  */
-import { computed } from 'vue'
+import { computed, unref } from 'vue'
 import { useLocalStoreWithout } from '@s/modules/locale'
 import { i18n } from './index'
 import { LocalType } from '#/config'
@@ -17,8 +17,12 @@ const setI18nLanguage = (locale: LocalType) => {
 }
 
 export const useLocale = () => {
-  const { getLocale: locale } = useLocalStoreWithout()
-  
+  // 如果直接解构的话 在执行完useLocale之后，此处的locale不会动态更新 故舍弃当前做法
+  // const { getLocale: locale } = useLocalStoreWithout()
+
+  const localStore = useLocalStoreWithout()
+  const locale = computed(() => localStore.getLocale)
+
   // 获取ant-design的语言文件
   const getAntdLocale = computed(() => {
     const localMessage = i18n.global?.getLocaleMessage(locale)
@@ -29,8 +33,9 @@ export const useLocale = () => {
   const changeLocale = async (_locale: LocalType): Promise<LocalType> => {
     const globalI18n = i18n.global
     // 相同的话则无需切换
-    if ( _locale === locale ) {
-      return locale
+    
+    if ( _locale === unref(locale) ) {
+      return _locale
     }
 
     // TODO: loadLocalePool

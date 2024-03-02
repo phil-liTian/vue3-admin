@@ -5,7 +5,6 @@
 import { GlobalEnvConfig } from '#/config'
 
 export const getAppEnvConfig = () => {
-  console.log('import', import.meta.env);
   
   // 测试环境直接使用env
   // TODO: 生产环境

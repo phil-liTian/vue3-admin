@@ -6,5 +6,6 @@
 
 export interface DropMenu {
   text: string,
+  key: string,
   disabled?: boolean
 }

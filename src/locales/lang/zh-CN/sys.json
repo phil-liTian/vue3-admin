@@ -1,7 +1,14 @@
 {
   "login": {
-    "SignInTitle": "后台管理系统",
-    "signInFormTitle": "登录"
+    "SignInTitle": "开箱即用的中后台管理系统",
+    "signInDesc": "输入您的个人详细信息开始使用！",
+    "signInFormTitle": "登录",
+    "loginButton": "登录",
+    "mobileSignInFormTitle": "手机登录",
+    "qrSignFormTitle": "二维码登录",
+    "signUpFormTitle": "注册",
+    "otherSignIn": "其他登录方式",
+    "rememberMe": "记住我"
   },
   "lock": {
     "unlock": "点击解锁"

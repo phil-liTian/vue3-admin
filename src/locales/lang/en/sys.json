@@ -1,7 +1,14 @@
 {
   "login": {
     "SignInTitle": "BackStage Management System",
-    "signInFormTitle": "Sign in"
+    "signInDesc": "Enter your personal details and get started!",
+    "signInFormTitle": "Sign in",
+    "loginButton": "Sign In",
+    "mobileSignInFormTitle": "Mobile sign in",
+    "qrSignFormTitle": "Qr Code Sing In",
+    "signUpFormTitle": "Register",
+    "otherSignIn": "Sign In With",
+    "rememberMe": "Remember Me"
   },
   "lock": {
     "unlock": "unlock"

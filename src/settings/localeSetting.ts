@@ -8,10 +8,12 @@ import { LocalSetting, LocalType } from "#/config"
 
 export const LocaleList = [
   {
-    text: '简体中文'
+    text: '简体中文',
+    key: 'zh-CN'
   },
   {
-    text: 'English'
+    text: 'English',
+    key: 'en'
   },
 ]
 

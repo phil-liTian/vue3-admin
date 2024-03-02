@@ -3,10 +3,7 @@
  * @LastEditors: phil_litian
 -->
 <template>
-  <!-- type="primary"  -->
-  <!-- <PPopConfirmButton :enable="false">111</PPopConfirmButton> -->
-  <PBasicHelp></PBasicHelp>
-  <div :class="[prefixCls, 'w-full', 'h-full', 'relative']" v-if="false">
+  <div :class="[prefixCls, 'w-full', 'h-full', 'relative']">
     <div class="absolute flex flex-items-center right-4 top-4">
       <AppDarkModeToggle class="enter-x mr-2"/>
       <AppLocalePicker class="xl:text-gray-600"/>
@@ -20,13 +17,13 @@
     <div class="container relative h-full mx-auto sm:px-10 py-2">
       <div class="flex h-full">
         <div class="hidden xl:flex min-h-full pl-4 mr-4">
-          <app-logo />
+          <app-logo class="-enter-x" />
           <div class="my-auto">
             <img class="w-1/2 -mt-16 -enter-x" src="../../../assets/svg/login-box-bg.svg" alt="">
             <div class="mt-10 text-white font-600 -enter-x">
-              <span class="mt-4 text-3xl">开箱即用的中后台管理系统</span>
+              <span class="mt-4 text-3xl">{{ t('login.SignInTitle') }}</span>
             </div>
-            <div class="mt-5 text-white font-400 -enter-x">输入您的个人详细信息开始使用！</div>
+            <div class="mt-5 text-white font-400 -enter-x">{{ t('login.signInDesc') }}</div>
           </div>
         </div>
 
