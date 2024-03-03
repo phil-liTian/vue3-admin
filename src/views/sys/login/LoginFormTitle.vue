@@ -12,12 +12,16 @@
   import { computed, unref } from 'vue'
   import { LoginStateEnum, useLoginState } from './useLogin'
   import { useI18n } from '@h/web/useI18n'
-  const { t } = useI18n()
+  const { t } = useI18n('sys')
   const { getLoginState } = useLoginState()
 
   const getFormTitle = computed(() => {
     const titleMap = {
-      [LoginStateEnum.LOGIN]: t('sys.login.signInFormTitle')
+      [LoginStateEnum.LOGIN]: t('login.signInFormTitle'),
+      [LoginStateEnum.MOBILE]: t('login.mobileSignInFormTitle'),
+      [LoginStateEnum.QR_CODE]: t('login.qrSignFormTitle'),
+      [LoginStateEnum.REGISTER]: t('login.signUpFormTitle'),
+      [LoginStateEnum.RESET_PASSWORD]: t('login.forgetFormTitle')
     }
 
     return titleMap[unref(getLoginState)]

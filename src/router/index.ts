@@ -7,7 +7,7 @@ import type { RouteRecordRaw } from 'vue-router'
 import { createRouter, createWebHistory } from 'vue-router'
 import { basicRoutes } from './routes'
 
-const router = createRouter({
+export const router = createRouter({
   history: createWebHistory(import.meta.env.VITE_PUBLIC_PATH),
   routes: basicRoutes as RouteRecordRaw[],
   // 是否禁止尾部斜线。

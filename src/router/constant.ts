@@ -6,7 +6,7 @@
 export const REDIRECT_NAME = 'Redirect'
 export const PAGE_NOT_FOUND_NAME = 'PageNotFound'
 
-// 404
+// 主页面, 404页面
 export const LAYOUT = () => import('@/layout/default/index.vue')
 
 // 重定向

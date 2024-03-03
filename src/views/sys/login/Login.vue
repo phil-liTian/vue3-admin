@@ -32,6 +32,10 @@
             class="relative rounded-md shadow-md sm:w-3/5 sm:px-8 w-full px-5 py-8 my-auto mx-auto enter-x xl:p-4"
             :class="prefixCls + '-form'">
             <login-form />
+            <mobile-form />
+            <qr-code-form />
+            <register-form />
+            <forget-password-form></forget-password-form>
           </div>
         </div>
       </div>
@@ -40,23 +44,17 @@
 </template>
   
 <script lang='ts' setup>
-  import { defineProps, computed } from 'vue'
   import { AppLogo, AppDarkModeToggle, AppLocalePicker } from '@c/Application'
-  import LoginForm from './LoginForm.vue'
-  import { useAppStore } from '@s/modules/app'
   import { useDesign } from '@h/web/useDesign'
-  import { store } from '@s/index'
-  import { PPopConfirmButton } from '@c/Button/index'
-  import { useLocale } from '@/locales/useLocale'
   import { useI18n } from '@h/web/useI18n'
-  const { changeLocale } = useLocale()
+  import LoginForm from './LoginForm.vue'
+  import MobileForm from './MobileForm.vue'
+  import QrCodeForm from './QrCodeForm.vue'
+  import RegisterForm from './RegisterForm.vue'
+  import ForgetPasswordForm from './ForgetPasswordForm.vue'
+  
   const { prefixCls } = useDesign('login')
   const { t } = useI18n('sys')
-  
-  const onChangeLocale = async () => {
-    await changeLocale('en')
-    // location.reload()
-  }
   
 </script>
   

@@ -8,9 +8,16 @@
     "qrSignFormTitle": "Qr Code Sing In",
     "signUpFormTitle": "Register",
     "otherSignIn": "Sign In With",
-    "rememberMe": "Remember Me"
+    "rememberMe": "Remember Me",
+    "forgetFormTitle": "Reset password",
+    "backSignIn": "Back",
+    "forgetPassword": "Forget Password?",
+    "userName": "UserName",
+    "password": "Password",
+    "accountPlaceholder": "Please input username",
+    "passwordPlaceholder": "Please input password"
   },
-  "lock": {
-    "unlock": "unlock"
+  "api": {
+    "errorTip": "Error Tip"
   }
 }

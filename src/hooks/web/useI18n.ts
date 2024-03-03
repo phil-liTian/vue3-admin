@@ -1,6 +1,7 @@
 /*
  * @Date: 2024-02-28 09:42:12
  * @LastEditors: phil_litian
+ * 动态处理语言
  */
 import { i18n } from '@/locales/index'
 

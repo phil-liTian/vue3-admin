@@ -7,6 +7,19 @@ import { mainOut } from './mainOut'
 import { PAGE_NOT_FOUND_ROUTE, REDIRECT_ROUTE } from './basic'
 import type { AppRouteRecordRaw } from '../types'
 
+let routeModlueList: AppRouteRecordRaw[] = []
+// import.meta.glob() 直接引入所有的模块 Vite 独有的功能
+const modules = import.meta.glob('./modules/**/*.ts', { eager: true })
+
+Object.keys(modules).forEach(key => {
+  const mod = (modules as Recordable)[key].default || {}
+  const modList = Array.isArray(mod) ? [...mod] : [mod]
+  routeModlueList.push(...modList)
+})
+
+// 亮点: 与之前处理方式不同的 可有效避免角色权限不足仍可访问无权限页面的问题, routes根据role动态渲染
+export const asyncRoutes = [ ...routeModlueList, PAGE_NOT_FOUND_ROUTE ]
+
 // 根页面
 const RootRoute: AppRouteRecordRaw = {
   path: '/',

@@ -8,9 +8,16 @@
     "qrSignFormTitle": "二维码登录",
     "signUpFormTitle": "注册",
     "otherSignIn": "其他登录方式",
-    "rememberMe": "记住我"
+    "rememberMe": "记住我",
+    "forgetFormTitle": "重置密码",
+    "backSignIn": "返回",
+    "forgetPassword": "忘记密码?",
+    "userName": "用户名",
+    "password": "密码",
+    "accountPlaceholder": "请输入用户名",
+    "passwordPlaceholder": "请输入密码"
   },
-  "lock": {
-    "unlock": "点击解锁"
+  "api": {
+    "errorTip": "错误提示"
   }
 }
