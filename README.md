@@ -141,3 +141,36 @@ export const setupRouter = (app: App) => {
   path: '/redirect/:path(.*)/:_redirect_type(.*)?/:_origin_params(.*)?', 
 ```
 
+## 在当前工作区中分包处理
+
+1. 在当前工作区中创建packages文件夹
+
+2. 创建pnpm-workspace.yaml文件, 进行如下配置
+
+```yaml
+packages:
+  - 'apps/*'
+  - 'packages/*'
+```
+
+3. package.json文件中增加如下配置, 这时在执行`pnpm i`的时候就会先在当前工作区中查找并安装@phil/hooks包
+
+```json
+"dependencies": {
+  "@phil/hooks": "workspace:*"
+},
+```
+
+这种处理方式的好处在于: 可以确保在多个包之间共享的依赖项能够被正确地安装和管理，同时也可以提高构建速度和效率。
+
+## 使用 `vite-plugin-mock` mock请求后端接口的过程
+
+### 注意mock文件夹需要建在根目录下
+
+1.单独抽出@vite-config文件 分开管理
+
+### axios封装思路
+
+
+### cache缓存思路
+

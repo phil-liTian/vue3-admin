@@ -18,6 +18,9 @@
     "passwordPlaceholder": "Please input password"
   },
   "api": {
-    "errorTip": "Error Tip"
+    "errorTip": "Error Tip",
+    "apiRequestFailed": "The interface request failed, please try again later!",
+    "timeoutMessage": "Login timed out, please log in again!",
+    "errMsg404": "Network request error, the resource was not found!"
   }
 }

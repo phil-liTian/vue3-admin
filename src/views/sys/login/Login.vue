@@ -47,14 +47,24 @@
   import { AppLogo, AppDarkModeToggle, AppLocalePicker } from '@c/Application'
   import { useDesign } from '@h/web/useDesign'
   import { useI18n } from '@h/web/useI18n'
+  import { useUserStore } from '@s/modules/user'
   import LoginForm from './LoginForm.vue'
   import MobileForm from './MobileForm.vue'
   import QrCodeForm from './QrCodeForm.vue'
   import RegisterForm from './RegisterForm.vue'
   import ForgetPasswordForm from './ForgetPasswordForm.vue'
+  import { useAttrs } from '@phil/hooks'  
   
   const { prefixCls } = useDesign('login')
   const { t } = useI18n('sys')
+
+  const { login } = useUserStore()
+
+
+  // login({ username: 'phil', password: '12345' })
+  // setTimeout(() => {
+  //   login({ username: 'phil', password: '12345' })
+  // }, 500);
   
 </script>
   

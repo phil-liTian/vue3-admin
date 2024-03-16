@@ -25,3 +25,23 @@ export const withInstall = <T extends customComponent>(component: T, alias?: str
 
   return component as WithInstall<T>
 }
+
+/**
+ * 
+ * @param baseUrl
+ * @param obj 
+ * @returns 
+ * eg: 
+ *   setObjToUrlParams('www.baidu.com', { a: 1, b: 2 }) 
+ *   www.baidu.com?a=1&b=2
+ */
+export const setObjToUrlParams = (baseUrl: string, obj: any): string => {
+  let parameters = ''
+  // 处理参数
+  for (const key in obj) {
+    parameters += `${key}=${obj[key]}&`
+  }
+  parameters = parameters.replace(/&$/, '')
+
+  return /\?$/.test(baseUrl) ? `${baseUrl}${parameters}` : baseUrl.replace(/\/?$/, '?') + parameters
+}

@@ -16,6 +16,7 @@
       "@h/*": ["src/hooks/*"],
       "@u/*": ["src/utils/*"],
       "@e/*": ["src/enums/*"],
+      "@a/*": ["src/api/*"],
       "#/*": ["types/*"]
     }
   },

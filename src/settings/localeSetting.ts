@@ -5,7 +5,6 @@
 
 import { LocalSetting, LocalType } from "#/config"
 
-
 export const LocaleList = [
   {
     text: '简体中文',

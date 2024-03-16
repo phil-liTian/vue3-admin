@@ -18,6 +18,9 @@
     "passwordPlaceholder": "请输入密码"
   },
   "api": {
-    "errorTip": "错误提示"
+    "errorTip": "错误提示",
+    "apiRequestFailed": "请求出错，请稍候重试",
+    "timeoutMessage": "登录超时,请重新登录!",
+    "errMsg404": "网络请求错误,未找到该资源!"
   }
 }

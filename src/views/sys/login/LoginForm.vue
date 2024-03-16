@@ -11,11 +11,11 @@
     :model="formData"
     :rules="getFormRules"
     v-if="getShow">
-    <FormItem name="account" class="enter-x">
+    <FormItem name="username" class="enter-x">
       <Input 
         size="large"
         :placeholder="t('login.accountPlaceholder')"
-        v-model:value="formData.account">
+        v-model:value="formData.username">
       </Input>
     </FormItem>
     <FormItem name="password" class="enter-x">
@@ -70,7 +70,7 @@
   
 <script lang='ts' setup>
   import { Form, Input, Divider, Row, Col, Button, Checkbox } from 'ant-design-vue'
-  import { reactive, ref, computed } from 'vue'
+  import { reactive, ref, computed, onMounted } from 'vue'
   import { GithubFilled, WechatFilled, AlipayCircleFilled, GoogleCircleFilled, TwitterCircleFilled } from '@ant-design/icons-vue'
   import LoginFormTitle from './LoginFormTitle.vue';
   import { useDesign } from '@h/web/useDesign'
@@ -95,7 +95,7 @@
   const loading = ref(false)
   const formRef = ref()
   const formData = reactive({
-    account: 'phil',
+    username: 'phil',
     password: '123456'
   })
   const { validForm } = useFormValid(formRef)
@@ -108,12 +108,12 @@
     if ( !data ) return
     
 
-    notification.success({
-      message: 'success',
-      description: '登录成功'
-    })
+    // notification.success({
+    //   message: 'success',
+    //   description: '登录成功'
+    // })
 
-    login()
+    login(formData)
 
 
     console.log('data', data);
