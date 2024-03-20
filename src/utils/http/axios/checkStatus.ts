@@ -23,7 +23,6 @@ export const checkStatus = (status: number, msg: string, errorMessageMode: Error
       errMessage = t('sys.api.errMsg404')
       break
     }
-
   }
 
   console.log('errMessage', errMessage);

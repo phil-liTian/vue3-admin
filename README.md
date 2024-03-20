@@ -170,7 +170,21 @@ packages:
 1.单独抽出@vite-config文件 分开管理
 
 ### axios封装思路
+1. requestInterceptors 请求拦截器处理token
+2. responseInterceptors 响应拦截器（暂未处理逻辑）
+3. responseInterceptorsCatch 响应异常处理（404， 500 等错误状态处理）
+4. beforeRequestHook 处理request config信息
+5. transformResponseHook 
 
 
 ### cache缓存思路
+
+#### 当前系统分别用localStorage 和 sessionStorage做了缓存处理, 可通过参数灵活控制
+1. 通过Memory class将数据缓存到计算机的内存中 使用Cache变量存储 为Cache设置了增删改查等基本方法
+2. 同时将数据缓存到storage中, 但当前获取数据并未直接使用storage中的数据，而是存内存中获取
+  2.1 当前缓存的数据量并不大,切不会频繁更新 放到内存中存取效率会远远高于storage中的存取效率（因为像getToken这种方法是频繁调用的, 故放到内存中较合适）
+  2.2 使用createStorage可达到持久化存储的目的
+3. 每次刷新都执行initPersistentMemory方法 可实现将storage中缓存的数据 放到内存中 方便存取, 效率高
+
+
 

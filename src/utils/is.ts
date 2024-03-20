@@ -5,5 +5,6 @@
 
 export {
   isFunction,
-  isString
+  isString,
+  isNil // 检查数据是否是null或者undefined
 } from 'lodash-es'

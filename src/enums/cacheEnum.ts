@@ -3,8 +3,10 @@
  * @LastEditors: phil_litian
  */
 
-export const TOKEN_KEY = 'TOKEN_'
+export const TOKEN_KEY = 'TOKEN__'
 
+// local
+export const APP_LOCAL_CACHE_KEY = 'COMMON__LOCAL__KEY__'
 
 
 export enum CacheTypeEnum {
