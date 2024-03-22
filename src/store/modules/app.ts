@@ -3,20 +3,26 @@
  * @LastEditors: phil_litian
  * 整个应用到store
  */
-
+import { ProjectConfig } from '#/config'
 import { defineStore } from 'pinia'
 import { ThemeEnum } from '@e/appEnum'
+import { PROJ_CFG_KEY } from '@e/cacheEnum'
+import { Persistent } from '@u/cache/Persistent'
+import { store } from '..'
 
 interface AppState {
   pageLoading: boolean,
   darkMode: ThemeEnum,
+  // 项目配置
+  projectConfig?: null | ProjectConfig,
 }
 
 export const useAppStore = defineStore({
   id: 'app',
   state: (): AppState => ({
     darkMode: undefined,
-    pageLoading: false
+    pageLoading: false,
+    projectConfig: Persistent.getLocal(PROJ_CFG_KEY)
   }),
 
   getters: {
@@ -26,6 +32,10 @@ export const useAppStore = defineStore({
 
     getDarkMode(state): 'light' | 'dark' | string {
       return state.darkMode
+    },
+
+    getProjectConfig(state): ProjectConfig {
+      return state.projectConfig || ({} as ProjectConfig)
     }
   },
   
@@ -39,3 +49,7 @@ export const useAppStore = defineStore({
     }
   }
 })
+
+export const useAppStoreWithOut = () => {
+  return useAppStore(store)
+}

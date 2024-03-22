@@ -3,7 +3,7 @@
  * @LastEditors: phil_litian
 -->
 <template>
-  <MenuItem>
+  <MenuItem :key="item.path">
     <MenuItemContent :item="item"></MenuItemContent>
   </MenuItem>
 </template>

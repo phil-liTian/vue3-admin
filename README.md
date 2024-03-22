@@ -47,7 +47,6 @@ resolve: {
 },
 ```
 
-
 ## 在单文件中使用less全局定义的变量, 需要在vite.config.js中增加如下配置
 
 ```js
@@ -88,19 +87,6 @@ const createI18nOptions = async () => {
   return {
     locale, // 当前语言类型
     fallbackLocale: locale, // 后备的语言类型
-    // messages: {
-    //   'zh': {
-    //     i18n: {
-    //       bread: '面包',
-    //       btn: '切换按钮'
-    //     }
-    //   },
-    //   'en': {
-    //     i18n: {
-    //       bread: 'bread'
-    //     }
-    //   }
-    // }
     messages: { // 不同语言环境下消息转换的对象
       [locale]: messages
     }, 
@@ -115,6 +101,34 @@ export const setUpI18n = async (app: App) => {
   const options = await createI18nOptions()
   const i18n = createI18n(options)
   app.use(i18n)
+}
+```
+
+### 创建hooks useI18n; 可以在系统中直接使用useI18n暴露出的t方法实现多语言切换功能
+```js
+export const useI18n = (namespace?: string) => {
+  // 兼容一下没有i18n的场景
+  const normalFn = {
+    t: (key: string) => {
+      return getKey(namespace, key)
+    }
+  }
+
+  if ( !i18n ) {
+    return normalFn
+  }
+
+  const { t, methods } = i18n.global
+  
+  // 可简化t的传参
+  const tFn = ( key: string, ...arg: any[] ) => {
+    return (t as (arg0: string, ...arg: I18nTranslationParameters ) => string)( getKey(namespace, key), ...(arg as I18nTranslationParameters) )
+  }
+  
+  return {
+    t: tFn,
+    ...methods
+  }
 }
 ```
 
@@ -134,9 +148,11 @@ const router = createRouter({
 export const setupRouter = (app: App) => {
   app.use(router)
 }
-```
 
-重定向
+```
+### 路由守卫处理？？？
+
+### 重定向
 ```js
   path: '/redirect/:path(.*)/:_redirect_type(.*)?/:_origin_params(.*)?', 
 ```
@@ -163,7 +179,7 @@ packages:
 
 这种处理方式的好处在于: 可以确保在多个包之间共享的依赖项能够被正确地安装和管理，同时也可以提高构建速度和效率。
 
-## 使用 `vite-plugin-mock` mock请求后端接口的过程
+### 使用 `vite-plugin-mock` mock请求后端接口的过程
 
 ### 注意mock文件夹需要建在根目录下
 

@@ -7,7 +7,6 @@ import { store } from '@s/index'
 import type { LocalSetting, LocalType } from '#/config'
 import { localeSetting } from '@/settings/localeSetting'
 
-
 interface LocaleState {
   localeInfo: LocalSetting
 }

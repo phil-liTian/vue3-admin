@@ -3,7 +3,7 @@
  * @LastEditors: phil_litian
 -->
 <template>
-  <div>main-out</div>
+  <div>main-out1</div>
 </template>
   
 <script lang='ts' setup>

@@ -4,11 +4,13 @@
  */
 import { Memory } from './Memory'
 import { DEFAULT_CACHE_TIME } from '@/settings/encryptionSetting'
-import { TOKEN_KEY, APP_LOCAL_CACHE_KEY } from '@e/cacheEnum'
+import { TOKEN_KEY, APP_LOCAL_CACHE_KEY, PROJ_CFG_KEY } from '@e/cacheEnum'
 import { createLocalStorage, createSessionStorage } from './index'
 
 interface BasicStore {
-  [TOKEN_KEY]: string | null | undefined
+  [TOKEN_KEY]: string | null | undefined,
+  [APP_LOCAL_CACHE_KEY]: string | null | undefined,
+  [PROJ_CFG_KEY]: string | null | undefined
 }
 
 export type BasicKeys = keyof BasicStore

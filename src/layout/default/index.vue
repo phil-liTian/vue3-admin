@@ -3,7 +3,7 @@
  * @LastEditors: phil_litian
 -->
 <template>
-  <Layout :class="prefixCls" v-if="false">
+  <Layout :class="prefixCls">
     <!-- <LayoutHeader /> -->
 
     <Layout :class="[`${prefixCls}-out`]">
@@ -11,7 +11,6 @@
       <LayoutSiderBar />
 
       <Layout :class="`${prefixCls}-main`">
-        <!--  -->
         <LayoutMultipleHeader />
         <!-- 内容区域 -->
         <LayoutContent />
@@ -32,7 +31,6 @@
 
   import { useDesign } from '@h/web/useDesign'
   const { prefixCls } = useDesign('layout')
-
   
 </script>
   

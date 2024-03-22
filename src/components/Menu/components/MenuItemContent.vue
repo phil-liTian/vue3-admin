@@ -4,12 +4,16 @@
 -->
 <template>
   <span>
-    {{ props.item.name }}
+    {{ getI18nName }}
   </span>
 </template>
   
 <script lang='ts' setup>
+  import { computed } from 'vue'
+  import { useI18n } from '@h/web/useI18n'
   import { contentProps } from '../props'
+  const { t } = useI18n()
+  const getI18nName = computed(() => t(props.item.name))
 
   const props = defineProps(contentProps)
 </script>

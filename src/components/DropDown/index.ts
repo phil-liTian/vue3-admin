@@ -5,5 +5,4 @@
 
 import dropDown from './src/DropDown.vue'
 
-
 export const DropDown = dropDown

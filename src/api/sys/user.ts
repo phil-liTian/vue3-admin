@@ -18,9 +18,7 @@ export const loginApi = (params?: LoginParams) => {
     {
       url: Api.Login,
       params,
-    }, 
-    {}
-  )
+    })
 }
 
 // 退出登录

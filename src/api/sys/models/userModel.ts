@@ -3,6 +3,11 @@
  * @LastEditors: phil_litian
  */
 
+export interface RoleInfo {
+  roleName: string,
+  value: string
+}
+
 // 登录返回的数据结构
 export interface LoginResultModel {
   userId: string,
@@ -15,9 +20,8 @@ export interface LoginParams {
 }
 
 export interface GetUserInfoModel {
-  roles: [],
+  roles: RoleInfo[],
   userId: string | number,
   username: string,
-  
 }
 

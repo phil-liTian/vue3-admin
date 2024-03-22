@@ -4,7 +4,9 @@
 -->
 <template>
   <BasicMenuItem v-if="!menuHasChildren(item)" :item="item"/>
-  <SubMenu v-else>
+  <SubMenu 
+    :key="`subMenu-${item.path}`"
+    v-else>
     <template #title>
       <MenuItemContent :item="item" />
     </template>

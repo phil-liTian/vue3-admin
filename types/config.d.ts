@@ -2,6 +2,7 @@
  * @Date: 2024-02-21 11:06:43
  * @LastEditors: phil_litian
  */
+import { PermissionModeEnum } from '@e/appEnum'
 
 // 支持的语言配置
 export type LocalType = 'en' | 'zh-CN'
@@ -22,5 +23,9 @@ export interface GlobalConfig {
 export interface LocalSetting {
   locale: LocalType,
   fallback: LocalType
+}
+
+export interface ProjectConfig {
+  permissionMode: PermissionModeEnum
 }
 

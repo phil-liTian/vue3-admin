@@ -3,7 +3,9 @@
  * @LastEditors: phil_litian
 -->
 <template>
-  <Menu mode="inline">
+  <Menu 
+    @click="handleMenuClick"
+    mode="inline">
     <template v-for="item in props.items" :key="item.key">
       <BasicSubMenuItem :item="item" />
     </template>
@@ -11,11 +13,17 @@
 </template>
   
 <script lang='ts' setup>
+import { defineEmits } from 'vue'
 import { Menu } from 'ant-design-vue'
 import BasicSubMenuItem from './components/BasicSubMenuItem.vue'
 import { basicProps } from './props'
 const props = defineProps(basicProps)
+const emit = defineEmits(['menuClick'])
 
+
+const handleMenuClick = ({ key }) => {
+  emit('menuClick', key)
+}
 </script>
   
 <style lang='less' scoped>

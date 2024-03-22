@@ -15,7 +15,10 @@ const setI18nLanguage = (locale: LocalType) => {
   
   setLocaleInfo({ locale })
 }
-
+/**
+ * 当前hook作用： 1.获取antdesign的多语言配置 2.切换语言 3. 获取当前语言
+ * @returns 
+ */
 export const useLocale = () => {
   // 如果直接解构的话 在执行完useLocale之后，此处的locale不会动态更新 故舍弃当前做法
   // const { getLocale: locale } = useLocalStoreWithout()

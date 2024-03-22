@@ -11,10 +11,11 @@ import 'ant-design-vue/dist/reset.css'
 import { createApp } from 'vue'
 import App from './App.vue'
 import { setupStore } from '@/store'
-import { setupRouter } from '@/router'
+import { setupRouter, router } from '@/router'
 import { registerGlobComps } from '@c/registerGlobComponents'
 import { initAppConfig } from './logics/initAppConfig'
 import { setUpI18n } from '@/locales/index'
+import { setupRouterGuard } from '@/router/guard/index'
 
 const bootstrap = async () => {
   const app = createApp(App)
@@ -33,6 +34,9 @@ const bootstrap = async () => {
 
   // 配置路由
   setupRouter(app)
+
+  // 配置导航守卫
+  setupRouterGuard(router)
 
   app.mount('#app')
 }

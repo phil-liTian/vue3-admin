@@ -8,10 +8,21 @@ export type Component<T = any> = () => Promise<T>
 
 // @ts-ignore
 export interface AppRouteRecordRaw extends Omit<RouteRecordRaw, 'meta'> {
-  name: string,
+  name?: string,
   component?: Component | string,
-  meta: RouteMeta,
+  meta?: RouteMeta,
   children?: AppRouteRecordRaw[],
   fullPath?: string
 }
 
+export interface Menu {
+  name?: string,
+  icon?: string,
+  img?: string,
+  path?: string,
+  
+  children: Menu[]
+}
+
+
+export type AppRouteModule = AppRouteRecordRaw

@@ -4,9 +4,7 @@
  */
 import { LAYOUT } from '@/router/constant'
 import { AppRouteRecordRaw } from '@/router/types'
-import { useI18n } from '@h/web/useI18n'
-
-const { t } = useI18n()
+import { t } from '@h/web/useI18n'
 
 const dashBoard: AppRouteRecordRaw = {
   name: 'DashBoard',

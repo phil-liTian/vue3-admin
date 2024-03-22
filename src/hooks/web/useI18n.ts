@@ -13,6 +13,7 @@ import { i18n } from '@/locales/index'
 type I18nTranslationParameters = [string, any]
 
 const getKey = (namespace?: string, key?: string) => {
+  
   if ( !namespace ) {
     return key
   }
@@ -49,3 +50,6 @@ export const useI18n = (namespace?: string) => {
     ...methods
   }
 }
+
+
+export const t = (key: string) => key

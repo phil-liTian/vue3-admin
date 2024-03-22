@@ -7,7 +7,6 @@ import { ref } from 'vue'
 
 export const useSplitMenu = () => {
   let menusRef = ref()
-  
 
   const genMenus = async () => {
     const menus = await getMenus()

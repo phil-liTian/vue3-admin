@@ -5,6 +5,7 @@
 import antdLocale from 'ant-design-vue/es/locale/zh_CN'
 import { genMessage } from '../helper'
 const modules = import.meta.glob('./zh-CN/**/*.json', { eager: true });
+console.log('b--->', genMessage(modules, 'zh-CN'));
 
 export default {
   message: {

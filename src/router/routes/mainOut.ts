@@ -4,7 +4,6 @@
  */
 import { AppRouteRecordRaw } from "../types";
 
-
 export const mainOut: AppRouteRecordRaw = {
   path: '/main-out',
   name: 'MainOut',
@@ -13,3 +12,4 @@ export const mainOut: AppRouteRecordRaw = {
     title: 'MainOut'
   }
 }
+
