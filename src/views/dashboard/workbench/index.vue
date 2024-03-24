@@ -7,17 +7,16 @@
     <template #headerContent>
       <workbench-header />
     </template>
-
-    <div>
-      <div>
-        <ProjectCard />
-        <DynamicInfo />
+    <div class="lg:flex">
+      <div class="lg:w-7/10 w-full !mr-4 enter-x">
+        <ProjectCard :loading="loading"/>
+        <DynamicInfo :loading="loading" class="my-4" />
       </div>
 
-      <div>
-        <QuickNav />
+      <div class="lg:w-3/10 w-full enter-x">
+        <QuickNav :loading="loading"/>
 
-        <Card>
+        <Card class="my-4">
           <img src="../../../assets/svg/illustration.svg" />
         </Card>
 
@@ -30,7 +29,6 @@
 <script lang='ts' setup>
 import { ref } from 'vue'
 import { Card } from 'ant-design-vue'
-import { PageWrapper } from '@c/page'
 import WorkbenchHeader from './components/WorkbenchHeader.vue'
 import ProjectCard from './components/ProjectCard.vue';
 import DynamicInfo from './components/DynamicInfo.vue'
@@ -40,6 +38,10 @@ import { useI18n } from '@h/web/useI18n'
 const { t } = useI18n('routes')
 
 const loading = ref(true)
+
+setTimeout(() => {
+  loading.value = false
+}, 500);
 
 </script>
   

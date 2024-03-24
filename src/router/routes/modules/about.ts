@@ -15,7 +15,8 @@ const about: AppRouteRecordRaw = {
   redirect: '/about/index',
   meta: {
     title: t('routes.dashBoard.about'),
-    orderNo: 1000
+    orderNo: 1000,
+    hideChildrenInMenu: true // 隐藏children
   },
   children: [
     {
@@ -23,7 +24,8 @@ const about: AppRouteRecordRaw = {
       path: 'index',
       component: () => import('@/views/sys/about/index.vue'),
       meta: {
-        title: t('routes.dashBoard.about')
+        title: t('routes.dashBoard.about'),
+        hideMenu: true
       }
     }
   ]

@@ -1,0 +1,12 @@
+{
+  "steps": {
+    "title": "Intro page"
+  },
+  "permissions": {
+    "title": "Permission",
+    "front": "Front-end",
+    "back": "background",
+    "frontPage": "Page",
+    "backPage": "Page"
+  }
+}

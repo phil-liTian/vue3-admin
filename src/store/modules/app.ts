@@ -3,7 +3,7 @@
  * @LastEditors: phil_litian
  * 整个应用到store
  */
-import { ProjectConfig } from '#/config'
+import { MenuSetting, ProjectConfig } from '#/config'
 import { defineStore } from 'pinia'
 import { ThemeEnum } from '@e/appEnum'
 import { PROJ_CFG_KEY } from '@e/cacheEnum'
@@ -14,7 +14,7 @@ interface AppState {
   pageLoading: boolean,
   darkMode: ThemeEnum,
   // 项目配置
-  projectConfig?: null | ProjectConfig,
+  projectConfig?: Nullable<ProjectConfig>,
 }
 
 export const useAppStore = defineStore({
@@ -36,6 +36,10 @@ export const useAppStore = defineStore({
 
     getProjectConfig(state): ProjectConfig {
       return state.projectConfig || ({} as ProjectConfig)
+    },
+
+    getMenuSetting(state): MenuSetting {
+      return this.getProjectConfig.menuSetting
     }
   },
   

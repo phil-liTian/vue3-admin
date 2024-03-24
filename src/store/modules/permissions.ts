@@ -68,7 +68,7 @@ export const usePermissionsStore = defineStore({
 
       // 路由ignoreRoute: true遍历器
       const routeRemoveIgnoreFilter = (route: AppRouteRecordRaw) => {
-
+        
       }
       
       switch(permissionMode) {

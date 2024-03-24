@@ -20,7 +20,6 @@ export interface Menu {
   icon?: string,
   img?: string,
   path?: string,
-  
   children: Menu[]
 }
 

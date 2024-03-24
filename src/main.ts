@@ -37,7 +37,7 @@ const bootstrap = async () => {
 
   // 配置导航守卫
   setupRouterGuard(router)
-
+  
   app.mount('#app')
 }
 

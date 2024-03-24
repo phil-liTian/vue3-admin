@@ -31,7 +31,7 @@ export const getAsyncMenus = () => {
     return items.filter(item => {
       const show = !item.meta?.hideMenu && !item.hideMenu
       if ( item.children?.length ) {
-        item.children =  menuFilter(item.children)
+        item.children = menuFilter(item.children)
       }
       return show
     })
@@ -55,9 +55,6 @@ export const getMenus = async () => {
   }
 
   const menus = await getAsyncMenus()
-  console.log('menus', menus);
-  
-  
 
   return menus
 }

@@ -7,8 +7,9 @@ import type { App } from "vue";
 import { PButton } from './Button/index'
 import { PIcon } from './Icon/index'
 import { PBasicHelp } from './Basic/index'
+import { PageWrapper } from './page/index'
 
 // 注册全局组件
 export function registerGlobComps(app: App) {
-  app.use(PButton).use(PIcon).use(PBasicHelp)
+  app.use(PButton).use(PIcon).use(PBasicHelp).use(PageWrapper)
 }

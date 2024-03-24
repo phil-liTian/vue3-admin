@@ -9,6 +9,10 @@ export const basicProps = {
   items: {
     type: Array,
     default: () => []
+  },
+  accordion: {
+    type: Boolean,
+    default: true
   }
 }
 

@@ -25,7 +25,13 @@ export interface LocalSetting {
   fallback: LocalType
 }
 
+interface MenuSetting {
+  accordion: boolean // 菜单是否打开手风琴模式
+}
+
 export interface ProjectConfig {
-  permissionMode: PermissionModeEnum
+  permissionMode: PermissionModeEnum,
+
+  menuSetting: MenuSetting
 }
 

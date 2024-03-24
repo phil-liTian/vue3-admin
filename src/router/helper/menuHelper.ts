@@ -37,11 +37,8 @@ const joinParentPath = (list: Menu[], parentPath = '') => {
     if ( item.children?.length ) {
       joinParentPath(item.children, item.path)
     }
-    
   }
 }
-
-
 
 /**
  * 将定义的路由结构转换成菜单的结构
@@ -54,8 +51,8 @@ export const transformRouteToMenu = (routeModList: AppRouteModule[], routerMappi
   let routeList: AppRouteRecordRaw[] = []
 
   cloneRouteModList.forEach(item => {
-    if( routerMapping && typeof item.redirect === 'string' ) {
-      // item.path = item.redirect
+    if( routerMapping && item.hideChildrenInMenu && typeof item.redirect === 'string' ) {
+      item.path = item.redirect
     }
     routeList.push(item)
   })
@@ -63,17 +60,17 @@ export const transformRouteToMenu = (routeModList: AppRouteModule[], routerMappi
   // 提取指定树结构
   const list = treeMap(routeList, {
     conversion: (node: AppRouteRecordRaw) => {
-      
-      const { meta: { title }, path } = node
+      const { meta: { title, hideMenu }, path } = node
 
       return {
         meta: node.meta,
         name: title,
-        path
+        path,
+        hideMenu
       }
     }
   })
-  console.log('list', list);
+  
   joinParentPath(list)
   
   return cloneDeep(list)

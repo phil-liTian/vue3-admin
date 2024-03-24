@@ -1,3 +1,12 @@
 {
-  "title": "模板"
+  "steps": {
+    "title": "引导页"
+  },
+  "permissions": {
+    "title": "权限管理",
+    "front": "基于前端权限",
+    "back": "基于后端权限",
+    "frontPage": "页面权限",
+    "backPage": "页面权限"
+  }
 }

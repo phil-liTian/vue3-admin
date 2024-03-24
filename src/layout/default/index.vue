@@ -44,7 +44,7 @@
     min-height: 100%;
     background-color: @content-bg;
     &-out {
-      
+      width: 100%;
     }
 
     &-main {
