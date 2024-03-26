@@ -35,16 +35,12 @@ const menuState = reactive<MenuState>({
   openKeys: [], // 展开的key
 })
 
-console.log('items', items);
-
 const { getOpenKeys, setOpenKeys, handleOpenChange } = useOpenKeys(menuState, items, mode, accordion)
 
 
 const handleMenuClick = ({ key }) => {
   emit('menuClick', key)
   menuState.selectKeys = [key]
-  console.log('menuState', menuState);
-  
 }
 </script>
   

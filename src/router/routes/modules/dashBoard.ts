@@ -10,9 +10,10 @@ const dashBoard: AppRouteRecordRaw = {
   name: 'DashBoard',
   path: '/dashBoard',
   component: LAYOUT,
-  redirect: '/dashBoard/workbench',
+  redirect: '/dashBoard/analysis',
   meta: {
-    title: t('routes.dashBoard.dashBoard')
+    title: t('routes.dashBoard.dashBoard'),
+    icon: 'ion:grid-outline'
   },
   children: [
     {

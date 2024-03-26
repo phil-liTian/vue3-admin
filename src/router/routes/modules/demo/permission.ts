@@ -14,6 +14,7 @@ const steps: AppRouteRecordRaw = {
   meta: {
     title: t('routes.demo.permissions.title'),
     orderNo: 999,
+    icon: 'ion:key-outline'
   },
   children: [
     {

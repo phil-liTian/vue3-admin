@@ -1,8 +1,11 @@
 @menu-prefix-cls: ~'@{namespace}-menu';
 
-.@{menu-prefix-cls} {
-  // color: red;
 
+@menu-dark-subsidiary-color: rgba(255, 255, 255, 0.7);
+
+@transition-time: .2s;
+
+.@{menu-prefix-cls} {
 
 }
 
@@ -14,10 +17,40 @@
     margin: 0;
     padding: 0;
     list-style: none;
-    color: red;
+    // color: @text-color-base;
+    color: @menu-dark-subsidiary-color;
 
     &-item {
-      
+      position: relative;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      padding: 14px 24px;
+
+
+      > i {
+        margin-right: 6px;
+      }
+    }
+
+    &-submenu-title {
+      position: relative;
+      padding: 14px 24px;
+    }
+
+    &-subMenu-title-icon {
+      position: absolute;
+      right: 18px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    &-subMenu-title-icon {
+      transition: transform @transition-time @ease-in-out;
+    }
+
+    &-opened > * > &-subMenu-title-icon {
+      transform: translateY(-50%) rotate(180deg);
     }
   }
 }

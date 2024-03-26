@@ -50,6 +50,15 @@ export const useAppStore = defineStore({
 
     setDarkMode(mode: ThemeEnum): void {
       this.darkMode = mode
+    },
+
+    setProjectConfig(config: Partial<ProjectConfig>): void {
+      this.projectConfig = Object.assign(this.projectConfig || {}, config) as ProjectConfig
+      Persistent.setLocal(PROJ_CFG_KEY, this.projectConfig)
+    },
+
+    setMenuSetting() {
+      
     }
   }
 })

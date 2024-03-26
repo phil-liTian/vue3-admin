@@ -16,7 +16,8 @@ const about: AppRouteRecordRaw = {
   meta: {
     title: t('routes.dashBoard.about'),
     orderNo: 1000,
-    hideChildrenInMenu: true // 隐藏children
+    hideChildrenInMenu: true, // 隐藏children
+    icon: 'simple-icons:aboutdotme'
   },
   children: [
     {

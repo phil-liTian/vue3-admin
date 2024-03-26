@@ -1,7 +1,5 @@
 <template>
-  <page-wrapper>
-
-  </page-wrapper>
+  <div>mixSider</div>
 </template>
   
 <script lang='ts' setup>

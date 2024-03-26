@@ -23,7 +23,7 @@
       const { prefixCls } = useDesign('layout-menu')
       const { menusRef } = useSplitMenu()
       const { go } = useGo()
-      const { getAccordion } = useMenuSetting()
+      const { getAccordion, getIsHorizontal, getMenuTheme } = useMenuSetting()
 
       const getLogoClass = computed(() => {
         return [
@@ -41,7 +41,7 @@
           menus,
           items: menus,
           onMenuClick: handleMenuClick,
-          theme: 'dark'
+          theme: unref(getMenuTheme)
         }
       })
 
@@ -52,15 +52,14 @@
 
       const renderMenu = () => {
         const { menus, ...menuProps } = unref(getCommProps)
-        
         return (
           // 横向菜单
-          props.isHorizontal ?
+          unref(getIsHorizontal) ?
             <BasicMenu 
               { ...menuProps }
               items={menus} />
             :
-            <SimpleMenu items={ menus } />
+            <SimpleMenu { ...menuProps }  items={ menus } />
         )
       }
 

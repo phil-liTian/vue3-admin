@@ -2,6 +2,8 @@
  * @Date: 2024-02-21 11:06:43
  * @LastEditors: phil_litian
  */
+import { ThemeEnum } from '@/enums/appEnum'
+import { MenuModeEnum } from '@/enums/menuEnum'
 import { PermissionModeEnum } from '@e/appEnum'
 
 // 支持的语言配置
@@ -26,7 +28,9 @@ export interface LocalSetting {
 }
 
 interface MenuSetting {
-  accordion: boolean // 菜单是否打开手风琴模式
+  accordion: boolean, // 菜单是否打开手风琴模式
+  mode: MenuModeEnum, // 菜单模式
+  theme: ThemeEnum
 }
 
 export interface ProjectConfig {

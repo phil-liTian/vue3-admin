@@ -4,7 +4,9 @@
 -->
 <template>
   <div :class="getClass">
-    <PageHeader :style="getHeaderStyle">
+    <PageHeader 
+      :title="title"
+      :style="getHeaderStyle">
       <template #default>
         <slot name="headerContent"></slot>
       </template>
@@ -23,13 +25,15 @@
 import { computed, CSSProperties } from 'vue'
 import { PageHeader } from 'ant-design-vue'
 import { useDesign } from '@h/web/useDesign'
+import { propTypes } from '@u/propTypes'
 import PageFooter from './pageFooter.vue';
 import { useContentHeight } from '@h/web/useContentHeight'
 const { prefixCls } = useDesign('page-wrapper')
 
 defineOptions({ name: 'PageWrapper' })
 const props = defineProps({
-  contentBackground: Boolean
+  contentBackground: propTypes.bool,
+  title: propTypes.string,
 })
 
 const getClass = computed(() => {
@@ -42,7 +46,8 @@ const getClass = computed(() => {
 
 const getContentStyle = computed((): CSSProperties => {
   return {
-    width: 'calc(100% - 32px)'
+    width: 'calc(100% - 32px)',
+    height: '1000px'
   }
 })
 

@@ -3,15 +3,30 @@
  * @LastEditors: phil_litian
 -->
 <template>
-  <li :class="getClass">
+  <li :class="getClass" @click.stop="handleClickItem" :style="getItemStyle">
+    <slot></slot>
     <slot name=title></slot>
   </li>
 </template>
   
 <script lang='ts' setup>
   import { useDesign } from '@h/web/useDesign'
-  import { computed } from 'vue'
+  import { computed, getCurrentInstance, PropType } from 'vue'
+  import { propTypes } from '@u/propTypes'
+  import { useMenuItem } from './useMenu'
+  import { useSimpleRootMenuContext } from './useSimpleMenuContext'
+
+  const props = defineProps({
+    name: {
+      type: [String, Number] as PropType<number | string>,
+      required: true
+    }
+  })
+
+  const instance = getCurrentInstance()
   const { prefixCls } = useDesign('menu-item')
+  const { getItemStyle } = useMenuItem(instance)
+  const { rootMenuEmitter } = useSimpleRootMenuContext()
 
   // 获取class
   const getClass = computed(() => {
@@ -19,6 +34,14 @@
       prefixCls
     ]
   })
+
+
+  const handleClickItem = () => {
+    console.log('handleClickItem');
+
+    rootMenuEmitter.emit('on-menu-item-select', props.name)
+  }
+
 </script>
   
 <style lang='less' scoped>

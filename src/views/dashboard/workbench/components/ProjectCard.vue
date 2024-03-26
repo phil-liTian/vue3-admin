@@ -10,7 +10,7 @@
 
     <CardGrid class="w-1/3" v-for="item in GroupList" :key="item.title">
       <span class="flex ">
-        <PIcon :icon="item.icon" size="30"></PIcon>
+        <PIcon :icon="item.icon" :size="30"></PIcon>
         <span class="ml-4 text-lg">{{ item.title }}</span>
       </span>
 

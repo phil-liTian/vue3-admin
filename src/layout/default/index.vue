@@ -4,7 +4,7 @@
 -->
 <template>
   <Layout :class="prefixCls">
-    <!-- <LayoutHeader /> -->
+    <LayoutHeader />
 
     <Layout :class="[`${prefixCls}-out`]">
       <!-- 左侧菜单部分 -->

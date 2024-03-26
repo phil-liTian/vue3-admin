@@ -27,11 +27,15 @@ const getSideBarClass = computed(() => {
 
 </script>
   
-<style lang='less' scoped>
+<style lang='less'>
   @prefix-cls: ~'@{namespace}-layout-sider';
 
   .@{prefix-cls} {
-    height: 100%;
+    height: 100vh;
+
+    &.ant-layout-sider-dark {
+      background-color: @sider-dark-bg-color;
+    }
   }
 
 </style>

@@ -3,6 +3,7 @@
  * @LastEditors: phil_litian
  */
 
+import { MenuModeEnum } from '@/enums/menuEnum'
 import { useAppStore } from '@s/modules/app'
 import { computed } from 'vue'
 
@@ -13,9 +14,20 @@ export const useMenuSetting = () => {
 
   const getAccordion = computed(() => appStore.getMenuSetting.accordion)
 
+  // 菜单模式
+  const getMenuMode = computed(() => appStore.getMenuSetting.mode)
 
+  // 菜单主题
+  const getMenuTheme = computed(() => appStore.getMenuSetting.theme)
+
+  // 是否垂直
+  const getIsHorizontal = computed(() => {
+    return getMenuMode.value === MenuModeEnum.HORIZONTAL
+  })
 
   return {
-    getAccordion
+    getAccordion,
+    getMenuTheme,
+    getIsHorizontal
   }
 }

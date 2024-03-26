@@ -3,13 +3,23 @@
  * @LastEditors: phil_litian
 -->
 <template>
-  <MenuItem v-if="!hasChildren">
+  <MenuItem v-if="!hasChildren"
+    :class="getLevelClass"
+    :name="item.path">
+    <p-icon v-if="getIcon" :icon="getIcon" :size="16"></p-icon>
     <template #title>
-      {{ getI18nName }}
+      <span :class="[`${prefixCls}-sub-title`, 'ml-2']">
+        {{ getI18nName }}
+      </span>
     </template>
   </MenuItem>
 
   <SubMenu v-else>
+    <template #title>
+      <p-icon v-if="getIcon" :icon="getIcon" :size="16"></p-icon>
+      <span :class="[`${prefixCls}-sub-title`, 'ml-2']">{{ getI18nName }}</span>
+    </template>
+
     <template v-for="childItem in item.children || []" :key="childItem.key">
       <simpleSubMenu :item="childItem"></simpleSubMenu>
     </template>
@@ -19,30 +29,39 @@
 <script lang='ts' setup>
   import { PropType, computed } from 'vue';
   import { useI18n } from '@h/web/useI18n'
+  import { useDesign } from '@h/web/useDesign'
   import MenuItem from './components/menuItem.vue';
   import SubMenu from './components/subMenuItem.vue'
   import { Menu } from '@/router/types';
 
   const { t } = useI18n()
+  const { prefixCls } = useDesign('simple-menu')
   defineOptions({ name: 'simpleSubMenu' })
   const props = defineProps({
     item: {
       type: Object as PropType<Menu>,
       default: () => {}
-    }
+    },
+    parent: Boolean
   })
 
   const { item } = props
   
   const getI18nName = computed(() => t(item.name))
 
+  const getIcon = computed(() => props.item.icon )
+
   const hasChildren = computed(() => {
     return item.children?.length
   })
 
+  const getLevelClass = computed(() => {
+    return [
+      {
+        [`${prefixCls}__parent`]: props.parent,
+        [`${prefixCls}__children`]: !props.parent,
+      }
+    ]
+  })
 
 </script>
-  
-<style lang='less' scoped>
-  
-</style>

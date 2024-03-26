@@ -1,0 +1,25 @@
+@simple-prefix-cls: ~'@{namespace}-simple-menu';
+@prefix-cls: ~'@{namespace}-menu';
+
+
+.@{simple-prefix-cls} {
+
+  &__parent {
+
+  }
+
+  &__children {
+    background-color: @sider-dark-lighten-bg-color;
+  }
+
+  &-sub-title {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    transition: all .3s;
+  }
+
+  &-tag {
+    
+  }
+}

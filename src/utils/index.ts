@@ -11,6 +11,7 @@ export type WithInstall<T> = T & {
   install(app: App): void
 }
 
+export const noop = () => {}
 
 // 给组件增加install方法, 可实现全局组件注册
 export const withInstall = <T extends customComponent>(component: T, alias?: string) => {
