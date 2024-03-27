@@ -12,7 +12,6 @@ export const LAYOUT = () => import('@/layout/default/index.vue')
 // 重定向
 export const REDIRECT = () => import('@v/sys/redirect/index.vue')
 
-
 export const getParentLayout = (_name?: string) => {
   return () => Promise.resolve(_name || LAYOUT)
 }

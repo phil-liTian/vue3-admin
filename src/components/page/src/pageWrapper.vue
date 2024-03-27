@@ -3,8 +3,9 @@
  * @LastEditors: phil_litian
 -->
 <template>
-  <div :class="getClass">
+  <div :class="getClass" ref="wrapperRef">
     <PageHeader 
+      ref="headerRef"
       :title="title"
       :style="getHeaderStyle">
       <template #default>
@@ -12,9 +13,9 @@
       </template>
     </PageHeader>
 
-    <div :class="getContentClass" :style="getContentStyle"><slot></slot></div>
+    <div ref="contentRef" :class="getContentClass" :style="getContentStyle"><slot></slot></div>
 
-    <page-footer>
+    <page-footer ref="footerRef">
       <template #left><slot name="leftFooter"></slot></template>
       <template #right><slot name="rightFooter"></slot></template>
     </page-footer>
@@ -22,7 +23,7 @@
 </template>
   
 <script lang='ts' setup>
-import { computed, CSSProperties } from 'vue'
+import { computed, CSSProperties, ref } from 'vue'
 import { PageHeader } from 'ant-design-vue'
 import { useDesign } from '@h/web/useDesign'
 import { propTypes } from '@u/propTypes'
@@ -34,7 +35,14 @@ defineOptions({ name: 'PageWrapper' })
 const props = defineProps({
   contentBackground: propTypes.bool,
   title: propTypes.string,
+  // conten是否全屏
+  contentFullHeight: propTypes.bool.def(false)
 })
+
+const wrapperRef = ref(null)
+const headerRef = ref(null)
+const footerRef = ref(null)
+const contentRef = ref(null)
 
 const getClass = computed(() => {
   return [
@@ -42,7 +50,14 @@ const getClass = computed(() => {
   ]
 })
 
-// const { contentHeight } = useContentHeight()
+const getIsContentFullHeight = computed(() => props.contentBackground)
+
+const { contentHeight } = useContentHeight(
+  getIsContentFullHeight,
+  wrapperRef,
+  [headerRef, footerRef],
+  [contentRef]
+)
 
 const getContentStyle = computed((): CSSProperties => {
   return {

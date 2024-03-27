@@ -52,7 +52,7 @@ export const useAppStore = defineStore({
       this.darkMode = mode
     },
 
-    setProjectConfig(config: Partial<ProjectConfig>): void {
+    setProjectConfig(config: DeepPartial<ProjectConfig>): void {
       this.projectConfig = Object.assign(this.projectConfig || {}, config) as ProjectConfig
       Persistent.setLocal(PROJ_CFG_KEY, this.projectConfig)
     },

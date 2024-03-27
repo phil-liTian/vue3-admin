@@ -29,10 +29,9 @@ const themeConfig = computed(() => {
   }
 })
 
-useTitle()
-
-// createBreakpointListen方法封装
+// useTitle()
 // pageWrapper useContentHeight hook封装
+// createBreakpointListen方法封装
 </script>
   
 <style lang='less' scoped>

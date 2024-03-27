@@ -3,6 +3,14 @@
  * @LastEditors: phil_litian
  */
 
+export interface ViewportOffsetResult {
+  /**
+   * 内容高度 + 计算后的bottom
+   */
+  bottomIncludeBody: number
+}
+
+
 // 去除空格
 export const trim = (str: string) => {
   return str.replace(/^[\s\uFEFF]+|[\s\uFEFF]+$/g, '')
@@ -55,5 +63,20 @@ export const removeClass = (el: Element, cls: string) => {
 
   if( !el.classList ) {
     el.className = trim(curClass)
+  }
+}
+
+export function getBoundingClientRect(element: Element) {
+  return element.getBoundingClientRect()
+}
+
+export function getViewportOffset(element: Element): ViewportOffsetResult {
+  const doc = document.documentElement
+  const box = getBoundingClientRect(element)
+  
+  const { left: rectLeft, top: rectRight, width: rectWidth, height: rectHeight } = box
+
+  return {
+    bottomIncludeBody: 1
   }
 }

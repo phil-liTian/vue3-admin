@@ -2,8 +2,9 @@
  * @Date: 2024-03-22 17:12:58
  * @LastEditors: phil_litian
  */
+import { getViewportOffset } from '@/utils/domUtils';
 import type { Ref, ComputedRef } from 'vue'
-import { ref } from 'vue'
+import { nextTick, ref, unref } from 'vue'
 
 type Upward = undefined | null | number | string;
 
@@ -29,19 +30,37 @@ export const useContentHeight = (
   const contentHeight: Ref<Nullable<number>> = ref(null)
 
   // 计算组件的空闲空间 margin、padding
-  const calcSubtractSpace = () => {
-
+  const calcSubtractSpace = (el: Element): number => {
+    return 11
   }
 
   // 获取dom元素
   function getEl (element: any): Nullable<HTMLDivElement> {
     if ( !element ) return null
+    
     return (element instanceof HTMLDivElement ? element : element.$el) as HTMLDivElement
   }
 
   // 动态计算高度
-  const calcContentHeight = () => {
-    if(!flag.value) return
+  const calcContentHeight = async () => {
+    // if(!flag.value) return
+    await nextTick()
+    const anchorEl = getEl(unref(anchorRef))
+    if ( !anchorEl ) return
+
+    const { bottomIncludeBody } = getViewportOffset(anchorEl)
+
+    // 需要减去的高度
+    let subtractHeight = 0
+    subtractHeightRefs.map(item => {
+      subtractHeight += getEl(unref(item)).offsetHeight ?? 0
+    })
+
+    // 需要减去space的高度 margin/padding
+    let subtractSpaceHeight = calcSubtractSpace(getEl(unref(anchorEl))) ?? 0
+    subtractSpaceRefs.map(item => {
+      subtractSpaceHeight += calcSubtractSpace(getEl(unref(item)))
+    })
     
   }
 

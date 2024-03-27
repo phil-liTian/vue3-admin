@@ -11,7 +11,7 @@
     </div>
 
     <CollapseTransition>
-      <ul :class="prefixCls" v-show="state.open">
+      <ul :class="prefixCls" v-show="state.opened">
         <slot></slot>
       </ul>
     </CollapseTransition>
@@ -20,8 +20,9 @@
   
 <script lang='ts' setup>
   import { useDesign } from '@h/web/useDesign'
-  import { computed, getCurrentInstance, reactive } from 'vue'
+  import { computed, getCurrentInstance, onBeforeMount, reactive } from 'vue'
   import { CollapseTransition } from '@c/Transition/index'
+  import mitt from '@/utils/mitt'
   import { useMenuItem } from './useMenu'
   import { useSimpleRootMenuContext } from './useSimpleMenuContext'
   const { prefixCls } = useDesign('menu')
@@ -30,26 +31,34 @@
 
   const { getItemStyle } = useMenuItem(instance)
   const { rootMenuEmitter } = useSimpleRootMenuContext()
+  const subMenuEmitter = mitt()
 
   const state = reactive({
-    open: false
+    opened: false
   })
 
   const getClass = computed(() => {
     return [
       prefixCls,
       {
-        [`${prefixCls}-opened`]: state.open
+        [`${prefixCls}-opened`]: state.opened
       }
     ]
   })
 
   const handleClick = () => {
-    const { open } = state
-    rootMenuEmitter.emit('open-name-change', { name: '12', opened: false })
+    const { opened } = state
+    rootMenuEmitter.emit('opened-name-change', { name: '12', opened: false })
 
-    state.open = !open
+    state.opened = !opened
   }
+
+
+  onBeforeMount(() => {
+    rootMenuEmitter.on('on-update-opened', a => {
+      console.log('a', a);
+    })
+  })
 </script>
   
 <style lang='less' scoped>

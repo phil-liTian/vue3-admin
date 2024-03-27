@@ -9,7 +9,7 @@
 </template>
   
 <script lang='ts' setup>
-  import { computed, onMounted, ref } from 'vue'
+  import { computed, onMounted, PropType, ref } from 'vue'
   import { useDesign } from '@h/web/useDesign'
   import { useGo } from '@h/web/usePage'
   import { propTypes } from '@u/propTypes'
@@ -24,8 +24,14 @@
   const props = defineProps({
     theme: propTypes.oneOf(['light', 'dark']).def('light'),
     collapse: propTypes.bool.def(true),
-    indentSize: propTypes.number.def(16)
+    indentSize: propTypes.number.def(16),
+    openNames: {
+      type: Array as PropType<(string | number)[]>,
+      default: []
+    }
   })
+
+  const openedNames = ref<(string | number)[]>([])
 
   createSimpleRootMenuContext({
     rootMenuEmitter,
@@ -33,6 +39,10 @@
   })
 
   const emits = defineEmits(['select'])
+
+  const onUpdateOpen = () => {
+    rootMenuEmitter.emit('on-update-opened', )
+  }
 
   const getClass = computed(() => {
     const { theme, collapse } = props
@@ -47,6 +57,7 @@
   }) 
 
   onMounted(() => {
+    openedNames.value = props.openNames;
     rootMenuEmitter.on('on-menu-item-select', (name: string | number) => {
       console.log('on-menu-item-select', name);
 

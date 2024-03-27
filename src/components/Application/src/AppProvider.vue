@@ -24,13 +24,13 @@ export default defineComponent({
     createAppProviderContext({ prefixCls })
 
     const handleRestoreState = () => {
-      appStore.setProjectConfig({
-        menuSetting: {
-          mode: MenuModeEnum.VERTICAL,
-          accordion: false,
-          theme: ThemeEnum.DARK
-        }
-      })
+      // appStore.setProjectConfig({
+      //   menuSetting: {
+      //     mode: MenuModeEnum.VERTICAL,
+      //     accordion: false,
+      //     theme: ThemeEnum.DARK
+      //   }
+      // })
     }
 
     // 监听屏幕断点变化(正常情况下)

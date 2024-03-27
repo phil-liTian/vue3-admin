@@ -96,7 +96,6 @@ export const usePermissionsStore = defineStore({
           break
         }
       }
-      console.log('routes', routes);
       
       return routes
     },

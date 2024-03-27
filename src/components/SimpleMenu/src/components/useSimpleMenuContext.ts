@@ -11,7 +11,8 @@ export type MenuEmitterEvent = {
   'open-name-change': {
     name: string | number,
     opened: boolean
-  }
+  },
+  'on-update-opened': boolean
 }
 
 interface SimpleRootMenuContextProps {

@@ -16,11 +16,12 @@ export interface AppRouteRecordRaw extends Omit<RouteRecordRaw, 'meta'> {
 }
 
 export interface Menu {
-  name?: string,
+  name?: string | unknown,
   icon?: string,
   img?: string,
   path?: string,
-  children: Menu[]
+  children: Menu[],
+  meta?: Partial<RouteMeta>
 }
 
 

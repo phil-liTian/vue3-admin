@@ -11,6 +11,7 @@
   <span 
     v-else
     ref="elRef"
+    :class="['app-iconify','anticon']"
     :style="getWrapStyle">
   </span>
 </template>

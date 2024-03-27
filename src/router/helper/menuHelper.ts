@@ -4,7 +4,15 @@
  */
 import { cloneDeep } from 'lodash-es'
 import { AppRouteModule, AppRouteRecordRaw, Menu } from "../types";
-import { treeMap } from '@u/helper/treeHelper'
+import { treeMap, findPath } from '@u/helper/treeHelper'
+
+
+// 根据path返回当前menu节点上所有父节点path
+export function getAllParentPath<T>(treeData: T[], path: string) {
+  const menuList = findPath(treeData, (n) => n.path === path)
+  return menuList.map(item => item.path)
+}
+
 
 // const about: AppRouteRecordRaw = {
 //   name: 'About',
@@ -49,14 +57,15 @@ const joinParentPath = (list: Menu[], parentPath = '') => {
 export const transformRouteToMenu = (routeModList: AppRouteModule[], routerMapping: boolean = false) => {
   const cloneRouteModList = cloneDeep(routeModList)
   let routeList: AppRouteRecordRaw[] = []
-
+  
   cloneRouteModList.forEach(item => {
-    if( routerMapping && item.hideChildrenInMenu && typeof item.redirect === 'string' ) {
+    if( routerMapping && item.meta.hideChildrenInMenu && typeof item.redirect === 'string' ) {
       item.path = item.redirect
     }
+
     routeList.push(item)
   })
-  
+
   // 提取指定树结构
   const list = treeMap(routeList, {
     conversion: (node: AppRouteRecordRaw) => {

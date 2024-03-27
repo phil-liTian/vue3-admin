@@ -36,7 +36,6 @@ import avatar from '@/assets/images/phil.png'
 
 const useUser = useUserStore()
 const userInfo = computed(() => useUser.getUserInfo)
-console.log('userInfo', userInfo);
 
 </script>
   

@@ -1,0 +1,22 @@
+@header-prefix-cls: ~'@{namespace}-layout-header';
+@header-trigger-prefix-cls: ~'@{namespace}-layout-header-trigger';
+
+
+.@{header-prefix-cls} {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: @white;
+  padding: 0;
+  line-height: @header-height;
+
+  &-left {
+    display: flex;
+    align-items: center;
+
+
+    .@{header-trigger-prefix-cls} {
+      
+    }
+  }
+}

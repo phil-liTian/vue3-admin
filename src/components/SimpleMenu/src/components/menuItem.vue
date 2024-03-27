@@ -37,8 +37,6 @@
 
 
   const handleClickItem = () => {
-    console.log('handleClickItem');
-
     rootMenuEmitter.emit('on-menu-item-select', props.name)
   }
 

@@ -3,7 +3,8 @@
  * @LastEditors: phil_litian
 -->
 <template>
-  <MenuItem v-if="!hasChildren"
+  <MenuItem 
+    v-if="!hasChildren"
     :class="getLevelClass"
     :name="item.path">
     <p-icon v-if="getIcon" :icon="getIcon" :size="16"></p-icon>

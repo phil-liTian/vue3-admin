@@ -8,4 +8,8 @@ declare global {
   type Recordable<T = any> = Record<string, T>
   
   type Nullable<T> = T | null
+
+  type DeepPartial<T> = {
+    [P in keyof T]?: DeepPartial<T[P]>
+  }
 }

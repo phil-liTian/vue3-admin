@@ -21,7 +21,8 @@
   import Menu from './components/menu.vue'
   import SimpleSubMenu from './simpleSubMenu.vue'
   import { MenuState } from './types'
-  const { prefixCls } = useDesign('simple-menu')
+  import { listenerRouteChange } from '@/logics/mitt/routeChange'
+  const { prefixCls } = useDesign('SimpleMenu')
   const emits = defineEmits(['menuClick'])
 
   const menuState = reactive<MenuState>({
@@ -38,10 +39,12 @@
   })
 
   const handleSelect = (key) => {
-    console.log('key', key);
-
     emits('menuClick', key)
   }
+
+  listenerRouteChange((route) => {
+    console.log('route-->', route);
+  })
 
 
 </script>

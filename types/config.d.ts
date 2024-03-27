@@ -3,6 +3,7 @@
  * @LastEditors: phil_litian
  */
 import { ThemeEnum } from '@/enums/appEnum'
+import { CacheTypeEnum } from '@/enums/cacheEnum'
 import { MenuModeEnum } from '@/enums/menuEnum'
 import { PermissionModeEnum } from '@e/appEnum'
 
@@ -28,6 +29,7 @@ export interface LocalSetting {
 }
 
 interface MenuSetting {
+  bgColor: string,
   accordion: boolean, // 菜单是否打开手风琴模式
   mode: MenuModeEnum, // 菜单模式
   theme: ThemeEnum
@@ -35,7 +37,7 @@ interface MenuSetting {
 
 export interface ProjectConfig {
   permissionMode: PermissionModeEnum,
-
   menuSetting: MenuSetting
+  permissionCacheType: CacheTypeEnum
 }
 

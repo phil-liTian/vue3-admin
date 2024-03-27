@@ -24,7 +24,6 @@
 
   const selectedKeys = ref<string[]>(['en'])
   const { changeLocale, locale } = useLocale()
-  console.log('locale', locale);
 
   // 切换语言选中状态
   watchEffect(() => {

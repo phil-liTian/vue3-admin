@@ -62,3 +62,33 @@ const treeMapEach = (data: any, { children = 'children', conversion }: { childre
     return { ...conversionData }
   }
 }
+
+// 找当前节点的所有祖先节点 -> 第一反应用递归解决；这里用while循环效率更高
+export function findPath<T>(treeData: T[], func: Fn, config: Partial<TreeHelperConfig> = {}) {
+  let path = []
+  config = getConfig(config)
+  // 定义一个新数组 以防影响到传进来的treeData
+  let list = [...treeData]
+  let visitedSet = new Set()
+  const { children } = config
+  while(list.length) {
+    const node = list[0]
+    
+    if ( visitedSet.has(node) ) {
+      list.shift()
+      path.pop()
+    } else {
+      // 如果有children的话 则添加到list中
+      visitedSet.add(node)
+      node[children] && list.unshift(...node[children])
+      path.push(node)
+      
+      if ( func(node) ) {
+        return path
+      }
+    }
+  }
+
+
+  return null
+}

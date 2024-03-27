@@ -16,7 +16,7 @@ export const useBreakPoint = () => {
 export const createBreakpointListen = (fn?: () => void) => {
   function getWindowWidth() {
     const width = document.body.clientWidth
-    console.log('width', width);
+    // console.log('width', width);
   }
 
   function resizeFn() {
