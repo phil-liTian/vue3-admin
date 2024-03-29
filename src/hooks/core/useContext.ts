@@ -6,15 +6,17 @@
 import { inject, InjectionKey, readonly as defineReadonly, provide, reactive } from "vue";
 
 interface CreateContextOptions {
-  readonly?: boolean
+  readonly?: boolean,
+  native?: boolean
 }
 
 export function createContext<T>(context: any, key: InjectionKey<T> = Symbol(), options: CreateContextOptions = {}) {
   const state = reactive(context)
-  const { readonly = true } = options
+  // 增加native属性，标识是否直接使用context
+  const { readonly = true, native = false } = options
   
   const provideData = readonly ? defineReadonly(state) : state;
-  provide(key, provideData)
+  provide(key, native ? context : provideData)
 
   return {
     state

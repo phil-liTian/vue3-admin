@@ -4,7 +4,10 @@
 -->
 <template>
   <Menu
+    v-bind="getBindValues"
     :class="prefixCls"
+    :activeName="menuState.activeName"
+    :openNames="menuState.openNames"
     @select="handleSelect">
     <template v-for="item in items" :key="item.path">
       <SimpleSubMenu 
@@ -16,20 +19,16 @@
   
 <script lang='ts' setup>
   import { Menu as MenuType } from "@/router/types";
-  import { PropType, reactive } from "vue";
+  import { computed, PropType, reactive, useAttrs } from "vue";
   import { useDesign } from '@h/web/useDesign'
   import Menu from './components/menu.vue'
   import SimpleSubMenu from './simpleSubMenu.vue'
   import { MenuState } from './types'
+  import { useOpenKeys } from './useOpenKeys'
   import { listenerRouteChange } from '@/logics/mitt/routeChange'
   const { prefixCls } = useDesign('SimpleMenu')
+  const attrs = useAttrs()
   const emits = defineEmits(['menuClick'])
-
-  const menuState = reactive<MenuState>({
-    openNames: [],
-    activeName: '',
-    activeSubMenuNames: []
-  })
 
   const props = defineProps({
     items: {
@@ -37,15 +36,23 @@
       default: () => ([])
     }
   })
+  
+  const menuState = reactive<MenuState>({
+    openNames: [],
+    activeName: '',
+    activeSubMenuNames: []
+  })
+  const { } = useOpenKeys(menuState)
+
+  const getBindValues = computed(() => ({ ...props, ...attrs }))
 
   const handleSelect = (key) => {
     emits('menuClick', key)
   }
 
   listenerRouteChange((route) => {
-    console.log('route-->', route);
+    menuState.activeName = route.path
   })
-
 
 </script>
   

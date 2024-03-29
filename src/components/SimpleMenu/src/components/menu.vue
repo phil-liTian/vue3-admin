@@ -9,7 +9,7 @@
 </template>
   
 <script lang='ts' setup>
-  import { computed, onMounted, PropType, ref } from 'vue'
+  import { computed, onMounted, PropType, ref, toRef, watchEffect } from 'vue'
   import { useDesign } from '@h/web/useDesign'
   import { useGo } from '@h/web/usePage'
   import { propTypes } from '@u/propTypes'
@@ -19,12 +19,13 @@
   const { go } = useGo()
 
   defineOptions({ name: 'Menu' })
-  const currentActiveName = ref('')
+  const currentActiveName = ref<number | string>('')
   const rootMenuEmitter = mitt<MenuEmitterEvent>()
   const props = defineProps({
     theme: propTypes.oneOf(['light', 'dark']).def('light'),
     collapse: propTypes.bool.def(true),
     indentSize: propTypes.number.def(16),
+    activeName: propTypes.oneOfType([propTypes.string, propTypes.number]),
     openNames: {
       type: Array as PropType<(string | number)[]>,
       default: []
@@ -41,7 +42,7 @@
   const emits = defineEmits(['select'])
 
   const onUpdateOpen = () => {
-    rootMenuEmitter.emit('on-update-opened', )
+    rootMenuEmitter.emit('on-update-opened', openedNames.value )
   }
 
   const getClass = computed(() => {
@@ -56,11 +57,15 @@
     ]
   }) 
 
+  watchEffect(() => {
+    if ( props.activeName ) {
+      currentActiveName.value = props.activeName
+    }
+  })
+
   onMounted(() => {
     openedNames.value = props.openNames;
     rootMenuEmitter.on('on-menu-item-select', (name: string | number) => {
-      console.log('on-menu-item-select', name);
-
       // go(name)
       emits('select', name)
     })

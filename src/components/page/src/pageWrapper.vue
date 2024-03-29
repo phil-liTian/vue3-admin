@@ -7,7 +7,8 @@
     <PageHeader 
       ref="headerRef"
       :title="title"
-      :style="getHeaderStyle">
+      :style="getHeaderStyle"
+      v-if="getShowHeader">
       <template #default>
         <slot name="headerContent"></slot>
       </template>
@@ -23,7 +24,7 @@
 </template>
   
 <script lang='ts' setup>
-import { computed, CSSProperties, ref } from 'vue'
+import { computed, CSSProperties, ref, unref, useSlots } from 'vue'
 import { PageHeader } from 'ant-design-vue'
 import { useDesign } from '@h/web/useDesign'
 import { propTypes } from '@u/propTypes'
@@ -39,6 +40,8 @@ const props = defineProps({
   contentFullHeight: propTypes.bool.def(false)
 })
 
+const slots = useSlots()
+
 const wrapperRef = ref(null)
 const headerRef = ref(null)
 const footerRef = ref(null)
@@ -50,7 +53,8 @@ const getClass = computed(() => {
   ]
 })
 
-const getIsContentFullHeight = computed(() => props.contentBackground)
+const getIsContentFullHeight = computed(() => props.contentFullHeight)
+const getShowHeader = computed(() => slots.headerContent || props.title)
 
 const { contentHeight } = useContentHeight(
   getIsContentFullHeight,
@@ -59,13 +63,17 @@ const { contentHeight } = useContentHeight(
   [contentRef]
 )
 
+// 内容样式
 const getContentStyle = computed((): CSSProperties => {
+  console.log('contentHeight', contentHeight);
+  
   return {
     width: 'calc(100% - 32px)',
-    height: '1000px'
+    height: `${unref(contentHeight)}px`
   }
 })
 
+// 顶部样式
 const getHeaderStyle = computed((): CSSProperties => {
   return {
     position: 'sticky',
@@ -74,6 +82,7 @@ const getHeaderStyle = computed((): CSSProperties => {
   }
 })
 
+// 内容class
 const getContentClass = computed(() => {
   const { contentBackground } = props
   return [
@@ -97,6 +106,10 @@ const getContentClass = computed(() => {
 
     .@{prefix-cls-content} { 
       margin: 16px;
+    }
+
+    &-content-bg {
+      background-color: @component-background;
     }
 
     .ant-page-header {

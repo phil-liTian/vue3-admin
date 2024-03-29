@@ -7,6 +7,7 @@ import type { Ref, ComputedRef } from 'vue'
 import { nextTick, ref, unref } from 'vue'
 
 type Upward = undefined | null | number | string;
+type Direction = 'all' | 'top' | 'bottom'
 
 /**
  * 动态计算内容高度
@@ -30,8 +31,33 @@ export const useContentHeight = (
   const contentHeight: Ref<Nullable<number>> = ref(null)
 
   // 计算组件的空闲空间 margin、padding
-  const calcSubtractSpace = (el: Element): number => {
-    return 11
+  const calcSubtractSpace = (el: Element, direction: Direction = 'all'): number => {
+    // 去掉所有非数字
+    function dPx(px: string): number {
+      return Number(px.replace(/[^\d]/g, ''))
+    }
+    let subtractHeight = 0
+    const ZERO_PX = '0px'
+    if ( el ) {
+      const cssStyle = getComputedStyle(el) // 获取所有的样式
+      const marginTop = dPx(cssStyle.marginTop ?? ZERO_PX)
+      const margintBottom = dPx(cssStyle.marginBottom ?? ZERO_PX)
+      const paddingBottom = dPx(cssStyle.paddingBottom ?? ZERO_PX)
+      const paddingTop = dPx(cssStyle.paddingTop ?? ZERO_PX)
+      
+      if ( direction === 'all' ) {
+        subtractHeight += marginTop
+        subtractHeight += margintBottom
+        subtractHeight += paddingBottom
+        subtractHeight += paddingTop
+      } else if ( direction === 'top' ) {
+
+      } else if (direction === 'bottom') {
+
+      }
+    }
+
+    return subtractHeight
   }
 
   // 获取dom元素
@@ -53,15 +79,21 @@ export const useContentHeight = (
     // 需要减去的高度
     let subtractHeight = 0
     subtractHeightRefs.map(item => {
-      subtractHeight += getEl(unref(item)).offsetHeight ?? 0
+      // offsetHeight 是一个只读属性，它返回该元素的像素高度，高度包含内边距（padding）和边框（border），不包含外边距（margin）
+      subtractHeight += getEl(unref(item))?.offsetHeight ?? 0
     })
 
     // 需要减去space的高度 margin/padding
-    let subtractSpaceHeight = calcSubtractSpace(getEl(unref(anchorEl))) ?? 0
+    let subtractSpaceHeight = calcSubtractSpace(anchorEl) ?? 0
     subtractSpaceRefs.map(item => {
       subtractSpaceHeight += calcSubtractSpace(getEl(unref(item)))
     })
     
+    // 内容高度
+    let height = bottomIncludeBody - subtractSpaceHeight - subtractHeight
+
+    
+    contentHeight.value = height
   }
 
   calcContentHeight()

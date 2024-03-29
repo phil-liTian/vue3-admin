@@ -3,7 +3,9 @@
  * @LastEditors: phil_litian
 -->
 <template>
-  <div>about</div>
+  <pageWrapper>
+    
+  </pageWrapper>
 </template>
   
 <script lang='ts' setup>

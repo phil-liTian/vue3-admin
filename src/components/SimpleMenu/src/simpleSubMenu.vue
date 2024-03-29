@@ -22,7 +22,7 @@
     </template>
 
     <template v-for="childItem in item.children || []" :key="childItem.key">
-      <simpleSubMenu :item="childItem"></simpleSubMenu>
+      <simpleSubMenu :parent="false" :item="childItem"></simpleSubMenu>
     </template>
   </SubMenu>
 </template>

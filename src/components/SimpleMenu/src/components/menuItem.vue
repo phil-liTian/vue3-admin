@@ -11,7 +11,7 @@
   
 <script lang='ts' setup>
   import { useDesign } from '@h/web/useDesign'
-  import { computed, getCurrentInstance, PropType } from 'vue'
+  import { computed, getCurrentInstance, PropType, watch, ref, unref } from 'vue'
   import { propTypes } from '@u/propTypes'
   import { useMenuItem } from './useMenu'
   import { useSimpleRootMenuContext } from './useSimpleMenuContext'
@@ -22,23 +22,34 @@
       required: true
     }
   })
+  const active = ref(false)
 
   const instance = getCurrentInstance()
-  const { prefixCls } = useDesign('menu-item')
+  const { prefixCls } = useDesign('menu')
   const { getItemStyle } = useMenuItem(instance)
-  const { rootMenuEmitter } = useSimpleRootMenuContext()
+  const { rootMenuEmitter, activeName } = useSimpleRootMenuContext()
 
   // 获取class
   const getClass = computed(() => {
     return [
-      prefixCls
+      `${prefixCls}-item`,
+      {
+        [`${prefixCls}-item-active`]: unref(active)
+      }
     ]
   })
-
 
   const handleClickItem = () => {
     rootMenuEmitter.emit('on-menu-item-select', props.name)
   }
+  
+  watch(() => activeName.value, (path: string | number) => {
+    if ( path === props.name ) {
+      active.value = true
+    } else {
+      active.value = false
+    }
+  }, { immediate: true })
 
 </script>
   

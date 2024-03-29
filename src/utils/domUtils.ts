@@ -70,13 +70,39 @@ export function getBoundingClientRect(element: Element) {
   return element.getBoundingClientRect()
 }
 
+/**
+ * 
+ * @param element 
+ * @returns 
+ */
 export function getViewportOffset(element: Element): ViewportOffsetResult {
+  // 可见高度
+  const clientHeight = window.document.documentElement.clientHeight
+  // 文档内容在浏览器窗口中可见部分的宽度，不包括滚动条、边框和工具栏等
+  const clientWidth = window.document.documentElement.clientWidth
+  console.log('clientHeight', clientHeight);
+  
   const doc = document.documentElement
+  // 表示页面在水平方向上已经滚动的像素数
+  const pageXOffset = window.pageXOffset
+  // 表示页面在竖直方向上已经滚动的像素数
+  const pageYOffset = window.pageYOffset 
+
   const box = getBoundingClientRect(element)
   
-  const { left: rectLeft, top: rectRight, width: rectWidth, height: rectHeight } = box
+  const { left: rectLeft, top: rectTop, width: rectWidth, height: rectHeight } = box
+
+
+  // 当前el 距离顶部偏移的高度
+  const offsetTop = rectTop + pageYOffset
+
+
+  // console.log('getViewportOffset', box );
+
+  const top = offsetTop - 0
+  
 
   return {
-    bottomIncludeBody: 1
+    bottomIncludeBody: clientHeight - top
   }
 }

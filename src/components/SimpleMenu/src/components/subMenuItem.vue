@@ -30,18 +30,20 @@
   const instance = getCurrentInstance()
 
   const { getItemStyle } = useMenuItem(instance)
-  const { rootMenuEmitter } = useSimpleRootMenuContext()
+  const { rootMenuEmitter, activeName } = useSimpleRootMenuContext()
   const subMenuEmitter = mitt()
-
+  
   const state = reactive({
-    opened: false
+    opened: false,
+    active: false
   })
 
   const getClass = computed(() => {
     return [
-      prefixCls,
+      `${prefixCls}-subMenu`,
       {
-        [`${prefixCls}-opened`]: state.opened
+        [`${prefixCls}-opened`]: state.opened,
+        [`${prefixCls}-child-item-active`]: state.active
       }
     ]
   })

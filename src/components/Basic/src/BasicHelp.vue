@@ -4,12 +4,13 @@
 -->
 <script lang='tsx'>
   import { defineComponent, h } from "vue";
+  import { InfoCircleOutlined } from '@ant-design/icons-vue'
 
   export default defineComponent({
     name: 'PBasicHelp',
     setup(props, { slots }) {
       return () => {
-        return <div>122</div>
+        return <InfoCircleOutlined />
       }
     }
   })

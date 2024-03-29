@@ -10,8 +10,10 @@
     </div>
     <!-- <div :class="`${prefixCls}-menu`">111</div> -->
     <div :class="`${prefixCls}-action`">
-
-      <AppLocalePicker />
+      <AppSearch :class="`${prefixCls}-action__item`" />
+      <FullScreen :class="`${prefixCls}-action__item`" />
+      <AppLocalePicker :class="`${prefixCls}-action__item`" />
+      <SettingDrawer :class="`${prefixCls}-action__item`" />
     </div>
   </Header>
 </template>
@@ -20,8 +22,11 @@
 import { computed } from 'vue'
 import { Layout } from 'ant-design-vue'
 import { useDesign } from '@h/web/useDesign'
-import { AppLocalePicker, AppLogo } from '@c/Application'
+import { AppLocalePicker, AppLogo, AppSearch } from '@c/Application'
 import { LayoutBreadCrumb } from './components/index'
+import FullScreen from './components/FullScreen.vue'
+import { createAsyncComponent } from '@/utils/factory/createAsyncComponent'
+const SettingDrawer = createAsyncComponent(()=>import('../setting/index.vue'))
 const Header = Layout.Header
 
 const { prefixCls } = useDesign('layout-header')

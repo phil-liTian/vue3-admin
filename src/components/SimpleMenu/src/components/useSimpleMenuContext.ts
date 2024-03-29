@@ -12,7 +12,7 @@ export type MenuEmitterEvent = {
     name: string | number,
     opened: boolean
   },
-  'on-update-opened': boolean
+  'on-update-opened': (string | number)[]
 }
 
 interface SimpleRootMenuContextProps {
@@ -23,7 +23,7 @@ interface SimpleRootMenuContextProps {
 const key: InjectionKey<SimpleRootMenuContextProps> = Symbol()
 
 export const createSimpleRootMenuContext = (context: SimpleRootMenuContextProps) => {
-  return createContext<SimpleRootMenuContextProps>(context, key)
+  return createContext<SimpleRootMenuContextProps>(context, key, { native: true })
 }
 
 export const useSimpleRootMenuContext = () => {

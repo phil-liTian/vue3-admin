@@ -3,11 +3,14 @@
  * @LastEditors: phil_litian
 -->
 <template>
-  <div>setting</div>
+  <div>
+    <p-icon icon="material-symbols:settings-outline"></p-icon>
+    <!-- <SettingDrawer /> -->
+  </div>
 </template>
   
 <script lang='ts' setup>
-  
+  import SettingDrawer from './SettingDrawer'
 </script>
   
 <style lang='less' scoped>

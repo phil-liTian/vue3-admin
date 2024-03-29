@@ -20,6 +20,9 @@ export const useMenuSetting = () => {
   // 菜单主题
   const getMenuTheme = computed(() => appStore.getMenuSetting.theme)
 
+  // 背景色
+  const getMenuBgColor = computed(() => appStore.getMenuSetting.bgColor )
+
   // 是否垂直
   const getIsHorizontal = computed(() => {
     return getMenuMode.value === MenuModeEnum.HORIZONTAL
@@ -28,6 +31,7 @@ export const useMenuSetting = () => {
   return {
     getAccordion,
     getMenuTheme,
+    getMenuBgColor,
     getIsHorizontal
   }
 }
