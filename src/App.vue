@@ -30,10 +30,6 @@ const themeConfig = computed(() => {
 })
 
 // useTitle()
-// countTo组件
-// baseDrawer 组件
-// useECharts hook
-// pageWrapper useContentHeight hook封装
 // createBreakpointListen方法封装
 </script>
   
