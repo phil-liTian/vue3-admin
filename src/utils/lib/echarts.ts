@@ -5,10 +5,12 @@
 // 按需引入echarts
 
 import * as echarts from 'echarts/core'
-import { BarChart } from 'echarts/charts'
+import { BarChart, PieChart, RadarChart, LineChart } from 'echarts/charts'
 import { 
+  TooltipComponent,
   TitleComponent,
-  GridComponent
+  GridComponent,
+  LegendComponent
 } from 'echarts/components'
 import { SVGRenderer } from 'echarts/renderers'
 
@@ -16,7 +18,12 @@ import { SVGRenderer } from 'echarts/renderers'
 echarts.use([
   TitleComponent,
   GridComponent,
+  TooltipComponent,
+  LegendComponent,
   BarChart,
+  PieChart,
+  RadarChart,
+  LineChart,
   SVGRenderer
 ])
 

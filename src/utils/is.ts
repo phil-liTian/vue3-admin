@@ -7,5 +7,6 @@ export {
   isFunction,
   isString,
   isNil, // 检查数据是否是null或者undefined
-  isArray
+  isArray,
+  isNumber
 } from 'lodash-es'

@@ -13,6 +13,7 @@
   import { useTransition, TransitionPresets } from '@vueuse/core'
   import { useDesign } from '@h/web/useDesign'
   import { propTypes } from '@u/propTypes'
+  import { isNumber } from '@u/is'
   defineOptions({ name: 'PCountTo' })
 
   const props = defineProps({
@@ -26,6 +27,7 @@
       default: 0,
       validator: (val: number) => val >= 0
     },
+    decimal: propTypes.string.def('.'),
     size: {
       type: String,
       default: 'middle',
@@ -36,7 +38,8 @@
     suffix: propTypes.string.def(''),
     transition: propTypes.string.def('linear'),
     useEasing: propTypes.bool.def(true),
-    autoPlay: propTypes.bool.def(true)
+    autoPlay: propTypes.bool.def(true),
+    separator: propTypes.string.def(',')
   })
 
   const emits = defineEmits(['onStarted', 'onFinished'])
@@ -66,12 +69,23 @@
     if ( !num && num !== 0 ) {
       return ''
     }
-    const { decimals, prefix, suffix } = props
+    const { decimals, prefix, suffix, decimal, separator } = props
     num = Number(num).toFixed(decimals)
     num += '' // 转成字符串处理
-    // TODO 处理小数
+    // 处理千分位分割
+    const x = num.split('.')
+    let x1 = x[0]
+    let x2 = x.length > 1 ? `${decimal}${x[1]}` : ''
+    const rgx = /(\d+)(\d{3})/
 
-    return `${prefix}${num}${suffix}`
+    // 分离出千分位
+    if ( separator && !isNumber(separator) ) {
+      while(rgx.test(x1)) {
+        x1 = x1.replace(rgx, '$1' + separator + '$2')
+      }
+    }
+
+    return `${prefix}${x1}${x2}${suffix}`
   }
 
   const getClass = computed(() => {

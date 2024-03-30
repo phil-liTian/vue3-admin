@@ -3,7 +3,7 @@
  * @LastEditors: phil_litian
 -->
 <template>
-  <Card :loading="loading">
+  <Card title="访问来源" :loading="loading">
     <div ref="chartRef" :style="{ width, height }"></div>
   </Card>
 </template>
@@ -19,27 +19,60 @@
   const props = defineProps({
     loading: propTypes.bool.def(false),
     width: propTypes.string.def('100%'),
-    height: propTypes.string.def('100%')
+    height: propTypes.string.def('300px')
   })
 
   watch(() => props.loading, () => {
     if( props.loading ) return
 
     setOptions({
-      xAxis: {
-        type: 'category',
-        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-      },
-      yAxis: {
-        type: 'value'
-      },
-      series: [
-        {
-          data: [120, 200, 150, 80, 70, 110, 130],
-          type: 'bar'
-        }
-      ]
-    })
+        tooltip: {
+          trigger: 'item',
+        },
+        legend: {
+          bottom: '1%',
+          left: 'center',
+        },
+        series: [
+          {
+            color: ['#5ab1ef', '#b6a2de', '#67e0e3', '#2ec7c9'],
+            name: '访问来源',
+            type: 'pie',
+            radius: ['40%', '70%'],
+            avoidLabelOverlap: false,
+            itemStyle: {
+              borderRadius: 10,
+              borderColor: '#fff',
+              borderWidth: 2,
+            },
+            label: {
+              show: false,
+              position: 'center',
+            },
+            emphasis: {
+              label: {
+                show: true,
+                fontSize: '12',
+                fontWeight: 'bold',
+              },
+            },
+            labelLine: {
+              show: false,
+            },
+            data: [
+              { value: 1048, name: '搜索引擎' },
+              { value: 735, name: '直接访问' },
+              { value: 580, name: '邮件营销' },
+              { value: 484, name: '联盟广告' },
+            ],
+            animationType: 'scale',
+            animationEasing: 'exponentialInOut',
+            animationDelay: function () {
+              return Math.random() * 100;
+            },
+          },
+        ],
+      });
 
   }, { immediate: true })
 

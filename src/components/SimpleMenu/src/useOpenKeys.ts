@@ -3,17 +3,18 @@
  * @LastEditors: phil_litian
  */
 
+import { computed } from "vue"
 import { MenuState } from "./types"
 
 
 export function useOpenKeys(menuState: MenuState) {
-  const setOpenKeys = () => {
+  const setOpenKeys = (path) => {
+    
 
+    menuState.openNames = [path]
   }
 
-  const getOpenKeys = () => { 
-
-  }
+  const getOpenKeys = computed(() => menuState.openNames)
 
   return { setOpenKeys, getOpenKeys }
 }

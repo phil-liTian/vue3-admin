@@ -15,13 +15,13 @@
         </template>
 
         <div class="flex justify-between flex-items-center px-4 py-4">
-          <span>212</span>
+          <p-count-to prefix="¥" size="large" :endVal="item.value"></p-count-to>
           <p-icon :icon="item.icon" :size="40"></p-icon>
         </div>
 
         <div class="flex justify-between px-4">
           <span>总{{ item.title }}</span>
-          <span>111</span>
+          <p-count-to prefix="¥" :endVal="item.total"></p-count-to>
         </div>
       </Card>
     </template>

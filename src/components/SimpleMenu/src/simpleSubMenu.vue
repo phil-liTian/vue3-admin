@@ -15,7 +15,7 @@
     </template>
   </MenuItem>
 
-  <SubMenu v-else>
+  <SubMenu :name="item.path" v-else>
     <template #title>
       <p-icon v-if="getIcon" :icon="getIcon" :size="16"></p-icon>
       <span :class="[`${prefixCls}-sub-title`, 'ml-2']">{{ getI18nName }}</span>

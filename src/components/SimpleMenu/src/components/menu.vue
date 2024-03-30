@@ -9,12 +9,13 @@
 </template>
   
 <script lang='ts' setup>
-  import { computed, onMounted, PropType, ref, toRef, watchEffect } from 'vue'
+  import { computed, onMounted, PropType, ref, toRef, watch, watchEffect } from 'vue'
   import { useDesign } from '@h/web/useDesign'
   import { useGo } from '@h/web/usePage'
   import { propTypes } from '@u/propTypes'
   import mitt from '@u/mitt'
   import { type MenuEmitterEvent, createSimpleRootMenuContext } from './useSimpleMenuContext'
+  import { nextTick } from 'vue'
   const { prefixCls } = useDesign('menu')
   const { go } = useGo()
 
@@ -63,8 +64,17 @@
     }
   })
 
+  watchEffect(() => {
+    openedNames.value = props.openNames
+  })
+
+  watch(() => props.openNames, () => {
+    nextTick(() => { onUpdateOpen() })
+  })
+
   onMounted(() => {
     openedNames.value = props.openNames;
+    onUpdateOpen()
     rootMenuEmitter.on('on-menu-item-select', (name: string | number) => {
       // go(name)
       emits('select', name)

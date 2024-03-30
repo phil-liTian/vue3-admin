@@ -80,7 +80,6 @@ export function getViewportOffset(element: Element): ViewportOffsetResult {
   const clientHeight = window.document.documentElement.clientHeight
   // 文档内容在浏览器窗口中可见部分的宽度，不包括滚动条、边框和工具栏等
   const clientWidth = window.document.documentElement.clientWidth
-  console.log('clientHeight', clientHeight);
   
   const doc = document.documentElement
   // 表示页面在水平方向上已经滚动的像素数

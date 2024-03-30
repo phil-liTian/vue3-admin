@@ -65,7 +65,6 @@ const { contentHeight } = useContentHeight(
 
 // 内容样式
 const getContentStyle = computed((): CSSProperties => {
-  console.log('contentHeight', contentHeight);
   
   return {
     width: 'calc(100% - 32px)',

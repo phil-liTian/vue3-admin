@@ -20,11 +20,12 @@
   
 <script lang='ts' setup>
   import { useDesign } from '@h/web/useDesign'
-  import { computed, getCurrentInstance, onBeforeMount, reactive } from 'vue'
+  import { computed, getCurrentInstance, onBeforeMount, reactive, PropType } from 'vue'
   import { CollapseTransition } from '@c/Transition/index'
   import mitt from '@/utils/mitt'
   import { useMenuItem } from './useMenu'
   import { useSimpleRootMenuContext } from './useSimpleMenuContext'
+import { propTypes } from '@/utils/propTypes'
   const { prefixCls } = useDesign('menu')
   defineOptions({ name: 'SubMenu' })
   const instance = getCurrentInstance()
@@ -32,6 +33,13 @@
   const { getItemStyle } = useMenuItem(instance)
   const { rootMenuEmitter, activeName } = useSimpleRootMenuContext()
   const subMenuEmitter = mitt()
+  
+  const props = defineProps({
+    name: {
+      type: [String, Number] as PropType<string | number>,
+      default: ''
+    },
+  })
   
   const state = reactive({
     opened: false,
@@ -57,8 +65,10 @@
 
 
   onBeforeMount(() => {
-    rootMenuEmitter.on('on-update-opened', a => {
-      console.log('a', a);
+    rootMenuEmitter.on('on-update-opened', (data: (number | string)[]) => {
+      // console.log('on-update-opened', data);
+      
+      // state.opened = data.includes(props.name)
     })
   })
 </script>

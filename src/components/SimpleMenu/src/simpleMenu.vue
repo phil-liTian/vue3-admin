@@ -7,7 +7,7 @@
     v-bind="getBindValues"
     :class="prefixCls"
     :activeName="menuState.activeName"
-    :openNames="menuState.openNames"
+    :openNames="getOpenKeys"
     @select="handleSelect">
     <template v-for="item in items" :key="item.path">
       <SimpleSubMenu 
@@ -42,7 +42,7 @@
     activeName: '',
     activeSubMenuNames: []
   })
-  const { } = useOpenKeys(menuState)
+  const { getOpenKeys, setOpenKeys } = useOpenKeys(menuState)
 
   const getBindValues = computed(() => ({ ...props, ...attrs }))
 
@@ -52,6 +52,8 @@
 
   listenerRouteChange((route) => {
     menuState.activeName = route.path
+
+    setOpenKeys(route.path)
   })
 
 </script>

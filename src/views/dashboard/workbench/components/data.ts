@@ -39,6 +39,7 @@ export const DynamicInfoList: DynamicItem[] = [
   { name: '尼古拉斯', desc: 'push了最新代码', date: '3天前', avatar: 'dynamic-avatar-3|svg' },
   { name: '凯琪', desc: '开启了人生的新篇章', date: '5天前', avatar: 'dynamic-avatar-3|svg' },
   { name: '掘金队', desc: '发布了新文章<a>《2024 前端趋势：全栈也许已经是必选项》</a>', date: '5天前', avatar: 'dynamic-avatar-3|svg' },
+  { name: '雷布斯', desc: '发布了小米su7', date: '3月28日', avatar: 'dynamic-avatar-4|svg' },
 ]
 
 export const navList: navItem[] = [
