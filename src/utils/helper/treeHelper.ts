@@ -89,6 +89,5 @@ export function findPath<T>(treeData: T[], func: Fn, config: Partial<TreeHelperC
     }
   }
 
-
-  return null
+  return []
 }

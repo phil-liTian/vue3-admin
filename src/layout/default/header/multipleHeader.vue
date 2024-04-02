@@ -5,7 +5,7 @@
 <template>
   <div :class="getClass">
     <LayoutHeader />
-    <!-- <MultipleTabs /> -->
+    <MultipleTabs />
   </div>
 </template>
   

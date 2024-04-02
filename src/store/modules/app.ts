@@ -9,6 +9,7 @@ import { ThemeEnum } from '@e/appEnum'
 import { PROJ_CFG_KEY } from '@e/cacheEnum'
 import { Persistent } from '@u/cache/Persistent'
 import { store } from '..'
+import { deepMerge } from '@/utils'
 
 interface AppState {
   pageLoading: boolean,
@@ -53,12 +54,13 @@ export const useAppStore = defineStore({
     },
 
     setProjectConfig(config: DeepPartial<ProjectConfig>): void {
-      this.projectConfig = Object.assign(this.projectConfig || {}, config) as ProjectConfig
+      this.projectConfig = deepMerge(this.projectConfig || {}, config) as ProjectConfig
       Persistent.setLocal(PROJ_CFG_KEY, this.projectConfig)
     },
 
-    setMenuSetting() {
-      
+    setMenuSetting(setting: Partial<MenuSetting>) {
+      this.projectConfig!.menuSetting = deepMerge(this.projectConfig.menuSetting || {}, setting)
+      Persistent.setLocal(PROJ_CFG_KEY, this.projectConfig)
     }
   }
 })

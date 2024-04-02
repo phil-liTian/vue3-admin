@@ -15,3 +15,6 @@
 
 比如说 在Menu组件中mitt上挂载on-menu-item-select方法, 但真实点击的元素是MenuItem 这时候可能存在2+级组件通讯
   如果使用emit实现则比较麻烦。此处采用的方法是结合mitt和provide&inject使用，来实现多层级、不确定层级间组件通讯
+
+1.2 克服难点1
+  1.1 在子组件SubMenu中挂载on-update-opened方法，想在父组件挂载时就触发。需指定watch的第三个参数{ flush: 'post' }, 作用在于可在侦听器回调中访问Vue更新后的DOM结构！！！

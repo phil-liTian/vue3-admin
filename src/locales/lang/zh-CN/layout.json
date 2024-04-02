@@ -1,0 +1,22 @@
+{
+  "setting": {
+    "drawerTitle": "项目配置",
+    "sidebarTheme": "菜单主题",
+    "navMode": "导航栏模式",
+
+    "menuTypeSidebar": "左侧菜单模式",
+    "menuTypeMixSidebar": "左侧菜单混合模式",
+    "menuTypeTopMenu": "顶部菜单",
+    "menuTypeMix": "顶部菜单混合模式",
+
+    "clearBtn": "清空缓存并返回登录页",
+    "copyBtn": "拷贝",
+    "on": "开启",
+    "off": "关闭",
+
+    "splitMenu": "分割菜单",
+    "closeMixSidebarOnChange": "切换页面关闭菜单",
+    "sysTheme": "系统主题",
+    "headerTheme": "顶栏主题"
+  }
+}

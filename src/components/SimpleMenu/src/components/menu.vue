@@ -69,12 +69,14 @@
   })
 
   watch(() => props.openNames, () => {
-    nextTick(() => { onUpdateOpen() })
+    nextTick(() => { 
+      onUpdateOpen()
+    })
   })
 
   onMounted(() => {
     openedNames.value = props.openNames;
-    onUpdateOpen()
+    // onUpdateOpen()
     rootMenuEmitter.on('on-menu-item-select', (name: string | number) => {
       // go(name)
       emits('select', name)

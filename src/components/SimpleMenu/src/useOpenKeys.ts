@@ -3,18 +3,26 @@
  * @LastEditors: phil_litian
  */
 
-import { computed } from "vue"
+import { Ref, computed } from "vue"
 import { MenuState } from "./types"
+import { Menu } from "@/router/types"
+import { getAllParentPath } from "@/router/helper/menuHelper"
 
 
-export function useOpenKeys(menuState: MenuState) {
+export function useOpenKeys(menuState: MenuState, menus: Ref<Menu[]>) {
   const setOpenKeys = (path) => {
     
+    const menuList = menus.value
 
-    menuState.openNames = [path]
+    const keys = getAllParentPath(menuList, path)
+    
+    menuState.openNames = keys
   }
 
-  const getOpenKeys = computed(() => menuState.openNames)
+  const getOpenKeys = computed(() => {
+    
+    return menuState.openNames
+  })
 
   return { setOpenKeys, getOpenKeys }
 }

@@ -10,3 +10,10 @@ export enum MenuModeEnum {
   VERTICAL_RIGHT = 'vertical-right'
 }
 
+export enum MenuTypeEnum {
+  SIDEBAR = 'sidebar',
+  MIX_SIDEBAR = 'mix_sidebar',
+  MIX = 'mix',
+  TOP_MENU = 'top_menu'
+}
+

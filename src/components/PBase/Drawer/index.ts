@@ -5,6 +5,5 @@
 import { withInstall } from '@u/index'
 import BasicDrawer from "./src/BasicDrawer.vue";
 
-
 export const PDrawer = withInstall(BasicDrawer)
 

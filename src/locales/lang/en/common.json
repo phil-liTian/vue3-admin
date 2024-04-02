@@ -1,5 +1,6 @@
 {
-  "onText": "OK",
+  "okText": "OK",
   "closeText": "Close",
-  "cancelText": "Cancel"
+  "cancelText": "Cancel",
+  "resetText": "Reset"
 }

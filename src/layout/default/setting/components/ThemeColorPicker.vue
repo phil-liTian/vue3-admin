@@ -48,7 +48,7 @@
   
 </script>
   
-<style lang='less' scoped>
+<style lang='less'>
   @prefix-cls: ~'@{namespace}-theme-color-picker';
 
   .@{prefix-cls} {
@@ -70,9 +70,11 @@
     }
 
     &__active {
-      // svg {
-      //   display: inline-block;
-      // }
+      svg {
+        display: inline-block;
+        fill: @white !important;
+        font-size: 12px;
+      }
     }
   }
 </style>

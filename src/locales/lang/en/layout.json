@@ -1,0 +1,22 @@
+{
+  "setting": {
+    "drawerTitle": "Project Setting",
+    "sidebarTheme": "Menu theme",
+    "navMode": "Navigation mode",
+
+    "menuTypeSidebar": "Left menu mode",
+    "menuTypeMixSidebar": "Left menu mixed mode",
+    "menuTypeTopMenu": "Top menu mode",
+    "menuTypeMix": "Top Menu Mix mode",
+
+    "clearBtn": "Clear cache and to the login page",
+    "copyBtn": "Copy",
+    "on": "On",
+    "off": "Off",
+
+    "splitMenu": "Split Menu",
+    "closeMixSidebarOnChange": "Switch page to close menu",
+    "sysTheme": "System theme",
+    "headerTheme": "Header Theme"
+  }
+}

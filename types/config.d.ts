@@ -4,7 +4,7 @@
  */
 import { ThemeEnum } from '@/enums/appEnum'
 import { CacheTypeEnum } from '@/enums/cacheEnum'
-import { MenuModeEnum } from '@/enums/menuEnum'
+import { MenuModeEnum, MenuTypeEnum } from '@/enums/menuEnum'
 import { PermissionModeEnum } from '@e/appEnum'
 
 // 支持的语言配置
@@ -31,8 +31,10 @@ export interface LocalSetting {
 interface MenuSetting {
   bgColor: string,
   accordion: boolean, // 菜单是否打开手风琴模式
-  mode: MenuModeEnum, // 菜单模式
-  theme: ThemeEnum
+  mode: MenuModeEnum, // 菜单模式（方向）
+  type: MenuTypeEnum, // 位置 混合模式
+  theme: ThemeEnum,
+  collapsed: boolean
 }
 
 export interface ProjectConfig {

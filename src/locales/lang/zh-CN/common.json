@@ -1,5 +1,6 @@
 {
-  "onText": "确认",
+  "okText": "确认",
   "closeText": "关闭",
-  "cancelText": "取消"
+  "cancelText": "取消",
+  "resetText": "重置"
 }

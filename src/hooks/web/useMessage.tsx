@@ -20,7 +20,7 @@ type ModalOptionsPartial = Partial<ModalOptionsEx> & Pick<ModalOptionsEx, 'conte
 const getBaseOptions = () => {
   const { t } = useI18n()
   return {
-    okText: t('common.onText'),
+    okText: t('common.okText'),
     centered: true
   }
 }

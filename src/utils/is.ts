@@ -10,3 +10,13 @@ export {
   isArray,
   isNumber
 } from 'lodash-es'
+
+const toString = Object.prototype.toString
+const is = (val, type: string) => {
+  return toString.call(val) === `[object ${type}]`
+}
+
+// 判断是否是对象
+export const isObject = (val) => {
+  return val !== null && is(val, 'Object')
+}

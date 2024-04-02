@@ -4,10 +4,10 @@
 -->
 <template>
   <Drawer
+    v-bind="getBindValues"
     :class="prefixCls"
-    v-model:open="open">
-    <!-- title -->
-    <template #title v-if="$slots.title">
+    @close="onClose">
+    <template #title v-if="!$slots.title">
       <DrawerHeader title="测试title"></DrawerHeader>
     </template>
 
@@ -15,41 +15,104 @@
       {{ title }}
     </template>
 
-    <!-- container -->
     <p-scroll-container :style="getScrollContainerStyle">
       <slot></slot>
 
     </p-scroll-container>
 
-    <!-- footer -->
-    <DrawerFooter />
+    <DrawerFooter v-if="showFooter">
+      <!-- 可以利用Object.keys(slots)来循环实现具名插槽 -->
+      <!-- {{ Object.keys(slots) }} -->
+      <template #[item] v-for="item in Object.keys($slots)" :key="item">
+        <slot :name="item"></slot>
+      </template>
+    </DrawerFooter>
   </Drawer>
 </template>
   
 <script lang='ts' setup>
   import { Drawer } from 'ant-design-vue'
-  import { ref, computed, CSSProperties, unref } from 'vue'
+  import { Ref, ref, computed, CSSProperties, unref, useAttrs, useSlots, watch, getCurrentInstance } from 'vue'
   import { useDesign } from '@h/web/useDesign'
   import DrawerFooter from "./components/DrawerFooter.vue"
   import DrawerHeader from "./components/DrawerHeader.vue"
   import { basicProps } from './props'
+  import { DrawerProps } from './typing'
+  import { deepMerge } from '@/utils'
+  import { isNumber } from '@/utils/is'
   defineOptions({ name: 'PDrawer' })
-  defineProps(basicProps)
-
-  const open = ref(true)
+  const props = defineProps(basicProps)
+  const emits = defineEmits(['register'])
+  const openRef = ref(false)
+  const propsRef = ref({}) as Ref<Partial<DrawerProps>>
   const { prefixCls } = useDesign('basic-drawer')
+  const attrs = useAttrs()
+  const slots = useSlots()
+  const instance = getCurrentInstance()
+
+  const drawerInstance = {
+    setDrawerProps,
+  }
+
+  // 组件注册时 就触发当前方法
+  instance && emits('register', drawerInstance, instance.uid)
+
+  const getMergeProps = computed(() => {
+    return deepMerge(props, unref(propsRef))
+  })
+
+  const getProps = computed(() => {
+    const opt = {
+      ...unref(getMergeProps),
+      open: unref(openRef)
+    }
+    return opt
+  })
 
   // footer高度
   const getFooterHeight = computed(() => {
+    const { footerHeight, showFooter } = unref(getProps)
+    if ( showFooter && footerHeight ) {
+      return `${isNumber(footerHeight) ? `${footerHeight}` : footerHeight.replace('px', '')}px`
+    }
     return '0px'
   })
 
+  // 滚动区域高度
   const getScrollContainerStyle = computed((): CSSProperties => {
     const footerHeight = unref(getFooterHeight)
     return {
       height: `calc(100% - ${footerHeight})`
     }
   })
+
+  // 实际绑定的元素
+  const getBindValues = computed(() => {
+    return {
+      ...attrs,
+      ...unref(getProps)
+    }
+  })
+
+  const onClose = () => {
+    openRef.value = false
+  }
+
+  // 设置当前drawer的属性
+  function setDrawerProps(props: Partial<DrawerProps>) {
+    propsRef.value = deepMerge(unref(propsRef), props)
+
+    if( Reflect.has(props, 'open') ) {
+      openRef.value = !!props.open
+    }
+  }
+
+  // 监听传进来的open属性
+  watch(() => props.open, (val, olVal) => {
+    if ( val !== olVal ) {
+      openRef.value = val
+    }
+  }, { immediate: true })
 
 
 </script>

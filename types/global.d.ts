@@ -12,4 +12,10 @@ declare global {
   type DeepPartial<T> = {
     [P in keyof T]?: DeepPartial<T[P]>
   }
+
+  type LabelValueOptions = {
+    label: string,
+    value: any,
+    [key: string]: string | number | boolean
+  }[]
 }

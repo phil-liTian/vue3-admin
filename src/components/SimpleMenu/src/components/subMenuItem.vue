@@ -32,6 +32,7 @@ import { propTypes } from '@/utils/propTypes'
 
   const { getItemStyle } = useMenuItem(instance)
   const { rootMenuEmitter, activeName } = useSimpleRootMenuContext()
+  
   const subMenuEmitter = mitt()
   
   const props = defineProps({
@@ -66,9 +67,8 @@ import { propTypes } from '@/utils/propTypes'
 
   onBeforeMount(() => {
     rootMenuEmitter.on('on-update-opened', (data: (number | string)[]) => {
-      // console.log('on-update-opened', data);
       
-      // state.opened = data.includes(props.name)
+      state.opened = data.includes(props.name)
     })
   })
 </script>
