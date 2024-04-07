@@ -21,3 +21,16 @@ export const useGo = (_router?: Router) => {
 
   return { go }
 }
+
+// 刷新
+export const useRedo = (_router?: Router) => {
+  const { replace, currentRoute } = _router || useRouter()
+  const { name } = currentRoute.value
+  function redo() {
+    return new Promise((resolve, reject) => {
+      replace({ name })
+    })
+  }
+  
+  return redo
+}

@@ -17,7 +17,7 @@
         <!-- 刷新 -->
         <TabRedo />
         <!-- 操作tabs -->
-        <TabContent />
+        <TabContent isExtra />
         <!-- 控制全屏 -->
         <FoldButton />
       </template>
@@ -29,9 +29,14 @@
   import { computed } from 'vue'
   import { Tabs } from 'ant-design-vue'
   import { useDesign } from '@h/web/useDesign'
+  import { useTabs } from '@s/modules/tabs'
   import { SettingButton, TabRedo, FoldButton, TabContent } from './components/index'
   const { prefixCls } = useDesign('multipe-tabs')
   const TabPane = Tabs.TabPane
+  const { getTabList } = useTabs()
+
+  const getTabState = computed(() => getTabList)
+
   const getWrapClass = computed(() => {
     return [
       prefixCls

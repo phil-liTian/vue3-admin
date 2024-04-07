@@ -6,9 +6,9 @@
   <Header :class="getHeaderClass">
     <div :class="`${prefixCls}-left`">
       <!-- <AppLogo /> -->
-      <LayoutBreadCrumb />
-
       <LayoutTrigger :sider="false" />
+      
+      <LayoutBreadCrumb />
     </div>
     <!-- <div :class="`${prefixCls}-menu`">111</div> -->
     <div :class="`${prefixCls}-action`">

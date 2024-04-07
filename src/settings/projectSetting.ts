@@ -16,13 +16,22 @@ const setting: ProjectConfig = {
   permissionMode: PermissionModeEnum.ROUTE_MAPPING,
 
   menuSetting: {
+    show: true, // 是否展示导航菜单
     bgColor: SIDE_BAR_BG_COLOR_LIST[0],
     accordion: false,
     mode: MenuModeEnum.INLINE,
     theme: ThemeEnum.DARK,
     type: MenuTypeEnum.SIDEBAR,
     collapsed: false
+  },
 
+  headerSetting: {
+    show: true
+  },
+
+  multiTabsSetting: {
+    show: true,
+    cache: false,
   }
   
 }

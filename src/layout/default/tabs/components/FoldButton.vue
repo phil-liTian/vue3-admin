@@ -1,22 +1,37 @@
 <!--
  * @Date: 2024-04-02 19:16:42
  * @LastEditors: phil_litian
+ * 此处折叠的逻辑: 是否展示header和menu
 -->
 <template>
-  <span :class="`${prefixCls}__extra-fold`">
+  <span :class="`${prefixCls}__extra-fold`" @click="handleFold">
     <p-icon :icon="getIcon"></p-icon>
   </span>
 </template>
   
 <script lang='ts' setup>
   import { useDesign } from '@h/web/useDesign'
-  import { ref, computed } from 'vue'
+  import { ref, computed, unref } from 'vue'
+  import { useMenuSetting } from '@h/setting/useMenuSetting'
+  import { useHeaderSetting } from '@h/setting/useHeaderSetting'
+
   const { prefixCls } = useDesign('multiple-tab-content')
+  const { getShowMenu, setMenuSetting } = useMenuSetting()
+  const { getShowHeader, setHeaderSetting } = useHeaderSetting()
+
   defineOptions({ name: 'FoldButton' });
 
+  // 当前是否展开
+  const getIsUnFold = computed(() => !unref(getShowMenu) && !unref(getShowHeader) )
   const getIcon = computed(() => {
-    return true ? 'iconamoon:screen-normal' : 'iconamoon:screen-full'
+    return unref(getIsUnFold) ? 'iconamoon:screen-normal' : 'iconamoon:screen-full'
   })
+
+  const handleFold = () => {
+    const isUnFold = unref(getIsUnFold)
+    setMenuSetting({ show: isUnFold })
+    setHeaderSetting({ show: isUnFold })
+  }
 </script>
   
 <style lang='less' scoped>

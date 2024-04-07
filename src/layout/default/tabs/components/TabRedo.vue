@@ -10,16 +10,23 @@
 </template>
   
 <script lang='ts' setup>
+  import { ref } from 'vue'
   import { RedoOutlined } from '@ant-design/icons-vue'
   import { useDesign } from '@h/web/useDesign'
-  import { ref } from 'vue'
+  import { useTabs } from '@h/web/useTabs'
   const { prefixCls } = useDesign('multiple-tab-content')
   defineOptions({ name: 'TabRedo' })
+  const { refreshPage } = useTabs()
 
   const loading = ref(false)
 
-  const handleRedo = () => {
+  // 刷新当前页面
+  const handleRedo = async () => {
     loading.value = true
+    await refreshPage()
+    setTimeout(() => {
+      loading.value = false
+    }, 1000);
   }
 </script>
   

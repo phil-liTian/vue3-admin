@@ -3,7 +3,7 @@
  * @LastEditors: phil_litian
  * 整个应用到store
  */
-import { MenuSetting, ProjectConfig } from '#/config'
+import { MenuSetting, ProjectConfig, HeaderSetting, MultiTabsSetting } from '#/config'
 import { defineStore } from 'pinia'
 import { ThemeEnum } from '@e/appEnum'
 import { PROJ_CFG_KEY } from '@e/cacheEnum'
@@ -41,6 +41,14 @@ export const useAppStore = defineStore({
 
     getMenuSetting(state): MenuSetting {
       return this.getProjectConfig.menuSetting
+    },
+
+    getHeaderSetting(state): HeaderSetting {
+      return this.getProjectConfig.headerSetting
+    },
+
+    getMultipleSetting(state): MultiTabsSetting {
+      return this.getProjectConfig.multiTabsSetting
     }
   },
   
@@ -60,6 +68,12 @@ export const useAppStore = defineStore({
 
     setMenuSetting(setting: Partial<MenuSetting>) {
       this.projectConfig!.menuSetting = deepMerge(this.projectConfig.menuSetting || {}, setting)
+      Persistent.setLocal(PROJ_CFG_KEY, this.projectConfig)
+    },
+
+    setHeaderSetting(setting: Partial<HeaderSetting>) {
+      this.projectConfig!.headerSetting = deepMerge(this.projectConfig.headerSetting || {}, setting)
+
       Persistent.setLocal(PROJ_CFG_KEY, this.projectConfig)
     }
   }

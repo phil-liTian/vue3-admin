@@ -32,6 +32,9 @@ export const useMenuSetting = () => {
     return getMenuMode.value === MenuModeEnum.HORIZONTAL
   })
 
+  // 是否展示Menu
+  const getShowMenu = computed(() => appStore.getMenuSetting.show)
+
   // 是否折叠
   const getCollapsed = computed(() => appStore.getMenuSetting.collapsed)
 
@@ -50,9 +53,11 @@ export const useMenuSetting = () => {
     getAccordion,
     getMenuTheme,
     getMenuType,
+    getShowMenu,
     getMenuBgColor,
     getIsHorizontal,
     getCollapsed,
+    setMenuSetting,
     toggleCollpased
   }
 }

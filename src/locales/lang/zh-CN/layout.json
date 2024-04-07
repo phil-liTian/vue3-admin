@@ -18,5 +18,14 @@
     "closeMixSidebarOnChange": "切换页面关闭菜单",
     "sysTheme": "系统主题",
     "headerTheme": "顶栏主题"
+  },
+
+  "multipleTab": {
+    "reload": "重新加载",
+    "closeLeft": "关闭左侧",
+    "closeRight": "关闭右侧",
+    "close": "关闭",
+    "closeOther": "关闭其他",
+    "closeAll": "全部关闭"
   }
 }

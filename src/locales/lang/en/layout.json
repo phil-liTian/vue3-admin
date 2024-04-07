@@ -18,5 +18,14 @@
     "closeMixSidebarOnChange": "Switch page to close menu",
     "sysTheme": "System theme",
     "headerTheme": "Header Theme"
+  },
+
+  "multipleTab": {
+    "reload": "reload",
+    "closeLeft": "Close Left",
+    "closeRight": "Close Right",
+    "close": "Close Current",
+    "closeOther": "Close Other",
+    "closeAll": "Close All"
   }
 }

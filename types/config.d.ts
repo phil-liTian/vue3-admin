@@ -29,6 +29,7 @@ export interface LocalSetting {
 }
 
 interface MenuSetting {
+  show: boolean,
   bgColor: string,
   accordion: boolean, // 菜单是否打开手风琴模式
   mode: MenuModeEnum, // 菜单模式（方向）
@@ -37,9 +38,20 @@ interface MenuSetting {
   collapsed: boolean
 }
 
+export interface HeaderSetting {
+  show: boolean
+}
+
+export interface MultiTabsSetting {
+  show: boolean,
+  cache: boolean
+}
+
 export interface ProjectConfig {
   permissionMode: PermissionModeEnum,
-  menuSetting: MenuSetting
+  menuSetting: MenuSetting, // menu设置
+  headerSetting: HeaderSetting, // header设置
+  multiTabsSetting: MultiTabsSetting, // tab设置
   permissionCacheType: CacheTypeEnum
 }
 
