@@ -3,9 +3,9 @@
  * @LastEditors: phil_litian
  */
 
-
 export interface DropMenu {
   text: string,
-  key: string,
-  disabled?: boolean
+  key: string | number,
+  disabled?: boolean,
+  event: string | number
 }

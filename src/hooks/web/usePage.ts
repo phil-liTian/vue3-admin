@@ -3,6 +3,7 @@
  * @LastEditors: phil_litian
  */
 import { type Router, useRouter } from 'vue-router'
+import { REDIRECT_NAME } from '@/router/constant'
 
 export enum GoType {
   'replace',
@@ -10,13 +11,14 @@ export enum GoType {
 }
 
 export const useGo = (_router?: Router) => {
-  const { push } = _router || useRouter()
+  const { push, replace } = _router || useRouter()
   function go (opt: any): void;
   function go(opt: any, isReplace: boolean): void;
   function go(opt: any, goType: GoType): void;
   function go(opt: any, isReplaceOrGoType: boolean | GoType = false) {
     
-    push(opt)
+    // push(opt)
+    replace(opt)
   }
 
   return { go }
@@ -24,11 +26,17 @@ export const useGo = (_router?: Router) => {
 
 // 刷新
 export const useRedo = (_router?: Router) => {
+  
   const { replace, currentRoute } = _router || useRouter()
-  const { name } = currentRoute.value
+  const { name, query, params, fullPath } = currentRoute.value
+  console.log('name', name);
+  
   function redo() {
     return new Promise((resolve, reject) => {
-      replace({ name })
+      params['_redirect_type'] = 'path';
+      params.path = fullPath
+      
+      replace({ name: REDIRECT_NAME, params }).then(() => resolve(true))
     })
   }
   

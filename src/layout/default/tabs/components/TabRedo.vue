@@ -14,7 +14,7 @@
   import { RedoOutlined } from '@ant-design/icons-vue'
   import { useDesign } from '@h/web/useDesign'
   import { useTabs } from '@h/web/useTabs'
-  const { prefixCls } = useDesign('multiple-tab-content')
+  const { prefixCls } = useDesign('multiple-tabs-content')
   defineOptions({ name: 'TabRedo' })
   const { refreshPage } = useTabs()
 

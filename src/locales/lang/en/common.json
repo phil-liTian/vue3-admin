@@ -2,5 +2,6 @@
   "okText": "OK",
   "closeText": "Close",
   "cancelText": "Cancel",
-  "resetText": "Reset"
+  "resetText": "Reset",
+  "searchText": "Search"
 }

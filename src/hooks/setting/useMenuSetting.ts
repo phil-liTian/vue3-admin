@@ -2,7 +2,7 @@
  * @Date: 2024-03-22 23:34:59
  * @LastEditors: phil_litian
  */
-
+import { SIDER_BAR_MINI_WIDTH, SIDER_BAR_SHOW_TITLE_MINI_WIDTH } from '@e/appEnum'
 import { MenuSetting } from '#/config'
 import { MenuModeEnum } from '@/enums/menuEnum'
 import { useAppStore } from '@s/modules/app'
@@ -26,6 +26,14 @@ export const useMenuSetting = () => {
 
   // 背景色
   const getMenuBgColor = computed(() => appStore.getMenuSetting.bgColor )
+
+  // 菜单宽度
+  const getMenuWidth = computed(() => appStore.getMenuSetting.menuWidth)
+
+  // 最小宽度(菜单折叠时的宽度)
+  const getMiniWidthNumber = computed(() => {
+    return SIDER_BAR_SHOW_TITLE_MINI_WIDTH
+  })
 
   // 是否垂直
   const getIsHorizontal = computed(() => {
@@ -53,6 +61,8 @@ export const useMenuSetting = () => {
     getAccordion,
     getMenuTheme,
     getMenuType,
+    getMenuWidth,
+    getMiniWidthNumber,
     getShowMenu,
     getMenuBgColor,
     getIsHorizontal,

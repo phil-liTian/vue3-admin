@@ -105,3 +105,9 @@ export function getViewportOffset(element: Element): ViewportOffsetResult {
     bottomIncludeBody: clientHeight - top
   }
 }
+
+export function on(element: HTMLElement | Window | Document | Element, event: string, handler ): void {
+  if ( element && event && handler ) {
+    element.addEventListener(event, handler, false)
+  }
+}

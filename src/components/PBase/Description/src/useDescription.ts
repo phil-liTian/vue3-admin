@@ -3,21 +3,22 @@
  * @LastEditors: phil_litian
  */
 
+import { ref, unref } from "vue"
 import { DescInstance, MyDescriptionProps } from "./typing"
+export function useDescription(props: Partial<MyDescriptionProps>) {
+  const desc = ref<Nullable<DescInstance>>(null)
 
-export function useDescription() {
-  
-  const register = () => {
-    return ''
+  const register = (instance: DescInstance) => {
+    desc.value = instance
+    props && instance.setDescProps(props)
   }
 
-  // 抛出去的方法
   const methods: DescInstance = {
-    setDescProps(descProps: Partial<MyDescriptionProps>) {
-      
+    setDescProps(descProps: Partial<MyDescriptionProps>): void {
+      if ( !unref(desc) ) return
+      unref(desc)?.setDescProps(descProps)
     }
   }
 
   return [ register, methods ]
-  
 }

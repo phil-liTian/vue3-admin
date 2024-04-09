@@ -4,7 +4,7 @@
  项目设置
 -->
 <template>
-  <span @click="openDrawer(true)">
+  <span :class="`${prefixCls}__extra-fold`" @click="openDrawer(true)">
     <SettingOutlined />
     <SettingDrawer @register="register" />
   </span>
@@ -14,8 +14,10 @@
   import { SettingOutlined } from '@ant-design/icons-vue'
   import SettingDrawer from '../../setting/SettingDrawer';
   import { useDrawer } from '@c/PBase/Drawer/src/useDrawer'
+  import { useDesign } from '@h/web/useDesign'
   defineOptions({ name: 'SettingButton' })
   const [ register, { openDrawer } ] = useDrawer()
+  const { prefixCls } = useDesign('multiple-tabs-content')
 </script>
   
 <style lang='less' scoped>

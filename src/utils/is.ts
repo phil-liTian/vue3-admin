@@ -20,3 +20,7 @@ const is = (val, type: string) => {
 export const isObject = (val) => {
   return val !== null && is(val, 'Object')
 }
+
+export const isServer = typeof window === 'undefined'
+
+export const isClient = !isServer

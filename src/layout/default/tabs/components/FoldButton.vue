@@ -15,7 +15,7 @@
   import { useMenuSetting } from '@h/setting/useMenuSetting'
   import { useHeaderSetting } from '@h/setting/useHeaderSetting'
 
-  const { prefixCls } = useDesign('multiple-tab-content')
+  const { prefixCls } = useDesign('multiple-tabs-content')
   const { getShowMenu, setMenuSetting } = useMenuSetting()
   const { getShowHeader, setHeaderSetting } = useHeaderSetting()
 

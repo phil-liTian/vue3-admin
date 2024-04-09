@@ -33,7 +33,6 @@ export const useMenuItem = (instance: Nullable<ComponentInternalInstance>) => {
       parent = parent.parent
     }
     
-    
     return {
       paddingLeft: `${padding}px`
     }

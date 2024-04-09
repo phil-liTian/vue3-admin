@@ -4,10 +4,18 @@
 -->
 <template>
   <div :class="getWrapClass">
-    <Tabs type="editable-card">
-      <TabPane v-for="item in 1" :key="item">
+    <Tabs 
+      :hide-add="true"
+      :animated="false"
+      size="small"
+      :active-key="activeKeyRef"
+      :tab-bar-gutter="3"
+      type="editable-card"
+      @change="handleChange"
+      @edit="handleEdit">
+      <TabPane :closable="!( item && item.meta && item.meta.affix )" v-for="item in getTabState" :key="item.path">
         <template #tab>
-          cccc
+          <TabContent :tab-item="item" />
         </template>
       </TabPane>
 
@@ -26,24 +34,50 @@
 </template>
   
 <script lang='ts' setup>
-  import { computed } from 'vue'
+  import { computed, ref, unref } from 'vue'
+  import { useRouter } from 'vue-router'
   import { Tabs } from 'ant-design-vue'
   import { useDesign } from '@h/web/useDesign'
+  import { useGo } from '@h/web/usePage'
   import { useTabs } from '@s/modules/tabs'
   import { SettingButton, TabRedo, FoldButton, TabContent } from './components/index'
-  const { prefixCls } = useDesign('multipe-tabs')
+  import { listenerRouteChange } from '@/logics/mitt/routeChange'
+  const { prefixCls } = useDesign('multiple-tabs')
   const TabPane = Tabs.TabPane
-  const { getTabList } = useTabs()
+  const { getTabList, addTab, closeTabByKey } = useTabs()
+  const { go } = useGo()
+  const router = useRouter()
+  const activeKeyRef = ref('')
 
   const getTabState = computed(() => getTabList)
-
+  console.log('getTabState', getTabState);
+  
+  // 最少保留一个
+  const unClose = computed(() => unref(getTabList).length === 1)
   const getWrapClass = computed(() => {
     return [
       prefixCls
     ]
   })
+
+  const handleChange = (activeKey: any) => {
+    go(activeKey)
+  }
+
+  const handleEdit = (e) => {
+    if(unref(unClose)) return
+    closeTabByKey(e, router)
+  }
+
+  listenerRouteChange((route) => {
+    const { path, fullPath } = route
+
+    activeKeyRef.value = path
+
+    addTab(route)
+  })
 </script>
   
-<style lang='less' scoped>
-  
+<style lang='less'>
+  @import './index.less';
 </style>

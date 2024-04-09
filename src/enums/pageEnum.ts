@@ -5,6 +5,7 @@
 
 export enum PageEnum {
   BASIC_LOGIN = '/login',
-  BASIC_HOME = '/dashboard'
+  BASIC_HOME = '/dashboard',
+  ERROR_PAGE = '/exception'
 }
 

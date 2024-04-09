@@ -22,7 +22,9 @@ export const PAGE_NOT_FOUND_ROUTE: AppRouteRecordRaw = {
 // 重定向的页面
 export const REDIRECT_ROUTE: AppRouteRecordRaw = {
   path: '/redirect',
-  name: REDIRECT_NAME,
+  // name: REDIRECT_NAME,
+  name: "RedirectTo",
+  component: LAYOUT,
   meta: {
     title: REDIRECT_NAME
   },

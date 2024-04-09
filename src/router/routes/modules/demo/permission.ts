@@ -7,7 +7,7 @@ import { AppRouteRecordRaw } from "@/router/types";
 import { LAYOUT, getParentLayout } from '@/router/constant'
 import { t } from "@/hooks/web/useI18n";
 
-const steps: AppRouteRecordRaw = {
+const permission: AppRouteRecordRaw = {
   path: '/permission',
   component: LAYOUT,
   redirect: '/permission/front/page',
@@ -28,6 +28,7 @@ const steps: AppRouteRecordRaw = {
       children: [
         {
           path: 'page',
+          name: 'FrontPageAuth',
           component: () => import('@/views/demo/permission/front/index.vue'),
           meta: {
             title: t('routes.demo.permissions.frontPage')
@@ -35,7 +36,6 @@ const steps: AppRouteRecordRaw = {
         }
       ]
     },
-
     {
       path: 'back',
       name: 'PermissionBackDemo',
@@ -47,6 +47,7 @@ const steps: AppRouteRecordRaw = {
       children: [
         { 
           path: 'page',
+          name: 'BackPageAuth',
           component: () => import('@/views/demo/permission/back/index.vue'),
           meta: {
             title: t('routes.demo.permissions.backPage')
@@ -57,4 +58,4 @@ const steps: AppRouteRecordRaw = {
   ]
 }
 
-export default steps
+export default permission

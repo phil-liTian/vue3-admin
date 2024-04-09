@@ -19,3 +19,15 @@ declare global {
     [key: string]: string | number | boolean
   }[]
 }
+
+declare global {
+  const __APP_INFO__: {
+    pkg: {
+      name: string,
+      version: string,
+      devDependencies: Recordable<string>,
+      dependencies: Recordable<string>
+    },
+    lastBuildTime: string
+  }
+}

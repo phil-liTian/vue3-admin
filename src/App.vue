@@ -29,8 +29,11 @@ const themeConfig = computed(() => {
   }
 })
 
-// useTitle()
+useTitle()
 // createBreakpointListen方法封装
+
+// 菜单折叠效果 collapse
+// 全视窗和退出全视窗
 </script>
   
 <style lang='less' scoped>

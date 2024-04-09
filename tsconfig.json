@@ -9,6 +9,7 @@
     "resolveJsonModule": true,
     "types": ["vite/client"],
     "baseUrl": "./",
+    "allowSyntheticDefaultImports": true,
     "paths": {
       "@/*": ["src/*"],
       "@c/*": ["src/components/*"],
@@ -17,6 +18,7 @@
       "@u/*": ["src/utils/*"],
       "@e/*": ["src/enums/*"],
       "@a/*": ["src/api/*"],
+      "@d/*": ["src/directives/*"],
       "#/*": ["types/*"]
     }
   },

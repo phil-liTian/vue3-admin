@@ -1,7 +1,7 @@
 {
   "name": "phil-vben-admin",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "start": "pnpm run dev",
@@ -18,10 +18,12 @@
     "@vueuse/core": "^10.9.0",
     "ant-design-vue": "^4.1.2",
     "axios": "^1.6.7",
+    "dayjs": "^1.11.10",
     "echarts": "^5.5.0",
     "lodash-es": "^4.17.21",
     "pinia": "^2.1.7",
     "pinia-plugin-persistedstate": "^3.2.1",
+    "pkg-types": "^1.0.3",
     "unbuild": "^2.0.0",
     "unocss": "^0.58.5",
     "vue": "^3.4.15",

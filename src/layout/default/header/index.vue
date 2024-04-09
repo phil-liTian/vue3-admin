@@ -7,7 +7,6 @@
     <div :class="`${prefixCls}-left`">
       <!-- <AppLogo /> -->
       <LayoutTrigger :sider="false" />
-      
       <LayoutBreadCrumb />
     </div>
     <!-- <div :class="`${prefixCls}-menu`">111</div> -->
@@ -15,6 +14,7 @@
       <AppSearch :class="`${prefixCls}-action__item`" />
       <FullScreen :class="`${prefixCls}-action__item`" />
       <AppLocalePicker :class="`${prefixCls}-action__item`" />
+      <UserDropdown />
       <SettingDrawer :class="`${prefixCls}-action__item`" />
     </div>
   </Header>
@@ -29,6 +29,7 @@ import { LayoutBreadCrumb } from './components/index'
 import FullScreen from './components/FullScreen.vue'
 import LayoutTrigger from '@/layout/default/trigger/index.vue'
 import { createAsyncComponent } from '@/utils/factory/createAsyncComponent'
+import { UserDropdown } from './components/index'
 const SettingDrawer = createAsyncComponent(()=>import('../setting/index.vue'))
 const Header = Layout.Header
 

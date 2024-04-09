@@ -11,6 +11,7 @@ const steps: AppRouteRecordRaw = {
   path: '/steps',
   component: LAYOUT,
   redirect: '/steps/index',
+  name: 'step',
   meta: {
     title: t('routes.demo.steps.title'),
     orderNo: 999,
@@ -20,6 +21,7 @@ const steps: AppRouteRecordRaw = {
   children: [
     {
       path: 'index',
+      name: 'stepIndex',
       component: () => import('@/views/demo/steps/index.vue'),
       meta: {
         title: t('routes.demo.steps.title'),

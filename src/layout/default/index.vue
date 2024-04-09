@@ -8,12 +8,12 @@
 
     <Layout :class="[`${prefixCls}-out`]">
       <!-- 左侧菜单部分 -->
-      <!-- <LayoutSiderBar /> -->
+      <LayoutSiderBar />
 
       <Layout :class="`${prefixCls}-main`">
         <LayoutMultipleHeader />
         <!-- 内容区域 -->
-        <!-- <LayoutContent /> -->
+        <LayoutContent />
         <!-- 页脚 -->
         <LayoutFooter />
       </Layout>

@@ -34,6 +34,7 @@
   import MenuItem from './components/menuItem.vue';
   import SubMenu from './components/subMenuItem.vue'
   import { Menu } from '@/router/types';
+  import { propTypes } from '@/utils/propTypes';
 
   const { t } = useI18n()
   const { prefixCls } = useDesign('simple-menu')
@@ -43,11 +44,13 @@
       type: Object as PropType<Menu>,
       default: () => {}
     },
-    parent: Boolean
+    parent: Boolean,
+    collapse: propTypes.bool.def(false)
   })
 
   const { item } = props
   
+  const getShowSubTitle = computed(() => !props.collapse)
   const getI18nName = computed(() => t(item.name))
 
   const getIcon = computed(() => props.item.icon )

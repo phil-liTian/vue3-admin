@@ -5,6 +5,7 @@
 import type { Component, App } from 'vue'
 import { mergeWith, intersectionWith, unionWith, isEqual } from 'lodash-es'
 import { isArray, isObject } from './is'
+import { RouteLocationNormalized } from 'vue-router'
 
 
 type customComponent = Component & { displayName?: string }
@@ -103,4 +104,20 @@ export function deepMerge<T extends DefaultType, U extends DefaultType> (source:
     // 如果customizer 返回 undefined，将会由合并处理方法代替
     return undefined
   })
+}
+
+
+export function getRawRoute(route: RouteLocationNormalized): RouteLocationNormalized {
+  if ( !route ) return route
+
+  const { matched, ...opt } = route
+
+  return {
+    ...opt,
+    matched: (matched ? matched.map(item => ({ 
+      name: item.name,
+      path: item.path,
+      meta: item.meta
+    })) : undefined) as any,
+  }
 }

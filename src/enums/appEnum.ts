@@ -3,6 +3,9 @@
  * @LastEditors: phil_litian
  * app设置层面枚举
  */
+export const SIDER_BAR_MINI_WIDTH = 48;
+export const SIDER_BAR_SHOW_TITLE_MINI_WIDTH = 80;
+
 // 主题
 export enum ThemeEnum {
   DARK = 'dark',

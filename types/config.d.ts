@@ -35,7 +35,8 @@ interface MenuSetting {
   mode: MenuModeEnum, // 菜单模式（方向）
   type: MenuTypeEnum, // 位置 混合模式
   theme: ThemeEnum,
-  collapsed: boolean
+  collapsed: boolean,
+  menuWidth: number
 }
 
 export interface HeaderSetting {

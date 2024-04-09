@@ -5,3 +5,6 @@
 import { createAsyncComponent } from "@/utils/factory/createAsyncComponent";
 
 export const LayoutBreadCrumb = createAsyncComponent(() => import('./BreadCrumb.vue'))
+export const UserDropdown = createAsyncComponent(() => import('./user-dropdown/index.vue'))
+
+

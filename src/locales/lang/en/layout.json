@@ -27,5 +27,10 @@
     "close": "Close Current",
     "closeOther": "Close Other",
     "closeAll": "Close All"
+  },
+
+  "header": {
+    "tooltipExitFull": "Exit Full Screen",
+    "tooltipEntryFull": "Full Screen"
   }
 }

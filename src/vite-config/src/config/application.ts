@@ -3,14 +3,36 @@
  * @LastEditors: phil_litian
  */
 import { resolve } from 'path'
+import dayjs from 'dayjs'
 import { defineConfig } from 'vite'
+import { readPackageJSON } from 'pkg-types'
 import { createPlugins } from '../plugins'
 
+// 自定义全局变量
+async function createDefineData(root: string) {
+  try {
+    const pkgJson = await readPackageJSON(root)
+    const { dependencies, name, version, devDependencies } = pkgJson
+    const __APP_INFO__ = {
+      pkg: { dependencies, name, version, devDependencies },
+      lastBuildTime: dayjs().format('YYYY-MM-DD HH:mm:ss')
+    }
 
-export const defineApplicationConfig = () => {
+    return {
+      __APP_INFO__: JSON.stringify(__APP_INFO__)
+    }
+    
+  } catch(error) {
+    return {}
+  }
+}
+
+export const defineApplicationConfig = async () => {
   // 用于获取当前工作目录的绝对路径
   const root = process.cwd();
   const plugins = createPlugins()
+  const definData = await createDefineData(root)
+
   return defineConfig({
     server: {
       port: 8888,
@@ -25,6 +47,7 @@ export const defineApplicationConfig = () => {
         // },
       }
     },
+    define: definData,
     plugins,
     resolve: {
       alias: {
@@ -36,6 +59,7 @@ export const defineApplicationConfig = () => {
         '@u': resolve(root, 'src/utils'),
         '@e': resolve(root, 'src/enums'),
         "@a": resolve(root, 'src/api'),
+        "@d": resolve(root, 'src/directives'),
         '#': resolve(root, 'src/types'),
       }
     },

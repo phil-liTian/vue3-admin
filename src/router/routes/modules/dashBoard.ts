@@ -21,7 +21,8 @@ const dashBoard: AppRouteRecordRaw = {
       path: 'analysis',
       component: () => import('@/views/dashboard/analysis/index.vue'),
       meta: {
-        title: t('routes.dashBoard.analysis')
+        title: t('routes.dashBoard.analysis'),
+        affix: true
       }
     },
 

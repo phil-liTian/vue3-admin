@@ -91,3 +91,15 @@ export function findPath<T>(treeData: T[], func: Fn, config: Partial<TreeHelperC
 
   return []
 }
+
+export function forEach<T = any>(tree: T[], func: Fn, config: Partial<TreeHelperConfig> = {}) {
+  config = getConfig(config)
+  const list = [...tree]
+  const { children } = config
+
+  for (let i = 0; i < list.length; i++) {
+    if ( func(list[i]) ) return
+
+    children && list[i][children] && list.splice(i + 1, 0, ...list[i][children])
+  }
+}

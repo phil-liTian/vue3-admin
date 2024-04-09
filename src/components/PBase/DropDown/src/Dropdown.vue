@@ -9,7 +9,10 @@
     </span>
     <template #overlay>
       <Menu>
-        <MenuItem v-for="item in dropMenuList" :key="item.event">
+        <MenuItem 
+          v-for="item in dropMenuList" 
+          :key="item.event"
+          @click="handleMenuClick(item)">
           <Popconfirm 
             v-if="popConfirm && item.popConfirm"
             title="Are you sure delete this task?">
@@ -40,6 +43,11 @@
       default: () => []
     }
   })
+  const emits = defineEmits(['menuEvent'])
+
+  const handleMenuClick = (item: DropMenu) => {
+    emits('menuEvent', item)
+  }
 </script>
   
 <style lang='less' scoped>

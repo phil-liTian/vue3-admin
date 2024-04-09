@@ -12,6 +12,7 @@
     <template v-for="item in items" :key="item.path">
       <SimpleSubMenu 
         :parent="true"
+        :collapse="collapse"
         :item="item" />
     </template>
   </Menu>
@@ -28,7 +29,7 @@
   import { useOpenKeys } from './useOpenKeys'
   import { listenerRouteChange } from '@/logics/mitt/routeChange'
   import { propTypes } from "@/utils/propTypes";
-import { toRefs } from "vue";
+  import { toRefs } from "vue";
   const { prefixCls } = useDesign('SimpleMenu')
   const attrs = useAttrs()
   const { currentRoute } = useRouter()
@@ -39,7 +40,7 @@ import { toRefs } from "vue";
       type: Array as PropType<MenuType[]>,
       default: () => ([])
     },
-    collpase: propTypes.bool
+    collapse: propTypes.bool
   })
   
   const menuState = reactive<MenuState>({
@@ -58,10 +59,8 @@ import { toRefs } from "vue";
     emits('menuClick', key)
   }
 
-
   listenerRouteChange((route) => {
     menuState.activeName = route.path
-
     setOpenKeys(route.path)
   })
 

@@ -1,0 +1,35 @@
+@prefix-cls: ~'@{namespace}-multiple-tabs';
+
+
+.@{prefix-cls} {
+  line-height: @multiple-height;
+  background-color: @component-background;
+
+  &-content {
+    &__extra_redo,
+    &__extra-fold,
+    &__extra-quick {
+      display: inline-block;
+      width: 36px;
+      text-align: center;
+      cursor: pointer;
+      border-right: 1px solid @border-color-base;
+    }
+  }
+
+  .ant-tabs {
+    &-nav {
+      margin: 0;
+      background-color: @component-background;
+
+      .ant-tabs-tab-active {
+        background-color: @primary-color;
+        transition: none;
+
+        span {
+          color: #fff;
+        }
+      }
+    }
+  }
+}

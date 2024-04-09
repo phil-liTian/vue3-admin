@@ -23,7 +23,7 @@
       const { prefixCls } = useDesign('layout-menu')
       const { menusRef } = useSplitMenu()
       const { go } = useGo()
-      const { getAccordion, getIsHorizontal, getMenuTheme } = useMenuSetting()
+      const { getAccordion, getIsHorizontal, getMenuTheme, getCollapsed } = useMenuSetting()
 
       const getLogoClass = computed(() => {
         return [
@@ -41,7 +41,8 @@
           menus,
           items: menus,
           onMenuClick: handleMenuClick,
-          theme: unref(getMenuTheme)
+          theme: unref(getMenuTheme),
+          collapse: unref(getCollapsed)
         }
       })
 

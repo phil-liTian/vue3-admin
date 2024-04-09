@@ -22,7 +22,8 @@ const setting: ProjectConfig = {
     mode: MenuModeEnum.INLINE,
     theme: ThemeEnum.DARK,
     type: MenuTypeEnum.SIDEBAR,
-    collapsed: false
+    collapsed: false,
+    menuWidth: 210,
   },
 
   headerSetting: {
