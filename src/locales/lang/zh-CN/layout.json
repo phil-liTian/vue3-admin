@@ -17,7 +17,38 @@
     "splitMenu": "分割菜单",
     "closeMixSidebarOnChange": "切换页面关闭菜单",
     "sysTheme": "系统主题",
-    "headerTheme": "顶栏主题"
+    "headerTheme": "顶栏主题",
+
+    "interfaceFunction": "界面功能",
+    "interfaceDisplay": "界面展示",
+    "animation": "动画",
+    "menuCollapse": "折叠菜单",
+    "menuAccordion": "侧边菜单手风琴模式",
+    "menuSearch": "菜单搜索",
+    "logo": "Logo",
+    "header": "顶栏",
+    "footer": "页脚",
+    "breadcrumb": "面包屑导航",
+    "breadcrumbIcon": "面包屑导航图标",
+    "tabs": "标签页",
+    "tabsRedoBtn": "标签页刷新按钮",
+    "tabsQuickBtn": "标签页快捷按钮",
+    "tabsFoldBtn": "标签页折叠按钮",
+
+    "fullContent": "全屏内容",
+    "grayMode": "灰色模式",
+    "colorWeak": "色弱模式",
+
+    "sidebar": "左侧菜单",
+
+    "animationType": "动画类型",
+    "progress": "顶部进度条",
+    "switchLoading": "切换loading",
+    "switchAnimation": "切换动画",
+
+    "operatingTitle": "操作成功!",
+    "operatingContent": "复制成功,请到 src/settings/projectSetting.ts 中修改配置！",
+    "resetSuccess": "重置成功"
   },
 
   "multipleTab": {

@@ -8,6 +8,7 @@
     :class="getLevelClass"
     :name="item.path">
     <p-icon v-if="getIcon" :icon="getIcon" :size="16"></p-icon>
+    
     <template #title>
       <span :class="[`${prefixCls}-sub-title`, 'ml-2']">
         {{ getI18nName }}
@@ -15,10 +16,12 @@
     </template>
   </MenuItem>
 
-  <SubMenu :name="item.path" v-else>
+  <SubMenu 
+    :name="item.path" 
+    v-else>
     <template #title>
       <p-icon v-if="getIcon" :icon="getIcon" :size="16"></p-icon>
-      <span :class="[`${prefixCls}-sub-title`, 'ml-2']">{{ getI18nName }}</span>
+      <span v-if="getShowSubTitle" :class="[`${prefixCls}-sub-title`, 'ml-2']">{{ getI18nName }}</span>
     </template>
 
     <template v-for="childItem in item.children || []" :key="childItem.key">
@@ -31,21 +34,22 @@
   import { PropType, computed } from 'vue';
   import { useI18n } from '@h/web/useI18n'
   import { useDesign } from '@h/web/useDesign'
-  import MenuItem from './components/menuItem.vue';
-  import SubMenu from './components/subMenuItem.vue'
+  import MenuItem from './components/MenuItem.vue';
+  import SubMenu from './components/SubMenuItem.vue'
   import { Menu } from '@/router/types';
   import { propTypes } from '@/utils/propTypes';
 
   const { t } = useI18n()
   const { prefixCls } = useDesign('simple-menu')
-  defineOptions({ name: 'simpleSubMenu' })
+  defineOptions({ name: 'SimpleSubMenu' })
   const props = defineProps({
     item: {
       type: Object as PropType<Menu>,
       default: () => {}
     },
     parent: Boolean,
-    collapse: propTypes.bool.def(false)
+    collapse: propTypes.bool.def(false),
+    collapsedShowTitle: propTypes.bool.def(false)
   })
 
   const { item } = props

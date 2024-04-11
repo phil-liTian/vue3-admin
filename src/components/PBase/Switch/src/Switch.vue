@@ -3,7 +3,8 @@
  * @LastEditors: phil_litian
 -->
 <template>
-  <Switch 
+  <Switch
+    v-bind="$attrs"
     :disabled="disabled" 
     @change="handleChange"
     :checkedChildren="t(checkedChildren)"
@@ -29,11 +30,11 @@
     unCheckedChildren: {
       type: String,
       default: 'setting.off'
-    }
+    },
   })
 
-  const handleChange = () => {
-    emits('change')
+  const handleChange = (val) => {
+    emits('change', val)
   }
   
 </script>

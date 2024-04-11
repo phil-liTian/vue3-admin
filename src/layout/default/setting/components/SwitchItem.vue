@@ -5,18 +5,35 @@
 <template>
   <div :class="prefixCls">
     <span>{{ title }}</span>
-    <PSwitch />
+    <PSwitch 
+      v-bind="getBindValue"
+      @change="handleChange" />
   </div>
 </template>
   
 <script lang='ts' setup>
   import { useDesign } from '@h/web/useDesign'
   import { propTypes } from '@u/propTypes'
+  import { computed, PropType } from 'vue'
+  import { HandlerEnums } from '../enums'
+  import { baseHandler } from '../handler'
   const { prefixCls } = useDesign('setting-switch-item')
   defineOptions({ name: 'SwitchItem' })
-  defineProps({
-    title: propTypes.string.def('')
+  const props = defineProps({
+    title: propTypes.string.def(''),
+    def: propTypes.bool.def(false),
+    event: {
+      type: Number as PropType<HandlerEnums>
+    }
   })
+
+  const getBindValue = computed(() => {
+    return props.def ? { checked: props.def } : {}
+  })
+
+  const handleChange = (val) => {
+    props.event && baseHandler(props.event, val)
+  }
 </script>
   
 <style lang='less' scoped>

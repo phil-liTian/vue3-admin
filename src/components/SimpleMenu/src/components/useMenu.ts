@@ -8,7 +8,7 @@ import { CSSProperties, ComponentInternalInstance, computed, unref } from 'vue'
 export const useMenuItem = (instance: Nullable<ComponentInternalInstance>) => {
 
   const getParentMenu = computed(() => {
-    return findParentMenu(['Menu', 'subMenu'])
+    return findParentMenu(['Menu', 'SubMenu'])
   })
 
   const getParentRootMenu = computed(() => {
@@ -16,7 +16,7 @@ export const useMenuItem = (instance: Nullable<ComponentInternalInstance>) => {
   })
 
   const getParentSubMenu = computed(() => {
-    return findParentMenu(['subMenu'])
+    return findParentMenu(['SubMenu'])
   })
 
   const getItemStyle = computed((): CSSProperties => {
@@ -41,12 +41,14 @@ export const useMenuItem = (instance: Nullable<ComponentInternalInstance>) => {
   function findParentMenu(names: string[]) {
     let parent = instance.parent
     if ( !parent ) return null
-    while(parent && names.includes(parent.type.name)) {
+    
+    while(parent && !names.includes(parent.type.name)) {
+
       parent = parent.parent
     }
 
     return parent
   }
 
-  return { getItemStyle }
+  return { getItemStyle, getParentMenu, getParentRootMenu, getParentSubMenu }
 }

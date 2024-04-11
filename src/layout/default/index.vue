@@ -8,7 +8,7 @@
 
     <Layout :class="[`${prefixCls}-out`]">
       <!-- 左侧菜单部分 -->
-      <LayoutSiderBar />
+      <LayoutSiderBar v-if="getShowSideBar" />
 
       <Layout :class="`${prefixCls}-main`">
         <LayoutMultipleHeader />
@@ -28,9 +28,11 @@
   import LayoutSiderBar from './sides/index.vue'
   import LayoutContent from './content/index.vue'
   import LayoutFooter from './footer/index.vue'
+  import { useMenuSetting } from '@h/setting/useMenuSetting'
 
   import { useDesign } from '@h/web/useDesign'
   const { prefixCls } = useDesign('layout')
+  const { getShowSideBar } = useMenuSetting()
   
 </script>
   

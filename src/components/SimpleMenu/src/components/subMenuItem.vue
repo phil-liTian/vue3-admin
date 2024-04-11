@@ -4,33 +4,63 @@
 -->
 <template>
   <li :class="getClass">
-    <div :class="`${prefixCls}-submenu-title`" @click="handleClick" :style="getItemStyle">
-      <slot name="title"></slot>
+    <template v-if="!getCollapsed">
+      <div :class="`${prefixCls}-submenu-title`" @click="handleClick" :style="getItemStyle">
+        <slot name="title"></slot>
 
-      <p-icon icon="eva:arrow-ios-downward-outline" :class="`${prefixCls}-subMenu-title-icon`"></p-icon>
-    </div>
+        <p-icon 
+          icon="eva:arrow-ios-downward-outline" 
+          :size="14"
+          :class="`${prefixCls}-subMenu-title-icon`">
+        </p-icon>
+      </div>
 
-    <CollapseTransition>
-      <ul :class="prefixCls" v-show="state.opened">
-        <slot></slot>
-      </ul>
-    </CollapseTransition>
+      <CollapseTransition>
+        <ul :class="prefixCls" v-show="state.opened">
+          <slot></slot>
+        </ul>
+      </CollapseTransition>
+    </template>
+    
+    <Popover placement="right" v-else>
+      <div :class="getSubClass">
+        <div>
+          <slot name="title"></slot>
+        </div>
+        <!-- <PIcon
+          v-if="getParentSubMenu">
+        </PIcon> -->
+      </div>
+
+      <!-- popover展示的内容 -->
+      <template #content>
+        <div>
+          <ul :class="[prefixCls]">
+            <slot></slot>
+          </ul>
+        </div>
+      </template>
+    </Popover>
   </li>
 </template>
   
 <script lang='ts' setup>
-  import { useDesign } from '@h/web/useDesign'
-  import { computed, getCurrentInstance, onBeforeMount, reactive, PropType } from 'vue'
+  import { computed, getCurrentInstance, onBeforeMount, reactive, PropType, inject, provide } from 'vue'
+  import { Popover } from 'ant-design-vue'
   import { CollapseTransition } from '@c/Transition/index'
   import mitt from '@/utils/mitt'
   import { useMenuItem } from './useMenu'
   import { useSimpleRootMenuContext } from './useSimpleMenuContext'
-import { propTypes } from '@/utils/propTypes'
+  import { propTypes } from '@/utils/propTypes'
+  import { useDesign } from '@h/web/useDesign'
+  import { useMenuSetting } from '@h/setting/useMenuSetting'
+  import { SubMenuProvider } from './types'
   const { prefixCls } = useDesign('menu')
   defineOptions({ name: 'SubMenu' })
   const instance = getCurrentInstance()
 
-  const { getItemStyle } = useMenuItem(instance)
+  const { getItemStyle, getParentMenu, getParentSubMenu, getParentRootMenu } = useMenuItem(instance)
+  const { getCollapsed } = useMenuSetting()
   const { rootMenuEmitter, activeName } = useSimpleRootMenuContext()
   
   const subMenuEmitter = mitt()
@@ -40,6 +70,7 @@ import { propTypes } from '@/utils/propTypes'
       type: [String, Number] as PropType<string | number>,
       default: ''
     },
+    collapsedShowTitle: propTypes.bool.def(false)
   })
   
   const state = reactive({
@@ -57,6 +88,12 @@ import { propTypes } from '@/utils/propTypes'
     ]
   })
 
+  const getSubClass = computed(() => {
+    return [
+      `${prefixCls}-submenu-title`
+    ]
+  })
+
   const handleClick = () => {
     const { opened } = state
     rootMenuEmitter.emit('opened-name-change', { name: '12', opened: false })
@@ -64,12 +101,19 @@ import { propTypes } from '@/utils/propTypes'
     state.opened = !opened
   }
 
+  const {
+    props: rootProps
+  } = inject<SubMenuProvider>(`subMenu:${getParentMenu.value?.uid}`)
 
   onBeforeMount(() => {
     rootMenuEmitter.on('on-update-opened', (data: (number | string)[]) => {
       
       state.opened = data.includes(props.name)
     })
+  })
+
+  provide<SubMenuProvider>(`subMenu:${instance.uid}`, {
+    props: rootProps
   })
 </script>
   

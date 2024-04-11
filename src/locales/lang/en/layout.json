@@ -17,7 +17,38 @@
     "splitMenu": "Split Menu",
     "closeMixSidebarOnChange": "Switch page to close menu",
     "sysTheme": "System theme",
-    "headerTheme": "Header Theme"
+    "headerTheme": "Header Theme",
+
+    "interfaceFunction": "Interface Function",
+    "interfaceDisplay": "Interface Display",
+    "animation": "Animation",
+    "menuCollapse": "Collapse menu",
+    "menuAccordion": "Sidebar accordion",
+    "menuSearch": "Menu Search",
+    "header": "Header",
+    "footer": "Footer",
+    "logo": "Logo",
+    "breadcrumb": "Breadcrumbs",
+    "breadcrumbIcon": "Breadcrumbs Icon",
+    "tabs": "tabs",
+    "tabsRedoBtn": "Tabs redo button",
+    "tabsQuickBtn": "Tabs quick button",
+    "tabsFoldBtn": "Tabs fold button",
+
+    "fullContent": "Full Content",
+    "grayMode": "Gray Mode",
+    "colorWeak": "Color Weak Mode",
+
+    "sidebar": "Side bar",
+
+    "animationType": "Animation Type",
+    "progress": "Progress",
+    "switchLoading": "Switch Loading",
+    "switchAnimation": "Switch Animation",
+    
+    "operatingTitle": "Successful!",
+    "operatingContent": "The copy is successful, please go to src/settings/projectSetting.ts to modify the configuration!",
+    "resetSuccess": "Reset Success"
   },
 
   "multipleTab": {

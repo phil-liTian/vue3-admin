@@ -13,6 +13,7 @@
       <SimpleSubMenu 
         :parent="true"
         :collapse="collapse"
+        :collapsedShowTitle="collapsedShowTitle"
         :item="item" />
     </template>
   </Menu>
@@ -23,8 +24,8 @@
   import { computed, PropType, reactive, useAttrs, watch } from "vue";
   import { useRouter } from 'vue-router'
   import { useDesign } from '@h/web/useDesign'
-  import Menu from './components/menu.vue'
-  import SimpleSubMenu from './simpleSubMenu.vue'
+  import Menu from './components/Menu.vue'
+  import SimpleSubMenu from './SimpleSubMenu.vue'
   import { MenuState } from './types'
   import { useOpenKeys } from './useOpenKeys'
   import { listenerRouteChange } from '@/logics/mitt/routeChange'
@@ -40,7 +41,8 @@
       type: Array as PropType<MenuType[]>,
       default: () => ([])
     },
-    collapse: propTypes.bool
+    collapse: propTypes.bool.def(false), // 是否折叠
+    collapsedShowTitle: propTypes.bool.def(false), // 折叠时是否展示title
   })
   
   const menuState = reactive<MenuState>({

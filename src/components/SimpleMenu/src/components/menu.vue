@@ -9,17 +9,17 @@
 </template>
   
 <script lang='ts' setup>
-  import { computed, onMounted, PropType, ref, toRef, watch, watchEffect } from 'vue'
+  import { computed, onMounted, PropType, ref, toRef, watch, watchEffect, provide, getCurrentInstance } from 'vue'
   import { useDesign } from '@h/web/useDesign'
-  import { useGo } from '@h/web/usePage'
   import { propTypes } from '@u/propTypes'
   import mitt from '@u/mitt'
   import { type MenuEmitterEvent, createSimpleRootMenuContext } from './useSimpleMenuContext'
   import { nextTick } from 'vue'
+  import { SubMenuProvider } from './types'
   const { prefixCls } = useDesign('menu')
-  const { go } = useGo()
-
+  const instance = getCurrentInstance()
   defineOptions({ name: 'Menu' })
+  
   const currentActiveName = ref<number | string>('')
   const rootMenuEmitter = mitt<MenuEmitterEvent>()
   const props = defineProps({
@@ -38,6 +38,10 @@
   createSimpleRootMenuContext({
     rootMenuEmitter,
     activeName: currentActiveName
+  })
+
+  provide<SubMenuProvider>(`subMenu:${instance.uid}`, {
+    props
   })
 
   const emits = defineEmits(['select'])

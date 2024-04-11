@@ -4,19 +4,27 @@
 -->
 <template>
   <div :class="getClass">
-    <LayoutHeader />
-    <MultipleTabs />
+    <LayoutHeader v-if="getShowInsetHeader" />
+    <MultipleTabs v-if="getShowTabs" />
   </div>
 </template>
   
 <script lang='ts' setup>
-  import { useDesign } from '@h/web/useDesign'
-  import { computed } from 'vue'
+  import { computed, unref } from 'vue'
   import LayoutHeader from './index.vue'
   import MultipleTabs from '../tabs/index.vue'
+  import { useDesign } from '@h/web/useDesign'
+  import { useMultipleTabSetting } from '@h/setting/useMultipleTabSetting'
+  import { useHeaderSetting } from '@h/setting/useHeaderSetting'
   defineOptions({ name: 'LayoutMultipleHeader' })
-
+  
+  const { getShowMultipleTab } = useMultipleTabSetting()
+  const { getShowInsetHeader } = useHeaderSetting()
   const { prefixCls } = useDesign('layout-multiple-header')
+
+  const getShowTabs = computed(() => {
+    return unref(getShowMultipleTab)
+  })
 
   const getClass = computed(() => {
     return [

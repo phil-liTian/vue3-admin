@@ -12,7 +12,6 @@ const appStore = useAppStore()
 
 export const useMenuSetting = () => {
   
-
   const getAccordion = computed(() => appStore.getMenuSetting.accordion)
 
   // 菜单模式
@@ -30,9 +29,13 @@ export const useMenuSetting = () => {
   // 菜单宽度
   const getMenuWidth = computed(() => appStore.getMenuSetting.menuWidth)
 
+  const getSplit = computed(() => appStore.getMenuSetting.split)
+
   // 最小宽度(菜单折叠时的宽度)
   const getMiniWidthNumber = computed(() => {
-    return SIDER_BAR_SHOW_TITLE_MINI_WIDTH
+    const { collapsedShowTitle } = appStore.getMenuSetting
+
+    return unref(collapsedShowTitle) ? SIDER_BAR_SHOW_TITLE_MINI_WIDTH : SIDER_BAR_MINI_WIDTH
   })
 
   // 是否垂直
@@ -45,6 +48,10 @@ export const useMenuSetting = () => {
 
   // 是否折叠
   const getCollapsed = computed(() => appStore.getMenuSetting.collapsed)
+
+  const getShowSideBar = computed(() => {
+    return unref(getShowMenu)
+  })
 
   function setMenuSetting(menuSetting: Partial<MenuSetting>) {
     appStore.setMenuSetting(menuSetting)
@@ -62,8 +69,10 @@ export const useMenuSetting = () => {
     getMenuTheme,
     getMenuType,
     getMenuWidth,
+    getSplit,
     getMiniWidthNumber,
     getShowMenu,
+    getShowSideBar,
     getMenuBgColor,
     getIsHorizontal,
     getCollapsed,

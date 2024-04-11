@@ -15,10 +15,12 @@
       {{ title }}
     </template>
 
-    <p-scroll-container :style="getScrollContainerStyle">
+    <pScrollContainer 
+      v-loading="getLoading"
+      :style="getScrollContainerStyle">
       <slot></slot>
 
-    </p-scroll-container>
+    </pScrollContainer>
 
     <DrawerFooter v-if="showFooter">
       <!-- 可以利用Object.keys(slots)来循环实现具名插槽 -->
@@ -67,6 +69,10 @@
       open: unref(openRef)
     }
     return opt
+  })
+
+  const getLoading = computed(() => {
+    return !!unref(getProps)?.loading
   })
 
   // footer高度

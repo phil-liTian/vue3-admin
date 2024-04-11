@@ -6,7 +6,7 @@
   <div :class="getBreadClass">
     <Breadcrumb :routes="routes">
       <template #itemRender="{ route, routes: routesMatched, paths }">
-        <p-icon v-if="getIcon(route)" :icon="getIcon(route)"></p-icon>
+        <p-icon v-if="getIcon(route) && getShowBreadcrumbIcon" :icon="getIcon(route)"></p-icon>
         <!-- 当前展示的路由 -->
         <span v-if="!hasRedirect(routesMatched, route)">
           {{ t( route.name || route.meta.title) }}
@@ -27,6 +27,7 @@
   import { useDesign } from '@h/web/useDesign'
   import { useI18n } from '@h/web/useI18n'
   import { useGo } from '@h/web/usePage'
+  import { useRootSetting } from '@h/setting/useRootSetting'
   import { propTypes } from '@u/propTypes'
   import { getAllParentPath } from '@/router/helper/menuHelper'
   import { getMenus } from '@/router/routes/menus'
@@ -36,7 +37,7 @@
   const props = defineProps({
     theme: propTypes.oneOf(['light', 'dark']).def('light')
   })
-
+  const { getShowBreadcrumbIcon } = useRootSetting()
   const { prefixCls } = useDesign('layout-breadcrumb')
   const { currentRoute } = useRouter()
   const { t } = useI18n()

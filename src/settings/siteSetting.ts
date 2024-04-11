@@ -3,5 +3,4 @@
  * @LastEditors: phil_litian
  */
 
-
 export const GITHUB_URL = 'https://github.com/phil-liTian/vue3-admin'

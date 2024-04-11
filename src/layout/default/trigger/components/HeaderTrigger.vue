@@ -16,7 +16,6 @@
   const { prefixCls } = useDesign('layout-header-trigger')
 
   const { getCollapsed, toggleCollpased } = useMenuSetting()
-
 </script>
   
 <style lang='less' scoped>

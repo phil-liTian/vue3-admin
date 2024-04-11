@@ -1,13 +1,15 @@
 <!--
- * @Date: 2024-03-23 09:42:00
+ * @Date: 2024-04-10 21:48:35
  * @LastEditors: phil_litian
 -->
 <template>
-  <PageWrapper title="前端权限示例"></PageWrapper>
+  <div class="scrollbar">
+    <slot></slot>
+  </div>
 </template>
   
 <script lang='ts' setup>
-  
+  defineOptions({ name: 'ScrollBar' })
 </script>
   
 <style lang='less' scoped>

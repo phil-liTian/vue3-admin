@@ -3,7 +3,7 @@
  * @LastEditors: phil_litian
  * 整个应用到store
  */
-import { MenuSetting, ProjectConfig, HeaderSetting, MultiTabsSetting } from '#/config'
+import { MenuSetting, ProjectConfig, HeaderSetting, MultiTabsSetting, TransitionSetting } from '#/config'
 import { defineStore } from 'pinia'
 import { ThemeEnum } from '@e/appEnum'
 import { PROJ_CFG_KEY } from '@e/cacheEnum'
@@ -49,6 +49,10 @@ export const useAppStore = defineStore({
 
     getMultipleSetting(state): MultiTabsSetting {
       return this.getProjectConfig.multiTabsSetting
+    },
+
+    getTransitionSetting(state): TransitionSetting {
+      return this.getProjectConfig.transitionSetting
     }
   },
   

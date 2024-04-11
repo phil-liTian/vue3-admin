@@ -23,11 +23,11 @@
         <!-- 项目设置 -->
         <SettingButton />
         <!-- 刷新 -->
-        <TabRedo />
+        <TabRedo v-if="getShowRedo" />
         <!-- 操作tabs -->
-        <TabContent isExtra />
+        <TabContent isExtra v-if="getShowFold" />
         <!-- 控制全屏 -->
-        <FoldButton />
+        <FoldButton v-if="getShowFold" />
       </template>
     </Tabs>
   </div>
@@ -39,12 +39,14 @@
   import { Tabs } from 'ant-design-vue'
   import { useDesign } from '@h/web/useDesign'
   import { useGo } from '@h/web/usePage'
+  import { useMultipleTabSetting } from '@h/setting/useMultipleTabSetting'
   import { useTabs } from '@s/modules/tabs'
   import { SettingButton, TabRedo, FoldButton, TabContent } from './components/index'
   import { listenerRouteChange } from '@/logics/mitt/routeChange'
   const { prefixCls } = useDesign('multiple-tabs')
   const TabPane = Tabs.TabPane
   const { getTabList, addTab, closeTabByKey } = useTabs()
+  const { getShowFold, getShowQuick, getShowRedo } = useMultipleTabSetting()
   const { go } = useGo()
   const router = useRouter()
   const activeKeyRef = ref('')

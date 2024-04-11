@@ -7,7 +7,7 @@
     <div :class="`${prefixCls}-left`">
       <!-- <AppLogo /> -->
       <LayoutTrigger :sider="false" />
-      <LayoutBreadCrumb />
+      <LayoutBreadCrumb v-if="getShowBreadcrumb" />
     </div>
     <!-- <div :class="`${prefixCls}-menu`">111</div> -->
     <div :class="`${prefixCls}-action`">
@@ -24,6 +24,7 @@
 import { computed } from 'vue'
 import { Layout } from 'ant-design-vue'
 import { useDesign } from '@h/web/useDesign'
+import { useRootSetting } from '@h/setting/useRootSetting'
 import { AppLocalePicker, AppLogo, AppSearch } from '@c/Application'
 import { LayoutBreadCrumb } from './components/index'
 import FullScreen from './components/FullScreen.vue'
@@ -34,6 +35,7 @@ const SettingDrawer = createAsyncComponent(()=>import('../setting/index.vue'))
 const Header = Layout.Header
 
 const { prefixCls } = useDesign('layout-header')
+const { getShowBreadcrumb } = useRootSetting()
 const getHeaderClass = computed(() => {
   return [
     prefixCls

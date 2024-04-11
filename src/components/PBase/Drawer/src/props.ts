@@ -3,16 +3,10 @@
  * @LastEditors: phil_litian
  */
 import { propTypes } from '@u/propTypes'
-import { useI18n } from '@h/web/useI18n'
 import { PropType } from 'vue'
 
-const { t } = useI18n()
-
 export const footerProps = {
-  cancelText: {
-    type: String,
-    default: t('common.cancelText')
-  },
+  cancelText: propTypes.string,
 
   showCancelBtn: {
     type: Boolean,
@@ -24,10 +18,7 @@ export const footerProps = {
     default: () => ({})
   },
 
-  okText: {
-    type: String,
-    default: t('common.okText')
-  },
+  okText: propTypes.string,
 
   showOkBtn: {
     type: Boolean,
@@ -55,6 +46,7 @@ export const footerProps = {
 
 export const basicProps = {
   title: propTypes.string.def(''),
+  loading: propTypes.bool.def(false),
   open: propTypes.bool.def(false),
   ...footerProps
 }

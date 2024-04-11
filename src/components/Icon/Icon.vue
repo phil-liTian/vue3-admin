@@ -17,7 +17,7 @@
 </template>
   
 <script lang='ts' setup>
-  import { computed, CSSProperties, onMounted, unref, ref } from 'vue'
+  import { computed, CSSProperties, onMounted, unref, ref, watch } from 'vue'
   import type { PropType } from 'vue'
   // 当前包可根据ion生成一个图标
   import Iconfiy from '@purge-icons/generated'
@@ -67,7 +67,6 @@
       el.textContent = '';
       el.appendChild(span);
     }
-    
   }
 
   const getWrapStyle = computed((): CSSProperties => {
@@ -78,7 +77,11 @@
       fontSize: `${size}px`
     }
   })
-
+  // flush控制何时运行watch的回调函数
+  // pre 在侦听器的回调函数运行之前立即执行更新函数（dom渲染完毕之前执行）
+  // post 在下一次dom更新之后执行
+  // sync 更改被触发时 立即执行
+  watch(() => props.icon, update, { flush: 'post' })
   onMounted(update)
 </script>
   

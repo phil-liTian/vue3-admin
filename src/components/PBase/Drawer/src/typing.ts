@@ -19,6 +19,7 @@ export interface DrawerFooterProps {
 
 export interface DrawerProps extends DrawerFooterProps {
   open: boolean,
+  loading?: boolean,
   title?: string
 }
 

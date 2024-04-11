@@ -3,9 +3,9 @@
  * @LastEditors: phil_litian
 -->
 <template>
-  <p-basic-title v-if="!isDetail">
+  <pBasicTitle v-if="!isDetail">
     {{ $slots.title ? '' : title }}
-  </p-basic-title>
+  </pBasicTitle>
   <div :class="getClass">
     111
   </div>

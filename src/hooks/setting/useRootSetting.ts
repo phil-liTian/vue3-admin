@@ -16,8 +16,36 @@ export const useRootSetting = () => {
   // 设置主题模式
   const setDarkMode = (mode: ThemeEnum) => appStore.setDarkMode(mode)
 
+  // 是否展示面包屑导航
+  const getShowBreadcrumb = computed(() => appStore.getProjectConfig.showBreadCrumb)
+
+  // 是否展示面包屑导航前置icon
+  const getShowBreadcrumbIcon = computed(() => appStore.getProjectConfig.showBreadCrumbIcon)
+
+  // 是否展示页脚
+  const getShowFooter = computed(() => appStore.getProjectConfig.showFooter)
+
+  // 全屏
+  const getFullContent = computed(() => appStore.getProjectConfig.fullContent )
+
+  // 灰色模式
+  const getGrayMode = computed(() => appStore.projectConfig.grayMode)
+
+  // 色弱模式
+  const getColorWeak = computed(() => appStore.getProjectConfig.colorWeak)
+
+  // 是否展示logo
+  const getShowLogo = computed(() => appStore.getProjectConfig.showLogo)
+
   return {
     getDarkMode,
-    setDarkMode
+    setDarkMode,
+    getShowLogo,
+    getShowFooter,
+    getShowBreadcrumb,
+    getShowBreadcrumbIcon,
+    getFullContent,
+    getGrayMode,
+    getColorWeak
   }
 }

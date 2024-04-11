@@ -11,7 +11,7 @@
         v-if="showCancelBtn" 
         @click="handleClose"
         v-bind="cancelButtonProps">
-        {{ cancelText }}
+        {{ cancelText || t('common.cancelText') }}
       </p-button>
       <slot name="centerFooter"></slot>
       
@@ -21,7 +21,7 @@
         v-if="showOkBtn" 
         @click="handleOk"
         v-bind="okButtonProps">
-        {{ okText }}
+        {{ okText || t('common.okText') }}
       </p-button>
       <slot name="appendFooter"></slot>
     </template>
@@ -34,11 +34,14 @@
 </template>
   
 <script lang='ts' setup>
-  import { useDesign } from '@h/web/useDesign'
   import { computed, CSSProperties } from 'vue'
+  import { useI18n } from '@h/web/useI18n'
+  import { useDesign } from '@h/web/useDesign'
   import { footerProps } from '../props'
   const { prefixCls } = useDesign('basic-drawer-footer')
   defineOptions({ name: 'BasicDrawerFooter'})
+  const { t } = useI18n()
+
   const emits = defineEmits(['ok', 'close'])
   const props = defineProps({
     ...footerProps
@@ -65,10 +68,19 @@
   
 <style lang='less'>
   @prefix-cls: ~'@{namespace}-basic-drawer-footer';
+  @footer-height: 60px;
 
   .@{prefix-cls} {
     position: absolute;
     bottom: 0;
     left: 0;
+    width: 100%;
+    text-align: right;
+    border-top: 1px solid @border-color-base;
+    background-color: @component-background;
+
+    > * {
+      margin-right: 8px;
+    }
   }
 </style>

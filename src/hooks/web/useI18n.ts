@@ -51,5 +51,4 @@ export const useI18n = (namespace?: string) => {
   }
 }
 
-
 export const t = (key: string) => key

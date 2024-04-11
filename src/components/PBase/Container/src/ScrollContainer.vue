@@ -3,12 +3,14 @@
  * @LastEditors: phil_litian
 -->
 <template>
-  <div class="scroll-container">
+  <ScrollBar 
+    class="scroll-container">
     <slot></slot>
-  </div>
+  </ScrollBar>
 </template>
   
 <script lang='ts' setup>
+  import ScrollBar from './ScrollBar.vue'
   defineOptions({ name: 'PScrollContainer' })
 </script>
   

@@ -5,7 +5,7 @@
 -->
 <template>
   <span :class="`${prefixCls}__extra-fold`" @click="handleFold">
-    <p-icon :icon="getIcon"></p-icon>
+    <PIcon :icon="getIcon"></PIcon>
   </span>
 </template>
   
@@ -24,7 +24,7 @@
   // 当前是否展开
   const getIsUnFold = computed(() => !unref(getShowMenu) && !unref(getShowHeader) )
   const getIcon = computed(() => {
-    return unref(getIsUnFold) ? 'iconamoon:screen-normal' : 'iconamoon:screen-full'
+    return unref(getIsUnFold) ? 'codicon:screen-normal' : 'codicon:screen-full'
   })
 
   const handleFold = () => {

@@ -47,7 +47,8 @@
       })
 
       const renderHeader = () => {
-        return <AppLogo 
+      return <AppLogo 
+          showTitle={!unref(getCollapsed)}
           class={unref(getLogoClass)} />
       }
 

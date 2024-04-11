@@ -16,7 +16,9 @@
 
 
     .@{header-trigger-prefix-cls} {
-      
+      height: 100%;
+      padding: 1px 10px 0;
+      cursor: pointer;
     }
   }
 
@@ -24,12 +26,19 @@
     display: flex;
     align-items: center;
     padding-right: 20px;
-    // min-width: 180px;
+    min-width: 180px;
 
     &__item {
+      display: flex;
+      align-items: center;
+      height: @header-height;
       padding: 0 2px;
       font-size: 1.2em;
       cursor: pointer;
+    }
+
+    svg[role='img'] {
+      padding: 0 8px;
     }
   }
 }
