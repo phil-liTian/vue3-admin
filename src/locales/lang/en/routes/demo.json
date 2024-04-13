@@ -8,5 +8,13 @@
     "back": "background",
     "frontPage": "Page",
     "backPage": "Page"
+  },
+
+  "comp": {
+    "comp": "Components",
+    "basic": "Basic",
+    "cardList": "Card-list",
+    "drawer": "Drawer",
+    "modal": "Modal"
   }
 }

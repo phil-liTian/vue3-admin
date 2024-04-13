@@ -17,6 +17,7 @@
     </Tooltip>
 
     <template v-else>
+
       <slot></slot>
       <slot name='title'></slot>
     </template>
@@ -45,7 +46,7 @@
   const instance = getCurrentInstance()
   const slots = useSlots()
   const { prefixCls } = useDesign('menu')
-  const { getItemStyle } = useMenuItem(instance)
+  const { getItemStyle, getParentMenu } = useMenuItem(instance)
   const { getCollapsed } = useMenuSetting()
   const { rootMenuEmitter, activeName } = useSimpleRootMenuContext()
 
@@ -58,8 +59,8 @@
       }
     ]
   })
-
-  const showToolTip = computed(() => unref(getCollapsed) && slots.title)
+  
+  const showToolTip = computed(() => unref(getParentMenu).type.name === 'Menu' &&  unref(getCollapsed) && slots.title)
 
   const handleClickItem = () => {
     rootMenuEmitter.emit('on-menu-item-select', props.name)

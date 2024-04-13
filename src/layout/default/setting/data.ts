@@ -45,6 +45,7 @@ export const featureDataList: DataItem[] = [
   { title: 'setting.menuSearch', event: HandlerEnums.HEADER_SHOW_SEARCH, value: getShowSearch },
   { title: 'setting.closeMixSidebarOnChange', event: HandlerEnums.HEADER_SHOW_SEARCH, value: getShowSearch },
   { title: 'setting.menuAccordion', event: HandlerEnums.MENU_ACCORDION, value: getAccordion },
+  { title: 'setting.collapseMenuDisplayName', event: HandlerEnums.MENU_ACCORDION, value: getAccordion },
 ]
 
 // 动画内容

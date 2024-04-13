@@ -32,7 +32,7 @@
   import { unref } from 'vue'
   defineOptions({ name: 'SettingFooter' })
   const { prefixCls } = useDesign('drawer-settting-footer')
-  const { t } = useI18n('layout')
+  const { t } = useI18n()
   const appStore  = useAppStore()
   const { createMessage, createSuccessModal } = useMessage()
   

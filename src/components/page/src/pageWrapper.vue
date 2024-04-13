@@ -10,7 +10,10 @@
       :style="getHeaderStyle"
       v-if="getShowHeader">
       <template #default>
-        <slot name="headerContent"></slot>
+        <template v-if="content">
+          {{ content }}
+        </template>
+        <slot v-else name="headerContent"></slot>
       </template>
     </PageHeader>
 
@@ -36,6 +39,7 @@ defineOptions({ name: 'PageWrapper' })
 const props = defineProps({
   contentBackground: propTypes.bool,
   title: propTypes.string,
+  content: propTypes.string,
   // conten是否全屏
   contentFullHeight: propTypes.bool.def(false)
 })

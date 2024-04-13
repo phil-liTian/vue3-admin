@@ -11,6 +11,11 @@ export default {
   sufIcon: { type: String },
 
   disabled: { type: Boolean },
+  
+  iconSize: {
+    type: Number,
+    default: 14,
+  },
 
   color: {
     type: String,

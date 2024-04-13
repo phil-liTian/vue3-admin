@@ -59,6 +59,7 @@ export const transformRouteToMenu = (routeModList: AppRouteModule[], routerMappi
   let routeList: AppRouteRecordRaw[] = []
   
   cloneRouteModList.forEach(item => {
+    
     if( routerMapping && item.meta.hideChildrenInMenu && typeof item.redirect === 'string' ) {
       item.path = item.redirect
     }

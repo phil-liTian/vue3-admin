@@ -41,7 +41,7 @@
   })
 
   provide<SubMenuProvider>(`subMenu:${instance.uid}`, {
-    props
+    props: props as any
   })
 
   const emits = defineEmits(['select'])

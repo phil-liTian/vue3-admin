@@ -3,7 +3,7 @@
  * @LastEditors: phil_litian
 -->
 <template>
-  <PDropdown>
+  <PDropdown :dropMenuList="menuList" @menuEvent="handleMenuClick">
     <span :class="[prefixCls]">
       <img :class="`${prefixCls}__header`" :src="headerImg" alt="">
 
@@ -14,14 +14,38 @@
       </span>
     </span>
   </PDropdown>
+
+  <LockAction />
 </template>
   
 <script lang='ts' setup>
+  import { ref } from 'vue'
   import { useDesign } from '@h/web/useDesign'
   import { useUserStore } from '@s/modules/user'
   import headerImg from '@/assets/images/phil.png'
+  import { userDropdownMenuList } from './data'
+  import { DropMenu } from '@/components/DropDown/src/types'
+  import { useModal } from '@c/PBase/Modal/src/hooks/useModal'
+  import { createAsyncComponent } from '@/utils/factory/createAsyncComponent'
   const { prefixCls } = useDesign('header-user-dropdown')
   const { getUserInfo } = useUserStore()
+  const { register } = useModal()
+  const menuList = ref(userDropdownMenuList)
+  
+  const LockAction = createAsyncComponent(() => import('../../components/lock/LockModal.vue'))
+
+  const handleLock = () => {
+    
+  }
+
+  const handleMenuClick = (item: DropMenu) => {
+    switch(item.key) {
+      case 'lock': {
+        handleLock()
+        break
+      }
+    }
+  }
 </script>
   
 <style lang='less' scoped>

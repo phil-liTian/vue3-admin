@@ -41,13 +41,15 @@ export const footerProps = {
     default: 60
   },
   
-  showFooter: propTypes.bool.def(true)
+  showFooter: propTypes.bool.def(false)
 }
 
 export const basicProps = {
   title: propTypes.string.def(''),
   loading: propTypes.bool.def(false),
   open: propTypes.bool.def(false),
+  isDetail: propTypes.bool.def(false),
+  getContainer: propTypes.string.def(''), // 展示Drawer的容器 传选择器
   ...footerProps
 }
 

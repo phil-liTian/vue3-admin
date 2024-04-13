@@ -8,5 +8,13 @@
     "back": "基于后端权限",
     "frontPage": "页面权限",
     "backPage": "页面权限"
+  },
+
+  "comp": {
+    "comp": "组件",
+    "basic": "基础组件",
+    "cardList": "卡片列表",
+    "drawer": "抽屉拓展",
+    "modal": "弹窗拓展"
   }
 }

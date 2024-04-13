@@ -22,20 +22,31 @@
       </CollapseTransition>
     </template>
     
-    <Popover placement="right" v-else>
+    <Popover 
+      :overlay-class-name="`${prefixCls}-menu-popover`"
+      :overlay-style="getOverlayStyle"
+      :overlay-inner-style="{ padding: 0 }"
+      placement="right" 
+      v-else>
       <div :class="getSubClass">
-        <div>
+        <div
+          :class="[
+            {
+              [`${prefixCls}-submenu-popup`]: !getParentSubMenu
+            }
+          ]">
           <slot name="title"></slot>
         </div>
+        <!-- v-if="getParentSubMenu" -->
         <!-- <PIcon
-          v-if="getParentSubMenu">
+          icon="eva:arrow-ios-downward-outline">
         </PIcon> -->
       </div>
 
       <!-- popover展示的内容 -->
       <template #content>
         <div>
-          <ul :class="[prefixCls]">
+          <ul :class="[prefixCls, `${prefixCls}-${getTheme}`, `${prefixCls}-popup`]">
             <slot></slot>
           </ul>
         </div>
@@ -78,6 +89,12 @@
     active: false
   })
 
+  const {
+    props: rootProps
+  } = inject<SubMenuProvider>(`subMenu:${getParentMenu.value?.uid}`)
+
+  const getTheme = computed(() => rootProps.theme)
+
   const getClass = computed(() => {
     return [
       `${prefixCls}-subMenu`,
@@ -94,20 +111,19 @@
     ]
   })
 
+  const getOverlayStyle = computed(() => {
+    return { minWidth: '200px' }
+  })
+
   const handleClick = () => {
     const { opened } = state
     rootMenuEmitter.emit('opened-name-change', { name: '12', opened: false })
 
     state.opened = !opened
   }
-
-  const {
-    props: rootProps
-  } = inject<SubMenuProvider>(`subMenu:${getParentMenu.value?.uid}`)
-
+ 
   onBeforeMount(() => {
     rootMenuEmitter.on('on-update-opened', (data: (number | string)[]) => {
-      
       state.opened = data.includes(props.name)
     })
   })

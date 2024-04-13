@@ -5,17 +5,23 @@
 <template>
   <span :class="getClass">
     <slot></slot>
-    <basic-help></basic-help>
+    <basic-help v-if="helpMessage"></basic-help>
   </span>
 </template>
   
 <script lang='ts' setup>
-  import { computed } from "vue"
+  import { computed, PropType } from "vue"
   import { useDesign } from '@h/web/useDesign'
   import BasicHelp from "./BasicHelp.vue";
   const { prefixCls } = useDesign('basic-title')
 
   defineOptions({ name: 'PBasicTitle' })
+  const props = defineProps({
+    helpMessage: {
+      type: [String, Array] as PropType<string | string[]>,
+      default: ''
+    }
+  })
 
   const getClass = computed(() => {
     return [

@@ -3,7 +3,8 @@
  * @LastEditors: phil_litian
 -->
 <template>
-  <div :class="prefixCls" :style="getStyle" v-if="showFooter">
+  <div :class="prefixCls" :style="getStyle" v-if="showFooter || $slots.footer">
+    $slots.footer{{ $slots.footer }}
     <template v-if="!$slots.footer">
       <slot name="insertFooter"></slot>
       <p-button 

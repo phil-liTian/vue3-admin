@@ -1,12 +1,24 @@
 @menu-prefix-cls: ~'@{namespace}-menu';
+@menu-popup-prefix-cls: ~'@{namespace}-menu-popup';
+@menu-popover-prefix-cls: ~'@{namespace}-menu-menu-popover';
+@submenu-popup-prefix-cls: ~'@{namespace}-menu-submenu-popup';
 
 @menu-dark-subsidiary-color: rgba(255, 255, 255, 0.7);
-
 @transition-time: .2s;
 
 .@{menu-prefix-cls} {
   &-collapse {
     
+  }
+}
+
+.@{menu-popover-prefix-cls} {
+  .ant-popover-arrow {
+    display: none;
+  }
+
+  .ant-popover-inner-content {
+    padding: 0
   }
 }
 
@@ -31,7 +43,6 @@
       &-active {
         background: @primary-color !important;
       }
-
 
       > i {
         margin-right: 6px;
@@ -58,5 +69,7 @@
     &-opened > * > &-subMenu-title-icon {
       transform: translateY(-50%) rotate(180deg);
     }
+
+
   }
 }

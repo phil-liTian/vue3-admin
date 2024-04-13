@@ -37,7 +37,34 @@ export function handler(event, value) {
       return { showBreadCrumbIcon: value }
     }
     // =========root============
+    case HandlerEnums.FULL_CONTENT: {
+      return { fullContent: value }
+    }
 
+    case HandlerEnums.GRAY_MODE: {
+      return { grayMode: value }
+    }
+
+    case HandlerEnums.COLOR_WEAK: {
+      return { colorWeak: value }
+    }
+
+    case HandlerEnums.FOOTER_SHOW: {
+      return { showFooter: value }
+    }
+
+    case HandlerEnums.LOGO_SHOW: {
+      return { showLogo: value }
+    }
+
+    // =========menu============
+    case HandlerEnums.MENU_SHOW_SIDEBAR: {
+      return { menuSetting: { show: value } }
+    }
+
+    case HandlerEnums.MENU_ACCORDION: {
+      return { menuSetting: { accordion: value } }
+    }
 
     // =========tabs============
     case HandlerEnums.TABS_SHOW: {
@@ -45,6 +72,9 @@ export function handler(event, value) {
     }
 
     // =========header============
+    case HandlerEnums.HEADER_SHOW: {
+      return { headerSetting: { show: value } }
+    }
 
 
 

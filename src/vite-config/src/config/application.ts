@@ -7,6 +7,7 @@ import dayjs from 'dayjs'
 import { defineConfig } from 'vite'
 import { readPackageJSON } from 'pkg-types'
 import { createPlugins } from '../plugins'
+import { generateModifyVars } from '../utils/modifyVars'
 
 // 自定义全局变量
 async function createDefineData(root: string) {
@@ -68,7 +69,8 @@ export const defineApplicationConfig = async () => {
         less: {
           modifyVars: {
             hack: `true; @import (reference) "${resolve(root, 'src/design/index.less')}";`,
-            'primary-color': '#0960bd'
+            'primary-color': '#0960bd',
+            ...generateModifyVars()
           },
           javascriptEnabled: true,
         }

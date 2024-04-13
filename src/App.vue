@@ -31,8 +31,18 @@ const themeConfig = computed(() => {
 
 useTitle()
 // createBreakpointListen方法封装
-// 菜单折叠效果 collapse
+// v-loading directives
+
+
 // 菜单手风琴参数
+// 折叠展示title
+// 通知组件
+
+// 总结基础组件 组件 -> 基础组件
+
+// 增加多层级菜单
+// 增加引导页功能
+// 个人中心 下拉 锁定屏幕
 </script>
   
 <style lang='less' scoped>

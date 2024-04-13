@@ -23,7 +23,7 @@
       const { prefixCls } = useDesign('layout-menu')
       const { menusRef } = useSplitMenu()
       const { go } = useGo()
-      const { getAccordion, getIsHorizontal, getMenuTheme, getCollapsed } = useMenuSetting()
+      const { getAccordion, getIsHorizontal, getMenuTheme, getCollapsed, getCollapsedShowTitle } = useMenuSetting()
 
       const getLogoClass = computed(() => {
         return [
@@ -42,14 +42,16 @@
           items: menus,
           onMenuClick: handleMenuClick,
           theme: unref(getMenuTheme),
-          collapse: unref(getCollapsed)
+          collapse: unref(getCollapsed),
+          accordion: unref(getAccordion),
+          collapsedShowTitle: unref(getCollapsedShowTitle)
         }
       })
 
       const renderHeader = () => {
-      return <AppLogo 
-          showTitle={!unref(getCollapsed)}
-          class={unref(getLogoClass)} />
+        return <AppLogo 
+            showTitle={!unref(getCollapsed)}
+            class={unref(getLogoClass)} />
       }
 
       const renderMenu = () => {

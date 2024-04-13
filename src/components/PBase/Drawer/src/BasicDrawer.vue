@@ -8,20 +8,27 @@
     :class="prefixCls"
     @close="onClose">
     <template #title v-if="!$slots.title">
-      <DrawerHeader title="测试title"></DrawerHeader>
+      <DrawerHeader 
+        :isDetail="isDetail"
+        @close="onClose"
+        :title="title">
+        <template #titleToolbar>
+          <slot name="titleToolbar"></slot>
+        </template>
+      </DrawerHeader>
     </template>
 
     <template v-else #title>
       {{ title }}
     </template>
 
+    <!-- v-loading="getLoading" -->
+
     <pScrollContainer 
-      v-loading="getLoading"
       :style="getScrollContainerStyle">
       <slot></slot>
 
     </pScrollContainer>
-
     <DrawerFooter v-if="showFooter">
       <!-- 可以利用Object.keys(slots)来循环实现具名插槽 -->
       <!-- {{ Object.keys(slots) }} -->
@@ -47,7 +54,7 @@
   const emits = defineEmits(['register'])
   const openRef = ref(false)
   const propsRef = ref({}) as Ref<Partial<DrawerProps>>
-  const { prefixCls } = useDesign('basic-drawer')
+  const { prefixCls, prefixVar } = useDesign('basic-drawer')
   const attrs = useAttrs()
   const slots = useSlots()
   const instance = getCurrentInstance()
@@ -68,6 +75,25 @@
       ...unref(getMergeProps),
       open: unref(openRef)
     }
+    // 自定义title属性
+    opt.title = undefined
+    
+    const { isDetail, width, wrapClassName, getContainer } = opt
+    if(isDetail) {
+      if(!width) {
+        opt.width = '100%'
+      }
+
+      const detailCls = `${prefixCls}__detail`
+      opt.rootClassName = wrapClassName ? `${wrapClassName} ${detailCls}` : detailCls
+      
+      if ( !getContainer ) {
+        opt.getContainer = `.${prefixVar}-layout-content`
+      }
+      console.log('getContainer', getContainer);
+      
+    }
+
     return opt
   })
 
@@ -88,6 +114,7 @@
   const getScrollContainerStyle = computed((): CSSProperties => {
     const footerHeight = unref(getFooterHeight)
     return {
+      position: 'relative',
       height: `calc(100% - ${footerHeight})`
     }
   })
@@ -125,6 +152,7 @@
   
 <style lang='less'>
   @prefix-cls: ~'@{namespace}-basic-drawer';
+  @prefix-cls-detail: ~'@{namespace}-basic-drawer__detail';
   @header-height: 60px;
 
 
@@ -132,6 +160,15 @@
     .ant-drawer-body {
       height: calc(100% - @header-height);
       padding: 0;
+
+      .scrollbar__wrap {
+        padding: 16px;
+      }
+
     }
+  }
+
+  .@{prefix-cls-detail} {
+    position: absolute;
   }
 </style>

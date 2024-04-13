@@ -3,14 +3,26 @@
  * @LastEditors: phil_litian
  */
 
+import { Ref } from "vue";
 
 export interface MenuProps {
-  
+  theme: string;
+  indentSize: number;
+  collapse: boolean;
+  activeName: string | number | undefined;
+  openNames: string[]
 }
 
 
 export interface SubMenuProvider {
-  props: MenuProps,
+  addSubMenu?: () => void;
+  removeSubMenu?: () => void;
+  removeAll?: () => void;
+  sliceIndex?: () => void;
+  getOpenNames?: () => [];
+  handleMouseLeave?: Fn;
+  isRemoveAllPop?: Ref<boolean>;
+  props: MenuProps;
   level?: number
 }
 

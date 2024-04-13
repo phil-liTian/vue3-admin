@@ -8,7 +8,10 @@
     :class="getLevelClass"
     :name="item.path">
     <p-icon v-if="getIcon" :icon="getIcon" :size="16"></p-icon>
-    
+    <!-- 折叠时展示title -->
+    <div v-if="collapsedShowTitle && getIsCollapseParent" class="mt-1 collapse-title">
+      {{ getI18nName }}
+    </div>
     <template #title>
       <span :class="[`${prefixCls}-sub-title`, 'ml-2']">
         {{ getI18nName }}
@@ -21,6 +24,7 @@
     v-else>
     <template #title>
       <p-icon v-if="getIcon" :icon="getIcon" :size="16"></p-icon>
+      <div class="collapse-title mt-1" v-if="collapsedShowTitle && getIsCollapseParent">{{ getI18nName }}</div>
       <span v-if="getShowSubTitle" :class="[`${prefixCls}-sub-title`, 'ml-2']">{{ getI18nName }}</span>
     </template>
 
@@ -47,14 +51,16 @@
       type: Object as PropType<Menu>,
       default: () => {}
     },
-    parent: Boolean,
+    parent: Boolean, // 用来标识是否是一级菜单
     collapse: propTypes.bool.def(false),
     collapsedShowTitle: propTypes.bool.def(false)
   })
 
   const { item } = props
   
-  const getShowSubTitle = computed(() => !props.collapse)
+  const getShowSubTitle = computed(() => !props.collapse || !props.parent)
+  // 折叠的一级菜单元素
+  const getIsCollapseParent = computed(() => !!props.collapse && !!props.parent)
   const getI18nName = computed(() => t(item.name))
 
   const getIcon = computed(() => props.item.icon )

@@ -11,7 +11,7 @@ import { computed, unref } from 'vue'
 const appStore = useAppStore()
 
 export const useMenuSetting = () => {
-  
+  // 菜单手风琴效果
   const getAccordion = computed(() => appStore.getMenuSetting.accordion)
 
   // 菜单模式
@@ -30,6 +30,9 @@ export const useMenuSetting = () => {
   const getMenuWidth = computed(() => appStore.getMenuSetting.menuWidth)
 
   const getSplit = computed(() => appStore.getMenuSetting.split)
+
+  // 折叠时是否展示title
+  const getCollapsedShowTitle = computed(() => appStore.getMenuSetting.collapsedShowTitle)
 
   // 最小宽度(菜单折叠时的宽度)
   const getMiniWidthNumber = computed(() => {
@@ -76,6 +79,7 @@ export const useMenuSetting = () => {
     getMenuBgColor,
     getIsHorizontal,
     getCollapsed,
+    getCollapsedShowTitle,
     setMenuSetting,
     toggleCollpased
   }

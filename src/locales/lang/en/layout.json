@@ -62,6 +62,8 @@
 
   "header": {
     "tooltipExitFull": "Exit Full Screen",
-    "tooltipEntryFull": "Full Screen"
+    "tooltipEntryFull": "Full Screen",
+    "tooltipLock": "Lock Screen",
+    "dropdownItemLoginOut": "Log Out"
   }
 }

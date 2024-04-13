@@ -4,7 +4,10 @@
 -->
 <template>
   <div class="scrollbar">
-    <slot></slot>
+    <div class="scrollbar__wrap">
+      <slot></slot>
+
+    </div>
   </div>
 </template>
   

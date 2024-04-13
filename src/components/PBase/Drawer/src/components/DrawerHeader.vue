@@ -6,8 +6,17 @@
   <pBasicTitle v-if="!isDetail">
     {{ $slots.title ? '' : title }}
   </pBasicTitle>
-  <div :class="getClass">
-    111
+  <div :class="getClass" v-else>
+    <span :class="`${prefixCls}__twrap`">
+      <span @click="handleClose">
+        <ArrowLeftOutlined :class="`${prefixCls}__back`" />
+      </span>
+      <span v-if="title">{{ title }}</span>
+    </span>
+
+    <span :class="`${prefixCls}__toolbar`">
+      <slot name="titleToolbar"></slot>
+    </span>
   </div>
 </template>
   
@@ -15,11 +24,12 @@
   import { propTypes } from '@u/propTypes'
   import { useDesign } from '@h/web/useDesign'
   import { computed } from 'vue'
-  defineOptions({ name: 'BasicDrawerHeader' })
+  import { ArrowLeftOutlined } from '@ant-design/icons-vue'
   const { prefixCls } = useDesign('basic-drawer-header')
-
-  const props = defineProps({
-    isDetail: propTypes.bool.def(true),
+  defineOptions({ name: 'BasicDrawerHeader' })
+  const emits = defineEmits(['close'])
+  defineProps({
+    isDetail: propTypes.bool.def(false),
     title: propTypes.string
   })
 
@@ -29,6 +39,10 @@
       `${prefixCls}--detail`
     ]
   })
+
+  const handleClose = () => {
+    emits('close')
+  }
 </script>
   
 <style lang='less' scoped>
@@ -38,5 +52,22 @@
     display: flex;
     align-items: center;
     height: 100%;
+
+    &__back {
+      padding: 0 12px;
+      cursor: pointer;
+
+      &:hover {
+        color: @primary-color;
+      }
+    }
+
+    &__twrap {
+      flex: 1;
+    }
+
+    &__toolbar {
+      padding-right: 50px;
+    }
   }
 </style>

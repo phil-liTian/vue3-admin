@@ -15,7 +15,7 @@ const about: AppRouteRecordRaw = {
   redirect: '/about/index',
   meta: {
     title: t('routes.dashBoard.about'),
-    orderNo: 1000,
+    orderNo: 1002,
     hideChildrenInMenu: true, // 隐藏children
     icon: 'simple-icons:aboutdotme'
   },

@@ -1,0 +1,47 @@
+<!--
+ * @Date: 2024-04-12 14:23:40
+ * @LastEditors: phil_litian
+-->
+<template>
+  <List :class="prefixCls">
+    <template v-for="item in list" :key="item.id">
+      <ListItem>
+        <ListItemMeta>
+          <template #title>
+            <div class="title">
+              
+            </div>
+          </template>
+
+          <template #description>
+            
+          </template>
+
+          <template #avatar>
+            <Avatar class="avatar" :src="item.avatar" />
+          </template>
+        </ListItemMeta>
+      </ListItem>
+    </template>
+  </List>
+</template>
+  
+<script lang='ts' setup>
+  import { List, Avatar } from 'ant-design-vue'
+  import { useDesign } from '@h/web/useDesign'
+  import { PropType } from 'vue';
+  import type { ListItem } from './data';
+  const ListItem = List.Item
+  const ListItemMeta = List.Item.Meta
+  const props = defineProps({
+    list: {
+      type: Array as PropType<ListItem[]>,
+      default: () => []
+    }
+  })
+  const { prefixCls } = useDesign('header-notify-list')
+</script>
+  
+<style lang='less' scoped>
+  
+</style>

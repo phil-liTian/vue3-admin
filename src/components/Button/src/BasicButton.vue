@@ -8,9 +8,9 @@
       <slot name="icon"></slot>
     </template>
     <template #default>
-      <p-icon v-if="preIcon" :icon="preIcon"></p-icon>
+      <p-icon v-if="preIcon" :icon="preIcon" :size="iconSize"></p-icon>
       <slot></slot>
-      <p-icon v-if="sufIcon" :icon="sufIcon"></p-icon>
+      <p-icon v-if="sufIcon" :icon="sufIcon" :size="iconSize"></p-icon>
     </template>
   </Button>
 </template>
@@ -38,17 +38,14 @@
     return [
       {
         [`ant-btn-${color}`]: !!color,
-        // 'is-disabled': disabled
+        'is-disabled': disabled
       }
     ]
   })
 
-  // 
   const getBindValue = computed(() => ({ ...unref(attrs), ...props }))
 
   const handleClick = () => {
-    console.log('handleClick');
-    
     emit('onClick')
   }
   

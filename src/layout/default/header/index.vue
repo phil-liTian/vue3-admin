@@ -14,6 +14,7 @@
       <AppSearch :class="`${prefixCls}-action__item`" />
       <FullScreen :class="`${prefixCls}-action__item`" />
       <AppLocalePicker :class="`${prefixCls}-action__item`" />
+      <Notify />
       <UserDropdown />
       <SettingDrawer :class="`${prefixCls}-action__item`" />
     </div>
@@ -28,6 +29,7 @@ import { useRootSetting } from '@h/setting/useRootSetting'
 import { AppLocalePicker, AppLogo, AppSearch } from '@c/Application'
 import { LayoutBreadCrumb } from './components/index'
 import FullScreen from './components/FullScreen.vue'
+import Notify from './components/Notify/index.vue'
 import LayoutTrigger from '@/layout/default/trigger/index.vue'
 import { createAsyncComponent } from '@/utils/factory/createAsyncComponent'
 import { UserDropdown } from './components/index'

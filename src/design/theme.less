@@ -3,4 +3,33 @@ html {
   .text-secondary {
     color: rgb(0 0 0 / 45%);
   }
+
+}
+
+[data-theme='dark'] {
+  .ant-btn {
+    &-success:not(.ant-btn-link, .is-disabled, .ant-btn-background-ghost) {
+      &:hover,
+      &:focus,
+      &:active {
+        border-color: @button-success-active-color !important;
+        background-color: @button-success-active-color !important;
+        color: @white !important;
+      }
+    }
+
+    &-warning:not(.ant-btn-link, .is-disabled, .ant-btn-background-ghost) {
+      &:hover {
+        border-color: @button-warning-active-color !important;
+        background-color: @button-warning-active-color !important;
+        color: @white !important;
+      }
+    }
+
+    &-error:not(.ant-btn-link, .is-disabled, .ant-btn-background-ghost) {
+      border-color: @button-error-active-color !important;
+      background-color: @button-error-active-color !important;
+      color: @white !important;
+    }
+  }
 }

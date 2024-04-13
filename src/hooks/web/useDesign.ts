@@ -11,6 +11,6 @@ export const useDesign = (scope: string) => {
   
   return {
     prefixCls: `${value.prefixCls}-${scope}`,
-    prefixVar: ''
+    prefixVar: value.prefixCls
   }
 }

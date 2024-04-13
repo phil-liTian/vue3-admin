@@ -4,6 +4,7 @@
 -->
 <template>
   <ScrollBar 
+    v-bind="$attrs"
     class="scroll-container">
     <slot></slot>
   </ScrollBar>

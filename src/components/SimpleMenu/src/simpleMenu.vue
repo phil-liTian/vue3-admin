@@ -41,6 +41,7 @@
       type: Array as PropType<MenuType[]>,
       default: () => ([])
     },
+    accordion: propTypes.bool.def(true),
     collapse: propTypes.bool.def(false), // 是否折叠
     collapsedShowTitle: propTypes.bool.def(false), // 折叠时是否展示title
   })
@@ -52,8 +53,8 @@
   })
 
   // 转换成ref类型
-  const { items } = toRefs(props)
-  const { getOpenKeys, setOpenKeys } = useOpenKeys(menuState, items)
+  const { items, accordion } = toRefs(props)
+  const { getOpenKeys, setOpenKeys } = useOpenKeys(menuState, items, accordion)
 
   const getBindValues = computed(() => ({ ...props, ...attrs }))
 
@@ -65,13 +66,6 @@
     menuState.activeName = route.path
     setOpenKeys(route.path)
   })
-
-  // watch(() => props.collpase, (val) => {
-  //   if ( val ) return
-    
-  //   setOpenKeys(currentRoute.value.path)
-  // }, { immediate: true })
-
 
   // 侦听器回调中能访问被 Vue 更新之后的所属组件的 DOM，你需要指明 flush: 'post'
   watch(() => props.items, () => {

@@ -41,7 +41,7 @@ const setting: ProjectConfig = {
     collapsed: false,
     menuWidth: 210,
     split: false,
-    collapsedShowTitle: false
+    collapsedShowTitle: true
   },
 
   headerSetting: {

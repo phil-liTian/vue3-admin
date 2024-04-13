@@ -4,13 +4,15 @@
  */
 
 import { ref, unref } from 'vue';
-import { ReturnMethods, DrawerInstance, UseDrawerReturnType } from './typing'
+import { ReturnMethods, DrawerInstance, UseDrawerReturnType, DrawerProps } from './typing'
 
 
 export function useDrawer(): UseDrawerReturnType {
   const drawerRef = ref<Nullable<DrawerInstance>>(null)
   
   const register = (drawerInstance: DrawerInstance) => {
+    console.log('drawerInstance');
+    
     // 注册实例对象
     drawerRef.value = drawerInstance
   }
@@ -24,11 +26,13 @@ export function useDrawer(): UseDrawerReturnType {
   }
 
   const methods: ReturnMethods = {
-    setDrawerProps: () => {
-      
+    setDrawerProps: (props: Partial<DrawerProps>) => {
+      getInstance().setDrawerProps(props)
     },
 
     openDrawer(open = true) {
+      console.log('cccc');
+      
       getInstance()?.setDrawerProps({
         open
       })

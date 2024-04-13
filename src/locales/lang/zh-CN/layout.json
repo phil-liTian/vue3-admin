@@ -62,6 +62,8 @@
 
   "header": {
     "tooltipExitFull": "退出全屏",
-    "tooltipEntryFull": "全屏"
+    "tooltipEntryFull": "全屏",
+    "tooltipLock": "锁定屏幕",
+    "dropdownItemLoginOut": "退出登陆"
   }
 }

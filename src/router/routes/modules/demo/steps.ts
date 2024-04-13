@@ -14,7 +14,7 @@ const steps: AppRouteRecordRaw = {
   name: 'step',
   meta: {
     title: t('routes.demo.steps.title'),
-    orderNo: 999,
+    orderNo: 1001,
     hideChildrenInMenu: true,
     icon: 'whh:paintroll'
   },
