@@ -11,8 +11,6 @@ export function useDrawer(): UseDrawerReturnType {
   const drawerRef = ref<Nullable<DrawerInstance>>(null)
   
   const register = (drawerInstance: DrawerInstance) => {
-    console.log('drawerInstance');
-    
     // 注册实例对象
     drawerRef.value = drawerInstance
   }
@@ -31,8 +29,6 @@ export function useDrawer(): UseDrawerReturnType {
     },
 
     openDrawer(open = true) {
-      console.log('cccc');
-      
       getInstance()?.setDrawerProps({
         open
       })

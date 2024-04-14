@@ -5,7 +5,7 @@
 <template>
   <div :class="prefixCls">
     <Popover>
-      <Badge>
+      <Badge dot>
         <BellOutlined />
       </Badge>
       <template #content>

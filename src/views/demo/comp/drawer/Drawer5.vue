@@ -5,9 +5,16 @@
 <template>
   <PDrawer showFooter v-bind="$attrs" title="自适应高度" width="50%">
     <p class="h-20" v-for="item in 20" :key="item">自适应高度{{ item }}</p>
-
     <template #insertFooter>
       <PButton type="text">btn</PButton>
+    </template>
+
+    <template #centerFooter>
+      <PButton type="text">btn1</PButton>
+    </template>
+
+    <template #appendFooter>
+      <PButton type="text">btn2</PButton>
     </template>
   </PDrawer>
 </template>

@@ -29,7 +29,8 @@
       <slot></slot>
 
     </pScrollContainer>
-    <DrawerFooter v-if="showFooter">
+    
+    <DrawerFooter v-bind="getMergeProps">
       <!-- 可以利用Object.keys(slots)来循环实现具名插槽 -->
       <!-- {{ Object.keys(slots) }} -->
       <template #[item] v-for="item in Object.keys($slots)" :key="item">
@@ -90,8 +91,10 @@
       if ( !getContainer ) {
         opt.getContainer = `.${prefixVar}-layout-content`
       }
-      console.log('getContainer', getContainer);
-      
+    }
+
+    if ( !opt.getContainer ) {
+      opt.getContainer = 'body'
     }
 
     return opt

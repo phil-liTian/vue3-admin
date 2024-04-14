@@ -51,9 +51,16 @@
 <style lang='less' scoped>
   @prefix-cls: ~'@{namespace}-header-user-dropdown';
   .@{prefix-cls} {
+    display: inline-block;
     cursor: pointer;
     padding: 0 10px;
+    height: @header-height;
     font-size: 12px;
+
+    &:hover {
+      background-color: @header-light-bg-hover-color;
+    }
+
     img {
       width: 24px;
       height: 24px;

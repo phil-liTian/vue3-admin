@@ -4,10 +4,10 @@
 -->
 <template>
   <Tooltip :title="getTitle" placement="bottom" :mouse-enter-delay="0.5">
-    <span @click="toggle">
+    <div @click="toggle">
       <FullscreenOutlined v-if="!isFullscreen" />
       <FullscreenExitOutlined v-else />
-    </span>
+    </div>
   </Tooltip>
 </template>
   

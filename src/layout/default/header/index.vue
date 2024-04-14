@@ -14,7 +14,7 @@
       <AppSearch :class="`${prefixCls}-action__item`" />
       <FullScreen :class="`${prefixCls}-action__item`" />
       <AppLocalePicker :class="`${prefixCls}-action__item`" />
-      <Notify />
+      <Notify :class="`${prefixCls}-action__item`"/>
       <UserDropdown />
       <SettingDrawer :class="`${prefixCls}-action__item`" />
     </div>
@@ -45,6 +45,6 @@ const getHeaderClass = computed(() => {
 })
 </script>
   
-<style lang='less' scoped>
+<style lang='less'>
   @import './index.less';
 </style>

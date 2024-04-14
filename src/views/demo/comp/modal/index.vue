@@ -3,7 +3,7 @@
  * @LastEditors: phil_litian
 -->
 <template>
-  <div>modal</div>
+  <PageWrapper title="弹窗拓展"></PageWrapper>
 </template>
   
 <script lang='ts' setup>

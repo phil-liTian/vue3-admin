@@ -4,7 +4,6 @@
 -->
 <template>
   <div :class="prefixCls" :style="getStyle" v-if="showFooter || $slots.footer">
-    $slots.footer{{ $slots.footer }}
     <template v-if="!$slots.footer">
       <slot name="insertFooter"></slot>
       <p-button 
@@ -45,13 +44,17 @@
 
   const emits = defineEmits(['ok', 'close'])
   const props = defineProps({
-    ...footerProps
+    ...footerProps,
+    height: {
+      type: String,
+      default: '60px'
+    }
   })
 
   const getStyle = computed((): CSSProperties => {
     return {
-      height: props.footerHeight,
-      lineHeight: `calc(${props.footerHeight} - 1px)`
+      height: props.height,
+      lineHeight: `calc(${props.height} - 1px)`
     }
   })
   
