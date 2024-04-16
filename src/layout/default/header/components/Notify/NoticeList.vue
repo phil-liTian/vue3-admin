@@ -5,7 +5,7 @@
 <template>
   <List :class="prefixCls">
     <template v-for="item in list" :key="item.id">
-      <ListItem>
+      <ListItem class="list-item">
         <ListItemMeta>
           <template #title>
             <div class="title">
@@ -14,12 +14,13 @@
           </template>
 
           <template #description>
-            
+            <div></div>
           </template>
 
           <template #avatar>
-            <Avatar class="avatar" :src="item.avatar" />
+            <Avatar v-if="item.avatar" class="avatar" :src="item.avatar" />
           </template>
+
         </ListItemMeta>
       </ListItem>
     </template>
@@ -43,5 +44,9 @@
 </script>
   
 <style lang='less' scoped>
-  
+  @prefix-cls: ~'@{namespace}-header-notifu-list';
+
+  .@{prefix-cls} {
+    
+  }
 </style>

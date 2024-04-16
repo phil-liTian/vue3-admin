@@ -22,5 +22,13 @@
     "apiRequestFailed": "The interface request failed, please try again later!",
     "timeoutMessage": "Login timed out, please log in again!",
     "errMsg404": "Network request error, the resource was not found!"
+  },
+
+  "lock": {
+    "unlock": "Click to unlock",
+    "backToLogin": "Back to Login",
+    "entry": "Entry",
+    "alert": "Lock Screen password error",
+    "placeholder": "Please enter the lock screen password or user password"
   }
 }

@@ -22,5 +22,12 @@
     "apiRequestFailed": "请求出错，请稍候重试",
     "timeoutMessage": "登录超时,请重新登录!",
     "errMsg404": "网络请求错误,未找到该资源!"
+  },
+  "lock": {
+    "unlock": "点击解锁",
+    "backToLogin": "返回登录",
+    "entry": "进入系统",
+    "alert": "锁屏密码输入错误",
+    "placeholder": "请输入锁屏密码或者登录密码"
   }
 }

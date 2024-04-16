@@ -17,8 +17,9 @@ import { PSelect } from './PBase/Select/index'
 import { PDropdown } from './PBase/DropDown/index'
 import { PDescription } from './PBase/Description/index'
 import { PBasicModal } from './PBase/Modal/index'
+import { PForm } from "./PBase/Form";
 
 // 注册全局组件
 export function registerGlobComps(app: App) {
-  app.use(PButton).use(PIcon).use(PBasicHelp).use(PBasicTitle).use(PageWrapper).use(PCountTo).use(PDrawer).use(PScrollContainer).use(PSwitch).use(PSelect).use(PDropdown).use(PDescription).use(PBasicModal)
+  app.use(PButton).use(PIcon).use(PBasicHelp).use(PBasicTitle).use(PageWrapper).use(PCountTo).use(PDrawer).use(PScrollContainer).use(PSwitch).use(PSelect).use(PDropdown).use(PDescription).use(PBasicModal).use(PForm)
 }

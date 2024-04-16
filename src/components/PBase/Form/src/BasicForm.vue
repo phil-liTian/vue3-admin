@@ -11,6 +11,8 @@
 <script lang='ts' setup>
   import { Form } from 'ant-design-vue'
   import FormItem from './components/FormItem.vue'
+
+  defineOptions({ name: 'PForm' })
 </script>
   
 <style lang='less' scoped>

@@ -3,7 +3,7 @@
  * @LastEditors: phil_litian
 -->
 <template>
-  <PageWrapper title="弹窗拓展"></PageWrapper>
+  <PageWrapper title="modal组件封装"></PageWrapper>
 </template>
   
 <script lang='ts' setup>

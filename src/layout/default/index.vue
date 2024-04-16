@@ -4,6 +4,7 @@
 -->
 <template>
   <Layout :class="prefixCls">
+    <LayoutFeature />
     <!-- <LayoutHeader /> -->
 
     <Layout :class="[`${prefixCls}-out`]">
@@ -23,6 +24,7 @@
   
 <script lang='ts' setup>
   import { Layout } from 'ant-design-vue'
+  import LayoutFeature from './feature/index.vue'
   import LayoutHeader from './header/index.vue'
   import LayoutMultipleHeader from './header/multipleHeader.vue'
   import LayoutSiderBar from './sides/index.vue'

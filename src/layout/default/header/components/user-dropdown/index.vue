@@ -15,7 +15,7 @@
     </span>
   </PDropdown>
 
-  <LockAction />
+  <LockAction @register="register"/>
 </template>
   
 <script lang='ts' setup>
@@ -29,13 +29,13 @@
   import { createAsyncComponent } from '@/utils/factory/createAsyncComponent'
   const { prefixCls } = useDesign('header-user-dropdown')
   const { getUserInfo } = useUserStore()
-  const { register } = useModal()
+  const [register, { openModal }] = useModal()
   const menuList = ref(userDropdownMenuList)
   
   const LockAction = createAsyncComponent(() => import('../../components/lock/LockModal.vue'))
 
   const handleLock = () => {
-    
+    openModal(true)
   }
 
   const handleMenuClick = (item: DropMenu) => {

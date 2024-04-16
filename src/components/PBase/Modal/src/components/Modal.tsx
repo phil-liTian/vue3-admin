@@ -9,10 +9,12 @@ import { basicProps } from "../props";
 export default defineComponent({
   name: 'Modal',
   props: basicProps,
-  setup(props) {
+  setup(props, { slots }) {
     return () => {
       const propsData = { ...props }
-      return <Modal { ...propsData }><slot></slot></Modal>
+      console.log('slots', slots);
+      
+      return <Modal { ...propsData }>{ slots }</Modal>
     }
   }
 })

@@ -3,7 +3,7 @@
  * @LastEditors: phil_litian
 -->
 <template>
-  <div></div>
+  <PageWrapper title="卡片列表"></PageWrapper>
 </template>
   
 <script lang='ts' setup>

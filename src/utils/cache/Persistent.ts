@@ -4,13 +4,15 @@
  */
 import { Memory } from './Memory'
 import { DEFAULT_CACHE_TIME } from '@/settings/encryptionSetting'
-import { TOKEN_KEY, APP_LOCAL_CACHE_KEY, PROJ_CFG_KEY } from '@e/cacheEnum'
+import { TOKEN_KEY, APP_LOCAL_CACHE_KEY, PROJ_CFG_KEY, LOCK_INFO_KEY } from '@e/cacheEnum'
 import { createLocalStorage, createSessionStorage } from './index'
+import { LockInfo } from '#/config'
 
 interface BasicStore {
   [TOKEN_KEY]: string | null | undefined,
   [APP_LOCAL_CACHE_KEY]: string | null | undefined,
-  [PROJ_CFG_KEY]: string | null | undefined
+  [PROJ_CFG_KEY]: string | null | undefined,
+  [LOCK_INFO_KEY]: LockInfo
 }
 
 export type BasicKeys = keyof BasicStore
@@ -39,6 +41,11 @@ export class Persistent {
     return localMemory.get(key)?.value
   }
 
+  static removeLocal(key: BasicKeys, immediate = false) {
+    localMemory.remove(key)
+    immediate && ls.set(APP_LOCAL_CACHE_KEY, localMemory.getCache)
+  }
+
   static clearLocal(immediate: boolean) {
     localMemory.clear()
     immediate && ls.clear()
@@ -59,9 +66,11 @@ export class Persistent {
   }
 }
 
-initPersistentMemory()
 
 // storage发生改变
 window.addEventListener('storage', () => {
   console.log('storage');
 })
+
+
+initPersistentMemory()

@@ -13,6 +13,8 @@ declare global {
     [P in keyof T]?: DeepPartial<T[P]>
   }
 
+  type IntervalHandler = ReturnType<typeof setInterval>
+
   type LabelValueOptions = {
     label: string,
     value: any,

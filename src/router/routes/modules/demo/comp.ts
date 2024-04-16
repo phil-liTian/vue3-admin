@@ -48,6 +48,14 @@ const comp: AppRouteRecordRaw = {
       meta: {
         title: t('routes.demo.comp.modal')
       }
+    },
+    {
+      path: 'loading',
+      name: 'LoadingDemo',
+      component: () => import('@/views/demo/comp/loading/index.vue'),
+      meta: {
+        title: t('routes.demo.comp.loading')
+      }
     }
   ]
 }

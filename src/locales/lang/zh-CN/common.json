@@ -3,5 +3,6 @@
   "closeText": "关闭",
   "cancelText": "取消",
   "resetText": "重置",
-  "searchText": "搜索"
+  "searchText": "搜索",
+  "back": "返回"
 }

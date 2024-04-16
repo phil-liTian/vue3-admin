@@ -3,5 +3,6 @@
   "closeText": "Close",
   "cancelText": "Cancel",
   "resetText": "Reset",
-  "searchText": "Search"
+  "searchText": "Search",
+  "back": "Back"
 }

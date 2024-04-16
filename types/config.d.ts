@@ -10,6 +10,12 @@ import { PermissionModeEnum } from '@e/appEnum'
 // 支持的语言配置
 export type LocalType = 'en' | 'zh-CN'
 
+// 锁屏信息
+export type LockInfo = {
+  pwd?: string,
+  isLock: boolean
+}
+
 export interface GlobalEnvConfig {
   VITE_GLOB_APP_TITLE: string,
   VITE_GLOB_API_URL_PREFIX: string,

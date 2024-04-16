@@ -15,6 +15,7 @@
     "basic": "基础组件",
     "cardList": "卡片列表",
     "drawer": "抽屉拓展",
-    "modal": "弹窗拓展"
+    "modal": "弹窗拓展",
+    "loading": "Loading"
   }
 }

@@ -3,7 +3,6 @@
  * @LastEditors: phil_litian
  */
 
-
 export function generateModifyVars() {
   return {
     'success-color': '#55D187',
