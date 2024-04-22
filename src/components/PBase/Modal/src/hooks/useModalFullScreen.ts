@@ -11,7 +11,6 @@ export function useFullScreen() {
   
   function handleFullScreen() {
     fullScreenRef.value = !unref(fullScreenRef)
-    
   }
 
   const getWrapClassName = computed(() => {
