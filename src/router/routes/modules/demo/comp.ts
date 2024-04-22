@@ -56,6 +56,23 @@ const comp: AppRouteRecordRaw = {
       meta: {
         title: t('routes.demo.comp.loading')
       }
+    },
+    {
+      path: 'scroll',
+      name: 'ScrollDemo',
+      meta: {
+        title: t('routes.demo.comp.scroll')
+      },
+      children: [
+        {
+          path: 'basic',
+          name: 'BasicScrollDemo',
+          component: () => import('@/views/demo/comp/scroll/index.vue'),
+          meta: {
+            title: t('routes.demo.comp.scrollBasic')
+          }
+        }
+      ]
     }
   ]
 }

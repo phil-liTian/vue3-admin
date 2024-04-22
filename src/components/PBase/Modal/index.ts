@@ -5,5 +5,6 @@
 
 import { withInstall } from "@/utils";
 import BasicModal from "./src/BasicModal.vue";
+export { useModal, useModalInner } from './src/hooks/useModal'
 
 export const PBasicModal = withInstall(BasicModal)

@@ -3,5 +3,10 @@
     "toSearch": "搜索",
     "toNavigate": "切换",
     "searchNotData": "暂无搜索结果"
+  },
+  "modal": {
+    "close": "关闭",
+    "restore": "还原",
+    "maximize": "最大化"
   }
 }

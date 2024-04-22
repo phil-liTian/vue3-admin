@@ -3,5 +3,10 @@
     "toSearch": "to search",
     "toNavigate": "to navigate",
     "searchNotData": "No search results yet"
+  },
+  "modal": {
+    "close": "Close",
+    "restore": "Restore",
+    "maximize": "Maximize"
   }
 }

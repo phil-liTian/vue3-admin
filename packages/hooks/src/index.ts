@@ -4,3 +4,4 @@
  */
 export * from './useAttrs'
 export * from './useRefs'
+export { useScrollTo } from './useScrollTo'

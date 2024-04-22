@@ -9,18 +9,24 @@
         <ListItemMeta>
           <template #title>
             <div class="title">
-              
+              <Typography.Paragraph
+                :content="item.title" />
+
+              <div class="extra" v-if="item.extra">
+                <Tag :color="item.color">{{ item.extra }}</Tag>
+              </div>
             </div>
           </template>
 
           <template #description>
-            <div></div>
+            <div>
+
+            </div>
           </template>
 
           <template #avatar>
             <Avatar v-if="item.avatar" class="avatar" :src="item.avatar" />
           </template>
-
         </ListItemMeta>
       </ListItem>
     </template>
@@ -28,7 +34,7 @@
 </template>
   
 <script lang='ts' setup>
-  import { List, Avatar } from 'ant-design-vue'
+  import { List, Avatar, Typography, Tag } from 'ant-design-vue'
   import { useDesign } from '@h/web/useDesign'
   import { PropType } from 'vue';
   import type { ListItem } from './data';

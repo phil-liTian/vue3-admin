@@ -4,7 +4,15 @@
  */
 
 export interface ModalProps {
-  open?: boolean
+  open?: boolean,
+  wrapClassName?: string,
+  draggable?: boolean,
+  destroyOnClose?: boolean,
+
+  // 是否可以全屏
+  canFullScreen?: boolean,
+  // 打开modal默认滚动到顶部
+  scrollTop?: boolean
 }
 
 export interface ModalMethods {
@@ -12,7 +20,9 @@ export interface ModalMethods {
 }
 
 export interface ReturnMethods {
-  openModal: () => void
+  openModal: () => void,
+  closeModal?: () => void,
+  setModalProps?: (props: Partial<ModalProps>) => void
 }
 
 export interface UseModalReturnType {

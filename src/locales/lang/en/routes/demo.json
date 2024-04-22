@@ -16,7 +16,8 @@
     "cardList": "Card-list",
     "drawer": "Drawer",
     "modal": "Modal",
-    "loading": "Loading"
-    
+    "loading": "Loading",
+    "scroll": "scroll",
+    "scrollBasic": "scrollBasic"
   }
 }

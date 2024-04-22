@@ -16,6 +16,8 @@
     "cardList": "卡片列表",
     "drawer": "抽屉拓展",
     "modal": "弹窗拓展",
-    "loading": "Loading"
+    "loading": "Loading",
+    "scroll": "滚动",
+    "scrollBasic": "基础滚动"
   }
 }

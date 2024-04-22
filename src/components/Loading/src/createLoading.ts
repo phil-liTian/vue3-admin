@@ -39,7 +39,7 @@ export function createLoading(props: Partial<LoadingProps>, target?: HTMLElement
   }
 
   function setLoading(loading: boolean) {
-    data.loading = true
+    data.loading = loading
   }
 
   function setTip(tip: string) {

@@ -8,6 +8,7 @@
       <slot name="icon"></slot>
     </template>
     <template #default>
+
       <p-icon v-if="preIcon" :icon="preIcon" :size="iconSize"></p-icon>
       <slot></slot>
       <p-icon v-if="sufIcon" :icon="sufIcon" :size="iconSize"></p-icon>

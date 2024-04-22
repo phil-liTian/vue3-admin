@@ -5,7 +5,7 @@
 <template>
   <span :class="getClass">
     <slot></slot>
-    <basic-help v-if="helpMessage"></basic-help>
+    <basic-help v-if="helpMessage" :text="helpMessage"></basic-help>
   </span>
 </template>
   
@@ -16,7 +16,7 @@
   const { prefixCls } = useDesign('basic-title')
 
   defineOptions({ name: 'PBasicTitle' })
-  const props = defineProps({
+  defineProps({
     helpMessage: {
       type: [String, Array] as PropType<string | string[]>,
       default: ''

@@ -3,9 +3,12 @@
  * @LastEditors: phil_litian
  */
 
+import { propTypes } from "@/utils/propTypes"
+
 const validColors = ['primary', 'error', 'warning', 'success', ''] as const
 
 export default {
+  loading: propTypes.bool.def(false),
   preIcon: { type: String },
 
   sufIcon: { type: String },
