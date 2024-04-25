@@ -32,18 +32,25 @@
 
   // 滚动到指定位置
   function scrollTo(to: number, duration: 500) {
-
     const wrap = unref(getScrollWrap())
     if ( !wrap ) return
 
     const { start } = useScrollTo({ el: wrap, to, duration })
     
+    start()
   }
 
-
-  // TODO 滚动到底部位置
+  // 滚动到底部位置
   function scrollBottom() {
+    const wrap = unref(getScrollWrap())
+    if ( !wrap ) return
+    const scrollHeight = wrap.scrollHeight
     
+    const { start } = useScrollTo({
+      el: wrap,
+      to: scrollHeight
+    })
+    start()
   }
   
   defineExpose({ scrollTo, scrollBottom })

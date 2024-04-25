@@ -11,10 +11,14 @@ interface UseScrollToOptions {
   duration?: number,
   callback?: () => void
 }
-// 缓动函数 先快 -> 到中间位置达到最快 -> 后慢
+// TODO:缓动函数 先快 -> 到中间位置达到最快 -> 后慢
 function easeInOutQuad(t: number, b: number, c: number, d: number): number {
-  
-  return 1
+  t /= d / 2;
+  if (t < 1) {
+    return (c / 2) * t * t + b;
+  }
+  t--;
+  return (-c / 2) * (t * (t - 2) - 1) + b;
 }
 
 function position(el: HTMLElement) {
@@ -37,7 +41,7 @@ export function useScrollTo({ el, to, duration = 500, callback }: UseScrollToOpt
     currentTime += increment
     // 
     const val = easeInOutQuad(currentTime, startPosi, change, duration)
-    move(el, to)
+    move(el, val)
     if ( currentTime < duration && unref(isActiveRef) ) {
       // 会在浏览器下一次重绘之前调用指定的回调函数，从而实现平滑的动画效果
       requestAnimationFrame(animationScroll)
@@ -59,5 +63,4 @@ export function useScrollTo({ el, to, duration = 500, callback }: UseScrollToOpt
     start: run,
     stop
   }
-  
 }

@@ -71,6 +71,22 @@ const comp: AppRouteRecordRaw = {
           meta: {
             title: t('routes.demo.comp.scrollBasic')
           }
+        },
+        {
+          path: 'action',
+          name: 'ActionScrollDemo',
+          component: () => import('@/views/demo/comp/scroll/action.vue'),
+          meta: {
+            title: t('routes.demo.comp.scrollAction')
+          }
+        },
+        {
+          path: 'virtual',
+          name: 'VirtualScrollDemo',
+          component: () => import('@/views/demo/comp/scroll/virtualScroll.vue'),
+          meta: {
+            title: t('routes.demo.comp.virtualScroll')
+          }
         }
       ]
     }

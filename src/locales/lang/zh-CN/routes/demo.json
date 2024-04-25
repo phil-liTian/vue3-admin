@@ -18,6 +18,8 @@
     "modal": "弹窗拓展",
     "loading": "Loading",
     "scroll": "滚动",
-    "scrollBasic": "基础滚动"
+    "scrollBasic": "基础滚动",
+    "scrollAction": "滚动函数",
+    "virtualScroll": "虚拟滚动"
   }
 }

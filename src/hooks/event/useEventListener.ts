@@ -49,9 +49,6 @@ export const useEventListener = ({ el = window, name, listener, options, autoRem
     }
   }
 
-  
-
-
 
 
   return { removeEvent: remove }

@@ -18,6 +18,8 @@
     "modal": "Modal",
     "loading": "Loading",
     "scroll": "scroll",
-    "scrollBasic": "scrollBasic"
+    "scrollBasic": "Scroll Basic",
+    "scrollAction": "Scroll Function",
+    "virtualScroll": "Virtual Scroll"
   }
 }
