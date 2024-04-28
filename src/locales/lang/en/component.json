@@ -8,5 +8,14 @@
     "close": "Close",
     "restore": "Restore",
     "maximize": "Maximize"
+  },
+  "time": {
+    "just": "just now",
+    "before": "before",
+    "after": "after",
+    "seconds": "seconds",
+    "minutes": "minutes",
+    "hours": "hours",
+    "days": "days"
   }
 }

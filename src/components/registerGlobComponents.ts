@@ -11,7 +11,7 @@ import { PBasicTitle } from "./Basic/index";
 import { PageWrapper } from './page/index'
 import { PCountTo } from './PBase/CountTo/index'
 import { PDrawer } from './PBase/Drawer/index'
-import { PScrollContainer } from './PBase/Container/index'
+import { PScrollContainer, PCollapseContainer } from './PBase/Container/index'
 import { PSwitch } from './PBase/Switch/index'
 import { PSelect } from './PBase/Select/index'
 import { PDropdown } from './PBase/DropDown/index'
@@ -21,5 +21,5 @@ import { PForm } from "./PBase/Form";
 
 // 注册全局组件
 export function registerGlobComps(app: App) {
-  app.use(PButton).use(PIcon).use(PBasicHelp).use(PBasicTitle).use(PageWrapper).use(PCountTo).use(PDrawer).use(PScrollContainer).use(PSwitch).use(PSelect).use(PDropdown).use(PDescription).use(PBasicModal).use(PForm)
+  app.use(PButton).use(PIcon).use(PBasicHelp).use(PBasicTitle).use(PageWrapper).use(PCountTo).use(PDrawer).use(PScrollContainer).use(PCollapseContainer).use(PSwitch).use(PSelect).use(PDropdown).use(PDescription).use(PBasicModal).use(PForm)
 }

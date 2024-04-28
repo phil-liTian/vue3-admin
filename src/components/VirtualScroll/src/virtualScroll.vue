@@ -5,7 +5,7 @@
 
 <script lang="tsx">
   import { getSlot } from "@/utils/helper/tsxHelper";
-import { isString } from "@/utils/is";
+  import { isString } from "@/utils/is";
   import { useEventListener } from '@h/event/useEventListener'
   import { ref, computed, CSSProperties, defineComponent, onMounted, PropType, reactive, unref, nextTick } from "vue";
 

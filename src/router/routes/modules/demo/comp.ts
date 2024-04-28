@@ -89,7 +89,31 @@ const comp: AppRouteRecordRaw = {
           }
         }
       ]
-    }
+    },
+    {
+      path: 'qrcode',
+      name: 'qrcodeDemo',
+      component: () => import('@/views/demo/comp/qrcode/index.vue'),
+      meta: {
+        title: t('routes.demo.comp.qrcode')
+      }
+    },
+    {
+      path: 'transition',
+      name: 'transitionDemo',
+      component: () => import('@/views/demo/comp/transition/index.vue'),
+      meta: {
+        title: t('routes.demo.comp.transition')
+      }
+    },
+    {
+      path: 'time',
+      name: 'timeDemo',
+      component: () => import('@/views/demo/comp/time/index.vue'),
+      meta: {
+        title: t('routes.demo.comp.time')
+      }
+    },
   ]
 }
 

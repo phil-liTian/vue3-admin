@@ -8,5 +8,14 @@
     "close": "关闭",
     "restore": "还原",
     "maximize": "最大化"
+  },
+  "time": {
+    "just": "刚刚",
+    "before": "前",
+    "after": "后",
+    "seconds": "秒",
+    "minutes": "分钟",
+    "hours": "小时",
+    "days": "天"
   }
 }

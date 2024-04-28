@@ -78,3 +78,35 @@
   }
 }
 
+// 淡入淡出
+.fade-transition {
+  &-enter-active,
+  &-leave-active {
+    transition: opacity .2s ease-in-out;
+  }
+
+  &-enter-from,
+  &-leave-to {
+    opacity: 0;
+  }
+}
+
+// 缩放
+.scale-transition {
+  &-enter-active,
+  &-leave-active {
+    transition: all .28s;
+  }
+
+  &-enter-from {
+    transform: scale(1.2);
+    opacity: 0;
+  }
+
+  &-leave-to {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+}
+
+

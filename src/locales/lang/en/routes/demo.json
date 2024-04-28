@@ -20,6 +20,9 @@
     "scroll": "scroll",
     "scrollBasic": "Scroll Basic",
     "scrollAction": "Scroll Function",
-    "virtualScroll": "Virtual Scroll"
+    "virtualScroll": "Virtual Scroll",
+    "qrcode": "qrcode",
+    "transition": "transition",
+    "time": "time"
   }
 }

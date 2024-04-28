@@ -20,6 +20,9 @@
     "scroll": "滚动",
     "scrollBasic": "基础滚动",
     "scrollAction": "滚动函数",
-    "virtualScroll": "虚拟滚动"
+    "virtualScroll": "虚拟滚动",
+    "qrcode": "二维码",
+    "transition": "动画",
+    "time": "时间"
   }
 }
