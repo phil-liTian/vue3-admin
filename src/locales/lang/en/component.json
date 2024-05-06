@@ -20,6 +20,9 @@
   },
   "verify": {
     "successText": "Verified",
-    "dragText": "Hold down the slider and drag"
+    "dragText": "Hold down the slider and drag",
+    "time": "The verification is successful and it takes {time} seconds!",
+    "error": "verification failed!",
+    "redoTip": "Click the picture to refresh"
   }
 }

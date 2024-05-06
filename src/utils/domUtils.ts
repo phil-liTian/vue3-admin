@@ -2,6 +2,7 @@
  * @Date: 2024-03-24 20:51:25
  * @LastEditors: phil_litian
  */
+import { upperFirst } from 'lodash-es'
 
 export interface ViewportOffsetResult {
   /**
@@ -109,5 +110,19 @@ export function getViewportOffset(element: Element): ViewportOffsetResult {
 export function on(element: HTMLElement | Window | Document | Element, event: string, handler ): void {
   if ( element && event && handler ) {
     element.addEventListener(event, handler, false)
+  }
+}
+
+
+export function hackCss(attr: string, value: string) {
+  const prefix: string[] = ['webkit', 'moz', 'ms']
+  const styleObj = {}
+  prefix.map(item => {
+    styleObj[`${item}${upperFirst(attr)}`] = value
+  })
+
+  return {
+    ...styleObj,
+    [attr]: value
   }
 }

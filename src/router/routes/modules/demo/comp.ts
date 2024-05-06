@@ -146,6 +146,14 @@ const comp: AppRouteRecordRaw = {
           meta: {
             title: t('routes.demo.comp.verifyDrag')
           }
+        },
+        {
+          path: "dragRotate",
+          name: "verifyRotateDemo",
+          component: () => import('@/views/demo/comp/verify/rotate.vue'),
+          meta: {
+            title: t('routes.demo.comp.verifyRotateDrag')
+          }
         }
       ]
     },

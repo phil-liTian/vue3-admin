@@ -27,6 +27,7 @@
     "countTo": "数字动画",
     "desc": "详情",
     "verify": "验证组件",
-    "verifyDrag": "拖拽校验"
+    "verifyDrag": "拖拽校验",
+    "verifyRotateDrag": "照片还原"
   }
 }

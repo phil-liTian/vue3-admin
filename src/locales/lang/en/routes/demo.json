@@ -27,6 +27,7 @@
     "countTo": "count to",
     "desc": "Desc",
     "verify": "Verify",
-    "verifyDrag": "Drag"
+    "verifyDrag": "Drag",
+    "verifyRotateDrag": "Picture Restore"
   }
 }

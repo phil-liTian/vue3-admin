@@ -20,6 +20,9 @@
   },
   "verify": {
     "successText": "成功",
-    "dragText": "请按住滑块拖动"
+    "dragText": "请按住滑块拖动",
+    "time": "验证校验成功,耗时{time}秒！",
+    "error": "校验失败!",
+    "redoTip": "点击图片可刷新"
   }
 }

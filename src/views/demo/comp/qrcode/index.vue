@@ -5,15 +5,15 @@
 <template>
   <PageWrapper title="二维码组件示例">
     <div class="flex">
-      <PCollapseContainer class="w-1/5" title="基础示例">
+      <PCollapseContainer class="w-1/5 mr-6 mb-6 text-center" title="基础示例">
         <QrCode :value="qrCodeUrl" />
       </PCollapseContainer>
 
-      <PCollapseContainer class="w-1/5" title="渲染成img标签">
+      <PCollapseContainer class="w-1/5 mr-6 mb-6 text-center" title="渲染成img标签">
         <QrCode :value="qrCodeUrl" tag="img" />
       </PCollapseContainer>
       
-      <PCollapseContainer title="带logo示例">
+      <PCollapseContainer title="带logo示例" class="w-1/5 mr-6 mb-6 text-center">
         <QrCode :value="qrCodeUrl" :logo="PhilImg" />
       </PCollapseContainer>
     </div>
