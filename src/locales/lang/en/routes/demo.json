@@ -23,6 +23,10 @@
     "virtualScroll": "Virtual Scroll",
     "qrcode": "qrcode",
     "transition": "transition",
-    "time": "time"
+    "time": "time",
+    "countTo": "count to",
+    "desc": "Desc",
+    "verify": "Verify",
+    "verifyDrag": "Drag"
   }
 }

@@ -13,6 +13,7 @@ export interface MyDescriptionProps extends DescriptionsProps {
 
   // data
   data: Recordable,
+  
 }
 
 // 描述组件实例

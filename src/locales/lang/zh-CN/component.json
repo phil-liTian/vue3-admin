@@ -17,5 +17,9 @@
     "minutes": "分钟",
     "hours": "小时",
     "days": "天"
+  },
+  "verify": {
+    "successText": "成功",
+    "dragText": "请按住滑块拖动"
   }
 }

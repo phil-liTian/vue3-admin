@@ -14,6 +14,7 @@
 
   const props = {
     loading: propTypes.bool.def(false),
+    canExpan: propTypes.bool.def(true),
     title: propTypes.string.def(''),
     helpMessage: propTypes.oneOfType([propTypes.string, propTypes.array])
   }
@@ -38,7 +39,7 @@
               title: slots.title
             }}/>
           <div class='p2'>
-            <CollapseTransition>
+            <CollapseTransition enable={false}>
               {
                 props.loading ? (<Skeleton active={props.loading} />) : (<div v-show={unref(show)}>
                   { getSlot(slots, 'default') }

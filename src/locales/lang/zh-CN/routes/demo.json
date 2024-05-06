@@ -23,6 +23,10 @@
     "virtualScroll": "虚拟滚动",
     "qrcode": "二维码",
     "transition": "动画",
-    "time": "时间"
+    "time": "时间",
+    "countTo": "数字动画",
+    "desc": "详情",
+    "verify": "验证组件",
+    "verifyDrag": "拖拽校验"
   }
 }

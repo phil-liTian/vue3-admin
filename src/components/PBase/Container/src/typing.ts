@@ -15,3 +15,8 @@ export interface Bar_Map {
   horizontal: BarMapItem
 }
 
+export interface CollapseContainerOptions {
+  canExpand?: boolean,
+  helpMessage?: string | Array<any>
+}
+

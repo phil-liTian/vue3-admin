@@ -5,7 +5,7 @@
 import { withInstall } from "@/utils";
 import ScrollContainer from "./src/ScrollContainer.vue";
 import CollapseContainer from './src/collapse/CollapseContainer.vue'
-
+export * from './src/typing'
 
 export const PScrollContainer = withInstall(ScrollContainer)
 export const PCollapseContainer = withInstall(CollapseContainer)

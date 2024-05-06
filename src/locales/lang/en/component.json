@@ -17,5 +17,9 @@
     "minutes": "minutes",
     "hours": "hours",
     "days": "days"
+  },
+  "verify": {
+    "successText": "Verified",
+    "dragText": "Hold down the slider and drag"
   }
 }

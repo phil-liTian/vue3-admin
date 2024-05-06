@@ -3,15 +3,30 @@
  * @LastEditors: phil_litian
 -->
 <script lang='tsx'>
-import { computed, defineComponent, ref, unref, useAttrs } from 'vue';
+import { computed, defineComponent, PropType, ref, unref, useAttrs } from 'vue';
 import type { MyDescriptionProps, DescInstance, DescItem } from './typing'
 import { Descriptions } from 'ant-design-vue';
 import { useDesign } from '@h/web/useDesign'
 import { propTypes } from '@u/propTypes'
 import { get } from 'lodash-es';
+import { CollapseContainerOptions, PCollapseContainer } from '@c/PBase/Container/index';
   
 const props = {
-  bordered: propTypes.bool.def(true)
+  title: propTypes.string.def(''),
+  bordered: propTypes.bool.def(true),
+  useCollapse: propTypes.bool.def(true),
+  schema: {
+    type: Array as PropType<DescItem[]>,
+    default: () => []
+  },
+  data: {
+    type: Object,
+    default: () => ({})
+  },
+  collapseOptions: {
+    type: Object as PropType<CollapseContainerOptions>,
+    default: () => ({})
+  },
 }
 
 export default defineComponent({
@@ -30,10 +45,13 @@ export default defineComponent({
       } as MyDescriptionProps
     })
 
+    // 是否使用CollapseContainer 默认逻辑有title就使用collapseContainer
+    const useWrapper = computed(() => !!unref(getMergeProps).title)
+
     const getProps = computed(() => {
       return {
         ...unref(getMergeProps),
-        // title: undefined
+        title: undefined,
       } as MyDescriptionProps
     })
 
@@ -41,6 +59,13 @@ export default defineComponent({
       return {
         ...unref(attrs),
         ...unref(getProps)
+      }
+    })
+
+    const getCollapseOptions = computed((): CollapseContainerOptions => {
+      return {
+        canExpand: false,
+        ...unref(props.collapseOptions)
       }
     })
 
@@ -58,7 +83,6 @@ export default defineComponent({
     function renderItem() {
       const { schema, data } = unref(getProps)
 
-      // <DescriptionsItem></DescriptionsItem>
       return unref(schema).map(item => {
         const { render, field } = item
         function getContent() {
@@ -82,13 +106,29 @@ export default defineComponent({
       )
     }
 
+    function renderContainer() {
+      // 如果useCollapse设置成false则不使用PCollapseContainer
+      const content = props.useCollapse ? renderDesc() : <div>{ renderDesc() }</div>
+      if ( !props.useCollapse ) {
+        return content
+      }
+      const { title } = unref(getMergeProps)
+      const { helpMessage } = unref(getCollapseOptions)
+
+      return <PCollapseContainer title={title} helpMessage={helpMessage}>
+          {{
+            default: () => content
+          }}
+        </PCollapseContainer>
+    }
+
     const methods:DescInstance = {
       setDescProps
     }
 
     emit('register', methods)
 
-    return () => renderDesc()
+    return () => unref(useWrapper) ? renderContainer() : renderDesc()
   }
 })
   

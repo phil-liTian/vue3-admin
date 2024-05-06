@@ -114,6 +114,41 @@ const comp: AppRouteRecordRaw = {
         title: t('routes.demo.comp.time')
       }
     },
+    {
+      path: 'countTo',
+      name: 'countToDemo',
+      component: () => import('@/views/demo/comp/countTo/index.vue'),
+      meta: {
+        title: t('routes.demo.comp.countTo')
+      }
+    },
+    {
+      path: 'description',
+      name: 'descriptionDemo',
+      component: () => import('@/views/demo/comp/description/index.vue'),
+      meta: {
+        title: t('routes.demo.comp.desc')
+      }
+    },
+    {
+      path: 'verify',
+      name: 'verifyDemo',
+      redirect: '/comp/verify/drag',
+      meta: {
+        title: t('routes.demo.comp.verify')
+      },
+
+      children: [
+        {
+          path: "drag",
+          name: "verifyDragDemo",
+          component: () => import('@/views/demo/comp/verify/index.vue'),
+          meta: {
+            title: t('routes.demo.comp.verifyDrag')
+          }
+        }
+      ]
+    },
   ]
 }
 
