@@ -11,7 +11,8 @@
 
   const props = {
     showIndex: propTypes.bool.def(false),
-    text: [String, Array] as PropType<string[] | string>
+    text: [String, Array] as PropType<string[] | string>,
+    placement: propTypes.string.def('right')
   }
 
   export default defineComponent({
@@ -35,9 +36,13 @@
       }
 
       return () => {
-        return <Tooltip title={renderTitle()}>
-          <InfoCircleOutlined />
-        </Tooltip>
+        return (
+          <Tooltip 
+            placement={props.placement}
+            title={renderTitle()}>
+            <InfoCircleOutlined />
+          </Tooltip>
+        )
       }
     }
   })

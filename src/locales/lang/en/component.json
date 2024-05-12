@@ -24,5 +24,20 @@
     "time": "The verification is successful and it takes {time} seconds!",
     "error": "verification failed!",
     "redoTip": "Click the picture to refresh"
+  },
+  "table": {
+    "settingDens": "Density",
+    "settingDensDefault": "Default",
+    "settingDensMiddle": "Middle",
+    "settingDensSmall": "Small",
+    "settingFullScreen": "Full Screen",
+    "settingColumn": "Column Settings",
+    "selectionBarEmpty": "No Record Selected.",
+    "settingColumnShow": "Column Display",
+    "settingIndexColumnShow": "Index Column",
+    "settingSelectColumnShow": "Selection Column",
+    "settingFixedLeft": "Fixed Left",
+    "settingFixedRight": "Fixed Right",
+    "index": "Index"
   }
 }

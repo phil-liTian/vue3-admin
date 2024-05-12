@@ -24,5 +24,20 @@
     "time": "验证校验成功,耗时{time}秒！",
     "error": "校验失败!",
     "redoTip": "点击图片可刷新"
+  },
+  "table": {
+    "settingDens": "密度",
+    "settingDensDefault": "默认",
+    "settingDensMiddle": "中等",
+    "settingDensSmall": "紧凑",
+    "settingFullScreen": "全屏",
+    "settingColumn": "列设置",
+    "selectionBarEmpty": "未选中任何记录",
+    "settingColumnShow": "列展示",
+    "settingIndexColumnShow": "序号列",
+    "settingSelectColumnShow": "勾选列",
+    "settingFixedLeft": "左边固定",
+    "settingFixedRight": "右边固定",
+    "index": "序号"
   }
 }

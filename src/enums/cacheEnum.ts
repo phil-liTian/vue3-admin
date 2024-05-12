@@ -18,6 +18,9 @@ export const PROJ_CFG_KEY = 'PROJ_CFG_KEY__'
 // lock info
 export const LOCK_INFO_KEY = 'LOCK__INFO__KEY__'
 
+// table setting
+export const TABLE_SETTING_KEY = 'TABLE_SETTING_KEY__'
+
 export enum CacheTypeEnum {
   SESSION,
   LOCAL

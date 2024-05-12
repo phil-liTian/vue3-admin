@@ -9,3 +9,5 @@ declare interface Fn<T = any, R = T> {
 
 
 declare type ElRef<T extends HTMLElement = HTMLDivElement> = Nullable<T>
+
+declare type EmitType = ReturnType<typeof defineEmits>

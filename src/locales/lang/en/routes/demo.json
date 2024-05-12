@@ -29,5 +29,11 @@
     "verify": "Verify",
     "verifyDrag": "Drag",
     "verifyRotateDrag": "Picture Restore"
+  },
+  "table": {
+    "table": "Table",
+    "basic": "Basic",
+    "treeTable": "Tree Table",
+    "footerTable": "Footer Table"
   }
 }

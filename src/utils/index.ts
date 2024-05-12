@@ -2,7 +2,7 @@
  * @Date: 2024-02-21 09:24:37
  * @LastEditors: phil_litian
  */
-import type { Component, App } from 'vue'
+import { type Component, type App, unref } from 'vue'
 import { mergeWith, intersectionWith, unionWith, isEqual } from 'lodash-es'
 import { isArray, isObject } from './is'
 import { RouteLocationNormalized } from 'vue-router'
@@ -120,4 +120,13 @@ export function getRawRoute(route: RouteLocationNormalized): RouteLocationNormal
       meta: item.meta
     })) : undefined) as any,
   }
+}
+
+export function getDynamicProps(props) {
+  const ret = {}
+  Object.keys(props).map((key) => {
+    ret[key] = unref(props[key])
+  })
+
+  return ret
 }

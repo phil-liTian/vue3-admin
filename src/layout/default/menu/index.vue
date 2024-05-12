@@ -82,6 +82,7 @@
   @logo-prefix-cls: ~'@{namespace}-layout-menu-logo';
 
   .@{prefix-cls} {
+    height: 100px;
 
     &-logo {
       height: @header-height;

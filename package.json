@@ -26,6 +26,7 @@
     "pinia-plugin-persistedstate": "^3.2.1",
     "pkg-types": "^1.0.3",
     "qrcode": "^1.5.3",
+    "sortablejs": "^1.15.2",
     "unbuild": "^2.0.0",
     "unocss": "^0.58.5",
     "vue": "^3.4.15",

@@ -4,15 +4,17 @@
  */
 import { Memory } from './Memory'
 import { DEFAULT_CACHE_TIME } from '@/settings/encryptionSetting'
-import { TOKEN_KEY, APP_LOCAL_CACHE_KEY, PROJ_CFG_KEY, LOCK_INFO_KEY } from '@e/cacheEnum'
+import { TOKEN_KEY, APP_LOCAL_CACHE_KEY, PROJ_CFG_KEY, LOCK_INFO_KEY, TABLE_SETTING_KEY } from '@e/cacheEnum'
 import { createLocalStorage, createSessionStorage } from './index'
 import { LockInfo } from '#/config'
+import { TableSetting } from '@/components/PBase/Table'
 
 interface BasicStore {
   [TOKEN_KEY]: string | null | undefined,
   [APP_LOCAL_CACHE_KEY]: string | null | undefined,
   [PROJ_CFG_KEY]: string | null | undefined,
-  [LOCK_INFO_KEY]: LockInfo
+  [LOCK_INFO_KEY]: LockInfo,
+  [TABLE_SETTING_KEY]: Partial<TableSetting>
 }
 
 export type BasicKeys = keyof BasicStore

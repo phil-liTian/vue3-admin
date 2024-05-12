@@ -8,7 +8,7 @@
       <slot></slot>
     </span>
     <template #overlay>
-      <Menu>
+      <Menu :selected-keys="selectedKeys">
         <MenuItem 
           v-for="item in dropMenuList" 
           :key="item.event"
@@ -41,7 +41,8 @@
     dropMenuList: {
       type: Array as PropType<DropMenu[]>,
       default: () => []
-    }
+    },
+    selectedKeys: Array as PropType<(string | number)[]>
   })
   const emits = defineEmits(['menuEvent'])
 

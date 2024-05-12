@@ -29,5 +29,11 @@
     "verify": "验证组件",
     "verifyDrag": "拖拽校验",
     "verifyRotateDrag": "照片还原"
+  },
+  "table": {
+    "table": "表格",
+    "basic": "基础表格",
+    "treeTable": "树形表格",
+    "footerTable": "表尾行合计"
   }
 }

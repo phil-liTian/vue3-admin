@@ -24,6 +24,7 @@ const content = ref()
 
   .@{prefix-cls} {
     display: flex;
+    flex-direction: column;
     position: relative;
     width: 100%;
     // 创建一个可伸展的容器元素，使其能够根据容器的大小自适应地伸展，并保持最小高度为 0。这样可以在布局中灵活地分配空间，同时确保元素不会占用不必要的空间。

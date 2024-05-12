@@ -5,7 +5,7 @@
 <template>
   <span :class="getClass">
     <slot></slot>
-    <basic-help v-if="helpMessage" :text="helpMessage"></basic-help>
+    <basic-help :class="`${prefixCls}-help`" v-if="helpMessage" :text="helpMessage"></basic-help>
   </span>
 </template>
   
@@ -30,10 +30,15 @@
   })
 </script>
   
-<style lang='less' scoped>
+<style lang='less'>
   @prefix-cls: ~'@{namespace}-basic-title';
 
   .@{prefix-cls} {
+    font-size: 16px;
+    font-weight: 500;
 
+    &-help {
+      margin-left: 10px;
+    }
   }
 </style>

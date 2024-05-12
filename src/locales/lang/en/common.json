@@ -4,5 +4,6 @@
   "cancelText": "Cancel",
   "resetText": "Reset",
   "searchText": "Search",
-  "back": "Back"
+  "back": "Back",
+  "redo": "Refresh"
 }

@@ -26,6 +26,40 @@ const comp: AppRouteRecordRaw = {
       }
     },
     {
+      path: 'table',
+      name: 'TableDemo',
+      redirect: '/comp/table/basic',
+      meta: {
+        title: t('routes.demo.table.table')
+      },
+      children: [
+        {
+          path: "basic",
+          name: 'BasicTableDemo',
+          component: () => import('@/views/demo/table/Basic.vue'),
+          meta: {
+            title: t('routes.demo.table.basic')
+          }
+        },
+        {
+          path: 'treeTable',
+          name: 'TreeTableDemo',
+          component: () => import('@/views/demo/table/TreeTable.vue'),
+          meta: {
+            title: t('routes.demo.table.treeTable')
+          }
+        },
+        {
+          path: "footerTable",
+          name: 'FooterTableDemo',
+          component: () => import('@/views/demo/table/FooterTable.vue'),
+          meta: {
+            title: t('routes.demo.table.footerTable')
+          }
+        },
+      ]
+    },
+    {
       path: 'cardList',
       name: 'CardListDemo',
       component: () => import('@/views/demo/comp/cardList/index.vue'),

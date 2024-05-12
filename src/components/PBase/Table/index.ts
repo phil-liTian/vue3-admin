@@ -3,4 +3,9 @@
  * @LastEditors: phil_litian
  */
 
-export { default as BasicTable } from './src/BasicTable.vue'
+import { withInstall } from '@/utils'
+import BasicTable from './src/BasicTable.vue'
+export * from './src/types/table'
+
+export { useTable } from './src/hooks/useTable'
+export const PBasicTable = withInstall(BasicTable)
