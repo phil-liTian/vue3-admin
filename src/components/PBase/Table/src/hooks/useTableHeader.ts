@@ -8,9 +8,9 @@
 import { ComputedRef, Slots, computed, h, unref } from 'vue'
 import TableHeader from '../components/TableHeader.vue'
 import { getSlot } from '@/utils/helper/tsxHelper'
-import { BasicTableProps } from '../types/table'
+import { BasicTableProps, InnerMethods } from '../types/table'
 
-export function useTableHeader(slots: Slots, propsRef: ComputedRef<BasicTableProps>) {
+export function useTableHeader(slots: Slots, propsRef: ComputedRef<BasicTableProps>, methods: InnerMethods) {
   const getHeaderProps = computed(() => {
     const { showTableSetting, titleHelpMessage, title } = unref(propsRef)
     return {
@@ -18,7 +18,8 @@ export function useTableHeader(slots: Slots, propsRef: ComputedRef<BasicTablePro
         {
           title,
           showTableSetting,
-          titleHelpMessage
+          titleHelpMessage,
+          count: methods.getSelectRowKeys().length
         }, 
         { 
           ...(slots.toolbar ? { toolbar: () => getSlot(slots, 'toolbar') } : {})

@@ -7,6 +7,7 @@ import { propTypes } from "@/utils/propTypes";
 import { PropType } from "vue";
 import { DEFAULT_SIZE } from './const'
 import { BasicColumn } from "./types/table";
+import { TableRowSelection } from "ant-design-vue/es/table/interface";
 
 export const basicProps = {
   title: {
@@ -35,7 +36,12 @@ export const basicProps = {
     type: Array as PropType<Array<Recordable>>,
     default: null
   },
-  rowKey: propTypes.string.def(''),
+  rowKey: propTypes.string.def('key'),
   isTreeTable: propTypes.bool.def(false),
-  accordion: propTypes.bool.def(false)
+  accordion: propTypes.bool.def(false),
+  childrenColumnName: propTypes.string.def('children'),
+  rowSelection: {
+    type: Object as PropType<Nullable<TableRowSelection>>,
+    default: null
+  }
 }

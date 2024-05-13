@@ -9,7 +9,7 @@
     </div>
 
     <div v-if="showSelectionBar">
-      <!-- <TableSelectionBar /> -->
+      <TableSelectionBar :count="props.count" />
     </div>
 
     <div class="flex">
@@ -43,7 +43,8 @@
       type: [String, Array] as PropType<string | string[]>,
       default: ''
     },
-    showSelectionBar: propTypes.bool.def(true)
+    showSelectionBar: propTypes.bool.def(true),
+    count: propTypes.number.def(0)
   })
 
   const { prefixCls } = useDesign('basic-table-header')

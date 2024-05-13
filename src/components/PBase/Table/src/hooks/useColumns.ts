@@ -11,6 +11,7 @@ import { cloneDeep } from 'lodash-es'
 import { useI18n } from '@h/web/useI18n'
 import { BasicColumn, BasicTableProps } from "../types/table"
 import { INDEX_COLUMN_FLAG } from "../const"
+import { isArray } from "@/utils/is"
 
 // 处理序号列: 如果存在序号列并且showIndexColumn为false则移除序号列；如果不存在序号列且showIndexColumn为true则添加序号列。其它情况不予处理
 const handleIndexColumn = (propsRef: ComputedRef<BasicTableProps>, columns: BasicColumn[]) => {
@@ -40,21 +41,34 @@ const handleIndexColumn = (propsRef: ComputedRef<BasicTableProps>, columns: Basi
 export function useColumns(propsRef: ComputedRef<BasicTableProps>) {
   const columnsRef = ref(unref(propsRef).columns) as unknown as Ref<BasicColumn[]>
   
-  // 表格中展示的columns
-  const getViewColumns = computed(() => {
-    const viewColumns = unref(getColumnsRef)
-
-    const columns = cloneDeep(viewColumns)
-
-    return columns
-  })
-
   const getColumnsRef = computed(() => {
     const columns = cloneDeep(unref(columnsRef))
-    console.log('columns-->', columns);
     if ( !columns ) return []
     handleIndexColumn(propsRef, columns)
     
+    return columns
+  })
+
+  const sortFixedColumn = (columns: BasicColumn[]) => {
+    let defaultColumns = columns
+    console.log('columns', columns);
+    
+
+    const filterFunc = item => !item.defaultHidden
+    // 显示列
+    const viewColumns = [...defaultColumns].filter(filterFunc)
+
+    return viewColumns
+  }
+
+
+   // 表格中展示的columns
+  const getViewColumns = computed(() => {
+    console.log('getColumnsRef', getColumnsRef);
+    
+    const viewColumns = sortFixedColumn(unref(getColumnsRef))
+    const columns = cloneDeep(viewColumns)
+
     return columns
   })
 
@@ -66,8 +80,11 @@ export function useColumns(propsRef: ComputedRef<BasicTableProps>) {
 
   // 设置列
   function setColumns(columnList) {
-    console.log("columnList", columnList);
+    const columns = cloneDeep(columnList)
+    if ( !isArray(columns) ) return
+    console.log('columnList', columnList);
     
+
     columnsRef.value = columnList
   }
 

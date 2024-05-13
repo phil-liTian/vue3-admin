@@ -8,8 +8,8 @@
       <template #toolbar>
         <PButton type="primary" @click="expandAll">展开全部</PButton>
         <PButton type="primary" @click="collapseAll">折叠全部</PButton>
-        <PButton type="primary">折叠第五行</PButton>
-        <PButton type="primary">展开第五行</PButton>
+        <PButton type="primary" @click="collapseRows(['2'])">折叠第二行</PButton>
+        <PButton type="primary" @click="expandRows(['2'])">展开第二行</PButton>
       </template>
     </PBasicTable>
   </div>
@@ -19,14 +19,20 @@
   import { useTable } from '@c/PBase/Table/index'
   import { getBasicColumns, getTreeTableData } from './tableData'
 
-  const [ register, { expandAll, collapseAll } ] = useTable({
+  const [ register, { collapseAll, expandAll, expandRows, collapseRows } ] = useTable({
     title: '树形表格',
     titleHelpMessage: '树形结构不能与序号列同时存在',
     isTreeTable: true,
     accordion: true,
     rowKey: 'id',
     columns: getBasicColumns(),
-    dataSource: getTreeTableData()
+    dataSource: getTreeTableData(),
+    rowSelection: {
+      type: 'checkbox',
+      getCheckboxProps(record) {
+        return { disabled: record.id === '1' }
+      }
+    }
   })
 </script>
   

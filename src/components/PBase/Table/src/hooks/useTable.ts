@@ -7,8 +7,12 @@ import { ref, unref } from "vue";
 import { getDynamicProps } from '@u/index'
 import { error } from '@u/log'
 import { BasicColumn, BasicTableProps, TableActionType } from "../types/table";
+import { Key } from "ant-design-vue/es/table/interface";
 
-export function useTable(tableProps: Partial<BasicTableProps>) {
+export function useTable(tableProps: Partial<BasicTableProps>): [
+  (instance) => void,
+  TableActionType
+] {
   const tableRef = ref<Nullable<TableActionType>>(null)
 
   function register(instance: TableActionType) {
@@ -25,7 +29,6 @@ export function useTable(tableProps: Partial<BasicTableProps>) {
 
     return table as TableActionType
   }
-
 
   const methods: TableActionType = {
     setProps: (props: BasicTableProps) => {
@@ -54,11 +57,17 @@ export function useTable(tableProps: Partial<BasicTableProps>) {
 
     expandAll: () => {
       return getTableInstance().expandAll()
+    },
+    
+    collapseRows: (keyValues: Key[]) => {
+      return getTableInstance().collapseRows(keyValues)
+    },
+
+    expandRows: (keyValues: Key[]) => {
+      return getTableInstance().expandRows(keyValues)
     }
   }
 
-
-  console.log('useTable');
 
   return [register, methods]
 }

@@ -15,21 +15,29 @@
       trigger="click">
       <template #title>
         <div :class="`${prefixCls}__popover-title`">
-          <Checkbox>{{ t('component.table.settingColumnShow') }}</Checkbox>
+          <Checkbox
+            @change="onColumnAllSelectChange"
+            :indeterminate="true"
+            v-model:checked="isColumnAllSelected">
+            {{ t('component.table.settingColumnShow') }}
+          </Checkbox>
           <Checkbox 
             @change="onIndexColumnShowChange"
             v-model:checked="isIndexColumnShow">
             {{ t('component.table.settingIndexColumnShow') }}
           </Checkbox>
-          <Checkbox>{{ t('component.table.settingSelectColumnShow') }}</Checkbox>
-          <PButton type="link" size="small">{{ t('common.resetText') }}</PButton>
+          <Checkbox 
+            v-model:checked="isRowSelectionShow">
+            {{ t('component.table.settingSelectColumnShow') }}
+          </Checkbox>
+          <PButton @click="onReset" type="link" size="small">{{ t('common.resetText') }}</PButton>
         </div>
       </template>
       
       <template #content>
         <PScrollContainer>
           <CheckboxGroup v-model:value="columnCheckedOptions" ref="columnOptionsRef">
-            <template v-for="item in columnOptions" :key="item.id">
+            <template v-for="item in columnOptions" :key="item.value">
               <div :class="`${prefixCls}__check-item`">
                 <DragOutlined class="table-column-drag-move" />
                 <Checkbox :value="item.value">
@@ -95,9 +103,13 @@
   const columnOptions = ref<ColumnOptionsType[]>([])
   // 选中项
   const columnCheckedOptions = ref<(string | number)[]>([])
+  let isInnerChange = false
 
+  let defaultColumnOptions: ColumnOptionsType[] = []
   // 默认值
   let defaultIsIndexColumnShow: boolean = false
+  // 是否默认展示选中列
+  let defaultIsRowSelectionShow: boolean = false
 
   // 更新选中状态
   const formUpdate = () => {
@@ -108,13 +120,16 @@
   // 初始化操作
   function init() {
     const columns = getTableColumns()
-
+    
     let options: ColumnOptionsType[] = []
 
     for (const col of columns) {
       options.push({
         label: col.title,
-        value: col.dataIndex
+        value: col.dataIndex,
+        column: {
+          defaultHidden: false
+        }
       })
     }
 
@@ -124,14 +139,35 @@
     isIndexColumnShow.value = defaultIsIndexColumnShow
     // 真实可设置列的columns
     columnOptions.value = cloneDeep(options)
+    defaultColumnOptions = options
 
     formUpdate()
   }
 
-  // 重置
+  // 重置默认值
   const onReset = () => {
-    
+    // 展示index序号列
+    isIndexColumnShow.value = defaultIsIndexColumnShow
+
+    onIndexColumnShowChange({
+      target: { checked: defaultIsIndexColumnShow }
+    })
+
+    columnOptions.value = cloneDeep(defaultColumnOptions)
+
+    formUpdate()
   }
+
+  // 沿用逻辑
+  // const sortableFix = async () => {
+  //   // Sortablejs存在bug，不知道在哪个步骤中会向el append了一个childNode，因此这里先清空childNode
+  //   // 有可能复现上述问题的操作：拖拽一个元素，快速的上下移动，最后放到最后的位置中松手
+  //   if (columnOptionsRef.value) {
+  //     const el = (columnOptionsRef.value as InstanceType<typeof Checkbox.Group>).$el;
+  //     Array.from(el.children).forEach((item) => el.removeChild(item));
+  //   }
+  //   await nextTick();
+  // };
 
   // 筛选显示的的列
   const columnIsShow = (col) => {
@@ -148,7 +184,8 @@
   })
 
   // 初始化操作
-  const once = () => {
+  const once = async () => {
+    // await sortableFix()
     init()
   }
 
@@ -156,24 +193,27 @@
 
   // 设置表格的列
   const tableColumnSet = (columns: BasicColumn[]) => {
-
+    isInnerChange = true
     table?.setColumns(columns)
   }
 
   // 更新表格列排序(此时要根据原始的当前的columnOptions对原始table.getColumns()进行排序)
+  // 控制列显示/隐藏
   const tableColumnsUpdate = () => {
     let columns = cloneDeep(table.getColumns())
 
     // 方法一: 给columns增加weight属性 然后根据weight进行排序 时间复杂度o(n^2)
-
+    
     columns = columnOptions.value.reduce((pre, cur, index) => {
       const columnMatchItem = columns.find(v => v.dataIndex === cur.value)
-
+      
       pre.push({
         ...columnMatchItem,
+        defaultHidden: cur.column?.defaultHidden || false,
         weight: cur.fixed === 'left' ? -1 : index,
         fixed: cur.fixed
       })
+      
       return pre
     }, [])
     columns.sort((a, b) => a.weight - b.weight)
@@ -215,7 +255,7 @@
           } else {
             // 排序拖到前面 在原数组的新位置后面加一个当前元素 移除原来的元素
             options.splice(newIndex, 0, options[oldIndex])
-            options.splice(oldIndex, 1)
+            options.splice(oldIndex + 1, 1)
           }
 
           columnOptions.value = options
@@ -246,22 +286,51 @@
     tableColumnsUpdate()
   }
 
+  const onColumnAllSelectChange = (e) => {
+    if ( columnCheckedOptions?.value.length < columnOptions.value.length ) {
+      // 全选
+      columnCheckedOptions.value = columnOptions.value.map(v => v.value)
+    } else {
+      // 反选
+      columnCheckedOptions.value = []
+    }
+  }
+
   function columnCheckedOptionsUpdate() {
-    columnCheckedOptions.value = columnOptions.value.map(col => col.value)
+    columnCheckedOptions.value = columnOptions.value.filter(v => !v.column.defaultHidden).map(col => col.value)
   }
 
   function showIndexColumnUpdate(showIndexColumn) {
+    isInnerChange = true
     table.setProps({ showIndexColumn })
   }
 
   // 是否展示序号列
-  function onIndexColumnShowChange(e: CheckboxChangeEvent) {
+  function onIndexColumnShowChange(e) {
     showIndexColumnUpdate(e.target.checked)
   }
+  
+  // 监听选中项
+  watch(columnCheckedOptions, (checkedOpts) => {
+    
+    columnOptions.value.map(item => {
+
+      if ( checkedOpts.includes(item.value) ) {
+        item.column.defaultHidden = false
+      } else {
+        item.column.defaultHidden = true
+        item.fixed = undefined
+      }
+    })
+
+    tableColumnsUpdate()
+  })
 
   // 监听table.getColumns()发生变化时, columnOptions也随之发生变化
   watch([getColumns], () => {
-    init()
+    if ( !isInnerChange ) {
+      init()
+    }
   })
   // onMounted(() => {
     

@@ -14,7 +14,7 @@
             3.1 根据角色权限动态addRoute,可有效杜绝无权限直接通过url访问页面的问题
             3.2 在导航守卫处增加页面守卫createPageGuard,可实现在页面通过listenerRouteChange监听路由变化。效率更高,因为路由状态的变化受页面渲染时间的影响,而页面渲染时间会很慢
         </li>
-        <li>4.对ant-design的组件进行二次封装 详见组件导航栏 demo/comp文件夹有具体实现。欢迎提出改进意见！</li>
+        <li>4.对ant-design的组件进行二次封装及一些常用组件封装 详见组件导航栏 demo/comp文件夹有具体实现。欢迎提出改进意见！</li>
       </ul>
     </template>
 

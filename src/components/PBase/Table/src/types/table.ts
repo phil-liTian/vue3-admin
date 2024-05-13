@@ -6,6 +6,7 @@
 import { ColumnProps } from "ant-design-vue/es/table"
 import { FixedType } from "ant-design-vue/es/vc-table/interface"
 import { INDEX_COLUMN_FLAG } from '../const'
+import { Key, TableRowSelection } from "ant-design-vue/es/table/interface"
 
 
 export interface TableSetting {
@@ -32,7 +33,9 @@ export interface BasicTableProps<T = any> {
   // 计算合计行的方法
   summaryFunc?: () => [],
   summartData?: Recordable[],
-  rowKey: string
+  rowKey: string,
+  childrenColumnName: string,
+  rowSelection: TableRowSelection
 }
 
 type IFlagType = 'INDEX' | 'DEFAULT'
@@ -52,12 +55,23 @@ export interface TableActionType {
   setColumns: (columns: BasicColumn[]) => void,
   getDataSource: () => Recordable[],
   collapseAll: () => void,
-  expandAll: () => void
+  expandAll: () => void,
+  collapseRows: (keyValues: Key[]) => void,
+  expandRows: (keyValues: Key[]) => void,
+  rowSelection?: TableRowSelection,
+  getSelectRowKeys?: () => Key[]
 }
 
 export interface ColumnOptionsType {
   value: string | number,
   label: string,
-  fixed?: FixedType
+  fixed?: FixedType,
+  column: {
+    defaultHidden?: boolean
+  }
 }
 
+
+export interface InnerMethods {
+  getSelectRowKeys: TableActionType['getSelectRowKeys']
+}

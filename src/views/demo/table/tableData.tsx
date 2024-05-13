@@ -68,7 +68,7 @@ export function getTreeTableData() {
     let arr = []
     for (let i = 0; i < 40; i++) {
       arr.push({
-        id: i + 1,
+        id: `${i + 1}`,
         name: 'phil Li',
         address: '上海市 闵行区(Shang Hai)',
         no: i + 10,
@@ -83,6 +83,26 @@ export function getTreeTableData() {
             width: 200,
             beginTime: new Date().toLocaleString(),
             endTime: new Date().toLocaleString(),
+            children: [
+              {
+                id: `l3-${i + 1}-1`,
+                name: 'phil Li',
+                address: '上海市 闵行区(Shang Hai)',
+                no: i + 10,
+                width: 200,
+                beginTime: new Date().toLocaleString(),
+                endTime: new Date().toLocaleString(),
+              },
+              {
+                id: `l3-${i + 1}-2`,
+                name: 'phil Li',
+                address: '上海市 闵行区(Shang Hai)',
+                no: i + 10,
+                width: 200,
+                beginTime: new Date().toLocaleString(),
+                endTime: new Date().toLocaleString(),
+              }
+            ]
           },
           {
             id: `l2-${i + 1}-2`,
@@ -92,6 +112,26 @@ export function getTreeTableData() {
             width: 200,
             beginTime: new Date().toLocaleString(),
             endTime: new Date().toLocaleString(),
+            children: [
+              {
+                id: `l3-${i + 1}-1`,
+                name: 'phil Li',
+                address: '上海市 闵行区(Shang Hai)',
+                no: i + 10,
+                width: 200,
+                beginTime: new Date().toLocaleString(),
+                endTime: new Date().toLocaleString(),
+              },
+              {
+                id: `l3-${i + 1}-2`,
+                name: 'phil Li',
+                address: '上海市 闵行区(Shang Hai)',
+                no: i + 10,
+                width: 200,
+                beginTime: new Date().toLocaleString(),
+                endTime: new Date().toLocaleString(),
+              }
+            ]
           }
         ]
       })   

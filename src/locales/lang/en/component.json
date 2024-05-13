@@ -33,6 +33,8 @@
     "settingFullScreen": "Full Screen",
     "settingColumn": "Column Settings",
     "selectionBarEmpty": "No Record Selected.",
+    "selectionBarTips": "{count} rocords selected",
+    "selectionBarClear": "Clear",
     "settingColumnShow": "Column Display",
     "settingIndexColumnShow": "Index Column",
     "settingSelectColumnShow": "Selection Column",

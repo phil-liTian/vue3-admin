@@ -8,7 +8,7 @@
       v-bind="getBindValues"
       :rowClassName="getRowClassName"
       ref="tableElRef"
-      @click="handleTableExpand">
+      @expand="handleTableExpand">
       
       <template #[item]="data" v-for="item in Object.keys($slots)" :key="item">
         <slot :name="item" v-bind="data || {}"></slot>
@@ -33,8 +33,9 @@
   import { useDataSource } from './hooks/useDataSource'
   import { useColumns } from './hooks/useColumns'
   import { useTableExpand } from './hooks/useTableExpand'
+  import { useRowSelection } from './hooks/useRowSelection'
   import { createTableContext } from './hooks/useTableContext'
-  import { TableActionType, SizeType, BasicTableProps } from './types/table';
+  import { TableActionType, SizeType, BasicTableProps, InnerMethods } from './types/table';
   defineOptions({ name: 'PBasicTable' })
   const emits = defineEmits(['register', 'expanded-rows-change'])
   const props = defineProps(basicProps)
@@ -55,9 +56,12 @@
   const getProps = computed(() => {
     return { ...props, ...unref(innerPropsRef) } as any
   })
-
+  const { getSelectRowKeys, getRowSelectionRef } = useRowSelection(getProps)
+  const methods: InnerMethods = {
+    getSelectRowKeys
+  }
   // 处理header内容 包括标题、toolBar工具域
-  const { getHeaderProps } = useTableHeader(slots, getProps)
+  const { getHeaderProps } = useTableHeader(slots, getProps, methods)
   // 处理footer内容 包括统计
   const { getFooterProps } = useTableFooter(getProps)
   // 处理table样式
@@ -71,13 +75,16 @@
     getExpandOptions, 
     handleTableExpand, 
     collapseAll, 
-    expandAll } = useTableExpand(getProps, tableData, emits)
+    expandAll,
+    collapseRows,
+    expandRows } = useTableExpand(getProps, tableData, emits)
   
   const getBindValues = computed(() => {
     let propsData = {
       ...attrs,
       ...unref(getProps),
       ...unref(getHeaderProps),
+      rowSelection: unref(getRowSelectionRef),
       columns: toRaw(unref(getViewColumns)),
       footer: unref(getFooterProps),
       ...unref(getExpandOptions)
@@ -97,7 +104,9 @@
     setColumns,
     getDataSource,
     collapseAll,
-    expandAll
+    expandAll,
+    collapseRows,
+    expandRows
   }
   emits('register', tableAction)
   // 创建一个上下文
