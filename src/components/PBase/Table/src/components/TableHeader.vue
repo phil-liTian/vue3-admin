@@ -43,7 +43,7 @@
       type: [String, Array] as PropType<string | string[]>,
       default: ''
     },
-    showSelectionBar: propTypes.bool.def(true),
+    showSelectionBar: propTypes.bool.def(false),
     count: propTypes.number.def(0)
   })
 

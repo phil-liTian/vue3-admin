@@ -8,15 +8,21 @@
       v-bind="getBindValues"
       :rowClassName="getRowClassName"
       ref="tableElRef"
+      @change="handleTableChange"
       @expand="handleTableExpand">
-      
-      <template #[item]="data" v-for="item in Object.keys($slots)" :key="item">
-        <slot :name="item" v-bind="data || {}"></slot>
-      </template>
 
       <template #headerCell="{ column }">
         <TableHeaderCell :column="column" />
       </template>
+
+      <template #bodyCell="data">
+        <slot name="bodyCell" v-bind="data || {}"></slot>
+      </template>
+      
+      <template #[item]="data" v-for="item in Object.keys($slots)" :key="item">
+        <slot :name="item" v-bind="data || {}"></slot>
+      </template>
+      
     </Table>
   </div>
 </template>
@@ -27,6 +33,7 @@
   import { useDesign } from '@h/web/useDesign'
   import { basicProps } from './props'
   import TableHeaderCell from './components/TableHeaderCell.vue'
+  import { useLoading } from './hooks/useLoading'
   import { useTableHeader } from './hooks/useTableHeader'
   import { useTableFooter } from './hooks/useTableFooter'
   import { useTableStyle } from './hooks/useTableStyle'
@@ -34,10 +41,20 @@
   import { useColumns } from './hooks/useColumns'
   import { useTableExpand } from './hooks/useTableExpand'
   import { useRowSelection } from './hooks/useRowSelection'
+  import { usePagination } from './hooks/usePagination.tsx'
+  import { useTableScroll } from './hooks/useTableScroll'
   import { createTableContext } from './hooks/useTableContext'
   import { TableActionType, SizeType, BasicTableProps, InnerMethods } from './types/table';
   defineOptions({ name: 'PBasicTable' })
-  const emits = defineEmits(['register', 'expanded-rows-change'])
+  const emits = defineEmits(
+    [
+      'change',
+      'register', 
+      'fetch-success', 
+      'fetch-error', 
+      'expanded-rows-change'
+    ]
+  )
   const props = defineProps(basicProps)
   const { prefixCls } = useDesign('basic-table')
   const wrapRef = ref(null)
@@ -56,10 +73,13 @@
   const getProps = computed(() => {
     return { ...props, ...unref(innerPropsRef) } as any
   })
-  const { getSelectRowKeys, getRowSelectionRef } = useRowSelection(getProps)
+  const { getSelectRowKeys, getSelectRows, getRowSelectionRef, setSelectedRowKeys, clearSelectedRowKeys } = useRowSelection(getProps, tableData)
+  console.log('getRowSelectionRef', getRowSelectionRef);
+  
   const methods: InnerMethods = {
     getSelectRowKeys
   }
+  const { getLoading, setLoading } = useLoading(getProps)
   // 处理header内容 包括标题、toolBar工具域
   const { getHeaderProps } = useTableHeader(slots, getProps, methods)
   // 处理footer内容 包括统计
@@ -68,8 +88,22 @@
   const { getRowClassName } = useTableStyle(getProps, prefixCls)
   // 处理columns
   const { getColumns, setColumns, getViewColumns } = useColumns(getProps);
+  const { getPaginationInfo, setPagination, getPagination } = usePagination(getProps)
   // 处理dataSource
-  const { getDataSource } = useDataSource(getProps, { tableData })
+  const { 
+    reload,
+    handleTableChange,
+    getDataSource, 
+    getRawDataSource,
+    getDataSourceRef } = useDataSource( getProps, 
+    { 
+      tableData, 
+      setPagination, 
+      getPaginationInfo,
+      setLoading }, emits )
+  const { getScrollRef } = useTableScroll( getProps, { wrapRef, tableElRef } )
+  console.log('getScrollRef', getScrollRef);
+  
   // 处理table展开、收起
   const { 
     getExpandOptions, 
@@ -84,9 +118,13 @@
       ...attrs,
       ...unref(getProps),
       ...unref(getHeaderProps),
+      loading: unref(getLoading),
+      scroll: unref(getScrollRef),
       rowSelection: unref(getRowSelectionRef),
       columns: toRaw(unref(getViewColumns)),
+      dataSource: unref(getDataSourceRef),
       footer: unref(getFooterProps),
+      pagination: unref(getPaginationInfo),
       ...unref(getExpandOptions)
     }
     return propsData
@@ -103,15 +141,26 @@
     getColumns,
     setColumns,
     getDataSource,
+    getRawDataSource,
     collapseAll,
     expandAll,
     collapseRows,
-    expandRows
+    expandRows,
+    setLoading,
+    setPagination,
+    getPaginationRef: getPagination,
+    reload,
+    getSelectRowKeys,
+    getSelectRows,
+    setSelectedRowKeys,
+    clearSelectedRowKeys
   }
   emits('register', tableAction)
   // 创建一个上下文
   createTableContext({ ...tableAction, wrapRef, getBindValues })
  
+  // 向外暴露出相应的方法, 然后才能在使用当前组件的地方 通过ref调用当前组件的方法
+  defineExpose({ ...tableAction })
 </script>
   
 <style lang='less'>
@@ -125,6 +174,11 @@
       td {
         background-color: @app-content-background;
       }
+    }
+
+    .ant-table-wrapper {
+      padding: 6px;
+      background-color: @component-background;
     }
   }
 </style>

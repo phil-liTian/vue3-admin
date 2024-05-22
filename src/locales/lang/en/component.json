@@ -40,6 +40,7 @@
     "settingSelectColumnShow": "Selection Column",
     "settingFixedLeft": "Fixed Left",
     "settingFixedRight": "Fixed Right",
-    "index": "Index"
+    "index": "Index",
+    "total": "total of {total}"
   }
 }

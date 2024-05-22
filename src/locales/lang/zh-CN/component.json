@@ -40,6 +40,7 @@
     "settingFixedRight": "右边固定",
     "selectionBarTips": "已选择{count}条记录",
     "selectionBarClear": "清空",
-    "index": "序号"
+    "index": "序号",
+    "total": "共 {total} 条"
   }
 }

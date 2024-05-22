@@ -28,11 +28,24 @@ export const resultError = <T>( message = 'Request Failed', { result = {} } = {}
   }
 }
 
-// 获取请求头中的token
+// 返回分页内容
+export const resultPageSuccess = <T>(page: number, pageSize: number, list: T[], { message = 'ok' } = {}) => {
+  const pageData = pagination(page, pageSize, list)
+  return {
+    ...resultSuccess({
+      items: pageData,
+      total: list.length
+    }, { message })
+  }
+}
 
+function pagination<T = any>(pageNo: number, pageSize: number, array: T[]): T[] {
+  const offset = (pageNo - 1) * pageSize
+  return offset + pageSize > array.length ? array.slice(offset) : array.slice(offset, offset + pageSize)
+}
+
+// 获取请求头中的token
 export const getRequestToken = ({ headers } : requestParams ) : string | undefined => {
-  console.log('headers?.authorization', headers?.authorization);
-  
   return headers?.authorization
 }
 

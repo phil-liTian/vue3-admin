@@ -5,7 +5,7 @@
 <template>
   <Tooltip>
     <template #title>
-      <span>{{ t('table.settingColumn') }}</span>
+      <span>{{ t('component.table.settingColumn') }}</span>
     </template>
 
     <Popover

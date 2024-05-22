@@ -8,8 +8,10 @@ import { PropType } from "vue";
 import { DEFAULT_SIZE } from './const'
 import { BasicColumn } from "./types/table";
 import { TableRowSelection } from "ant-design-vue/es/table/interface";
+import { PaginationProps } from "./types/pagination";
 
 export const basicProps = {
+  loading: propTypes.bool.def(false),
   title: {
     type: [String, Function] as PropType<string | ((data: Recordable) => string)>,
     default: null,
@@ -42,6 +44,16 @@ export const basicProps = {
   childrenColumnName: propTypes.string.def('children'),
   rowSelection: {
     type: Object as PropType<Nullable<TableRowSelection>>,
+    default: null
+  },
+  // 分页内容
+  pagination: {
+    type: [Object, Boolean] as PropType<boolean | PaginationProps>,
+    default: null
+  },
+  
+  api: {
+    type: Function,
     default: null
   }
 }

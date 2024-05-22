@@ -1,3 +1,5 @@
+import { VNode } from "vue"
+
 /*
  * @Date: 2024-02-26 15:41:04
  * @LastEditors: phil_litian
@@ -20,6 +22,10 @@ declare global {
     value: any,
     [key: string]: string | number | boolean
   }[]
+
+  namespace JSX {
+    type Element = VNode
+  }
 }
 
 declare global {

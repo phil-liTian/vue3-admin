@@ -34,6 +34,11 @@
     "table": "表格",
     "basic": "基础表格",
     "treeTable": "树形表格",
-    "footerTable": "表尾行合计"
+    "fetchTable": "远程加载示例",
+    "footerTable": "表尾行合计",
+    "fixedColumn": "固定列",
+    "customerCell": "自定义列",
+    "useTable": "UseTable",
+    "refTable": "RefTable"
   }
 }

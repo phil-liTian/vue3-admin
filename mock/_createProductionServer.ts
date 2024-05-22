@@ -3,8 +3,10 @@
  * @LastEditors: phil_litian
  */
 import { createProdMockServer } from 'vite-plugin-mock/es/createProdMockServer'
+console.log('a--->');
 
 const modules = import.meta.glob('./**/*.ts')
+console.log('modules', modules);
 
 const mockModules: any[] = [];
 Object.keys(modules).forEach((key) => {

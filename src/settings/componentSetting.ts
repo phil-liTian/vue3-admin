@@ -10,6 +10,20 @@ export default {
   },
 
   table: {
-    defaultSize: 'middle'
+    defaultSize: 'middle',
+
+    fetchSetting: {
+      pageField: 'page',
+      
+      sizeField: 'pageSize',
+
+      listField: 'items',
+      
+      totalField: 'total'
+    },
+
+    defaultPageSize: 10,
+
+    pageSizeOptions: ['10', '50', '80', '100']
   }
 }

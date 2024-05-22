@@ -50,6 +50,47 @@ const comp: AppRouteRecordRaw = {
           }
         },
         {
+          path: 'fetchTable',
+          name: 'FetchTableDemo',
+          component: () => import('@/views/demo/table/FetchTable.vue'),
+          meta: {
+            title: t('routes.demo.table.fetchTable')
+          }
+        },
+        {
+          path: 'fixedColumn',
+          name: 'FixedColumnDemo',
+          component: () => import('@/views/demo/table/FixedColumnTable.vue'),
+          meta: {
+            title: t('routes.demo.table.fixedColumn')
+          }
+        },
+        {
+          path: 'customerCell',
+          name: 'CustomerCellDemo',
+          component: () => import('@/views/demo/table/CustomerCell.vue'),
+          meta: {
+            title: t('routes.demo.table.customerCell')
+          }
+        },
+        // TODO 开启搜索区域
+        {
+          path: 'useTable',
+          name: 'UseTableDemo',
+          component: () => import('@/views/demo/table/UseTable.vue'),
+          meta: {
+            title: t('routes.demo.table.useTable')
+          }
+        },
+        {
+          path: 'refTable',
+          name: 'RefTableDemo',
+          component: () => import('@/views/demo/table/RefTable.vue'),
+          meta: {
+            title: t('routes.demo.table.refTable')
+          }
+        },
+        {
           path: "footerTable",
           name: 'FooterTableDemo',
           component: () => import('@/views/demo/table/FooterTable.vue'),

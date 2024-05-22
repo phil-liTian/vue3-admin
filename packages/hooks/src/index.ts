@@ -4,4 +4,5 @@
  */
 export * from './useAttrs'
 export * from './useRefs'
+export * from './onMountedOrActivated'
 export { useScrollTo } from './useScrollTo'

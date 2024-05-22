@@ -64,7 +64,6 @@ export function useColumns(propsRef: ComputedRef<BasicTableProps>) {
 
    // 表格中展示的columns
   const getViewColumns = computed(() => {
-    console.log('getColumnsRef', getColumnsRef);
     
     const viewColumns = sortFixedColumn(unref(getColumnsRef))
     const columns = cloneDeep(viewColumns)

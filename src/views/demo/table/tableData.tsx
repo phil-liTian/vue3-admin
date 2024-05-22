@@ -45,6 +45,29 @@ export function getBasicColumns(): BasicColumn[] {
   ]
 }
 
+export function getBasicShortColumns(): BasicColumn[] {
+  return [
+    {
+      title: 'ID',
+      dataIndex: 'id'
+    },
+    {
+      title: '姓名',
+      dataIndex: 'name',
+      width: 120,
+    },
+    {
+      title: '地址',
+      dataIndex: 'address',
+    },
+    {
+      title: '编号',
+      dataIndex: 'no',
+      width: 80,
+    },
+  ]
+}
+
 export function getBasicData() {
   return (() => {
     const arr: any = []

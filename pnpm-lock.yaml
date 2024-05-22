@@ -47,6 +47,9 @@ importers:
       lodash-es:
         specifier: ^4.17.21
         version: 4.17.21
+      mockjs:
+        specifier: ^1.1.0
+        version: 1.1.0
       pinia:
         specifier: ^2.1.7
         version: 2.1.7(typescript@5.3.3)(vue@3.4.19)
@@ -3304,7 +3307,6 @@ packages:
     hasBin: true
     dependencies:
       commander: 7.2.0
-    dev: true
 
   /mri@1.2.0:
     resolution: {integrity: sha512-tzzskb3bG8LvYGFF/mDTpq3jpI6Q9wc3LEmBaghu+DdCssd1FakN7Bc0hVNmEyGq1bq3RgfkCb3cmQLpNPOroA==}

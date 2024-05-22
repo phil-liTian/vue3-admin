@@ -34,6 +34,11 @@
     "table": "Table",
     "basic": "Basic",
     "treeTable": "Tree Table",
-    "footerTable": "Footer Table"
+    "fetchTable": "Fetch Table",
+    "footerTable": "Footer Table",
+    "fixedColumn": "Fixed Column",
+    "customerCell": "Customer Cell",
+    "useTable": "UseTable",
+    "refTable": "RefTable"
   }
 }

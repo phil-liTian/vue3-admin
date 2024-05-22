@@ -55,7 +55,7 @@ export default [
       }
 
       const { token, roles, userId } = checkUser as unknown as userParams
-
+      
       return resultSuccess({
         username,
         token,

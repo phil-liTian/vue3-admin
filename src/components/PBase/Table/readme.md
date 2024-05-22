@@ -29,3 +29,5 @@ export function useTableContext(): RetInstance {
 ```
 
 ## 3. 动态列设置组件 单独设置一个视图上可见的columns getViewColumns(与传进来的column相互独立处理, 类似于innerPropsRef覆盖props的逻辑 确保组件内属性隔离) 在columnsSetting组件中对columns进行处理 然后使用BasicTable中暴露出来的setColumns方法更改getViewColumns属性 从而实现可拖拽及动态展示的效果
+
+## 4.计算表格高度

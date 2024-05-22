@@ -6,8 +6,9 @@
 import { ref, unref } from "vue";
 import { getDynamicProps } from '@u/index'
 import { error } from '@u/log'
-import { BasicColumn, BasicTableProps, TableActionType } from "../types/table";
+import { BasicColumn, BasicTableProps, FetchParams, TableActionType } from "../types/table";
 import { Key } from "ant-design-vue/es/table/interface";
+import { PaginationProps } from "../types/pagination";
 
 export function useTable(tableProps: Partial<BasicTableProps>): [
   (instance) => void,
@@ -31,6 +32,10 @@ export function useTable(tableProps: Partial<BasicTableProps>): [
   }
 
   const methods: TableActionType = {
+    reload: async (opt?: FetchParams) => {
+      await getTableInstance().reload(opt)
+    },
+
     setProps: (props: BasicTableProps) => {
       getTableInstance().setProps(props)
     },
@@ -51,6 +56,10 @@ export function useTable(tableProps: Partial<BasicTableProps>): [
       return getTableInstance().getDataSource()
     },
 
+    getRawDataSource: () => {
+      return getTableInstance().getRawDataSource()
+    },
+
     collapseAll: () => {
       return getTableInstance().collapseAll()
     },
@@ -65,9 +74,36 @@ export function useTable(tableProps: Partial<BasicTableProps>): [
 
     expandRows: (keyValues: Key[]) => {
       return getTableInstance().expandRows(keyValues)
+    },
+
+    setLoading: (loading: boolean) => {
+      getTableInstance().setLoading(loading)
+    },
+
+    setPagination: (info: Partial<PaginationProps>) => {
+      getTableInstance().setPagination(info)
+    },
+
+    getPaginationRef: () => {
+      return getTableInstance().getPaginationRef()
+    },
+
+    getSelectRowKeys: () => {
+      return getTableInstance().getSelectRowKeys()
+    },
+
+    getSelectRows: () => {
+      return getTableInstance().getSelectRows()
+    },
+
+    setSelectedRowKeys: (data) => {
+      getTableInstance().setSelectedRowKeys(data)
+    },
+
+    clearSelectedRowKeys: () => {
+      getTableInstance().clearSelectedRowKeys()
     }
   }
-
 
   return [register, methods]
 }

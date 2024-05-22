@@ -33,6 +33,7 @@
               </p>
           })
         }
+        return <div>{ textList }</div>
       }
 
       return () => {

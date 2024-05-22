@@ -6,8 +6,17 @@
 import comonentSetting from '@/settings/componentSetting'
 const { table } = comonentSetting
 
-const { defaultSize } = table
+const { defaultSize, fetchSetting, defaultPageSize, pageSizeOptions } = table
 
 export const DEFAULT_SIZE = defaultSize
 
 export const INDEX_COLUMN_FLAG = 'INDEX'
+
+export const ROW_KEY = 'key'
+
+export const FETCH_SETTING = fetchSetting
+
+export const PAGE_SIZE = defaultPageSize
+
+export const PAGE_SIZE_OPTIONS = pageSizeOptions
+

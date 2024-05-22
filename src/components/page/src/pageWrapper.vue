@@ -105,7 +105,6 @@ const getContentClass = computed(() => {
 
   .@{prefix-cls-wrapper} {
     width: 100%;
-    height: 500px;
 
     .@{prefix-cls-content} { 
       margin: 16px;

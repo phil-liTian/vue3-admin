@@ -3,7 +3,9 @@
  * @LastEditors: phil_litian
 -->
 <script lang='tsx'>
-  import { computed, defineComponent } from "vue";
+  import { computed, defineComponent, unref } from "vue";
+  import { PBasicHelp } from '@c/Basic/index'
+  import { BasicColumn } from "../types/table";
 
   export default defineComponent({
     props: {
@@ -17,8 +19,19 @@
         const column = props.column
         return column.title
       })
+      const getHelpMessage = computed(() => (props.column as BasicColumn)?.helpMessage)
+      console.log('getHelpMessage', getHelpMessage);
 
-      return () => <div>{ getTitle.value }</div>
+      return () => {
+        return (
+          <div>
+            <span>{ getTitle.value }</span>
+            {
+              unref(getHelpMessage) && (<PBasicHelp text={getHelpMessage.value} />)
+            }
+          </div>
+        )
+      }
     }
   })
 </script>
