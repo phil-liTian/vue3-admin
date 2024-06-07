@@ -9,6 +9,7 @@ import type { PaginationProps } from './pagination'
 import { INDEX_COLUMN_FLAG } from '../const'
 import { Key, TableRowSelection } from "ant-design-vue/es/table/interface"
 import { VNodeChild } from "vue"
+import { ComponentType } from "./componentType"
 
 
 export interface TableSetting {
@@ -34,24 +35,43 @@ export interface BasicTableProps<T = any> {
   showIndexColumn?: boolean,
   showSummary?: boolean,
   // 计算合计行的方法
-  summaryFunc?: () => [],
+  summaryFunc?: (...args: any) => Recordable[],
   summartData?: Recordable[],
   rowKey: string,
   childrenColumnName: string,
   rowSelection: TableRowSelection,
   pagination: PaginationProps | boolean,
-  api?: (...arg: any) => Promise<any>
+  api?: (...arg: any) => Promise<any>,
+  actionColumn?: BasicColumn,
+  bordered: boolean
 }
 
-type IFlagType = 'INDEX' | 'DEFAULT'
+type IFlagType = 'INDEX' | 'DEFAULT' | 'ACTION'
 
 export interface BasicColumn extends ColumnProps {
+  children?: BasicColumn[],
   title: string,
   width?: number,
   flag?: IFlagType,
   dataIndex: string | number,
 
-  helpMessage?: string | string[] | JSX.Element | VNodeChild
+  helpMessage?: string | string[] | JSX.Element | VNodeChild,
+
+  customHeaderRender?: (column: BasicColumn) => string | JSX.Element | VNodeChild;
+
+  edit?: boolean;
+
+  // 当前状态是否可编辑
+  editable?: boolean;
+
+  // 编辑规则校验
+  editRule?: ((text: string) => Promise<string>);
+
+  // 当前组件名称
+  editComponent?: ComponentType;
+
+  // 组件的props
+  editComponentProps?: Recordable,
 }
 
 // 用于传递给子组件的行为
@@ -75,6 +95,7 @@ export interface TableActionType {
   setPagination?: (info: Partial<PaginationProps>) => void,
   getPaginationRef?: () => PaginationProps | boolean,
   reload: (opt?: FetchParams) => void,
+  emits?: EmitType
 }
 
 export interface ColumnOptionsType {

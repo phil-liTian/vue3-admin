@@ -10,8 +10,17 @@ import { ComputedRef, computed, unref, ref, Ref, toRaw, reactive, watch } from "
 import { cloneDeep } from 'lodash-es'
 import { useI18n } from '@h/web/useI18n'
 import { BasicColumn, BasicTableProps } from "../types/table"
-import { INDEX_COLUMN_FLAG } from "../const"
+import { INDEX_COLUMN_FLAG, ACTION_COLUMN_FLAG } from "../const"
+import { renderEditCell } from '../components/editable/index'
 import { isArray } from "@/utils/is"
+
+// 处理column中每行数据
+const handleItem = (item) => {
+  const { key, dataIndex } = item
+  if ( !key ) {
+    item.key = dataIndex
+  }
+}
 
 // 处理序号列: 如果存在序号列并且showIndexColumn为false则移除序号列；如果不存在序号列且showIndexColumn为true则添加序号列。其它情况不予处理
 const handleIndexColumn = (propsRef: ComputedRef<BasicTableProps>, columns: BasicColumn[]) => {
@@ -38,21 +47,38 @@ const handleIndexColumn = (propsRef: ComputedRef<BasicTableProps>, columns: Basi
   }
 }
 
+// 处理操作列
+const handleActionColumn = (propsRef: ComputedRef<BasicTableProps>, columns: BasicColumn[]) => {
+  const { actionColumn } = unref(propsRef)
+  if ( !actionColumn ) return
+  const hasAction = columns.findIndex(column => column.flag === ACTION_COLUMN_FLAG)
+  // columns里面本身没有action
+  if ( hasAction === -1 ) {
+    columns.push({
+      fixed: 'right',
+      ...actionColumn,
+      flag: ACTION_COLUMN_FLAG
+    })
+  }
+
+}
+
 export function useColumns(propsRef: ComputedRef<BasicTableProps>) {
   const columnsRef = ref(unref(propsRef).columns) as unknown as Ref<BasicColumn[]>
   
   const getColumnsRef = computed(() => {
     const columns = cloneDeep(unref(columnsRef))
     if ( !columns ) return []
-    handleIndexColumn(propsRef, columns)
-    
+    handleIndexColumn(propsRef, columns);
+    handleActionColumn(propsRef, columns);
+    columns.forEach(item => {
+      handleItem(item)
+    })
     return columns
   })
 
   const sortFixedColumn = (columns: BasicColumn[]) => {
     let defaultColumns = columns
-    console.log('columns', columns);
-    
 
     const filterFunc = item => !item.defaultHidden
     // 显示列
@@ -66,9 +92,23 @@ export function useColumns(propsRef: ComputedRef<BasicTableProps>) {
   const getViewColumns = computed(() => {
     
     const viewColumns = sortFixedColumn(unref(getColumnsRef))
+    const mapFn = (column: BasicColumn) => {
+      const { edit } = column
+      if ( edit ) {
+        column.customRender = renderEditCell(column)
+      }
+      return column
+    }
+
     const columns = cloneDeep(viewColumns)
 
-    return columns
+    return columns.map(column => {
+      if( column.children?.length ) {
+        column.children = column.children.map(mapFn)
+      }
+
+      return mapFn(column)
+    })
   })
 
   function getColumns() {
@@ -81,8 +121,6 @@ export function useColumns(propsRef: ComputedRef<BasicTableProps>) {
   function setColumns(columnList) {
     const columns = cloneDeep(columnList)
     if ( !isArray(columns) ) return
-    console.log('columnList', columnList);
-    
 
     columnsRef.value = columnList
   }

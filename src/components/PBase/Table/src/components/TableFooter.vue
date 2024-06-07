@@ -42,10 +42,11 @@
       return []
     }
     let dataSource = unref(table.getDataSource())
+    console.log('dataSource', dataSource);
+    
     dataSource = props.summaryFunc(dataSource)
 
-
-    return [{ address: 1, name: 2 }]
+    return dataSource
   })
 </script>
   

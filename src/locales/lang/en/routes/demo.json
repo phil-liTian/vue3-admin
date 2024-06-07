@@ -39,6 +39,14 @@
     "fixedColumn": "Fixed Column",
     "customerCell": "Customer Cell",
     "useTable": "UseTable",
-    "refTable": "RefTable"
+    "refTable": "RefTable",
+    "mergeHeader": "Merge Cells",
+    "multipleHeader": "MultiLevel Header",
+    "expandTable": "Expand Table",
+    "editCellTable": "Editable cell",
+    "vxeTable": "VxeTable"
+  },
+  "form": {
+    "form": "Form"
   }
 }

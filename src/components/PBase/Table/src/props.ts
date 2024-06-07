@@ -55,5 +55,10 @@ export const basicProps = {
   api: {
     type: Function,
     default: null
+  },
+
+  actionColumn: {
+    type: Object as PropType<BasicColumn>,
+    default: null
   }
 }

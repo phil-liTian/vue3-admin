@@ -30,6 +30,20 @@ export function useTableScroll(propsRef: ComputedRef<BasicTableProps>,{ wrapRef,
     return headerHeight
   }
 
+  /**
+   * 计算tableFooter高度
+   * @param tableEl 
+   */
+  const calcFooterHeight = (tableEl: Element): number => {
+    const { pagination } = unref(propsRef)
+    let footerHeight = 0
+    if ( pagination ) {
+      
+    }
+
+    return footerHeight
+  }
+
   const calcPaginationHeight = (tableEl: Element): number => {
     const { pagination } = unref(propsRef)
     let paginationHeight = 0
@@ -89,7 +103,10 @@ export function useTableScroll(propsRef: ComputedRef<BasicTableProps>,{ wrapRef,
     if ( !headerEl ) return
 
     const bottomIncludeBody = calcBottomAndPaddingHeight(tableEl, headerEl)
+    // 头部高度
     const headerHeight = calcHeaderHeight(headerEl)
+    // footer统计的高度
+    const footerHeight = calcFooterHeight(tableEl)
     const paginationHeight = calcPaginationHeight(tableEl)
     // 表格的margin和padding高度
     const marginPaddingHeight = getMarginPaddingHeight()
@@ -109,12 +126,17 @@ export function useTableScroll(propsRef: ComputedRef<BasicTableProps>,{ wrapRef,
       calcTableHeight()
     })
   }
+
+  const getScrollX = computed(() => {
+    let width = 0
+    
+  })
   
   const getScrollRef = computed(() => {
     const tableHeight = unref(tableHeightRef)
-    console.log('tableHeight', tableHeight);
     
     return {
+      x: unref(getScrollX),
       y: tableHeight
     }
   })

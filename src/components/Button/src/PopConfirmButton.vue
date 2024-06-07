@@ -16,7 +16,7 @@
   }
 
   export default defineComponent({
-    name: 'PopButton',
+    name: 'PPopConfirmButton',
     props,
     setup(props, { slots }) {
       const { t } = useI18n()
@@ -24,8 +24,8 @@
 
       const getBindValues = computed(() => {
         return {
-          okText: t('comm.okText'),
-          cancelText: t('comm.cancelText'),
+          okText: t('common.okText'),
+          cancelText: t('common.cancelText'),
           ...props,
           ...attrs
         }
@@ -34,7 +34,7 @@
       return () => {
         const bindValues = unref(getBindValues)
         const btnValues = unref(getBindValues)
-
+        
         const Button = h(BasicButton, btnValues, slots)
 
         if ( !props.enable ) {

@@ -91,6 +91,38 @@ const comp: AppRouteRecordRaw = {
           }
         },
         {
+          path: 'multipleHeader',
+          name: 'MultipleHeaderDemo',
+          component: () => import('@/views/demo/table/MultipleHeader.vue'),
+          meta: {
+            title: t('routes.demo.table.multipleHeader')
+          }
+        },
+        {
+          path: 'mergeHeader',
+          name: 'MergeHeaderDemo',
+          component: () => import('@/views/demo/table/MergeHeader.vue'),
+          meta: {
+            title: t('routes.demo.table.mergeHeader')
+          }
+        },
+        {
+          path: 'expandTable',
+          name: 'expandTableDemo',
+          component: () => import('@/views/demo/table/ExpandTable.vue'),
+          meta: {
+            title: t('routes.demo.table.expandTable')
+          }
+        },
+        {
+          path: "editCellTable",
+          name: 'EditCellTableDemo',
+          component: () => import('@/views/demo/table/EditCellTable.vue'),
+          meta: {
+            title: t('routes.demo.table.editCellTable')
+          }
+        },
+        {
           path: "footerTable",
           name: 'FooterTableDemo',
           component: () => import('@/views/demo/table/FooterTable.vue'),
@@ -98,7 +130,23 @@ const comp: AppRouteRecordRaw = {
             title: t('routes.demo.table.footerTable')
           }
         },
+        {
+          path: 'vexTable',
+          name: 'VexTableDemo',
+          component: () => import('@/views/demo/table/VxeTable.vue'),
+          meta: {
+            title: t('routes.demo.table.vxeTable')
+          }
+        }
       ]
+    },
+    {
+      path: 'form',
+      name: 'FormDemo',
+      redirect: '/comp/form/basic',
+      meta: {
+        title: t('routes.demo.form.form')
+      }
     },
     {
       path: 'cardList',

@@ -18,6 +18,8 @@ export function useDataSource(propsRef: ComputedRef<BasicTableProps>, { tableDat
 
   watch(() => unref(propsRef).dataSource, (dataSource) => {
     dataSourceRef.value = dataSource
+    console.log('dataSource', dataSource);
+    
   }, { immediate: true })
 
   watchEffect(() => {

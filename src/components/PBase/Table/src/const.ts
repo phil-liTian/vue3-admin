@@ -12,6 +12,8 @@ export const DEFAULT_SIZE = defaultSize
 
 export const INDEX_COLUMN_FLAG = 'INDEX'
 
+export const ACTION_COLUMN_FLAG = 'ACTION'
+
 export const ROW_KEY = 'key'
 
 export const FETCH_SETTING = fetchSetting

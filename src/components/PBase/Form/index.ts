@@ -8,4 +8,4 @@ import BasicForm from './src/BasicForm.vue'
 
 
 
-export const PForm = withInstall(BasicForm)
+export const PBasicForm = withInstall(BasicForm)

@@ -39,6 +39,14 @@
     "fixedColumn": "固定列",
     "customerCell": "自定义列",
     "useTable": "UseTable",
-    "refTable": "RefTable"
+    "refTable": "RefTable",
+    "mergeHeader": "合并单元格",
+    "multipleHeader": "多级表头",
+    "expandTable": "可展开表格",
+    "editCellTable": "可编辑单元格",
+    "vxeTable": "VxeTable"
+  },
+  "form": {
+    "form": "表单"
   }
 }

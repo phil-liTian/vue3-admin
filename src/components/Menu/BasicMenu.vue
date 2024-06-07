@@ -17,7 +17,7 @@
 </template>
   
 <script lang='ts' setup>
-import { defineEmits, reactive, unref } from 'vue'
+import { reactive, unref } from 'vue'
 import { Menu } from 'ant-design-vue'
 import BasicSubMenuItem from './components/BasicSubMenuItem.vue'
 import { basicProps } from './props'

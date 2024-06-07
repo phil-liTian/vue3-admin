@@ -12,7 +12,7 @@
   import { Form } from 'ant-design-vue'
   import FormItem from './components/FormItem.vue'
 
-  defineOptions({ name: 'PForm' })
+  defineOptions({ name: 'PBasicForm' })
 </script>
   
 <style lang='less' scoped>

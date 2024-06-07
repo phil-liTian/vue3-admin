@@ -52,7 +52,8 @@
       'register', 
       'fetch-success', 
       'fetch-error', 
-      'expanded-rows-change'
+      'expanded-rows-change',
+      'edit-end'
     ]
   )
   const props = defineProps(basicProps)
@@ -71,10 +72,9 @@
   })
 
   const getProps = computed(() => {
-    return { ...props, ...unref(innerPropsRef) } as any
+    return { ...props, ...unref(innerPropsRef) } as BasicTableProps
   })
   const { getSelectRowKeys, getSelectRows, getRowSelectionRef, setSelectedRowKeys, clearSelectedRowKeys } = useRowSelection(getProps, tableData)
-  console.log('getRowSelectionRef', getRowSelectionRef);
   
   const methods: InnerMethods = {
     getSelectRowKeys
@@ -102,7 +102,6 @@
       getPaginationInfo,
       setLoading }, emits )
   const { getScrollRef } = useTableScroll( getProps, { wrapRef, tableElRef } )
-  console.log('getScrollRef', getScrollRef);
   
   // 处理table展开、收起
   const { 
@@ -153,7 +152,8 @@
     getSelectRowKeys,
     getSelectRows,
     setSelectedRowKeys,
-    clearSelectedRowKeys
+    clearSelectedRowKeys,
+    emits
   }
   emits('register', tableAction)
   // 创建一个上下文

@@ -5,9 +5,11 @@
 <script lang='tsx'>
   import { computed, defineComponent, unref } from "vue";
   import { PBasicHelp } from '@c/Basic/index'
+  import EditTableHeadCell from "./EditTableHeadCell.vue";
   import { BasicColumn } from "../types/table";
 
   export default defineComponent({
+    name: 'TableHeaderCell',
     props: {
       column: {
         type: Object,
@@ -15,17 +17,22 @@
       }
     },
     setup(props) {
+      const getIsEdit = computed(() => (props.column as BasicColumn)?.edit);
       const getTitle = computed(() => {
-        const column = props.column
+        const column = props.column as BasicColumn
+        if ( typeof column.customHeaderRender === 'function' ) {
+          return column.customHeaderRender(column)
+        }
         return column.title
       })
       const getHelpMessage = computed(() => (props.column as BasicColumn)?.helpMessage)
-      console.log('getHelpMessage', getHelpMessage);
 
       return () => {
         return (
           <div>
-            <span>{ getTitle.value }</span>
+            {
+              getIsEdit.value ? (<EditTableHeadCell>{ getTitle.value }</EditTableHeadCell>) : (<span>{ getTitle.value }</span>)
+            }
             {
               unref(getHelpMessage) && (<PBasicHelp text={getHelpMessage.value} />)
             }
