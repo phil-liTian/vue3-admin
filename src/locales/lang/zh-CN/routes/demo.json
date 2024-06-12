@@ -47,6 +47,7 @@
     "vxeTable": "VxeTable"
   },
   "form": {
-    "form": "表单"
+    "form": "表单",
+    "basic": "基础表单"
   }
 }

@@ -42,5 +42,9 @@
     "settingFixedRight": "Fixed Right",
     "index": "Index",
     "total": "total of {total}"
+  },
+  "form": {
+    "putAway": "Put Away",
+    "unfold": "Unfold"
   }
 }

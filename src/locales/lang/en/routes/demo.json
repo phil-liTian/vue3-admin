@@ -47,6 +47,7 @@
     "vxeTable": "VxeTable"
   },
   "form": {
-    "form": "Form"
+    "form": "Form",
+    "basic": "Basic"
   }
 }

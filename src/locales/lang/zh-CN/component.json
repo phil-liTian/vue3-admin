@@ -42,5 +42,9 @@
     "selectionBarClear": "清空",
     "index": "序号",
     "total": "共 {total} 条"
+  },
+  "form": {
+    "putAway": "收起",
+    "unfold": "展开"
   }
 }

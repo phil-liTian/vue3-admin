@@ -3,6 +3,8 @@
 
 
 .@{simple-prefix-cls} {
+  // overflow-y: auto;
+  // height: 100%;
 
   &__parent {
 
@@ -25,6 +27,13 @@
 }
 
 .@{prefix-cls} {
+  height: 100%;
+  overflow-y: auto;
+
+  &::-webkit-scrollbar {
+    width: 2px;
+  }
+
   &-popup {
     background-color: @sider-dark-lighten-bg-color;
   }

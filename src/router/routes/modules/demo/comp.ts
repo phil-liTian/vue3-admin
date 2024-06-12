@@ -146,7 +146,17 @@ const comp: AppRouteRecordRaw = {
       redirect: '/comp/form/basic',
       meta: {
         title: t('routes.demo.form.form')
-      }
+      },
+      children: [
+        {
+          path: "basic",
+          name: 'BasicFormDemo',
+          component: () => import('@/views/demo/form/index.vue'),
+          meta: {
+            title: t('routes.demo.form.basic')
+          }
+        },
+      ]
     },
     {
       path: 'cardList',
