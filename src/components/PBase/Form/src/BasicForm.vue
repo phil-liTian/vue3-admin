@@ -15,7 +15,9 @@
         </FormItem>
       </template>
       <FormAction>
-
+        <template #[item]="data" v-for="item in ['resetBefore', 'submitBefore', 'advanceBefore', 'advanceAfter']">
+          <slot :name="item" v-bind="data || {}"></slot>
+        </template>
       </FormAction>
       <slot name="formFooter"></slot>
     </Row>
@@ -65,7 +67,6 @@
 
   .@{prefix-cls} {
     .ant-form-item {
-
 
       &.suffix-item {
         .suffix {

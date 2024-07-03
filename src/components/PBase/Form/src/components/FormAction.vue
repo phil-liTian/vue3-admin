@@ -12,7 +12,7 @@
           class="mr-2">
           {{ getResetBtnOptions.text }}
         </PButton>
-
+        
         <slot name="submitBefore"></slot>
         <PButton
           v-bind="getSubmitBtnOptions"
