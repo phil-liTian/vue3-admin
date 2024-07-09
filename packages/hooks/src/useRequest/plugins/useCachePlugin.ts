@@ -41,6 +41,10 @@ const useCachePlugin: UseRequestPlugin<any, any[]> = (
   return {
     onBefore: (params) => {
       const cachedData = _getCache(cacheKey, params);
+      if ( !cachedData ) {
+        return {}
+      }
+      
       if ( staleTime === -1 || new Date().getTime() - cachedData.time <= staleTime ) {
         return {
           data: cachedData?.data,

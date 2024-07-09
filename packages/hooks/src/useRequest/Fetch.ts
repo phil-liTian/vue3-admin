@@ -63,7 +63,7 @@ export default class Fetch<TData, TParams extends any[]> {
       const res = await servicePromise
       this.setState({ data: res, error: undefined, loading: false });
       // options中可配置onSuccess方法
-      this.options?.onSuccess(res, params);
+      this.options?.onSuccess?.(res, params);
 
       this.runPluginHandler('onSuccess', res, params)
 
@@ -72,7 +72,7 @@ export default class Fetch<TData, TParams extends any[]> {
       return res
     } catch(error) {
       // 抛出异常
-      this.options?.onError(error, params)
+      this.options?.onError?.(error, params)
       
       this.options?.onFinally?.(undefined, params, error)
       throw error
@@ -88,7 +88,8 @@ export default class Fetch<TData, TParams extends any[]> {
   }
 
   refresh() {
-    this.run(...this.state.params)
+    // @ts-ignore
+    this.run(...(this.state.params || []))
   }
 
   refreshAsync() {

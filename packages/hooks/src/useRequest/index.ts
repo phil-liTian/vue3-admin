@@ -4,6 +4,9 @@
  */
 import { Service, UseRequestOptions, UseRequestPlugin } from './types'
 import useCachePlugin from './plugins/useCachePlugin'
+import useDebouncePlugin from './plugins/useDebouncePlugin'
+import useThrottlePlugin from './plugins/useThrottlePlugin'
+import useAutoRunPlugin from './plugins/useAutoRunPlugin'
 import { useRequestImplement } from './useRequestImplement'
 
 export function useReqest<TData, TParams extends any[]>(
@@ -16,7 +19,10 @@ export function useReqest<TData, TParams extends any[]>(
     options,
     [
       ...(plugins || []),
-      useCachePlugin
+      useCachePlugin,
+      useAutoRunPlugin,
+      useDebouncePlugin,
+      useThrottlePlugin
     ] as UseRequestPlugin<TData, TParams>[]
   )
 }

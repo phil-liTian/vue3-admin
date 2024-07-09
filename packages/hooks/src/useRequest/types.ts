@@ -2,6 +2,7 @@
  * @Date: 2024-06-18 21:56:25
  * @LastEditors: phil_litian
  */
+import { WatchSource } from "vue";
 import type Fetch from "./Fetch";
 export type Service<TData, TParams extends any[]> = (...args: TParams) => Promise<TData>
 
@@ -9,10 +10,27 @@ export interface UseRequestOptions<TData, TParams extends any[]> {
   manual?: boolean, // 是否手动运行
   defaultParams?: TParams,
   cacheKey?: string | number;
+  ready?: boolean;
+  
   onSuccess?: (data: TData, params: TParams) => void;
   onBefore?: (params: TParams) => void;
   onError?: (e: Error, params: TParams) => void;
   onFinally?: (data: TData, params: TParams, e: Error) => void;
+
+  // debounce 防抖
+  debounceWait?: number; // 防抖等待时间 单位为毫秒
+  debounceLeading?: boolean; // 在延迟开始前执行调用
+  debounceMaxWait?: number; // 设置 func 允许被延迟的最大值
+  debounceTrailing?: boolean; // 指定在延迟结束后调用
+
+  // throttle 节流
+  throttleWait?: number; 
+  throttleLeading?: boolean; // 指定调用在节流开始前
+  throttleTrailing?: boolean; // 指定调用在节流结束后
+
+  // refreshDeps
+  refreshDeps?: WatchSource<any>[];
+  refreshDepsAction?: () => void;
 
   staleTime?: number; // 过期时间
   cacheTime?: number;
@@ -39,7 +57,9 @@ export interface PluginReturn<TData, TParams extends any[]> {
 
   onError?: (e: Error, params: TParams) => void;
 
-  onFinally?: (data: TData, params: TParams, e: Error) => void
+  onFinally?: (data: TData, params: TParams, e: Error) => void;
+
+  onCancel?: () => void
 }
 
 export interface UseRequestPlugin<TData, TParams extends any[]> {
