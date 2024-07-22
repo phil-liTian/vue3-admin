@@ -1,8 +1,11 @@
+/*
+ * @Date: 2024-07-09 09:25:53
+ * @LastEditors: phil_litian
+ */
 import type { ThrottleSettings, DebouncedFunc } from 'lodash-es'
 import { throttle } from 'lodash-es'
 import { UseRequestPlugin } from "../types"
 import { ref, watchEffect } from 'vue'
-
 
 const useThrottlePlugin: UseRequestPlugin<any, any[]> = (
   fetchInstance,

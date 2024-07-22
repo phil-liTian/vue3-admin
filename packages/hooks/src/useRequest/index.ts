@@ -7,6 +7,9 @@ import useCachePlugin from './plugins/useCachePlugin'
 import useDebouncePlugin from './plugins/useDebouncePlugin'
 import useThrottlePlugin from './plugins/useThrottlePlugin'
 import useAutoRunPlugin from './plugins/useAutoRunPlugin'
+import usePollingPlugin from './plugins/usePollingPlugin'
+import useLoadingDelayPlugin from './plugins/useLoadingDelay'
+import useRefreshOnWindowFocusPlugin from './plugins/useRefreshOnWindowFocusPlugin'
 import { useRequestImplement } from './useRequestImplement'
 
 export function useReqest<TData, TParams extends any[]>(
@@ -22,7 +25,10 @@ export function useReqest<TData, TParams extends any[]>(
       useCachePlugin,
       useAutoRunPlugin,
       useDebouncePlugin,
-      useThrottlePlugin
+      useThrottlePlugin,
+      usePollingPlugin,
+      useLoadingDelayPlugin,
+      useRefreshOnWindowFocusPlugin
     ] as UseRequestPlugin<TData, TParams>[]
   )
 }

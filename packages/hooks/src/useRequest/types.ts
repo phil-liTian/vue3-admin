@@ -32,6 +32,18 @@ export interface UseRequestOptions<TData, TParams extends any[]> {
   refreshDeps?: WatchSource<any>[];
   refreshDepsAction?: () => void;
 
+  // 轮询
+  pollingInterval?: number; // 轮询的时间间隔
+  pollingErrorRetryCount?: number; // 轮询重试的次数
+  pollingWhenHidden?: boolean; // 页面隐藏时是否继续轮询
+
+  // loading delay
+  loadingDelay?: number;
+
+  // 屏幕聚焦时 重新请求
+  refreshOnWindowFocus?: boolean;
+  focusTimespan?: number; // 重新请求 间隔时间
+
   staleTime?: number; // 过期时间
   cacheTime?: number;
   setCache?: (data) => void;
@@ -66,3 +78,5 @@ export interface UseRequestPlugin<TData, TParams extends any[]> {
   (fetchInstance: Fetch<TData, TParams>, fetchOptions: UseRequestOptions<TData, TParams>): PluginReturn<TData, TParams>;
   onInit?: (options: UseRequestOptions<TData, TParams>) => Partial<FetchState<TData, TParams>>
 }
+
+export type UseRequestTimeout = ReturnType<typeof setTimeout>

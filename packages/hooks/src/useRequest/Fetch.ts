@@ -7,6 +7,8 @@ import { FetchState, Service, UseRequestOptions, PluginReturn } from "./types"
 
 export default class Fetch<TData, TParams extends any[]> {
   pluginImpls: PluginReturn<TData, TParams>[] = []
+  // 记录运行次数
+  count: number = 0
 
   state: FetchState<TData, TParams> = reactive({
     loading: false,
@@ -35,14 +37,20 @@ export default class Fetch<TData, TParams extends any[]> {
   }
 
   async runAsync(...params: TParams) {
+    this.count += 1
+    const currentCount = this.count
     const { stopNow = false, returnNow = false, ...state } = this.runPluginHandler('onBefore', params);
 
     if ( stopNow ) {
       return new Promise(() => {})
     }
 
+    console.log('state', state);
+    
     this.setState({
-
+      loading: true,
+      params,
+      ...state
     })
 
     if ( returnNow ) {
@@ -69,12 +77,19 @@ export default class Fetch<TData, TParams extends any[]> {
 
       this.options?.onFinally?.(undefined, params, res)
 
+      if ( this.count === currentCount ) {
+        this.runPluginHandler('onFinally', )
+      }
+
       return res
     } catch(error) {
       // 抛出异常
       this.options?.onError?.(error, params)
+      this.runPluginHandler('onError', error, params)
       
       this.options?.onFinally?.(undefined, params, error)
+
+      
       throw error
     }
   }
