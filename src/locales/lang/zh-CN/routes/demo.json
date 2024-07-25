@@ -49,5 +49,14 @@
   "form": {
     "form": "表单",
     "basic": "基础表单"
+  },
+  "feat": {
+    "feat": "功能",
+    "ws": "WebSocket测试",
+    "copy": "剪切板",
+    "clickOutSide": "ClickOutSide组件",
+    "contextMenu": "右键菜单",
+    "fullScreen": "全屏",
+    "print": "打印"
   }
 }

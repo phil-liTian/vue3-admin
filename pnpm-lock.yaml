@@ -59,6 +59,9 @@ importers:
       pkg-types:
         specifier: ^1.0.3
         version: 1.0.3
+      print-js:
+        specifier: ^1.6.0
+        version: 1.6.0
       qrcode:
         specifier: ^1.5.3
         version: 1.5.3
@@ -3962,6 +3965,10 @@ packages:
   /pretty-bytes@6.1.1:
     resolution: {integrity: sha512-mQUvGU6aUFQ+rNvTIAcZuWGRT9a6f6Yrg9bHs4ImKF+HZCEK+plBvnAZYSIQztknZF2qnzNtr6F8s0+IuptdlQ==}
     engines: {node: ^14.13.1 || >=16.0.0}
+    dev: false
+
+  /print-js@1.6.0:
+    resolution: {integrity: sha512-BfnOIzSKbqGRtO4o0rnj/K3681BSd2QUrsIZy/+WdCIugjIswjmx3lDEZpXB2ruGf9d4b3YNINri81+J0FsBWg==}
     dev: false
 
   /proxy-from-env@1.1.0:

@@ -49,5 +49,14 @@
   "form": {
     "form": "Form",
     "basic": "Basic"
+  },
+  "feat": {
+    "feat": "Page Function",
+    "ws": "WebSocket test",
+    "copy": "Copy",
+    "clickOutSide": "ClickOutSide",
+    "contextMenu": "Context Menu",
+    "fullScreen": "Full Screen",
+    "print": "Print"
   }
 }

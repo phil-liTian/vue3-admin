@@ -56,6 +56,7 @@ const joinParentPath = (list: Menu[], parentPath = '') => {
  */
 export const transformRouteToMenu = (routeModList: AppRouteModule[], routerMapping: boolean = false) => {
   const cloneRouteModList = cloneDeep(routeModList)
+  
   let routeList: AppRouteRecordRaw[] = []
   
   cloneRouteModList.forEach(item => {

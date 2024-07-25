@@ -26,8 +26,6 @@ if ( isBrowser ) {
 }
 
 export default function subscribe(listener: Listener) {
-  console.log('listener', listener);
-  
   listeners.push(listener);
 
   return function unSubscribe() {
