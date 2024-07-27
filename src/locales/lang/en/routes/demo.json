@@ -57,6 +57,8 @@
     "clickOutSide": "ClickOutSide",
     "contextMenu": "Context Menu",
     "fullScreen": "Full Screen",
-    "print": "Print"
+    "print": "Print",
+    "watermark": "Watermark",
+    "ripple": "Ripple"
   }
 }

@@ -57,6 +57,22 @@ const feat: AppRouteModule = {
       }
     },
     {
+      path: "ripple",
+      name: 'RippleDemo',
+      component: () => import('@/views/demo/feat/ripple/index.vue'),
+      meta: {
+        title: t('routes.demo.feat.ripple')
+      }
+    },
+    {
+      path: "watermark",
+      name: "watermarkDemo",
+      component: () => import('@/views/demo/feat/watermark/index.vue'),
+      meta: {
+        title: t('routes.demo.feat.watermark')
+      }
+    },
+    {
       path: 'ws',
       name: 'WebSocketDemo',
       component: () => import('@/views/demo/feat/ws/index.vue'),

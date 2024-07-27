@@ -25,3 +25,6 @@
 5. print
   `print-js` 实现打印功能
 
+6. waterMark
+  `useWatermark` 实现水印功能
+
