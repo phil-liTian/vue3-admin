@@ -59,6 +59,7 @@
     "fullScreen": "Full Screen",
     "print": "Print",
     "watermark": "Watermark",
-    "ripple": "Ripple"
+    "ripple": "Ripple",
+    "msg": "Msg"
   }
 }

@@ -3,6 +3,7 @@
  * @LastEditors: phil_litian
  */
 import type { Directive } from 'vue'
+import './index.less'
 
 export interface RippleOptions {
   event: string;
@@ -40,6 +41,7 @@ const rippler = ({ event, el, zIndex, background }) => {
   const maxX = Math.max(dx, width - dx)
   const maxY =  Math.max(dy, height - dy)
 
+  // 半径
   const radius = Math.sqrt(maxX * maxX + maxY * maxY)
 
   const ripple = document.createElement('div')
@@ -50,7 +52,7 @@ const rippler = ({ event, el, zIndex, background }) => {
     height: '1px',
     borderRadius: '50%',
     transition: `all ${transition}ms cubic-bezier(0.4, 0, 0.2, 1)`,
-    backgroundColor: 'rgba(0, 0, 0, 0.12)'
+    backgroundColor:  background || 'rgba(0, 0, 0, 0.12)'
   })
 
   const rippleContainer = document.createElement('div')
@@ -60,17 +62,19 @@ const rippler = ({ event, el, zIndex, background }) => {
     width: 0,
     height: 0
   })
-
   rippleContainer.appendChild(ripple)
   el.appendChild(rippleContainer)
+
+  Object.assign(ripple.style || {}, {
+    marginTop: `${dy}px`,
+    marginLeft: `${dx}px`
+  })
 
   Object.assign(rippleContainer.style || {}, {
     width: `${width}px`,
     height: `${height}px`,
     direction: 'ltr'
   })
-
-
 
   setTimeout(() => {
     const wh = `${radius * 2}px`
@@ -81,15 +85,37 @@ const rippler = ({ event, el, zIndex, background }) => {
       marginTop: `${dy - radius}px`
     })
   }, 0);
+
+  function clearRipple() {
+    setTimeout(() => {
+      ripple.style.backgroundColor = 'rgba(0, 0, 0, 0)'
+    }, 200);
+
+    setTimeout(() => {
+      rippleContainer?.parentNode?.removeChild(rippleContainer)
+    }, 850);
+
+    el.removeEventListener('mouseup', clearRipple, false)
+    el.removeEventListener('mouseleave', clearRipple, false)
+    el.removeEventListener('dragstart', clearRipple, false)
+  }
+
+  if ( event.type === 'mousedown' ) {
+    // 鼠标点击事件
+    el.addEventListener('mouseup', clearRipple, false)
+    el.addEventListener('mouseleave', clearRipple, false)
+    el.addEventListener('dragstart', clearRipple, false)
+  } else {
+    clearRipple()
+  }
 }
 
 const RippleDirective: Directive = {
   beforeMount(el: HTMLElement, binding: any) {
     // 改变options
     setProps(Object.keys(binding.modifiers), options)
-
+    
     el.addEventListener(options.event, (event: Event) => {
-      // console.log('event', event);
       rippler({
         event,
         el,
@@ -101,7 +127,7 @@ const RippleDirective: Directive = {
 
   updated() {
     console.log('updated');
-  },
+  }
 }
 
 export default RippleDirective

@@ -57,6 +57,14 @@ const feat: AppRouteModule = {
       }
     },
     {
+      path: 'msg',
+      name: 'MsgDemo',
+      component: () => import('@/views/demo/feat/msg/index.vue'),
+      meta: {
+        title: t('routes.demo.feat.msg')
+      }
+    },
+    {
       path: "ripple",
       name: 'RippleDemo',
       component: () => import('@/views/demo/feat/ripple/index.vue'),

@@ -59,6 +59,7 @@
     "fullScreen": "全屏",
     "print": "打印",
     "watermark": "水印",
-    "ripple": "水波纹"
+    "ripple": "水波纹",
+    "msg": "消息提示"
   }
 }
