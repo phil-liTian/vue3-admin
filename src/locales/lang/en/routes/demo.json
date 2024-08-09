@@ -65,6 +65,7 @@
   },
   "excel": {
     "excel": "Excel",
-    "importExcel": "Import Excel"
+    "importExcel": "Import Excel",
+    "msg": "Msg"
   }
 }

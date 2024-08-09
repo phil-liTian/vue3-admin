@@ -4,8 +4,9 @@
 -->
 <template>
   <PageWrapper title="Ripple示例">
+    <!-- ripple-background="purple" -->
     <div 
-      v-ripple
+      v-ripple:as
       class="flex items-center justify-center bg-blue-500 w-75 h-75 text-24px text-white"> content 
     </div>
   </PageWrapper>

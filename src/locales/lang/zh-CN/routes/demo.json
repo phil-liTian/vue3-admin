@@ -65,6 +65,7 @@
   },
   "excel": {
     "excel": "表格",
-    "importExcel": "导入表格"
+    "importExcel": "导入表格",
+    "msg": "消息提示"
   }
 }
