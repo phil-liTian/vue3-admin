@@ -15,8 +15,10 @@ import { setupRouter, router } from '@/router'
 import { registerGlobComps } from '@c/registerGlobComponents'
 import { setupGlobDirectives } from '@d/index'
 import { initAppConfig } from './logics/initAppConfig'
+import { setupErrorHandle } from './logics/error-handle/index'
 import { setUpI18n } from '@/locales/index'
 import { setupRouterGuard } from '@/router/guard/index'
+
 
 const bootstrap = async () => {
   const app = createApp(App)
@@ -41,6 +43,9 @@ const bootstrap = async () => {
 
   // 配置导航守卫
   setupRouterGuard(router)
+
+  // 错误处理
+  setupErrorHandle(app)
   
   app.mount('#app')
 }

@@ -38,8 +38,8 @@
   import { PropType, computed } from 'vue';
   import { useI18n } from '@h/web/useI18n'
   import { useDesign } from '@h/web/useDesign'
-  import MenuItem from './components/MenuItem.vue';
-  import SubMenu from './components/SubMenuItem.vue'
+  import MenuItem from './components/menuItem.vue';
+  import SubMenu from './components/subMenuItem.vue'
   import { Menu } from '@/router/types';
   import { propTypes } from '@/utils/propTypes';
 

@@ -25,7 +25,7 @@ export const useErrorLogStore = defineStore({
   },
 
   actions: {
-    setErrorLogInfoList(info: ErrorLogInfo[]) {
+    addErrorLogInfo(info: ErrorLogInfo) {
       const item = {
         ...info,
       }

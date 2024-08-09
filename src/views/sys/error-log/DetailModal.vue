@@ -1,6 +1,6 @@
 <template>
   <PBasicModal :title="t('errorLog.tableActionDesc')" v-bind="$attrs">
-    <PDescription @register="register"></PDescription>
+    <!-- <PDescription @register="register"></PDescription> -->
   </PBasicModal> 
 </template>
   
@@ -20,7 +20,7 @@
   })
 
   const [ register ] = useDescription({
-    schema: getDescSchema()
+    // schema: getDescSchema()
   })
 
 

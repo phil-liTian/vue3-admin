@@ -31,6 +31,7 @@
     "placeholder": "请输入锁屏密码或者登录密码"
   },
   "errorLog": {
+    "tableTitle": "错误日志列表",
     "tableColumnType": "类型",
     "tableColumnDate": "时间",
     "tableColumnFile": "文件",

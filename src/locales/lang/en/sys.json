@@ -32,6 +32,7 @@
     "placeholder": "Please enter the lock screen password or user password"
   },
   "errorLog": {
+    "tableTitle": "Error log list",
     "tableColumnType": "Type",
     "tableColumnDate": "Date",
     "tableColumnFile": "File",

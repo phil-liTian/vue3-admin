@@ -3,4 +3,5 @@
  * @LastEditors: phil_litian
  */
 
-export { default as SimpleMenu } from './src/SimpleMenu.vue'
+export { default as SimpleMenu } from './src/simpleMenu.vue'
+

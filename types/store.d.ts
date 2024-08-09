@@ -17,11 +17,12 @@ export interface UserInfo {
 
 // 错误日志保存字段
 export interface ErrorLogInfo {
-  name: string,
+  name?: string,
   url: string,
-  date: string,
+  date?: string,
   file: string,
-  stack: string,
+  stack?: string,
+  detail?: string,
   message: string,
   type: string
 }

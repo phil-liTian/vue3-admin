@@ -1,9 +1,11 @@
 <template>
-  <div>
+  <div class="p-4">
     <template v-for="src in imgList" :key="src">
       <img :src="src" v-show="false" alt="" />
     </template>
-    <PBasicTable class="error-handle-table" @register="register">
+    <PBasicTable 
+      class="error-handle-table" 
+      @register="register">
       <template #toolbar>
         <PButton type="primary" @click="fireVueError">
           {{ t('sys.errorLog.fireVueError') }}
@@ -34,7 +36,7 @@
 </template>
   
 <script lang='ts' setup>
-  import { watch, ref } from 'vue'
+  import { watch, ref, nextTick } from 'vue'
   import { useI18n } from '@h/web/useI18n'
   import { useTable, TableAction } from '@c/PBase/Table/index'
   import { useModal } from '@c/PBase/Modal/index'
@@ -47,6 +49,7 @@
   const errorLogStore = useErrorLogStoreWithOut()
   const [ register, { setTableData } ] = useTable({
     columns: getColumns(),
+    title: t('sys.errorLog.tableTitle'),
     actionColumn: {
       title: 'Action',
       dataIndex: 'action',
@@ -58,7 +61,9 @@
   const imgList = ref<string[]>([])
 
   watch(() => errorLogStore.getErrorLogInfoList, (list) => {
-    setTableData(list)
+    nextTick(() => {
+      setTableData(list)
+    })
   }, { immediate: true })
 
   const handleShowDetail = (data) => {
@@ -68,7 +73,7 @@
 
   // vue报错
   const fireVueError = () => {
-    throw new Error('vue-error')
+    throw new Error('vue-error!!')
   }
 
   // 资源加载错误

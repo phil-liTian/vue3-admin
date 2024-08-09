@@ -18,12 +18,15 @@ export function useTable(tableProps: Partial<BasicTableProps>): [
 
   function register(instance: TableActionType) {
     tableRef.value = instance
+    console.log('instance', instance);
+    
 
     tableProps && instance.setProps(tableProps)
   }
 
   function getTableInstance() {
     const table = unref(tableRef)
+    
     if ( !table ) {
       error('The table instance is not exist')
     }
@@ -57,7 +60,9 @@ export function useTable(tableProps: Partial<BasicTableProps>): [
      * @returns 
      */
     setTableData: (dataList: Recordable[]) => {
-      return getTableInstance().setTableData(dataList)
+      console.log('getTableInstance()', getTableInstance());
+      
+      return getTableInstance()?.setTableData(dataList)
     },
     
     /**

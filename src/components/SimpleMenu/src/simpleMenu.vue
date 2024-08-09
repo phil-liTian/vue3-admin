@@ -24,8 +24,8 @@
   import { computed, PropType, reactive, useAttrs, watch } from "vue";
   import { useRouter } from 'vue-router'
   import { useDesign } from '@h/web/useDesign'
-  import Menu from './components/Menu.vue'
-  import SimpleSubMenu from './SimpleSubMenu.vue'
+  import Menu from './components/menu.vue'
+  import SimpleSubMenu from './simpleSubMenu.vue'
   import { MenuState } from './types'
   import { useOpenKeys } from './useOpenKeys'
   import { listenerRouteChange } from '@/logics/mitt/routeChange'
