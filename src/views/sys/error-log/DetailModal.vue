@@ -20,7 +20,7 @@
   })
 
   const [ register ] = useDescription({
-    // schema: getDescSchema()
+    schema: getDescSchema()
   })
 
 
