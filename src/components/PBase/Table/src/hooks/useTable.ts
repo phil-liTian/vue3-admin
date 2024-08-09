@@ -1,6 +1,6 @@
 /*
  * @Date: 2024-05-10 13:15:40
- * @LastEditors: phil_litian
+ * @LastEditors: phil
  */
 
 import { ref, unref } from "vue";
@@ -52,6 +52,17 @@ export function useTable(tableProps: Partial<BasicTableProps>): [
       return getTableInstance().setColumns(columns)
     },
 
+    /**
+     * 设置表格中的数据
+     * @returns 
+     */
+    setTableData: (dataList: Recordable[]) => {
+      return getTableInstance().setTableData(dataList)
+    },
+    
+    /**
+     * 获取表格中的数据
+     */
     getDataSource: () => {
       return getTableInstance().getDataSource()
     },

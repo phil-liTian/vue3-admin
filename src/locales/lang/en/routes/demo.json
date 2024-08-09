@@ -59,6 +59,12 @@
     "fullScreen": "Full Screen",
     "print": "Print",
     "watermark": "Watermark",
-    "ripple": "Ripple"
+    "ripple": "Ripple",
+    "imgPreview": "Image Preview",
+    "errorLog": "Error Log"
+  },
+  "excel": {
+    "excel": "Excel",
+    "importExcel": "Import Excel"
   }
 }

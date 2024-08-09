@@ -1,6 +1,6 @@
 <!--
  * @Date: 2024-04-29 15:30:29
- * @LastEditors: phil_litian
+ * @LastEditors: phil
 -->
 <template>
   <div ref="wrapRef" :class="getWrapperClass">
@@ -93,6 +93,7 @@
   const { 
     reload,
     handleTableChange,
+    setTableData,
     getDataSource, 
     getRawDataSource,
     getDataSourceRef } = useDataSource( getProps, 
@@ -140,6 +141,7 @@
     getColumns,
     setColumns,
     getDataSource,
+    setTableData,
     getRawDataSource,
     collapseAll,
     expandAll,

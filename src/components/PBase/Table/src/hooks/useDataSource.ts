@@ -86,6 +86,10 @@ export function useDataSource(propsRef: ComputedRef<BasicTableProps>, { tableDat
     return dataSourceRef.value
   })
 
+  function setTableData<T = Recordable>(values: T[]) {
+    dataSourceRef.value = values as Recordable[]
+  }
+
   function getDataSource<T = Recordable>() {
     return unref(getDataSourceRef) as T[]
   }
@@ -106,6 +110,7 @@ export function useDataSource(propsRef: ComputedRef<BasicTableProps>, { tableDat
   return { 
     fetch,
     reload,
+    setTableData,
     getDataSource,
     getRawDataSource,
     getDataSourceRef,

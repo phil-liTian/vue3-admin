@@ -1,6 +1,6 @@
 /*
  * @Date: 2024-05-07 09:33:15
- * @LastEditors: phil_litian
+ * @LastEditors: phil
  */
 
 import { ColumnProps } from "ant-design-vue/es/table"
@@ -80,6 +80,7 @@ export interface TableActionType {
   setProps: (props: Partial<BasicTableProps>) => void,
   getColumns: () => BasicColumn[],
   setColumns: (columns: BasicColumn[]) => void,
+  setTableData: (dataList: Recordable[]) => void;
   getDataSource: () => Recordable[],
   getRawDataSource: <T = Recordable>() => T;
   collapseAll: () => void,

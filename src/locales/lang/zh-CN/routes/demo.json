@@ -59,6 +59,12 @@
     "fullScreen": "全屏",
     "print": "打印",
     "watermark": "水印",
-    "ripple": "水波纹"
+    "ripple": "水波纹",
+    "imgPreview": "图片预览",
+    "errorLog": "错误日志"
+  },
+  "excel": {
+    "excel": "表格",
+    "importExcel": "导入表格"
   }
 }

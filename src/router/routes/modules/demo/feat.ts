@@ -1,6 +1,6 @@
 /*
  * @Date: 2024-07-23 09:45:00
- * @LastEditors: phil_litian
+ * @LastEditors: phil
  */
 import { t } from "@/hooks/web/useI18n";
 import { LAYOUT } from "@/router/constant";
@@ -80,6 +80,40 @@ const feat: AppRouteModule = {
         title: t('routes.demo.feat.ws')
       },
     },
+    // {
+    //   path: 'img-preview',
+    //   name: 'ImgPreviewDemo',
+    //   component: () => import('@/views/demo/feat/img-preview/index.vue'),
+    //   meta: {
+    //     title: t('routes.demo.feat.imgPreview')
+    //   }
+    // },
+    // {
+    //   path: "excel",
+    //   name: "Excel",
+    //   redirect: "",
+    //   meta: {
+    //     title: t('routes.demo.excel.excel')
+    //   },
+    //   children: [
+    //     {
+    //       path: 'importExcel',
+    //       name: 'ImportExcelDemo',
+    //       component: () => import('@/views/demo/excel/ImportExcel.vue'),
+    //       meta: {
+    //         title: t('routes.demo.excel.importExcel')
+    //       }
+    //     }
+    //   ]
+    // },
+    // {
+    //   path: 'error-log',
+    //   name: 'ErrorLog',
+    //   component: () => import('@/views/demo/feat/error-log/index.vue'),
+    //   meta: {
+    //     title: t('routes.demo.feat.errorLog')
+    //   }
+    // }
   ]
 }
 

@@ -28,3 +28,7 @@
 6. waterMark
   `useWatermark` 实现水印功能
 
+
+7. imgPreview
+  `ImagePreview, createImgPreview`
+

@@ -30,5 +30,16 @@
     "entry": "Entry",
     "alert": "Lock Screen password error",
     "placeholder": "Please enter the lock screen password or user password"
+  },
+  "errorLog": {
+    "tableColumnType": "Type",
+    "tableColumnDate": "Date",
+    "tableColumnFile": "File",
+    "tableColumnMsg": "Error Message",
+    "tableColumnStackMsg": "Stack Info",
+    "fireVueError": "Fire vue error",
+    "fireResourceError": "Fire resource error",
+    "fireAjaxError": "Fire ajax error",
+    "tableActionDesc": "Description"
   }
 }

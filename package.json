@@ -35,7 +35,8 @@
     "vue-i18n": "^9.9.1",
     "vue-router": "4",
     "vue-types": "^5.1.1",
-    "vxe-table": "^4.6.17"
+    "vxe-table": "^4.6.17",
+    "xlsx": "^0.18.5"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.0.3",
