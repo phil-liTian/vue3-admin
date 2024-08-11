@@ -5,6 +5,7 @@
 import koa from 'koa'
 import Router from 'koa-router'
 import route from 'koa-route'
+import cors from 'koa2-cors'
 import webSocket from 'koa-websocket'
 import AppRoutes from './src/routes/index.js'
 import { PORT } from './src/utils/index.js'
@@ -15,15 +16,25 @@ AppRoutes.map(({path, method, action}) => router[method](path, action))
 
 const app = webSocket(new koa())
 
+app.ws.use((ctx, next) => {
+  ctx.websocket.send('connection successed!')
+  return next(ctx)
+})
+
+
 app.ws.use(
-  route.all('/ws', (ctx) => {
-    ctx.websocket.send('hello world')
+  route.all('/test', (ctx) => {
+    // ctx.websocket.send('hello world')
     ctx.webSocket.on('message', message => {
       console.log(message)
+
+
+      ctx.websocket.send('1111')
     })
   })
 )
 
+app.use(cors)
 app.use(router.routes())
 app.use(router.allowedMethods())
 

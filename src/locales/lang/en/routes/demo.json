@@ -61,11 +61,11 @@
     "watermark": "Watermark",
     "ripple": "Ripple",
     "imgPreview": "Image Preview",
-    "errorLog": "Error Log"
+    "errorLog": "Error Log",
+    "msg": "Message"
   },
   "excel": {
     "excel": "Excel",
-    "importExcel": "Import Excel",
-    "msg": "Msg"
+    "importExcel": "Import Excel"
   }
 }
