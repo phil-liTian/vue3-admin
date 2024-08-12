@@ -3,21 +3,34 @@
  * @LastEditors: phil_litian
 -->
 <script lang="tsx">
-  import { PropType, defineComponent } from "vue";
+  import { PropType, computed, defineComponent, unref } from "vue";
   import { Col, Divider, Form } from 'ant-design-vue'
   import { FormSchemaInner as FormSchema } from "../types/form";
   import { ComponentMap } from "../componentMap";
   import { isFunction } from "@/utils/is";
   import { getSlot } from "@/utils/helper/tsxHelper";
+  import { isIncludeSimpleComponents } from "../helper";
 
   export default defineComponent({
     props: {
       schema: {
         type: Object as PropType<FormSchema>,
         default: () => ({})
+      },
+      allDefaultValues: {
+        type: Object,
+        default: () => ({})
+      },
+      formModel: {
+        type: Object,
+        default: () => ({})
       }
     },
     setup(props, { slots }) {
+      const { colProps } = props.schema
+
+      const realColProps = { ...colProps }
+
       function getShow(): { isShow: boolean; isIfShow: boolean } {
         let isShow = true
         let isIfShow = true
@@ -25,28 +38,80 @@
         return { isShow, isIfShow }
       }
 
+      const getValues = computed(() => {
+        const { allDefaultValues, schema } = props
+        return {
+          field: schema.field,
+          value: {
+            ...allDefaultValues
+          }
+        }
+      })
+
+      const getComponentProps = computed(() => {
+        let { componentProps = {}, component, field } = props.schema
+
+        if ( isFunction(componentProps) ) {
+          componentProps = componentProps({}) || {}
+        }
+
+        if ( isIncludeSimpleComponents(component) ) {
+          // Divider、BasicTitle
+        }
+
+        // let componentProps = {
+        //   // orientation: "left",
+        //   plain: true
+        // }
+        
+        return componentProps
+      })
+
       function renderComponent() {
-        const { component } = props.schema
+        const { component, field } = props.schema
         const Comp = ComponentMap.get(component) as ReturnType<typeof defineComponent>
 
-        return <Comp />
+        const propsData = {
+          ...unref(getComponentProps)
+        }
+
+        
+
+        // propsData.codeField = field
+        // propsData.formValues = unref(getValues)
+
+        // 给默认值
+        const bindValue: Recordable<any> = {
+          value: props.formModel[field]
+        }
+
+
+        const compAttr: Recordable<any> = {
+          ...propsData,
+          ...bindValue
+        }
+        console.log('compAttr', compAttr);
+        
+        return <Comp { ...compAttr } />
       }
 
       function renderLabelHelpMessage() {
         const { label } = props.schema
         const getLabel = isFunction(label) ? label() : label
-
+        console.log('getLabel', getLabel);
+        
         return <span>{ getLabel }</span>
       }
 
       function renderItem() {
         const { component, slot, suffix } = props.schema
+        
         if ( component === 'Divider' ) {
           return <Col span={24}>
-            <Divider>{ renderLabelHelpMessage() }</Divider>
+            <Divider {...unref(getComponentProps)}>{ renderLabelHelpMessage() }</Divider>
           </Col>
         } else if ( component === 'BasicTitle' ) {
-
+          
         } else {
           const getContent = () => {
             return slot ? getSlot(slots, slot) : renderComponent()
@@ -69,12 +134,13 @@
       }
       
       return {
+        realColProps,
         getContent
       }
     },
 
     render() {
-      return <Col>
+      return <Col { ...this.realColProps }>
         { this.getContent() }
       </Col>
     }

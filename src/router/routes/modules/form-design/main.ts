@@ -7,8 +7,8 @@ const permission: AppRouteModule = {
   component: LAYOUT,
   meta: {
     title: '表单设计',
-    icon: 'el-icon-s-tools',
-    orderNo: 2
+    icon: 'ion:build-outline',
+    orderNo: 1000
   },
   children: [
     {

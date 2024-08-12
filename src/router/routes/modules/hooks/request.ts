@@ -12,7 +12,8 @@ const charts: AppRouteRecordRaw = {
   component: LAYOUT,
   redirect: '/useRequest/base',
   meta: {
-    title: 'useReqest'
+    title: 'useReqest',
+    icon: "ant-design:api-outlined",
   },
   children: [
     {

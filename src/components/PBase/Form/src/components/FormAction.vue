@@ -9,6 +9,7 @@
         <slot name="resetBefore"></slot>
         <PButton 
           v-bind="getResetBtnOptions"
+          @click="resetAction"
           class="mr-2">
           {{ getResetBtnOptions.text }}
         </PButton>
@@ -16,18 +17,19 @@
         <slot name="submitBefore"></slot>
         <PButton
           v-bind="getSubmitBtnOptions"
+          @click="submitAction"
           class="mr-2">
           {{ getSubmitBtnOptions.text }}
         </PButton>
 
         <slot name="advanceBefore"></slot>
-        <PButton 
+        <!-- <PButton 
           type="link" 
           size="small"
           v-if="showAdvancedButton">
           {{ t('component.form.putAway') }}
           <PBasicArrow class="ml-1" />
-        </PButton>
+        </PButton> -->
         <slot name="advanceAfter"></slot>
       </Form.Item>
     </div>
@@ -41,6 +43,7 @@
   import { ButtonProps } from '@/components/Button';
   import { PBasicArrow } from '@c/Basic/index'
   import { propTypes } from '@/utils/propTypes';
+  import { useFormContext } from '../hooks/useFormContext'
   import { ColEx } from '../types/index'
   const { t } = useI18n()
   const props = defineProps({
@@ -55,6 +58,8 @@
       default: () => ({})
     },
   })
+
+  const { submitAction, resetAction } = useFormContext()
 
   const actionColOpt = computed(() => {
     const actionColOpt: Partial<ColEx> = {

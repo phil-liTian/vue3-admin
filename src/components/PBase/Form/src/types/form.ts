@@ -11,6 +11,15 @@ interface BasicFormSchema<T extends ComponentType = any> {
   colProps?: Partial<ColEx>;
   defaultValue?: any;
   suffix?: string | number | (() => string | VNode);
+
+  renderComponentContent?: VNode | VNode[] | string | (() => any);
+
+  componentProps?: any;
+}
+
+export interface FormActionType {
+  submit: () => Promise<void>;
+  // setFieldsValue: () => void;
 }
 
 export interface ComponentFormSchema<T extends ComponentType = any> extends BasicFormSchema {

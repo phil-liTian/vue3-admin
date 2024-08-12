@@ -12,7 +12,7 @@ const feat: AppRouteModule = {
   component: LAYOUT,
   meta: {
     orderNo: 19,
-    icon: "icon-park-outline:feature",
+    icon: 'ion:git-compare-outline',
     title: t('routes.demo.feat.feat')
   },
   children: [
