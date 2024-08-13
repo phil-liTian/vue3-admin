@@ -13,7 +13,7 @@ const permission: AppRouteRecordRaw = {
   redirect: '/permission/front/page',
   meta: {
     title: t('routes.demo.permissions.title'),
-    orderNo: 999,
+    orderNo: 2,
     icon: 'ion:key-outline'
   },
   children: [

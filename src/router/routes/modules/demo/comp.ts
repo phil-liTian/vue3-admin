@@ -156,39 +156,23 @@ const comp: AppRouteRecordRaw = {
             title: t('routes.demo.form.basic')
           }
         },
+        {
+          path: 'refForm',
+          name: 'RefFormDemo',
+          component: () => import('@/views/demo/form/RefForm.vue'),
+          meta: {
+            title: t('routes.demo.form.refForm')
+          }
+        },
+        {
+          path: 'useForm',
+          name: 'UseFormDemo',
+          component: () => import('@/views/demo/form/UseForm.vue'),
+          meta: {
+            title: t('routes.demo.form.useForm')
+          }
+        }
       ]
-    },
-    {
-      path: 'cardList',
-      name: 'CardListDemo',
-      component: () => import('@/views/demo/comp/cardList/index.vue'),
-      meta: {
-        title: t('routes.demo.comp.cardList')
-      }
-    },
-    {
-      path: 'drawer',
-      name: 'DrawerDemo',
-      component: () => import('@/views/demo/comp/drawer/index.vue'),
-      meta: {
-        title: t('routes.demo.comp.drawer')
-      }
-    },
-    {
-      path: 'modal',
-      name: 'ModalDemo',
-      component: () => import('@/views/demo/comp/modal/index.vue'),
-      meta: {
-        title: t('routes.demo.comp.modal')
-      }
-    },
-    {
-      path: 'loading',
-      name: 'LoadingDemo',
-      component: () => import('@/views/demo/comp/loading/index.vue'),
-      meta: {
-        title: t('routes.demo.comp.loading')
-      }
     },
     {
       path: 'scroll',
@@ -222,6 +206,65 @@ const comp: AppRouteRecordRaw = {
           }
         }
       ]
+    },
+    {
+      path: 'verify',
+      name: 'verifyDemo',
+      redirect: '/comp/verify/drag',
+      meta: {
+        title: t('routes.demo.comp.verify')
+      },
+
+      children: [
+        {
+          path: "drag",
+          name: "verifyDragDemo",
+          component: () => import('@/views/demo/comp/verify/index.vue'),
+          meta: {
+            title: t('routes.demo.comp.verifyDrag')
+          }
+        },
+        {
+          path: "dragRotate",
+          name: "verifyRotateDemo",
+          component: () => import('@/views/demo/comp/verify/rotate.vue'),
+          meta: {
+            title: t('routes.demo.comp.verifyRotateDrag')
+          }
+        }
+      ]
+    },
+    {
+      path: 'cardList',
+      name: 'CardListDemo',
+      component: () => import('@/views/demo/comp/cardList/index.vue'),
+      meta: {
+        title: t('routes.demo.comp.cardList')
+      }
+    },
+    {
+      path: 'drawer',
+      name: 'DrawerDemo',
+      component: () => import('@/views/demo/comp/drawer/index.vue'),
+      meta: {
+        title: t('routes.demo.comp.drawer')
+      }
+    },
+    {
+      path: 'modal',
+      name: 'ModalDemo',
+      component: () => import('@/views/demo/comp/modal/index.vue'),
+      meta: {
+        title: t('routes.demo.comp.modal')
+      }
+    },
+    {
+      path: 'loading',
+      name: 'LoadingDemo',
+      component: () => import('@/views/demo/comp/loading/index.vue'),
+      meta: {
+        title: t('routes.demo.comp.loading')
+      }
     },
     {
       path: 'qrcode',
@@ -262,33 +305,6 @@ const comp: AppRouteRecordRaw = {
       meta: {
         title: t('routes.demo.comp.desc')
       }
-    },
-    {
-      path: 'verify',
-      name: 'verifyDemo',
-      redirect: '/comp/verify/drag',
-      meta: {
-        title: t('routes.demo.comp.verify')
-      },
-
-      children: [
-        {
-          path: "drag",
-          name: "verifyDragDemo",
-          component: () => import('@/views/demo/comp/verify/index.vue'),
-          meta: {
-            title: t('routes.demo.comp.verifyDrag')
-          }
-        },
-        {
-          path: "dragRotate",
-          name: "verifyRotateDemo",
-          component: () => import('@/views/demo/comp/verify/rotate.vue'),
-          meta: {
-            title: t('routes.demo.comp.verifyRotateDrag')
-          }
-        }
-      ]
     },
   ]
 }

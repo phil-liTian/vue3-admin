@@ -48,7 +48,9 @@
   },
   "form": {
     "form": "Form",
-    "basic": "Basic"
+    "basic": "Basic",
+    "refForm": "RefForm",
+    "useForm": "UseForm"
   },
   "feat": {
     "feat": "Page Function",

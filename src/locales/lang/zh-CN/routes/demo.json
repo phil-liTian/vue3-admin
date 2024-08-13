@@ -48,7 +48,9 @@
   },
   "form": {
     "form": "表单",
-    "basic": "基础表单"
+    "basic": "基础表单",
+    "refForm": "RefForm",
+    "useForm": "UseForm"
   },
   "feat": {
     "feat": "功能",

@@ -7,11 +7,9 @@
     <PCollapseContainer title='基础示例'>
       <PBasicForm 
         :schemas="schemas"
+        :labelWidth="200"
         @submit="handleSubmit"
         @reset="handleReset">
-        <!-- <template #selectA>
-          <Select :options="optionsA" />
-        </template> -->
       </PBasicForm>
     </PCollapseContainer>
   </PageWrapper>
@@ -21,8 +19,8 @@
   import { computed, ref, unref } from 'vue';
   import { Select } from 'ant-design-vue'
   import { cloneDeep } from 'lodash-es'
-  import { FormSchema } from '@/components/PBase/Form';
   import { useMessage } from '@h/web/useMessage'
+  import { schemas } from './dataSource'
 
   const { createMessage } = useMessage()
   const options = ref([])
@@ -35,69 +33,6 @@
       return op
     })
   })
-
-  const schemas: FormSchema[] = [
-    {
-      field: 'divider-basic',
-      component: 'Divider',
-      label: '基础字段',
-      colProps: {
-        span: 24
-      }
-    },
-    {
-      field: 'field1',
-      component: 'Input',
-      defaultValue: "123",
-      label: () => {
-        return `字段1`
-      },
-      colProps: {
-        span: 8
-      },
-      componentProps: () => {
-        return {
-          placeholder: '自定义placeholder',
-          onChange: (e: any) => {
-            console.log('e--->', e);
-          }
-        }
-      },
-
-      renderComponentContent: () => {
-        return {
-          prefix: () => 'prefix',
-          suffix: () => 'suffix'
-        }
-      }
-    },
-    {
-      field: 'field2',
-      component: 'Input',
-      label: '带后缀',
-      defaultValue: '111',
-      suffix: '天',
-      colProps: {
-        span: 8
-      }
-    },
-    {
-      field: 'fieldSc',
-      component: 'Upload',
-      label: '上传',
-      colProps: {
-        span: 8
-      }
-    },
-    {
-      field: 'selectA',
-      slot: 'selectA',
-      label: '普通SelectA',
-      colProps: {
-        span: 8
-      }
-    }
-  ]
 
   // 重置
   const handleReset = () => {

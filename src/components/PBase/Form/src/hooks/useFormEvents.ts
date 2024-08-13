@@ -38,7 +38,6 @@ export function useFormEvents({
     }
 
     const values = await unref(formElRef)?.validate(_nameList)
-    console.log('values', values);
     return handleFormValues(values)
   }
 

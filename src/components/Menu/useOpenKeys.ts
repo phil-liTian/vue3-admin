@@ -31,11 +31,8 @@ export const useOpenKeys = (menuState: MenuState, menus, mode, accordion) => {
       menuState.openKeys = openKeys
     }
 
+    console.log('menuState', menuState);
     
-    console.log('menuState', menuState.openKeys);
-    
-    
-
   }
 
   // 设置openKeys

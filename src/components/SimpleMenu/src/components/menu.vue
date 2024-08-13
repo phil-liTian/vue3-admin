@@ -87,7 +87,14 @@
     })
 
     rootMenuEmitter.on('open-name-change', ({ name, opened }) => {
-      console.log('open-name-change', name, opened);
+      const isExistIndex = openedNames.value.findIndex(v => v === name)
+      if ( opened && isExistIndex === -1 ) {
+        // 打开
+        openedNames.value.push(name)
+      } else if ( isExistIndex !== -1 ) {
+        // 关闭
+        openedNames.value.splice(isExistIndex, 1)
+      }
     })
   })
 </script>

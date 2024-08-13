@@ -3,13 +3,14 @@
  * @LastEditors: phil_litian
 -->
 <script lang="tsx">
-  import { PropType, computed, defineComponent, unref } from "vue";
+  import { PropType, computed, defineComponent, unref, toRefs } from "vue";
   import { Col, Divider, Form } from 'ant-design-vue'
   import { FormSchemaInner as FormSchema } from "../types/form";
   import { ComponentMap } from "../componentMap";
   import { isFunction } from "@/utils/is";
   import { getSlot } from "@/utils/helper/tsxHelper";
   import { isIncludeSimpleComponents } from "../helper";
+  import { useItemLabelWidth } from '../hooks/useLabelWidth'
 
   export default defineComponent({
     props: {
@@ -18,6 +19,10 @@
         default: () => ({})
       },
       allDefaultValues: {
+        type: Object,
+        default: () => ({})
+      },
+      formProps: {
         type: Object,
         default: () => ({})
       },
@@ -48,6 +53,16 @@
         }
       })
 
+      const getDisable = computed(() => {
+        const { disabled: globalDisabled } = props.formProps
+        return globalDisabled
+      })
+
+      const getReadonly = computed(() => {
+        const { readonly: globalReadonly } = props.formProps
+        return globalReadonly
+      })
+
       const getComponentProps = computed(() => {
         let { componentProps = {}, component, field } = props.schema
 
@@ -69,13 +84,15 @@
 
       function renderComponent() {
         const { component, field } = props.schema
+        const { size } = props.formProps
         const Comp = ComponentMap.get(component) as ReturnType<typeof defineComponent>
 
         const propsData = {
+          size,
+          readonly: unref(getReadonly),
+          disabled: unref(getDisable),
           ...unref(getComponentProps)
         }
-
-        
 
         // propsData.codeField = field
         // propsData.formValues = unref(getValues)
@@ -85,26 +102,27 @@
           value: props.formModel[field]
         }
 
-
         const compAttr: Recordable<any> = {
           ...propsData,
           ...bindValue
         }
-        console.log('compAttr', compAttr);
-        
+
         return <Comp { ...compAttr } />
       }
+
+      const { schema, formProps } = toRefs(props)
+      const itemLabelWidthProps = useItemLabelWidth(schema, formProps)
 
       function renderLabelHelpMessage() {
         const { label } = props.schema
         const getLabel = isFunction(label) ? label() : label
-        console.log('getLabel', getLabel);
         
         return <span>{ getLabel }</span>
       }
 
       function renderItem() {
         const { component, slot, suffix } = props.schema
+        const { labelCol } = unref(itemLabelWidthProps)
         
         if ( component === 'Divider' ) {
           return <Col span={24}>
@@ -119,6 +137,7 @@
           const showSuffix = !!suffix
           const getSuffix = isFunction(suffix) ? suffix() : suffix;
           return (<Form.Item 
+            labelCol={labelCol}
             class={{ 'suffix-item': showSuffix }} 
             label={renderLabelHelpMessage()}>
             <div style='display: flex'>

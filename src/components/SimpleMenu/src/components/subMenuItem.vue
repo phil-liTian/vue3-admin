@@ -117,8 +117,8 @@
 
   const handleClick = () => {
     const { opened } = state
-    rootMenuEmitter.emit('opened-name-change', { name: '12', opened: false })
-
+    rootMenuEmitter.emit('open-name-change', { name: props.name, opened: false })
+    
     state.opened = !opened
   }
  

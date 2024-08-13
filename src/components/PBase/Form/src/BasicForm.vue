@@ -12,6 +12,7 @@
       <template v-for="schema in getSchema" :key="schema.field">
         <FormItem 
           :formModel="formModel"
+          :formProps="getProps"
           :schema="schema"
           :allDefaultValues="defaultValueRef">
           <template #[item]="data" v-for="item in Object.keys($slots)">
@@ -19,7 +20,7 @@
           </template>
         </FormItem>
       </template>
-      <FormAction>
+      <FormAction v-bind="getFormActionBindProps">
         <template #[item]="data" v-for="item in ['resetBefore', 'submitBefore', 'advanceBefore', 'advanceAfter']">
           <slot :name="item" v-bind="data || {}"></slot>
         </template>
@@ -31,7 +32,7 @@
   
 <script lang='ts' setup>
   import type { Ref } from 'vue'
-  import { computed, unref, defineEmits, reactive, watch, onMounted, ref } from 'vue';
+  import { computed, unref, defineEmits, reactive, watch, onMounted, ref, defineExpose } from 'vue';
   import { Form, Row } from 'ant-design-vue'
   import { useDesign } from '@h/web/useDesign'
   import { cloneDeep } from 'lodash-es'
@@ -41,18 +42,20 @@
   import { useFormEvents } from './hooks/useFormEvents'
   import { createFormContext } from './hooks/useFormContext'
   import { useFormValues } from './hooks/useFormValues';
-  import { FormActionType } from './types/form'
+  import { FormActionType, FormProps } from './types/form'
+  import { deepMerge } from '@/utils';
 
   defineOptions({ name: 'PBasicForm' })
   const props = defineProps(basicProps)
-  const emits = defineEmits(['submit', 'reset'])
+  const emits = defineEmits(['submit', 'reset', 'register'])
   const defaultValueRef = ref({})
   const formModel = reactive({})
+  const propsRef = ref<Partial<FormProps>>({})
   const formElRef: Ref<Nullable<FormActionType>> = ref(null)
 
   const { prefixCls } = useDesign('basic-form')
   
-  const getProps = computed(() => { return { ...props } })
+  const getProps = computed(() => { return { ...props, ...unref(propsRef) } })
 
   const getRow = computed(() => {
     const { rowProps } = unref(getProps)
@@ -67,11 +70,13 @@
 
     return cloneDeep(schemas)
   })
+
   const { handleFormValues, initDefault } = useFormValues({
     defaultValueRef,
     getSchema,
     formModel
   })
+
   const { handleSubmit, resetFields } = useFormEvents({
     emits,
     defaultValueRef,
@@ -80,6 +85,10 @@
     formModel,
     handleFormValues
   })
+
+  const setProps = async (formProps: FormProps) => {
+    propsRef.value = deepMerge(unref(formProps) || {}, formProps)
+  }
 
   watch(() => getSchema.value, (schema) => {
     if ( schema.length ) {
@@ -94,12 +103,29 @@
   
   const getFormClass = computed(() => {
     return [
-      prefixCls
+      prefixCls,
+      {
+        [`${prefixCls}--compact`]: unref(getProps).compact
+      }
     ]
+  })
+
+  const formActionType: FormActionType = {
+    setProps,
+    submit: handleSubmit
+  }
+  
+  const getFormActionBindProps = computed(() => {
+    return { ...getProps.value  }
+  })
+  
+  defineExpose({
+    ...formActionType
   })
 
   onMounted(() => {
     initDefault()
+    emits('register', formActionType)
   })
 </script>
   
@@ -107,6 +133,12 @@
   @prefix-cls: ~'@{namespace}-basic-form';
 
   .@{prefix-cls} {
+    &--compact {
+      .ant-form-item {
+        margin-bottom: 8px !important;
+      }
+    }
+
     .ant-form-item {
 
       &-label {

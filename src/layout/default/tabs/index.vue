@@ -52,7 +52,6 @@
   const activeKeyRef = ref('')
 
   const getTabState = computed(() => getTabList)
-  console.log('getTabState', getTabState);
   
   // 最少保留一个
   const unClose = computed(() => unref(getTabList).length === 1)

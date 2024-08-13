@@ -16,22 +16,25 @@ export function useOpenKeys(
     accordion: Ref<boolean>
   ) {
   const setOpenKeys = (path) => {
-    
     const menuList = menus.value
-
+    console.log('menuList', menuList);
+    
+    if ( menuList?.length === 0 ) {
+      menuState.openNames = []
+      return
+    }
     const keys = getAllParentPath(menuList, path)
     
     if ( !unref(accordion) ) {
       // 去重处理
       menuState.openNames = uniq([...keys, ...menuState.openNames])
-      
     } else {
       menuState.openNames = keys
     }
+
   }
 
   const getOpenKeys = computed(() => {
-    
     return menuState.openNames
   })
 

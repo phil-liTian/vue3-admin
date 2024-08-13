@@ -8,6 +8,7 @@
       <Form.Item>
         <slot name="resetBefore"></slot>
         <PButton 
+          v-if='showResetButton'
           v-bind="getResetBtnOptions"
           @click="resetAction"
           class="mr-2">
@@ -16,6 +17,7 @@
         
         <slot name="submitBefore"></slot>
         <PButton
+          v-if='showSubmitButton'
           v-bind="getSubmitBtnOptions"
           @click="submitAction"
           class="mr-2">
@@ -49,6 +51,8 @@
   const props = defineProps({
     showAdvancedButton: propTypes.bool.def(true),
     showActionButtonGroup: propTypes.bool.def(true),
+    showSubmitButton: propTypes.bool.def(true),
+    showResetButton: propTypes.bool.def(true),
     resetButtonOptions: {
       type: Object as PropType<ButtonProps>,
       default: () => ({})
@@ -57,13 +61,19 @@
       type: Object as PropType<ButtonProps>,
       default: () => ({})
     },
+    actionColOptions: {
+      type: Object as PropType<Partial<ColEx>>,
+      default: () => ({})
+    }
   })
 
   const { submitAction, resetAction } = useFormContext()
 
   const actionColOpt = computed(() => {
+    const { actionColOptions } = props
     const actionColOpt: Partial<ColEx> = {
-      style: { textAlign: 'right' }
+      style: { textAlign: 'right' },
+      ...actionColOptions
     }
 
     return actionColOpt
