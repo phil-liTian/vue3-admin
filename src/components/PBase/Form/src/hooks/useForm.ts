@@ -1,3 +1,7 @@
+/*
+ * @Date: 2024-08-13 19:17:12
+ * @LastEditors: phil_litian
+ */
 import { nextTick, ref, unref, watch } from "vue";
 import { FormActionType, FormProps } from "../types/form";
 
@@ -18,6 +22,8 @@ export function useForm(props?: Props) {
   function register(instance: FormActionType) {
     formRef.value = instance
     watch(() => props, () => {
+      console.log('props', props);
+      
       props && instance.setProps(props)
     }, { immediate: true, deep: true })
   }
@@ -27,6 +33,14 @@ export function useForm(props?: Props) {
     submit: async () => {
       const form = await getForm()
       return form.submit()
+    },
+    setProps: async (props: Partial<FormProps>) => {
+      const form = await getForm()
+      return form.setProps(props)
+    },
+    setFieldsValue: async (values: Recordable) => {
+      const form = await getForm()
+      return form.setFieldsValue(values)
     }
   }
 

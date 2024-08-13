@@ -171,6 +171,30 @@ const comp: AppRouteRecordRaw = {
           meta: {
             title: t('routes.demo.form.useForm')
           }
+        },
+        {
+          path: 'tabsForm',
+          name: 'TabsFormDemo',
+          component: () => import('@/views/demo/form/TabsForm.vue'),
+          meta: {
+            title: t('routes.demo.form.tabsForm')
+          }
+        },
+        {
+          path: 'advancedForm',
+          name: 'AdvancedFormDemo',
+          component: () => import('@/views/demo/form/AdvancedForm.vue'),
+          meta: {
+            title: t('routes.demo.form.advancedForm')
+          }
+        },
+        {
+          path: 'ruleForm',
+          name: 'RuleFormDemo',
+          component: () => import('@/views/demo/form/RuleForm.vue'),
+          meta: {
+            title: t('routes.demo.form.ruleForm')
+          }
         }
       ]
     },

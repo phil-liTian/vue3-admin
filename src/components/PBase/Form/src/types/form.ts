@@ -23,7 +23,7 @@ interface BasicFormSchema<T extends ComponentType = any> {
 export interface FormActionType {
   submit: () => Promise<void>;
   setProps: (formProps: Partial<FormProps>) => Promise<void>
-  // setFieldsValue: () => void;
+  setFieldsValue: (values: Recordable) => Promise<void>;
 }
 
 export interface ComponentFormSchema<T extends ComponentType = any> extends BasicFormSchema {
@@ -60,6 +60,7 @@ export interface FormProps {
   showActionButtonGroup?: Boolean,
   showSubmitButton?: Boolean,
   showResetButton?: Boolean,
+  showAdvancedButton?: Boolean,
   resetButtonOptions?: Partial<ButtonProps>,
   submitButtonOptions?: Partial<ButtonProps>,
 }

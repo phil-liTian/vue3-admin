@@ -50,7 +50,10 @@
     "form": "Form",
     "basic": "Basic",
     "refForm": "RefForm",
-    "useForm": "UseForm"
+    "useForm": "UseForm",
+    "advancedForm": "advancedForm",
+    "tabsForm": "TabsForm",
+    "ruleForm": "RuleForm"
   },
   "feat": {
     "feat": "Page Function",

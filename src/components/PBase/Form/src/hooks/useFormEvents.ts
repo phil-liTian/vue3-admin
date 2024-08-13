@@ -1,3 +1,7 @@
+/*
+ * @Date: 2024-08-13 19:17:12
+ * @LastEditors: phil_litian
+ */
 import { ComputedRef, Ref, unref } from "vue";
 import { FormSchema } from "../types/form";
 
@@ -62,8 +66,14 @@ export function useFormEvents({
     })
   }
 
+  // 设置form中的field值
+  const setFieldsValue = async (values: Recordable) => {
+    console.log('values--->', values);
+  }
+
   return {
     handleSubmit,
-    resetFields
+    resetFields,
+    setFieldsValue
   }
 }

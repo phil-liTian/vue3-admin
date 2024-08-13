@@ -19,19 +19,20 @@
         <PButton
           v-if='showSubmitButton'
           v-bind="getSubmitBtnOptions"
+          type='primary'
           @click="submitAction"
           class="mr-2">
           {{ getSubmitBtnOptions.text }}
         </PButton>
 
         <slot name="advanceBefore"></slot>
-        <!-- <PButton 
+        <PButton 
           type="link" 
           size="small"
           v-if="showAdvancedButton">
           {{ t('component.form.putAway') }}
           <PBasicArrow class="ml-1" />
-        </PButton> -->
+        </PButton>
         <slot name="advanceAfter"></slot>
       </Form.Item>
     </div>

@@ -266,7 +266,10 @@ export const useSchemas: FormSchema[] = [
   {
     field: 'field1',
     label: '字段1',
-    component: 'Input'
+    component: 'Input',
+    colProps: {
+      span: 8
+    }
   }
 ]
 
@@ -275,6 +278,20 @@ export const settingSchemas: FormSchema[] = [
     field: 'd1',
     component: 'Divider',
     label: '基础属性',
+    colProps: {
+      span: 24
+    },
+    componentProps: {
+      
+    }
+  }
+]
+
+export const ruleSchemas: FormSchema[] = [
+  {
+    field: 'd1',
+    component: 'Divider',
+    label: '校验规则',
     colProps: {
       span: 24
     },

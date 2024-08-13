@@ -45,6 +45,7 @@ export const basicProps = {
   showActionButtonGroup: propTypes.bool.def(true),
   showResetButton: propTypes.bool.def(true),
   showSubmitButton: propTypes.bool.def(true),
+  showAdvancedButton: propTypes.bool.def(false),
   submitButtonOptions: {
     type: Object as PropType<Partial<ButtonProps>>
   },

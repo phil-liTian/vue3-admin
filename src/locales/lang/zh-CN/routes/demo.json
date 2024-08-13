@@ -50,7 +50,10 @@
     "form": "表单",
     "basic": "基础表单",
     "refForm": "RefForm",
-    "useForm": "UseForm"
+    "useForm": "UseForm",
+    "advancedForm": "可收缩表单",
+    "tabsForm": "标签页 + 多级field",
+    "ruleForm": "表单校验"
   },
   "feat": {
     "feat": "功能",

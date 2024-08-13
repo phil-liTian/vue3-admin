@@ -1,6 +1,6 @@
 <template>
   <PageWrapper title='UseForm'>
-    <PButton type='primary' @click='handleShowDrawer'>更改设置</PButton>
+    <PButton class="mb-2" type='primary' @click='handleShowDrawer'>更改设置</PButton>
 
     <PCollapseContainer title='useForm'>
       <PBasicForm @register='register' />

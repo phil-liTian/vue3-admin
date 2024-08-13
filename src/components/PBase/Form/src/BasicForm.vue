@@ -56,6 +56,8 @@
   const { prefixCls } = useDesign('basic-form')
   
   const getProps = computed(() => { return { ...props, ...unref(propsRef) } })
+  console.log('props--->', props, propsRef);
+  
 
   const getRow = computed(() => {
     const { rowProps } = unref(getProps)
@@ -77,7 +79,10 @@
     formModel
   })
 
-  const { handleSubmit, resetFields } = useFormEvents({
+  const { 
+    handleSubmit, 
+    resetFields, 
+    setFieldsValue } = useFormEvents({
     emits,
     defaultValueRef,
     formElRef,
@@ -87,7 +92,8 @@
   })
 
   const setProps = async (formProps: FormProps) => {
-    propsRef.value = deepMerge(unref(formProps) || {}, formProps)
+    
+    propsRef.value = deepMerge(unref(propsRef) || {}, formProps)
   }
 
   watch(() => getSchema.value, (schema) => {
@@ -112,7 +118,8 @@
 
   const formActionType: FormActionType = {
     setProps,
-    submit: handleSubmit
+    submit: handleSubmit,
+    setFieldsValue
   }
   
   const getFormActionBindProps = computed(() => {

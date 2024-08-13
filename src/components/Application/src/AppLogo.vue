@@ -4,7 +4,7 @@
 -->
 <template>
   <div @click="goHome" :class="getAppLogoClass">
-    <img src="../../../assets/images/logo.png" />
+    <img src="../../../assets/images/phil.png" />
     <div :class="getTitleClass" class="flex ml-2" v-if="showTitle">{{ title }}</div>
   </div>
 </template>
@@ -64,6 +64,8 @@
 
     img {
       width: 32px;
+      border-radius: 32px;
+      overflow: hidden;
     }
 
     &__title {
