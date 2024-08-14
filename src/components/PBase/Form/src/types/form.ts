@@ -16,14 +16,25 @@ interface BasicFormSchema<T extends ComponentType = any> {
   suffix?: string | number | (() => string | VNode);
 
   renderComponentContent?: VNode | VNode[] | string | (() => any);
-
   componentProps?: any;
+
+  show?: boolean;
+  ifShow?: boolean;
+
+  // 是否必填
+  required?: boolean;
 }
 
 export interface FormActionType {
   submit: () => Promise<void>;
   setProps: (formProps: Partial<FormProps>) => Promise<void>
   setFieldsValue: (values: Recordable) => Promise<void>;
+  resetFields: () => Promise<void>;
+  getFieldsValue: () => Promise<void>;
+  appendSchemaByField: ( schema: FormSchema[], prefixField?: string, first?: boolean ) => void;
+  removeSchemaByField: (field: string | string[]) => void;
+  validateFields: (nameList?: string | string[]) => Promise<any>;
+  clearValidate: (nameList: undefined | string | string[]) => Promise<any>
 }
 
 export interface ComponentFormSchema<T extends ComponentType = any> extends BasicFormSchema {
@@ -55,6 +66,7 @@ export interface FormProps {
   readonly?: Boolean,
   compact?: Boolean,
   actionColOptions?: Partial<ColEx>,
+  baseColProps?: Partial<ColEx>,
 
   // FormAction
   showActionButtonGroup?: Boolean,

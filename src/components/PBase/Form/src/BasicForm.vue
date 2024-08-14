@@ -20,7 +20,7 @@
           </template>
         </FormItem>
       </template>
-      <FormAction v-bind="getFormActionBindProps">
+      <FormAction v-bind="getFormActionBindProps" @toggle-advanced="handleToggleAdvanced">
         <template #[item]="data" v-for="item in ['resetBefore', 'submitBefore', 'advanceBefore', 'advanceAfter']">
           <slot :name="item" v-bind="data || {}"></slot>
         </template>
@@ -32,7 +32,7 @@
   
 <script lang='ts' setup>
   import type { Ref } from 'vue'
-  import { computed, unref, defineEmits, reactive, watch, onMounted, ref, defineExpose } from 'vue';
+  import { computed, unref, defineEmits, reactive, watch, onMounted, ref } from 'vue';
   import { Form, Row } from 'ant-design-vue'
   import { useDesign } from '@h/web/useDesign'
   import { cloneDeep } from 'lodash-es'
@@ -42,22 +42,26 @@
   import { useFormEvents } from './hooks/useFormEvents'
   import { createFormContext } from './hooks/useFormContext'
   import { useFormValues } from './hooks/useFormValues';
-  import { FormActionType, FormProps } from './types/form'
+  import { useAdvanced } from './hooks/useAdvanced'
+  import { FormActionType, FormProps, FormSchema } from './types/form'
   import { deepMerge } from '@/utils';
+  import { AdvanceState } from './types/hooks';
 
   defineOptions({ name: 'PBasicForm' })
   const props = defineProps(basicProps)
   const emits = defineEmits(['submit', 'reset', 'register'])
   const defaultValueRef = ref({})
   const formModel = reactive({})
+  const advancedState = reactive<AdvanceState>({
+    isAdvanced: false
+  })
   const propsRef = ref<Partial<FormProps>>({})
+  const schemaRef = ref<Nullable<FormSchema[]>>(null)
   const formElRef: Ref<Nullable<FormActionType>> = ref(null)
 
   const { prefixCls } = useDesign('basic-form')
   
   const getProps = computed(() => { return { ...props, ...unref(propsRef) } })
-  console.log('props--->', props, propsRef);
-  
 
   const getRow = computed(() => {
     const { rowProps } = unref(getProps)
@@ -68,7 +72,7 @@
   })
 
   const getSchema = computed(() => {
-    const schemas = unref(getProps).schemas;
+    const schemas = schemaRef.value || unref(getProps).schemas;
 
     return cloneDeep(schemas)
   })
@@ -82,13 +86,25 @@
   const { 
     handleSubmit, 
     resetFields, 
-    setFieldsValue } = useFormEvents({
+    setFieldsValue,
+    getFieldsValue,
+    appendSchemaByField,
+    removeSchemaByField,
+    validateFields,
+    clearValidate } = useFormEvents({
     emits,
     defaultValueRef,
     formElRef,
     getSchema,
     formModel,
+    schemaRef,
     handleFormValues
+  })
+
+  const { handleToggleAdvanced } = useAdvanced({
+    advancedState,
+    getProps,
+    getSchema
   })
 
   const setProps = async (formProps: FormProps) => {
@@ -119,11 +135,17 @@
   const formActionType: FormActionType = {
     setProps,
     submit: handleSubmit,
-    setFieldsValue
+    setFieldsValue,
+    getFieldsValue,
+    resetFields,
+    appendSchemaByField,
+    removeSchemaByField,
+    validateFields,
+    clearValidate
   }
   
   const getFormActionBindProps = computed(() => {
-    return { ...getProps.value  }
+    return { ...getProps.value, ...advancedState  }
   })
   
   defineExpose({

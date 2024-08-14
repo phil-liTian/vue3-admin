@@ -29,9 +29,10 @@
         <PButton 
           type="link" 
           size="small"
+          @click="toggleAdvanced"
           v-if="showAdvancedButton">
-          {{ t('component.form.putAway') }}
-          <PBasicArrow class="ml-1" />
+          {{ isAdvanced ? t('component.form.putAway') : t('component.form.unfold') }}
+          <PBasicArrow class="ml-1" :expand="!isAdvanced" director="up" />
         </PButton>
         <slot name="advanceAfter"></slot>
       </Form.Item>
@@ -65,8 +66,11 @@
     actionColOptions: {
       type: Object as PropType<Partial<ColEx>>,
       default: () => ({})
-    }
+    },
+    isAdvanced: propTypes.bool
   })
+
+  const emits = defineEmits(['toggle-advanced'])
 
   const { submitAction, resetAction } = useFormContext()
 
@@ -91,6 +95,11 @@
       text: t('common.queryText')
     }, props.submitButtonOptions)
   })
+
+  // 切换
+  const toggleAdvanced = () => {
+    emits('toggle-advanced')
+  }
 
 </script>
   

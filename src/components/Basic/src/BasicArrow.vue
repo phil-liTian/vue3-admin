@@ -14,6 +14,7 @@
   const { prefixCls } = useDesign('basic-arrow')
 
   const props = defineProps({
+    expand: Boolean,
     director: {
       type: String,
       default: 'up',
@@ -26,6 +27,9 @@
   const getClass = computed(() => {
     return [
       prefixCls,
+      {
+        [`${prefixCls}--active`]: props.expand
+      },
       props.director
     ]
   })
@@ -45,6 +49,16 @@
 
     &.down {
       transform: rotate(90deg);
+    }
+
+    &--active {
+      &.up {
+        transform: rotate(90deg);
+      }
+
+      &.down {
+        transform: rotate(-90deg);
+      }
     }
   }
 </style>

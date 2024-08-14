@@ -189,11 +189,35 @@ const comp: AppRouteRecordRaw = {
           }
         },
         {
+          path: 'appendForm',
+          name: 'appendFormDemo',
+          component: () => import('@/views/demo/form/AppendForm.vue'),
+          meta: {
+            title: t('routes.demo.form.appendForm')
+          }
+        },
+        {
           path: 'ruleForm',
           name: 'RuleFormDemo',
           component: () => import('@/views/demo/form/RuleForm.vue'),
           meta: {
             title: t('routes.demo.form.ruleForm')
+          }
+        },
+        {
+          path: 'dynamicForm',
+          name: 'DynamicFormDemo',
+          component: () => import('@/views/demo/form/DynamicForm.vue'),
+          meta: {
+            title: t('routes.demo.form.dynamicForm')
+          }
+        },
+        {
+          path: 'customerForm',
+          name: 'CustomerFormDemo',
+          component: () => import('@/views/demo/form/CustomerForm.vue'),
+          meta: {
+            title: t('routes.demo.form.customerForm')
           }
         }
       ]

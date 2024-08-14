@@ -20,8 +20,6 @@ function formatComponentName(vm) {
     }
   }
 
-  console.log('options--->', options._componentTag , options.name, options.__file);
-
   return {
     name: options._componentTag || options.name,
     file: options.__file

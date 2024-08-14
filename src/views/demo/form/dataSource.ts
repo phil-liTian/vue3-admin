@@ -186,7 +186,6 @@ export const schemas: FormSchema[] = [
   }
 ]
 
-
 export const refSchemas: FormSchema[] = [
   {
     field: 'field1',
@@ -289,14 +288,106 @@ export const settingSchemas: FormSchema[] = [
 
 export const ruleSchemas: FormSchema[] = [
   {
-    field: 'd1',
-    component: 'Divider',
-    label: '校验规则',
+    field: 'field1',
+    component: 'Input',
+    label: '字段1',
+    required: true,
     colProps: {
-      span: 24
-    },
-    componentProps: {
-      
+      span: 8
+    }
+  },
+  {
+    field: 'field2',
+    component: 'Input',
+    label: '字段2',
+    required: true,
+    colProps: {
+      span: 8
+    }
+  },
+  {
+    field: 'id',
+    label: 'id',
+    defaultValue: 0,
+    component: 'InputNumber',
+  },
+  {
+    field: 'field3',
+    component: 'DatePicker',
+    label: '字段3',
+    required: true,
+    colProps: {
+      span: 8
     }
   }
+]
+
+export const appendSchemas: FormSchema[] = [
+  {
+    field: 'field0a',
+    component: 'Input',
+    label: '字段0'
+  },
+  {
+    field: 'field0b',
+    component: 'Input',
+    label: '字段0'
+  },
+  {
+    field: '0',
+    label: '',
+    slot: 'add'
+  }
+]
+
+export const dynamicSchemas: FormSchema[] = [
+  {
+    field: 'field1',
+    component: 'Input',
+    label: '字段1',
+    colProps: {
+      span: 8
+    }
+  },
+  {
+    field: 'field2',
+    component: 'Input',
+    label: '字段2',
+    colProps: {
+      span: 8
+    }
+  }
+]
+
+export const dynamicSchemas1: FormSchema[] = [
+  {
+    field: 'field1',
+    component: 'Input',
+    label: '字段1',
+    colProps: {
+      span: 8
+    },
+    componentProps: {
+      disabled: true
+    }
+  },
+  {
+    field: 'field2',
+    component: 'Input',
+    label: '字段2',
+    colProps: {
+      span: 8
+    }
+  }
+]
+
+export const customerSchemas: FormSchema[] = [
+  {
+    field: 'field2',
+    component: 'Input',
+    label: '字段2',
+    colProps: {
+      span: 8
+    }
+  },
 ]

@@ -19,6 +19,7 @@ type CustomComponents<T = _CustomComponents> = {
 
 export interface ComponentProps {
   Input: ExtractPropTypes<(typeof import('ant-design-vue/es/input'))['default']>;
+  InputNumber: ExtractPropTypes<(typeof import('ant-design-vue/es/input-number'))['default']>;
   Select: ExtractPropTypes<(typeof import('ant-design-vue/es/select'))['default']>;
   Divider: ExtractPropTypes<(typeof import('ant-design-vue/es/divider'))['default']>;
   DatePicker: ExtractPropTypes<typeof import('ant-design-vue/es/date-picker')['default']>;

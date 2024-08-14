@@ -3,7 +3,7 @@
  * @LastEditors: phil_litian
  */
 import { nextTick, ref, unref, watch } from "vue";
-import { FormActionType, FormProps } from "../types/form";
+import { FormActionType, FormProps, FormSchema } from "../types/form";
 
 type Props = Partial<FormProps>
 
@@ -22,8 +22,6 @@ export function useForm(props?: Props) {
   function register(instance: FormActionType) {
     formRef.value = instance
     watch(() => props, () => {
-      console.log('props', props);
-      
       props && instance.setProps(props)
     }, { immediate: true, deep: true })
   }
@@ -38,9 +36,29 @@ export function useForm(props?: Props) {
       const form = await getForm()
       return form.setProps(props)
     },
+    resetFields: async () => {
+      const form = await getForm()
+      return form.resetFields()
+    },
     setFieldsValue: async (values: Recordable) => {
       const form = await getForm()
       return form.setFieldsValue(values)
+    },
+    getFieldsValue: () => {
+      return unref(formRef).getFieldsValue()
+    },
+    appendSchemaByField: (schemas: FormSchema[]) =>{
+      unref(formRef).appendSchemaByField(schemas)
+    },
+    removeSchemaByField: (field: string | string[]) => {
+      unref(formRef).removeSchemaByField(field)
+    },
+    validateFields: async (nameList?: string | string[]) => {
+      const form = await getForm()
+      return form.validateFields(nameList)
+    },
+    clearValidate: (nameList: string | string[] ) => {
+      return unref(formRef).clearValidate(nameList)
     }
   }
 

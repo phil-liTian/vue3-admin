@@ -53,7 +53,10 @@
     "useForm": "UseForm",
     "advancedForm": "可收缩表单",
     "tabsForm": "标签页 + 多级field",
-    "ruleForm": "表单校验"
+    "ruleForm": "表单校验",
+    "appendForm": "表格增删",
+    "dynamicForm": "动态表单",
+    "customerForm": "自定义组件"
   },
   "feat": {
     "feat": "功能",

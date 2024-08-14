@@ -15,7 +15,7 @@ export function useFormValues({
   formModel
 }: UseFormValuesContext) {
   const handleFormValues = (values: Recordable) => {
-    return values
+    return Promise.resolve(values)
   }
 
   const initDefault = () => {

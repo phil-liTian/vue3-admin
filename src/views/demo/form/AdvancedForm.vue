@@ -8,7 +8,7 @@
       <PBasicForm @register='register'></PBasicForm>
     </PCollapseContainer>
 
-    <PCollapseContainer title='超过三行自动收起,折叠时保留两行'>
+    <PCollapseContainer title='超过三行自动收起,折叠时保留两行' class="mt-4">
       <PBasicForm></PBasicForm>
     </PCollapseContainer>
   </PageWrapper>

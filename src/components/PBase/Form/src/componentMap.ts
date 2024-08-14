@@ -6,6 +6,7 @@ import { Component } from 'vue'
 import { 
   Select, 
   Input, 
+  InputNumber,
   DatePicker, 
   Checkbox, 
   CheckboxGroup, 
@@ -29,6 +30,7 @@ ComponentMap.set('CheckboxGroup', CheckboxGroup)
 ComponentMap.set('RadioGroup', RadioGroup)
 ComponentMap.set('Switch', Switch)
 ComponentMap.set('Cascader', Cascader)
+ComponentMap.set('InputNumber', InputNumber)
 
 // custom
 ComponentMap.set('Upload', BasicUpload)

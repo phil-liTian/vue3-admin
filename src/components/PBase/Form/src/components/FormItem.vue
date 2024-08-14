@@ -4,13 +4,14 @@
 -->
 <script lang="tsx">
   import { PropType, computed, defineComponent, unref, toRefs } from "vue";
-  import { Col, Divider, Form } from 'ant-design-vue'
+  import { Col, Divider, Form, message } from 'ant-design-vue'
   import { FormSchemaInner as FormSchema } from "../types/form";
   import { ComponentMap } from "../componentMap";
-  import { isFunction } from "@/utils/is";
+  import { isBoolean, isFunction } from "@/utils/is";
   import { getSlot } from "@/utils/helper/tsxHelper";
   import { isIncludeSimpleComponents } from "../helper";
   import { useItemLabelWidth } from '../hooks/useLabelWidth'
+import { trigger } from "packages/hooks/src/useRequest/utils/cacheSubscribe";
 
   export default defineComponent({
     props: {
@@ -32,15 +33,42 @@
       }
     },
     setup(props, { slots }) {
+      const { baseColProps } = props.formProps
       const { colProps } = props.schema
 
-      const realColProps = { ...colProps }
+      const realColProps = { ...baseColProps, ...colProps }
 
       function getShow(): { isShow: boolean; isIfShow: boolean } {
+        const { show, ifShow } = props.schema
         let isShow = true
         let isIfShow = true
+        if ( isBoolean(show) ) {
+          isShow = show
+        }
+
+        if ( isBoolean(ifShow) ) {
+          isIfShow = ifShow
+        }
 
         return { isShow, isIfShow }
+      }
+
+
+      function handleRules() {
+        const { required } = props.schema
+        function validator( value ) {
+          if ( value === '' ) {
+            return Promise.reject('error')
+          }
+
+          return Promise.reject('111')
+        }
+        let rules = [
+          // { required, trigger: 'blur', validator, message: '12221' }
+        ]
+        console.log('rules', rules);
+        
+        return rules
       }
 
       const getValues = computed(() => {
@@ -121,7 +149,7 @@
       }
 
       function renderItem() {
-        const { component, slot, suffix } = props.schema
+        const { component, slot, suffix, field } = props.schema
         const { labelCol } = unref(itemLabelWidthProps)
         
         if ( component === 'Divider' ) {
@@ -132,13 +160,20 @@
           
         } else {
           const getContent = () => {
-            return slot ? getSlot(slots, slot) : renderComponent()
+            return slot ? getSlot(slots, slot, unref(getValues)) : renderComponent()
           }
           const showSuffix = !!suffix
           const getSuffix = isFunction(suffix) ? suffix() : suffix;
+          // const validator = val => {
+          //   console.log('val', val);
+            
+          // }
+            // rules={handleRules()}
           return (<Form.Item 
+            name={ field }
             labelCol={labelCol}
             class={{ 'suffix-item': showSuffix }} 
+            rules={handleRules()}
             label={renderLabelHelpMessage()}>
             <div style='display: flex'>
               <div>{ getContent() }</div>
@@ -153,13 +188,15 @@
       }
       
       return {
+        getShow,
         realColProps,
         getContent
       }
     },
 
     render() {
-      return <Col { ...this.realColProps }>
+      const { isShow } = this.getShow()
+      return <Col { ...this.realColProps } v-show={isShow}>
         { this.getContent() }
       </Col>
     }

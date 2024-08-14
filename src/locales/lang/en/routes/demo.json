@@ -53,7 +53,10 @@
     "useForm": "UseForm",
     "advancedForm": "advancedForm",
     "tabsForm": "TabsForm",
-    "ruleForm": "RuleForm"
+    "ruleForm": "Rule",
+    "appendForm": "Append",
+    "dynamicForm": "Dynamic",
+    "customerForm": "Customer"
   },
   "feat": {
     "feat": "Page Function",
