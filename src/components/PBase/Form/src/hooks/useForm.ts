@@ -3,11 +3,11 @@
  * @LastEditors: phil_litian
  */
 import { nextTick, ref, unref, watch } from "vue";
-import { FormActionType, FormProps, FormSchema } from "../types/form";
+import { FormActionType, FormProps, FormSchema, UseFormReturnType } from "../types/form";
 
 type Props = Partial<FormProps>
 
-export function useForm(props?: Props) {
+export function useForm(props?: Props): UseFormReturnType {
   const formRef = ref<Nullable<FormActionType>>(null);
 
   async function getForm() {
@@ -59,6 +59,9 @@ export function useForm(props?: Props) {
     },
     clearValidate: (nameList: string | string[] ) => {
       return unref(formRef).clearValidate(nameList)
+    },
+    updateSchema: (data: Partial<FormSchema> | Partial<FormSchema>[]) => {
+      return unref(formRef).updateSchema(data)
     }
   }
 

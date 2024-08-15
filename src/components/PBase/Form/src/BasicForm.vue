@@ -13,7 +13,9 @@
         <FormItem 
           :formModel="formModel"
           :formProps="getProps"
+          :formActionType="formActionType"
           :schema="schema"
+          :setFormModel="setFormModel"
           :allDefaultValues="defaultValueRef">
           <template #[item]="data" v-for="item in Object.keys($slots)">
             <slot :name="item" v-bind="data || {}"></slot>
@@ -91,7 +93,8 @@
     appendSchemaByField,
     removeSchemaByField,
     validateFields,
-    clearValidate } = useFormEvents({
+    clearValidate,
+    updateSchema } = useFormEvents({
     emits,
     defaultValueRef,
     formElRef,
@@ -108,8 +111,12 @@
   })
 
   const setProps = async (formProps: FormProps) => {
-    
     propsRef.value = deepMerge(unref(propsRef) || {}, formProps)
+  }
+
+  const setFormModel = (key, value) => {
+    // formModel.value = { ...formModel.value, ...values }
+    formModel[key] = value
   }
 
   watch(() => getSchema.value, (schema) => {
@@ -141,7 +148,8 @@
     appendSchemaByField,
     removeSchemaByField,
     validateFields,
-    clearValidate
+    clearValidate,
+    updateSchema
   }
   
   const getFormActionBindProps = computed(() => {

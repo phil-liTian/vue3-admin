@@ -6,5 +6,8 @@
   "searchText": "搜索",
   "queryText": "查询",
   "back": "返回",
-  "redo": "刷新"
+  "redo": "刷新",
+
+  "inputText": "请输入",
+  "chooseText": "请选择"
 }

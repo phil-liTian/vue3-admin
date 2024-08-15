@@ -3,15 +3,15 @@
  * @LastEditors: phil_litian
 -->
 <script lang="tsx">
-  import { PropType, computed, defineComponent, unref, toRefs } from "vue";
+  import { PropType, computed, defineComponent, unref, toRefs, VNode, readonly } from "vue";
   import { Col, Divider, Form, message } from 'ant-design-vue'
-  import { FormSchemaInner as FormSchema } from "../types/form";
+  import { cloneDeep, upperFirst } from 'lodash-es'
+  import { FormActionType, FormSchemaInner as FormSchema, RenderCallbackParams, RenderOpts } from "../types/form";
   import { ComponentMap } from "../componentMap";
-  import { isBoolean, isFunction } from "@/utils/is";
+  import { isBoolean, isFunction, isNull } from "@/utils/is";
   import { getSlot } from "@/utils/helper/tsxHelper";
-  import { isIncludeSimpleComponents } from "../helper";
+  import { createPlaceholderMessage, isIncludeSimpleComponents } from "../helper";
   import { useItemLabelWidth } from '../hooks/useLabelWidth'
-import { trigger } from "packages/hooks/src/useRequest/utils/cacheSubscribe";
 
   export default defineComponent({
     props: {
@@ -30,11 +30,17 @@ import { trigger } from "packages/hooks/src/useRequest/utils/cacheSubscribe";
       formModel: {
         type: Object,
         default: () => ({})
+      },
+      formActionType: {
+        type: Object as PropType<FormActionType>
+      },
+      setFormModel: {
+        type: Function as PropType<(key: string, value: any) => void>
       }
     },
     setup(props, { slots }) {
       const { baseColProps } = props.formProps
-      const { colProps } = props.schema
+      const { colProps, renderColContent, colSlot } = props.schema
 
       const realColProps = { ...baseColProps, ...colProps }
 
@@ -53,37 +59,72 @@ import { trigger } from "packages/hooks/src/useRequest/utils/cacheSubscribe";
         return { isShow, isIfShow }
       }
 
-
+      /**
+       * 当前rules可传的值有：
+       * required: 是否必填
+       * type: string | number 验证类型
+       * min, max: 验证最大最小值
+       * pattern: 正则校验
+       * validator: 自定义校验的函数
+       */
       function handleRules() {
-        const { required } = props.schema
-        function validator( value ) {
-          if ( value === '' ) {
-            return Promise.reject('error')
+        const { required, rules: defRules = [], component, label, rulesMessageJoinLabel } = props.schema
+        let rules = cloneDeep(defRules)
+        const { rulesMessageJoinLabel: globalRulesMessageJoinLabel } = props.formProps
+        const joinLabel = Reflect.has(props.schema, 'rulesMessageJoinLabel') ? rulesMessageJoinLabel : globalRulesMessageJoinLabel
+        const assertLabel = joinLabel ? label : ''
+        const defaultMsg = component ? createPlaceholderMessage(component) + assertLabel : assertLabel
+
+        function validator( rule, value ) {
+          const msg = rule.message || defaultMsg
+          if ( value === undefined || isNull(value) ) {
+            return Promise.reject(msg)
           }
 
-          return Promise.reject('111')
+          return Promise.resolve()
         }
-        let rules = [
-          // { required, trigger: 'blur', validator, message: '12221' }
-        ]
-        console.log('rules', rules);
+
+        const getRequired = isFunction(required) ? (required as ((renderCallbackParams?: RenderCallbackParams) => void))() : required
+
+        if ( getRequired ) {
+          if ( !rules || !rules.length ) {
+            const trigger = 'blur'
+            rules = [{ required: getRequired, trigger, validator }]
+          } else {
+
+          }
+        }
         
         return rules
       }
 
       const getValues = computed(() => {
-        const { allDefaultValues, schema } = props
+        const { allDefaultValues, schema, formModel } = props
         return {
           field: schema.field,
-          value: {
+          model: formModel,
+          schema: schema,
+          values: {
             ...allDefaultValues
           }
-        }
+        } as unknown as RenderCallbackParams
       })
 
       const getDisable = computed(() => {
+        const { dynamicDisabled } = props.schema
         const { disabled: globalDisabled } = props.formProps
-        return globalDisabled
+        let disabled = globalDisabled
+        if ( isFunction(dynamicDisabled) ) {
+          disabled = ((dynamicDisabled as any)(getValues.value))
+        }
+
+        if ( isBoolean(dynamicDisabled) ) {
+          disabled = dynamicDisabled
+        }
+        console.log('disabled', disabled);
+        
+
+        return disabled
       })
 
       const getReadonly = computed(() => {
@@ -92,10 +133,11 @@ import { trigger } from "packages/hooks/src/useRequest/utils/cacheSubscribe";
       })
 
       const getComponentProps = computed(() => {
+        const { formActionType, formModel } = props
         let { componentProps = {}, component, field } = props.schema
 
         if ( isFunction(componentProps) ) {
-          componentProps = componentProps({}) || {}
+          componentProps = componentProps({ formActionType, formModel }) || {}
         }
 
         if ( isIncludeSimpleComponents(component) ) {
@@ -111,15 +153,35 @@ import { trigger } from "packages/hooks/src/useRequest/utils/cacheSubscribe";
       })
 
       function renderComponent() {
-        const { component, field } = props.schema
-        const { size } = props.formProps
+        const { component, field, changeEvent = 'change', renderComponentContent } = props.schema
+        const { size, autoSetPlaceholder } = props.formProps
         const Comp = ComponentMap.get(component) as ReturnType<typeof defineComponent>
-
+        const eventKey = `on${upperFirst(changeEvent)}`
+        
         const propsData = {
           size,
           readonly: unref(getReadonly),
           disabled: unref(getDisable),
           ...unref(getComponentProps)
+        }
+        const isCheck = component && ['Switch'].includes(component)
+        const on = {
+          [eventKey]: (e) => {
+            
+            const target = e ? e.target : null
+            const value = target ? (isCheck ? target.check : target.value) : e
+            
+            props.setFormModel(field, value)
+            // 如果componentProps中有eventKey，则执行
+            if ( propsData[eventKey] ) {
+              propsData[eventKey](e)
+            }
+          }
+        }
+
+        const isCreatePlaceholder = !propsData.disabled && autoSetPlaceholder
+        if ( isCreatePlaceholder ) {
+          propsData.placeholder = createPlaceholderMessage(component)
         }
 
         // propsData.codeField = field
@@ -127,31 +189,46 @@ import { trigger } from "packages/hooks/src/useRequest/utils/cacheSubscribe";
 
         // 给默认值
         const bindValue: Recordable<any> = {
-          value: props.formModel[field]
+          [isCheck ? 'checked' : 'value']: props.formModel[field]
         }
 
         const compAttr: Recordable<any> = {
           ...propsData,
-          ...bindValue
+          ...bindValue,
+          ...on
         }
 
-        return <Comp { ...compAttr } />
+        if ( !renderComponentContent ) {
+          return <Comp { ...compAttr } />
+        }
+
+
+        // 渲染组件插槽
+        const compSlot = isFunction(renderComponentContent) ?
+          {
+            ...(renderComponentContent as (enderCallbackParams: RenderCallbackParams, opts: RenderOpts) => any)(unref(getValues), { disabled: unref(getDisable), readonly: unref(getReadonly) })
+          } : {
+            default: () => renderComponentContent
+          }
+          console.log('compSlot', compSlot);
+          
+          return <Comp { ...compAttr }> { compSlot } </Comp>
       }
 
       const { schema, formProps } = toRefs(props)
       const itemLabelWidthProps = useItemLabelWidth(schema, formProps)
-
+  
       function renderLabelHelpMessage() {
         const { label } = props.schema
-        const getLabel = isFunction(label) ? label() : label
+        const getLabel = isFunction(label) ? (label as (() => string | VNode))() : label
         
         return <span>{ getLabel }</span>
       }
 
       function renderItem() {
-        const { component, slot, suffix, field } = props.schema
+        const { component, slot, suffix, field, render } = props.schema
         const { labelCol } = unref(itemLabelWidthProps)
-        
+        const opts = { disabled: getDisable.value, readonly: getReadonly.value }
         if ( component === 'Divider' ) {
           return <Col span={24}>
             <Divider {...unref(getComponentProps)}>{ renderLabelHelpMessage() }</Divider>
@@ -160,23 +237,18 @@ import { trigger } from "packages/hooks/src/useRequest/utils/cacheSubscribe";
           
         } else {
           const getContent = () => {
-            return slot ? getSlot(slots, slot, unref(getValues)) : renderComponent()
+            return slot ? getSlot(slots, slot, { ...unref(getValues), ...opts }) : render ? render(unref(getValues), opts) : renderComponent()
           }
           const showSuffix = !!suffix
-          const getSuffix = isFunction(suffix) ? suffix() : suffix;
-          // const validator = val => {
-          //   console.log('val', val);
-            
-          // }
-            // rules={handleRules()}
-          return (<Form.Item 
+          const getSuffix = isFunction(suffix) ? (suffix as (() => string | VNode))() : suffix;
+          return (<Form.Item
             name={ field }
             labelCol={labelCol}
             class={{ 'suffix-item': showSuffix }} 
             rules={handleRules()}
             label={renderLabelHelpMessage()}>
             <div style='display: flex'>
-              <div>{ getContent() }</div>
+              <div style='flex: 1'>{ getContent() }</div>
               { showSuffix && <span class='suffix'>{ getSuffix }</span> }
             </div>
           </Form.Item>)
@@ -184,7 +256,9 @@ import { trigger } from "packages/hooks/src/useRequest/utils/cacheSubscribe";
       }
 
       const getContent = () => {
-        return renderItem()
+        const opts = { disabled: getDisable.value, readonly: getReadonly.value }
+        return colSlot ? getSlot(slots, colSlot, { ...unref(getValues), ...opts }) :
+          renderColContent ? renderColContent(unref(getValues), opts) : renderItem()
       }
       
       return {

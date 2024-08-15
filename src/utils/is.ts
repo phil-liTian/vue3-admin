@@ -9,7 +9,8 @@ export {
   isNil, // 检查数据是否是null或者undefined
   isArray,
   isNumber,
-  isBoolean
+  isBoolean,
+  isNull
 } from 'lodash-es'
 
 const toString = Object.prototype.toString

@@ -4,7 +4,6 @@ import { ErrorTypeEnum } from '@e/exceptionEnum'
 
 
 function formatComponentName(vm) {
-  console.log('vm--->', vm);
   if ( vm.$root === vm ) {
     return {
       name: 'root',

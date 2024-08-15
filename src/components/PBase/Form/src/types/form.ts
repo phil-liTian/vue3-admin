@@ -2,11 +2,28 @@ import { VNode } from "vue";
 import { ComponentType, ColEx } from ".";
 import { propTypes } from "@/utils/propTypes";
 import { ButtonProps as AntdButtonProps } from "@/components/Button";
+import { RuleObject } from "ant-design-vue/es/form";
 
 /*
  * @Date: 2024-06-11 10:50:55
  * @LastEditors: phil_litian
  */
+export type Rules = Partial<RuleObject> & {
+  trigger?: 'blur' | 'change' | ['blur', 'change']
+}
+
+export interface RenderCallbackParams {
+  schema?: FormSchema;
+  values?: Recordable;
+  model?: Recordable;
+  field?: string
+}
+
+export type RenderOpts = {
+  disabled: boolean;
+  [key: string]: any
+}
+
 interface BasicFormSchema<T extends ComponentType = any> {
   field: string;
   label?: string | (() => string | VNode);
@@ -15,14 +32,28 @@ interface BasicFormSchema<T extends ComponentType = any> {
   defaultValue?: any;
   suffix?: string | number | (() => string | VNode);
 
-  renderComponentContent?: VNode | VNode[] | string | (() => any);
+  // customer
+  renderComponentContent?: VNode | VNode[] | string | ((renderCallbackParams?: RenderCallbackParams, options?: RenderOpts) => any);
+  renderColContent?: (renderCallbackParams?: RenderCallbackParams, options?: RenderOpts) => VNode | VNode[] | string;
+  colSlot?: string;
   componentProps?: any;
 
+  // dynamic
   show?: boolean;
   ifShow?: boolean;
 
-  // 是否必填
-  required?: boolean;
+  // 是否必填 rule
+  required?: boolean | ((renderCallbackParams: RenderCallbackParams) => boolean);
+  rules?: Rules[],
+  rulesMessageJoinLabel?: boolean;
+
+  // 事件名
+  changeEvent?: string
+
+  // customer
+  render?: (renderCallbackParams?: RenderCallbackParams, options?: RenderOpts) => VNode | VNode | string[];
+
+  dynamicDisabled?: boolean | ((renderCallbackParams: RenderCallbackParams) => boolean)
 }
 
 export interface FormActionType {
@@ -31,11 +62,15 @@ export interface FormActionType {
   setFieldsValue: (values: Recordable) => Promise<void>;
   resetFields: () => Promise<void>;
   getFieldsValue: () => Promise<void>;
-  appendSchemaByField: ( schema: FormSchema[], prefixField?: string, first?: boolean ) => void;
+  appendSchemaByField: ( schema: FormSchema | FormSchema[], prefixField?: string, first?: boolean ) => void;
   removeSchemaByField: (field: string | string[]) => void;
   validateFields: (nameList?: string | string[]) => Promise<any>;
-  clearValidate: (nameList: undefined | string | string[]) => Promise<any>
+  clearValidate: (nameList?: undefined | string | string[]) => Promise<any>;
+  updateSchema: (data: Partial<FormSchemaInner> | Partial<FormSchemaInner>[]) => Promise<void>
 }
+
+type RegisterFn = (formEl: FormActionType) => void 
+export type UseFormReturnType = [ RegisterFn, FormActionType ]
 
 export interface ComponentFormSchema<T extends ComponentType = any> extends BasicFormSchema {
   component?: T
@@ -75,4 +110,7 @@ export interface FormProps {
   showAdvancedButton?: Boolean,
   resetButtonOptions?: Partial<ButtonProps>,
   submitButtonOptions?: Partial<ButtonProps>,
+
+  autoSetPlaceholder?: Boolean,
+  rulesMessageJoinLabel?: Boolean
 }

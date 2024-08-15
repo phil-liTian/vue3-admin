@@ -46,10 +46,24 @@ export const basicProps = {
   showResetButton: propTypes.bool.def(true),
   showSubmitButton: propTypes.bool.def(true),
   showAdvancedButton: propTypes.bool.def(false),
+  /**
+   * 提交按钮样式
+   */
   submitButtonOptions: {
     type: Object as PropType<Partial<ButtonProps>>
   },
+  /**
+   * 重置按钮样式
+   */
   resetButtonOptions: {
     type: Object as PropType<Partial<ButtonProps>>
-  }
+  },
+  /**
+   * 是否自动设置placeholder
+   */
+  autoSetPlaceholder: propTypes.bool.def(true),
+  /**
+   * 校验的message是否加上label信息
+   */
+  rulesMessageJoinLabel: propTypes.bool.def(true)
 }

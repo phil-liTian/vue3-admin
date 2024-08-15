@@ -6,5 +6,8 @@
   "searchText": "Search",
   "queryText": "Search",
   "back": "Back",
-  "redo": "Refresh"
+  "redo": "Refresh",
+
+  "inputText": "Please Enter",
+  "chooseText": "Please Choose"
 }

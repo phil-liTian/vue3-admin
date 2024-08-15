@@ -26,8 +26,8 @@
   const [ register, { 
     validateFields, 
     clearValidate, 
-    getFieldsValue, 
-    setFieldsValue, 
+    getFieldsValue,
+    setFieldsValue,
     resetFields } ] = useForm({
     schemas: ruleSchemas,
     labelWidth: 120
@@ -48,7 +48,6 @@
 
   const getFormValues = () => {
     const value = getFieldsValue()
-    console.log('value', value);
     createMessage.success(`form values: ${JSON.stringify(value)}`)
   }
 

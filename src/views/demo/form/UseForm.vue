@@ -8,7 +8,7 @@
 
     <PDrawer v-model:open='open' title='更改设置' placemend='right'>
       <PBasicForm @register='settingRegister'>
-
+        
       </PBasicForm>
     </PDrawer>
   </PageWrapper>

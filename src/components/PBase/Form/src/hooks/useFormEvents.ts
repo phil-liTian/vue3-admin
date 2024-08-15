@@ -5,7 +5,7 @@
 import { ComputedRef, Ref, unref } from "vue";
 import { get, cloneDeep } from 'lodash-es'
 import { FormSchema } from "../types/form";
-import { isObject } from "@/utils/is";
+import { isArray, isObject } from "@/utils/is";
 
 interface UseFormActionContext {
   emits: EmitType,
@@ -55,8 +55,8 @@ export function useFormEvents({
     if ( index === -1 ) {
       first ? schemaList.unshift(..._schemaList) : schemaList.push(..._schemaList)
     } else {
-      // 如果已经存在 则替换掉当前的schema
-      schemaList.splice(index, 1, ..._schemaList)
+      // 如果已经存在 则在index后面添加_schemaList
+      schemaList.splice(index, 0, ..._schemaList)
     }
     schemaRef.value = schemaList
   }
@@ -150,6 +150,30 @@ export function useFormEvents({
     validateFields(validKeys)
   }
 
+  // 动态更新field中的内容
+  const updateSchema = async (data: Partial<FormSchema> | Partial<FormSchema>[]) => {
+    let updateData: Partial<FormSchema>[] = []
+    if ( isObject(data) ) {
+      updateData.push(data as Partial<FormSchema>)
+    }
+    if ( isArray(data) ) {
+      updateData = [ ...(data as Partial<FormSchema[]>) ]
+    }
+
+    let schemas: FormSchema[] = []
+    unref(getSchema).map(val => {
+      const updateItem = updateData.find(item => item.field === val.field)
+      if ( updateItem ) {
+        const newSchemas = { ...val, ...updateItem }
+        schemas.push(newSchemas)
+      } else {
+        schemas.push(val)
+      }
+    })
+    
+    schemaRef.value = schemas
+  }
+
   const getFieldsValue = () => {
     const formEl = unref(formElRef)
     if ( !formEl ) return {}
@@ -167,6 +191,9 @@ export function useFormEvents({
     removeSchemaByField,
     // rule
     validateFields,
-    clearValidate
+    clearValidate,
+
+    // dynamic
+    updateSchema
   }
 }
