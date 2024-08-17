@@ -58,6 +58,17 @@
     "dynamicForm": "Dynamic",
     "customerForm": "Customer"
   },
+  "page": {
+    "page": "Page",
+    "form": "Form",
+    "formBasic": "Basic Form",
+    "exception": "Exception",
+    "account": "Account",
+    "accountCenter": "Personal Center",
+    "networkError": "Network Error",
+    "noDataTitle": "No Data on current page",
+    "notData": "No Data"
+  },
   "feat": {
     "feat": "Page Function",
     "ws": "WebSocket test",

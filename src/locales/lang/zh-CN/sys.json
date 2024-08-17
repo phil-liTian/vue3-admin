@@ -41,5 +41,14 @@
     "fireResourceError": "点击触发资源加载错误",
     "fireAjaxError": "点击触发ajax错误",
     "tableActionDesc": "详情"
+  },
+  "exception": {
+    "backLogin": "返回登陆页",
+    "subTitle404": "抱歉，您访问的页面不存在！",
+    "subTitle403": "抱歉，您无权访问该页面！",
+    "subTitle500": "抱歉，服务器错误！",
+    "networkErrorTitle": "网络错误！",
+    "noDataTitle": "当前页无数据！",
+    "networkErrorSubTitle": "抱歉，您的网络链接已断开，请检查你的网络！"
   }
 }

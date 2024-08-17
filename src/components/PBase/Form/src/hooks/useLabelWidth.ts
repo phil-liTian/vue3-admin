@@ -18,7 +18,10 @@ export const useItemLabelWidth = ( schemaItemRef: Ref<FormSchema>, propsRef: Ref
     }
 
     return {
-      labelCol: { style: { width } }
+      labelCol: { style: { width } },
+      wrapperCol: {
+        style: { width: `calc(100% - ${width})` }
+      }
     }
   })
 }

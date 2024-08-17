@@ -11,6 +11,7 @@
       <slot name="formHeader"></slot>
       <template v-for="schema in getSchema" :key="schema.field">
         <FormItem 
+          :isAdvanced="fieldsIsAdvancedMap[schema.field]"
           :formModel="formModel"
           :formProps="getProps"
           :formActionType="formActionType"
@@ -55,7 +56,7 @@
   const defaultValueRef = ref({})
   const formModel = reactive({})
   const advancedState = reactive<AdvanceState>({
-    isAdvanced: false
+    isAdvanced: true
   })
   const propsRef = ref<Partial<FormProps>>({})
   const schemaRef = ref<Nullable<FormSchema[]>>(null)
@@ -104,7 +105,7 @@
     handleFormValues
   })
 
-  const { handleToggleAdvanced } = useAdvanced({
+  const { handleToggleAdvanced, fieldsIsAdvancedMap } = useAdvanced({
     advancedState,
     getProps,
     getSchema

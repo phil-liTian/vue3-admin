@@ -27,7 +27,6 @@
       const reader = new FileReader()
 
       reader.onload = (e) => {
-        console.log('e--->', e);
         try {
 
         } catch (error) {

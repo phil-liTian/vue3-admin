@@ -17,7 +17,6 @@ export function useOpenKeys(
   ) {
   const setOpenKeys = (path) => {
     const menuList = menus.value
-    console.log('menuList', menuList);
     
     if ( menuList?.length === 0 ) {
       menuState.openNames = []

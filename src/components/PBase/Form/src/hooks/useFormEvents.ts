@@ -170,6 +170,7 @@ export function useFormEvents({
         schemas.push(val)
       }
     })
+    console.log('schemaRef', schemaRef);
     
     schemaRef.value = schemas
   }

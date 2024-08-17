@@ -12,6 +12,7 @@
   import { getSlot } from "@/utils/helper/tsxHelper";
   import { createPlaceholderMessage, isIncludeSimpleComponents } from "../helper";
   import { useItemLabelWidth } from '../hooks/useLabelWidth'
+  import { PBasicHelp, PBasicTitle } from "@/components/Basic";
 
   export default defineComponent({
     props: {
@@ -36,6 +37,9 @@
       },
       setFormModel: {
         type: Function as PropType<(key: string, value: any) => void>
+      },
+      isAdvanced: {
+        type: Boolean,
       }
     },
     setup(props, { slots }) {
@@ -45,7 +49,10 @@
       const realColProps = { ...baseColProps, ...colProps }
 
       function getShow(): { isShow: boolean; isIfShow: boolean } {
+        const { showAdvancedButton } = props.formProps
         const { show, ifShow } = props.schema
+        // 标识当前item是否展示(true 展示; false 隐藏)
+        const itemIsAdvanced = showAdvancedButton ? isBoolean(props.isAdvanced) ? props.isAdvanced : true : true
         let isShow = true
         let isIfShow = true
         if ( isBoolean(show) ) {
@@ -55,7 +62,8 @@
         if ( isBoolean(ifShow) ) {
           isIfShow = ifShow
         }
-
+        
+        isShow = isShow && itemIsAdvanced
         return { isShow, isIfShow }
       }
 
@@ -121,8 +129,6 @@
         if ( isBoolean(dynamicDisabled) ) {
           disabled = dynamicDisabled
         }
-        console.log('disabled', disabled);
-        
 
         return disabled
       })
@@ -134,6 +140,7 @@
 
       const getComponentProps = computed(() => {
         const { formActionType, formModel } = props
+        
         let { componentProps = {}, component, field } = props.schema
 
         if ( isFunction(componentProps) ) {
@@ -142,6 +149,10 @@
 
         if ( isIncludeSimpleComponents(component) ) {
           // Divider、BasicTitle
+          componentProps = Object.assign({
+            plain: true,
+            orientation: 'left'
+          }, componentProps)
         }
 
         // let componentProps = {
@@ -159,6 +170,7 @@
         const eventKey = `on${upperFirst(changeEvent)}`
         
         const propsData = {
+          allowClear: true,
           size,
           readonly: unref(getReadonly),
           disabled: unref(getDisable),
@@ -181,7 +193,7 @@
 
         const isCreatePlaceholder = !propsData.disabled && autoSetPlaceholder
         if ( isCreatePlaceholder ) {
-          propsData.placeholder = createPlaceholderMessage(component)
+          propsData.placeholder = unref(getComponentProps).placeholder || createPlaceholderMessage(component)
         }
 
         // propsData.codeField = field
@@ -210,19 +222,29 @@
           } : {
             default: () => renderComponentContent
           }
-          console.log('compSlot', compSlot);
           
-          return <Comp { ...compAttr }> { compSlot } </Comp>
+          return <Comp { ...compAttr }>{ compSlot }</Comp>
       }
 
       const { schema, formProps } = toRefs(props)
       const itemLabelWidthProps = useItemLabelWidth(schema, formProps)
   
       function renderLabelHelpMessage() {
-        const { label } = props.schema
+        const { label, helpMessage } = props.schema
         const getLabel = isFunction(label) ? (label as (() => string | VNode))() : label
+
+        const renderLabel = getLabel
+
+        const getHelpMessage = isFunction(helpMessage) ? (helpMessage as (( renderCallbackParams?: RenderCallbackParams ) => string | string[]))(unref(getValues)) : helpMessage
+
+        if ( !getHelpMessage ) {
+          return renderLabel
+        }
         
-        return <span>{ getLabel }</span>
+        return <span>
+          { renderLabel }
+          <PBasicHelp placement='top' class='mx-1' text={getHelpMessage}></PBasicHelp>
+        </span>
       }
 
       function renderItem() {
@@ -234,7 +256,7 @@
             <Divider {...unref(getComponentProps)}>{ renderLabelHelpMessage() }</Divider>
           </Col>
         } else if ( component === 'BasicTitle' ) {
-          
+          return <PBasicTitle>{ renderLabelHelpMessage() }</PBasicTitle>
         } else {
           const getContent = () => {
             return slot ? getSlot(slots, slot, { ...unref(getValues), ...opts }) : render ? render(unref(getValues), opts) : renderComponent()

@@ -42,5 +42,15 @@
     "fireResourceError": "Fire resource error",
     "fireAjaxError": "Fire ajax error",
     "tableActionDesc": "Description"
+  },
+  "exception": {
+    "backLogin": "Back Login",
+    "subTitle404": "Sorry, the page visited does not exist!",
+    "subTitle403": "Sorry, you do not have permission to access this page!",
+    "subTitle500": "Sorry, the server is reporting an error!",
+    "subTitle401": "Sorry, you do not have permission to access this page!",
+    "networkErrorTitle": "Network Error！",
+    "networkErrorSubTitle": "Sorry，Your network connection has been disconnected, please check your network!",
+    "noDataTitle": "No Data on current page"
   }
 }

@@ -9,6 +9,13 @@
     "restore": "还原",
     "maximize": "最大化"
   },
+  "upload": {
+    "upload": "上传"
+  },
+  "countdown": {
+    "normalText": "获取验证码",
+    "sendText": "{0}秒后重新获取"
+  },
   "time": {
     "just": "刚刚",
     "before": "前",

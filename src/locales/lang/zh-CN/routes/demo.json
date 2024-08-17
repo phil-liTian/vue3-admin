@@ -46,6 +46,17 @@
     "editCellTable": "可编辑单元格",
     "vxeTable": "VxeTable"
   },
+  "page": {
+    "page": "页面",
+    "form": "表单",
+    "formBasic": "基础表单",
+    "exception": "异常",
+    "account": "个人中心",
+    "accountCenter": "个人中心",
+    "networkError": "网络错误",
+    "noDataTitle": "暂无数据",
+    "notData": "无数据"
+  },
   "form": {
     "form": "表单",
     "basic": "基础表单",

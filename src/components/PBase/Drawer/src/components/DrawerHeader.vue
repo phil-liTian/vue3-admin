@@ -13,7 +13,6 @@
       </span>
       <span v-if="title">{{ title }}</span>
     </span>
-
     <span :class="`${prefixCls}__toolbar`">
       <slot name="titleToolbar"></slot>
     </span>

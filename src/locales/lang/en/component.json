@@ -9,6 +9,9 @@
     "restore": "Restore",
     "maximize": "Maximize"
   },
+  "upload": {
+    "upload": "Upload"
+  },
   "time": {
     "just": "just now",
     "before": "before",
@@ -24,6 +27,10 @@
     "time": "The verification is successful and it takes {time} seconds!",
     "error": "verification failed!",
     "redoTip": "Click the picture to refresh"
+  },
+  "countdown": {
+    "normalText": "get SMS code",
+    "sendText": "Require in {0}s"
   },
   "table": {
     "settingDens": "Density",

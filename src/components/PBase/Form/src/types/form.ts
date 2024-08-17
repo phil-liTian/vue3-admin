@@ -28,6 +28,7 @@ interface BasicFormSchema<T extends ComponentType = any> {
   field: string;
   label?: string | (() => string | VNode);
   labelWidth?: number | string;
+  helpMessage?: string | string[] | ((renderCallbackParams?: RenderCallbackParams) => string | string[]);
   colProps?: Partial<ColEx>;
   defaultValue?: any;
   suffix?: string | number | (() => string | VNode);
@@ -53,7 +54,9 @@ interface BasicFormSchema<T extends ComponentType = any> {
   // customer
   render?: (renderCallbackParams?: RenderCallbackParams, options?: RenderOpts) => VNode | VNode | string[];
 
-  dynamicDisabled?: boolean | ((renderCallbackParams: RenderCallbackParams) => boolean)
+  dynamicDisabled?: boolean | ((renderCallbackParams: RenderCallbackParams) => boolean);
+
+  
 }
 
 export interface FormActionType {
@@ -112,5 +115,7 @@ export interface FormProps {
   submitButtonOptions?: Partial<ButtonProps>,
 
   autoSetPlaceholder?: Boolean,
-  rulesMessageJoinLabel?: Boolean
+  rulesMessageJoinLabel?: Boolean,
+  // advance
+  alwaysShowLines?: number
 }

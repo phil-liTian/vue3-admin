@@ -4,6 +4,7 @@
  */
 import { type Router, useRouter } from 'vue-router'
 import { REDIRECT_NAME } from '@/router/constant'
+import { PageEnum } from '@/enums/pageEnum';
 
 export enum GoType {
   'replace',
@@ -12,11 +13,10 @@ export enum GoType {
 
 export const useGo = (_router?: Router) => {
   const { push, replace } = _router || useRouter()
-  function go (opt: any): void;
+  function go (opt?: any): void;
   function go(opt: any, isReplace: boolean): void;
   function go(opt: any, goType: GoType): void;
-  function go(opt: any, isReplaceOrGoType: boolean | GoType = false) {
-    
+  function go(opt: any = PageEnum.BASIC_HOME, isReplaceOrGoType: boolean | GoType = false) {
     // push(opt)
     replace(opt)
   }

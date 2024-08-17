@@ -7,6 +7,9 @@
     v-bind="getBindValues"
     :class="prefixCls"
     @close="onClose">
+    <template #extra>
+      <slot name="extra"></slot>
+    </template>
     <template #title v-if="!$slots.title">
       <DrawerHeader 
         :isDetail="isDetail"
