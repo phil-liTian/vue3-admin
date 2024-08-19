@@ -1,16 +1,59 @@
 
 .ant-btn {
+  // type
+  // primary
   &-primary {
-    
+    background-color: @button-primary-color;
+    color: @white;
   }
 
-  &-error {
-    color: red;
+  // color
+  // success
+  &-success:not(.ant-btn-link, .is-disabled) {
+    background-color: @button-success-color;
+    color: @white;
+    border-color: @button-success-color;
+
+    &:hover {
+      border-color: @button-success-hover-color;
+      background-color: @button-success-hover-color;
+      color: @white;
+    }
   }
 
+  &-success.ant-btn-link:not(.is-disabled) {
+    color: @button-success-color;
+  }
 
+  // warning
+  &-warning:not(.ant-btn-link, .is-disabled) {
+    background-color: @button-warning-color;
+    color: @white;
 
-  &-success {
-    
+    &:hover {
+      border-color: @button-warning-hover-color;
+      background-color: @button-warning-hover-color;
+      color: @white;
+    }
+  }
+
+  &-warning.ant-btn-link:not(.is-disabled) {
+    color: @button-warning-color;
+  }
+
+  // error
+  &-error:not(.ant-btn-link, .is-disabled) {
+    background-color: @button-error-color;
+    color: @white;
+
+    &:hover {
+      border-color: @button-error-hover-color;
+      background-color: @button-error-hover-color;
+      color: @white;
+    }
+  }
+
+  &-error.ant-btn-link:not(.is-disabled) {
+    color: @button-error-color;
   }
 }

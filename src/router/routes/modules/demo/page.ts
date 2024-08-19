@@ -9,8 +9,6 @@ const page: AppRouteModule = {
   path: '/page-demo',
   name: 'PageDemo',
   component: LAYOUT,
-  // component: ExceptionPage,
-  // redirect: '/page-demo/form/basic',
   redirect: '/page-demo/exception',
   meta: {
     orderNo: 20,
@@ -18,23 +16,24 @@ const page: AppRouteModule = {
     title: t('routes.demo.page.page')
   },
   children: [
-    // {
-    //   path: 'form',
-    //   name: 'FormPage',
-    //   component: getParentLayout(''),
-    //   meta: {
-    //     title: t('routes.demo.page.form'),
-    //     icon: 'ion:document-text-outline'
-    //   },
-    //   children: [
-    //     {
-    //       path: 'basic',
-    //       meta: {
-    //         title: t('routes.demo.page.formBasic')
-    //       }
-    //     }
-    //   ]
-    // },
+    {
+      path: 'form',
+      name: 'FormPage',
+      // component: getParentLayout(''),
+      meta: {
+        title: t('routes.demo.page.form'),
+        icon: 'ion:document-text-outline'
+      },
+      children: [
+        {
+          path: 'basic',
+          component: () => import('@/views/demo/page/form/basic/index.vue'),
+          meta: {
+            title: t('routes.demo.page.formBasic')
+          }
+        }
+      ]
+    },
     // // account
     // {
     //   path: 'account',

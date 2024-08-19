@@ -53,7 +53,8 @@ export const usePermissionsStore = defineStore({
     buildRoutesAction(): AppRouteRecordRaw[] {
       const useAppStore = useAppStoreWithOut()
       const useUserStore = useUserStoreWithOut()
-      const { permissionMode = ProjectSetting.permissionMode } = useAppStore.getProjectConfig
+      const { permissionMode } = useAppStore.getProjectConfig
+      
       const roleList = useUserStore.getRoleList || []
       let routes = asyncRoutes
 
@@ -89,6 +90,7 @@ export const usePermissionsStore = defineStore({
           break
         }
         case PermissionModeEnum.BACK: {
+
           
           break
         }

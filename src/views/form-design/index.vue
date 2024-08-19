@@ -3,11 +3,13 @@
  * @LastEditors: phil_litian
 -->
 <template>
-  <PageWrapper>111</PageWrapper>
+  <PageWrapper contentFullHeight>
+    <VFormDesign />
+  </PageWrapper>
 </template>
   
 <script lang='ts' setup>
-  
+  import VFormDesign from './components/VFormDesign/index.vue'
 </script>
   
 <style lang='less' scoped>

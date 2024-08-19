@@ -17,7 +17,7 @@ import {
   Slider
 } from 'ant-design-vue'
 import { ComponentType } from './types/index'
-import { BasicUpload } from '@c/PBase/Upload/index'
+import { PBasicUpload } from '@c/PBase/Upload/index'
 import RadioButtonGroup from './components/RadioButtonGroup.vue'
 import ApiSelect from './components/ApiSelect.vue'
 import ApiCascader from './components/ApiCascader.vue'
@@ -46,7 +46,7 @@ ComponentMap.set('InputNumber', InputNumber)
 ComponentMap.set('Slider', Slider)
 
 // custom
-ComponentMap.set('Upload', BasicUpload)
+ComponentMap.set('Upload', PBasicUpload)
 ComponentMap.set('RadioButtonGroup', RadioButtonGroup)
 ComponentMap.set('BasicTitle', PBasicTitle)
 ComponentMap.set('InputCountDown', InputCountDown)

@@ -116,7 +116,26 @@ export const useTabs = defineStore({
         return
       }
 
+      let toTarget = {}
+      const index = this.tabList.findIndex(v => v.fullPath === path)
+
+      if ( index === 0 ) {
+        if ( this.tabList.length === 1 ) {
+          toTarget = PageEnum.BASIC_HOME
+          // tabList只有一个且移除当前tab的话，则返回首页（当前用户有权限的页面）
+        } else {
+          const page = this.tabList[index + 1]
+          toTarget = getToTarget(page)
+        }
+      } else {
+        const page = this.tabList[index - 1]
+        // page && replace(getToTarget(page))
+
+        toTarget = getToTarget(page)
+      }
+
       close(currentRoute.value)
+      replace(toTarget)
     },
 
     // 通过key关闭tab(关闭后需要切换到tabList中其他路由)
@@ -147,6 +166,7 @@ export const useTabs = defineStore({
 
     // 关闭左侧
     closeLeftTabs(route: RouteLocationNormalized, router: Router) {
+      console.log('closeLeftTabs');
       const index = this.tabList.findIndex(v => v.fullPath === route.fullPath)
       
       if ( index > 0 ) {

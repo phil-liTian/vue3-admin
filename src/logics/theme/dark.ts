@@ -3,9 +3,10 @@
  * @LastEditors: phil_litian
  */
 
-export const updateDarkTheme = (mode: string | null = 'dark') => {
+export const updateDarkTheme = (mode: string | null = 'light') => {
   const htmlRoot = document.querySelector('#htmlRoot')
-  
+    console.log('mode', mode);
+    
   if ( mode === 'dark' ) {
     htmlRoot.setAttribute('data-theme', 'dark')
   } else {

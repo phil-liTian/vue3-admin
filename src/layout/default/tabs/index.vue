@@ -45,13 +45,16 @@
   import { listenerRouteChange } from '@/logics/mitt/routeChange'
   const { prefixCls } = useDesign('multiple-tabs')
   const TabPane = Tabs.TabPane
+  const tabStore = useTabs()
   const { getTabList, addTab, closeTabByKey } = useTabs()
   const { getShowFold, getShowQuick, getShowRedo } = useMultipleTabSetting()
   const { go } = useGo()
   const router = useRouter()
   const activeKeyRef = ref('')
 
-  const getTabState = computed(() => getTabList)
+  const getTabState = computed(() => {
+    return tabStore.getTabList
+  })
   
   // 最少保留一个
   const unClose = computed(() => unref(getTabList).length === 1)

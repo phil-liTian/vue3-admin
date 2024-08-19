@@ -17,6 +17,7 @@ interface AppState {
   // 项目配置
   projectConfig?: Nullable<ProjectConfig>,
 }
+console.log('a-->', Persistent.getLocal(PROJ_CFG_KEY));
 
 export const useAppStore = defineStore({
   id: 'app',
@@ -67,7 +68,9 @@ export const useAppStore = defineStore({
 
     setProjectConfig(config: DeepPartial<ProjectConfig>): void {
       this.projectConfig = deepMerge(this.projectConfig || {}, config) as ProjectConfig
-      Persistent.setLocal(PROJ_CFG_KEY, this.projectConfig)
+      console.log('this.projectConfig', this.projectConfig);
+      
+      Persistent.setLocal(PROJ_CFG_KEY, this.projectConfig, true)
     },
 
     setMenuSetting(setting: Partial<MenuSetting>) {

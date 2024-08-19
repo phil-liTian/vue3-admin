@@ -19,8 +19,10 @@ import { PDescription } from './PBase/Description/index'
 import { PBasicModal } from './PBase/Modal/index'
 import { PBasicTable } from './PBase/Table/index'
 import { PBasicForm } from './PBase/Form/index'
-
+import { PBasicUpload } from './PBase/Upload/index'
+import { PAuthority } from "./PBase/Authority";
+ 
 // 注册全局组件
 export function registerGlobComps(app: App) {
-  app.use(PButton).use(PPopConfirmButton).use(PIcon).use(PBasicHelp).use(PBasicTitle).use(PageWrapper).use(PCountTo).use(PDrawer).use(PScrollContainer).use(PCollapseContainer).use(PSwitch).use(PSelect).use(PDropdown).use(PDescription).use(PBasicModal).use(PBasicForm).use(PBasicTable)
+  app.use(PButton).use(PPopConfirmButton).use(PIcon).use(PBasicHelp).use(PBasicTitle).use(PageWrapper).use(PCountTo).use(PDrawer).use(PScrollContainer).use(PCollapseContainer).use(PSwitch).use(PSelect).use(PDropdown).use(PDescription).use(PBasicModal).use(PBasicForm).use(PBasicTable).use(PBasicUpload).use(PAuthority)
 }

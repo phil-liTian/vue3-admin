@@ -91,6 +91,8 @@ export const useUserStore = defineStore({
     async getUserInfoAction () {
       const userInfo = await getUserInfo()
       const { roles = [] } = userInfo
+      console.log('roles', roles);
+      
       if ( isArray(roles) ) {
         const roleList = roles.map(v => v.value)
         this.setRoleList(roleList)

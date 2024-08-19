@@ -7,6 +7,9 @@
     "front": "Front-end",
     "back": "background",
     "frontPage": "Page",
+    "frontBtn": "Front-Btn",
+    "frontTestA": "Test page A",
+    "frontTestB": "Test page B",
     "backPage": "Page"
   },
 
@@ -28,7 +31,8 @@
     "desc": "Desc",
     "verify": "Verify",
     "verifyDrag": "Drag",
-    "verifyRotateDrag": "Picture Restore"
+    "verifyRotateDrag": "Picture Restore",
+    "upload": "Upload"
   },
   "table": {
     "table": "Table",

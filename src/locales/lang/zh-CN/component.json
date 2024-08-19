@@ -10,7 +10,11 @@
     "maximize": "最大化"
   },
   "upload": {
-    "upload": "上传"
+    "upload": "上传",
+    "save": "保存",
+    "uploading": "上传中...",
+    "startUpload": "开始上传",
+    "choose": "选择文件"
   },
   "countdown": {
     "normalText": "获取验证码",

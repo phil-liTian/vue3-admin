@@ -41,13 +41,16 @@ export function useTabDropdown() {
         icon: 'clarity:minus-line',
         text: t('multipleTab.closeAll'),
         event: MenuEventEnum.CLOSE_ALL
+      },
+      {
+        icon: 'clarity:minus-line',
+        text: t('multipleTab.closeOther'),
+        event: MenuEventEnum.CLOSE_OTHER
       }
     ]
   })
 
   function handleMenuEvent(menu: DropMenu) {
-    console.log('menu', menu);
-    
     const { event } = menu
     switch(event) {
       case MenuEventEnum.CLOSE_LEFT: {

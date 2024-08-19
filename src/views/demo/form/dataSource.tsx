@@ -602,17 +602,17 @@ export const useSchemas: FormSchema[] = [
       ]
     }
   },
-  {
-    field: 'field8',
-    label: '联动',
-    // component: 'ApiCascader',
-    colProps: { span: 8 },
-  },
-  {
-    field: 'field9',
-    label: '联动回显',
-    colProps: { span: 8 }
-  }
+  // {
+  //   field: 'field8',
+  //   label: '联动',
+  //   component: 'ApiCascader',
+  //   colProps: { span: 8 },
+  // },
+  // {
+  //   field: 'field9',
+  //   label: '联动回显',
+  //   colProps: { span: 8 }
+  // }
 ]
 
 export const settingSchemas: FormSchema[] = [

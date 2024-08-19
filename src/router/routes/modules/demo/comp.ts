@@ -347,6 +347,14 @@ const comp: AppRouteRecordRaw = {
       }
     },
     {
+      path: 'upload',
+      name: 'uploadDemo',
+      component: () => import('@/views/demo/comp/upload/index.vue'),
+      meta: {
+        title: t('routes.demo.comp.upload')
+      }
+    },
+    {
       path: 'description',
       name: 'descriptionDemo',
       component: () => import('@/views/demo/comp/description/index.vue'),

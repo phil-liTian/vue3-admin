@@ -108,6 +108,3 @@
   import { Row, Col, Card } from 'ant-design-vue'  
   defineOptions({ name: 'ButtonDemo' })
 </script>
-  
-<style lang='less' scoped>
-</style>

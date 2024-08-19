@@ -36,6 +36,7 @@ const initPersistentMemory = () => {
 export class Persistent {
   static setLocal(key, value, immediate = false): void {
     localMemory.set(key, value)
+    
     immediate && ls.set(APP_LOCAL_CACHE_KEY, localMemory.getCache)
   }
 

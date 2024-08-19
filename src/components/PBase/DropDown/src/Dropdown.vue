@@ -41,7 +41,7 @@
   const props = defineProps({
     popConfirm: Boolean,
     trigger: {
-      type: String as PropType<'contextmenu' | 'click' | 'hover'>,
+      type: [String, Array] as PropType<'contextmenu' | 'click' | 'hover'>,
       default: 'contextmenu'
     },
 

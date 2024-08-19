@@ -1,13 +1,13 @@
 <template>
-  <PBasicModal>
-    <FileList />
-  </PBasicModal>
+  <div class="m-10 auth-page">Super 可见</div>
 </template>
   
 <script lang='ts' setup>
-  import FileList from './FileList.vue';
+  
 </script>
   
 <style lang='less' scoped>
-  
+  .auth-page {
+    
+  }
 </style>

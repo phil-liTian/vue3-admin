@@ -41,7 +41,8 @@ const props = defineProps({
   title: propTypes.string,
   content: propTypes.string,
   // conten是否全屏
-  contentFullHeight: propTypes.bool.def(false)
+  contentFullHeight: propTypes.bool.def(false),
+  fixedHeight: propTypes.bool.def(false)
 })
 
 const slots = useSlots()

@@ -10,7 +10,11 @@
     "maximize": "Maximize"
   },
   "upload": {
-    "upload": "Upload"
+    "upload": "Upload",
+    "save": "Save",
+    "uploading": "uploading...",
+    "startUpload": "Start upload",
+    "choose": "Select the file"
   },
   "time": {
     "just": "just now",

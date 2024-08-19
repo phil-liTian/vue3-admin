@@ -1,11 +1,11 @@
 <template>
-  <PBasicModal>
-    <FileList />
-  </PBasicModal>
+  <PageWrapper title='基础表单'>
+
+  </PageWrapper>
 </template>
   
 <script lang='ts' setup>
-  import FileList from './FileList.vue';
+  
 </script>
   
 <style lang='less' scoped>

@@ -35,7 +35,7 @@ const FakerUserList: userParams[] = [
     desc: 'tester',
     homePath: '/dashboard/workbench',
     roles: [
-      { roleName: 'Tester', value: 'tester' }
+      { roleName: 'Tester', value: 'test' }
     ]
   },
 ]

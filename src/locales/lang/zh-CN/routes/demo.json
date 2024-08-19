@@ -7,7 +7,10 @@
     "front": "基于前端权限",
     "back": "基于后端权限",
     "frontPage": "页面权限",
-    "backPage": "页面权限"
+    "frontBtn": "按钮权限",
+    "backPage": "页面权限",
+    "frontTestA": "权限A",
+    "frontTestB": "权限B"
   },
 
   "comp": {
@@ -28,7 +31,8 @@
     "desc": "详情",
     "verify": "验证组件",
     "verifyDrag": "拖拽校验",
-    "verifyRotateDrag": "照片还原"
+    "verifyRotateDrag": "照片还原",
+    "upload": "上传组件"
   },
   "table": {
     "table": "表格",

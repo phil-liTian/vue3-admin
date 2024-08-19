@@ -3,13 +3,14 @@
  * @LastEditors: phil_litian
 -->
 <template>
-  <List :class="prefixCls">
-    <template v-for="item in list" :key="item.id">
+  <List :class="prefixCls" bordered :pagination='getPagination'>
+    <template v-for="item in getData" :key="item.id">
       <ListItem class="list-item">
         <ListItemMeta>
           <template #title>
             <div class="title">
               <Typography.Paragraph
+                :ellipsis='true'
                 :content="item.title" />
 
               <div class="extra" v-if="item.extra">
@@ -20,7 +21,7 @@
 
           <template #description>
             <div>
-
+              <div class='datetime'>{{ item.datetime }}</div>
             </div>
           </template>
 
@@ -36,7 +37,7 @@
 <script lang='ts' setup>
   import { List, Avatar, Typography, Tag } from 'ant-design-vue'
   import { useDesign } from '@h/web/useDesign'
-  import { PropType } from 'vue';
+  import { computed, PropType } from 'vue';
   import type { ListItem } from './data';
   const ListItem = List.Item
   const ListItemMeta = List.Item.Meta
@@ -47,6 +48,20 @@
     }
   })
   const { prefixCls } = useDesign('header-notify-list')
+
+  const getPagination = computed(() => {
+    const { list } = props
+    return {
+      total: list.length,
+      pageSize: 5,
+      current: 1
+    }
+  })
+
+  const getData = computed(() => {
+    const { list } = props
+    return list.slice(0, 5)
+  })
 </script>
   
 <style lang='less' scoped>

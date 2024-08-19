@@ -4,7 +4,7 @@
 -->
 <template>
   <div :class="prefixCls">
-    <Popover>
+    <Popover trigger='click' :overlayClassName='`${prefixCls}__overlay`'>
       <Badge dot>
         <BellOutlined />
       </Badge>
@@ -38,9 +38,19 @@
   const TabPane = Tabs.TabPane
 
   const { prefixCls } = useDesign('header-notify')
+  const visible = ref(true)
   const dataList = ref(tabListData)
 </script>
   
-<style lang='less' scoped>
-  
+<style lang='less'>
+  @prefix-cls: ~'@{namespace}-header-notify';
+
+  .@{prefix-cls} {
+    &__overlay {
+      max-width: 360px;
+    }
+    .ant-tabs-content {
+      width: 300px;
+    }
+  }
 </style>
