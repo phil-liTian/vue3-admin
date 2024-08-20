@@ -32,7 +32,8 @@
     "verify": "验证组件",
     "verifyDrag": "拖拽校验",
     "verifyRotateDrag": "照片还原",
-    "upload": "上传组件"
+    "upload": "上传组件",
+    "cropper": "图片裁剪"
   },
   "table": {
     "table": "表格",

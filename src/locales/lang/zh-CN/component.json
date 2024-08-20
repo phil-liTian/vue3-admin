@@ -11,10 +11,27 @@
   },
   "upload": {
     "upload": "上传",
+    "uploaded": "已上传",
     "save": "保存",
     "uploading": "上传中...",
     "startUpload": "开始上传",
-    "choose": "选择文件"
+    "choose": "选择文件",
+    "accept": "支持{0}格式",
+    "maxSize": "单个文件不超过{0}MB",
+    "maxNumber": "最多只能上传{0}个文件",
+    "maxSizeMultiple": "最大上传文件不能超过{0}MB",
+    "legend": "缩略图",
+    "fileName": "文件名",
+    "size": "文件大小",
+    "fileStatus": "文件状态",
+     "action": "操作",
+     "pending": "上传中",
+     "uploadSuccess": "上传成功",
+     "uploadFail": "上传失败",
+     "del": "删除",
+     "download": "下载",
+     "saveWarn": "请等待文件上传后, 再保存！",
+     "saveError": "没有上传成功的文件, 无法保存！"
   },
   "countdown": {
     "normalText": "获取验证码",

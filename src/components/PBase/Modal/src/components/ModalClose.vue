@@ -31,7 +31,7 @@
 
   defineOptions({ name: 'ModalClose' })
   const emits = defineEmits(['cancel', 'fullscreen'])
-  defineProps({
+  const props = defineProps({
     canFullScreen: propTypes.bool.def(true),
     fullScreen: propTypes.bool.def(false)
   })
@@ -40,7 +40,10 @@
 
   const getClass = computed(() => {
     return [
-      prefixCls
+      prefixCls,
+      {
+        [`${prefixCls}--can-full`]: props.canFullScreen
+      }
     ]
   })
 
@@ -53,11 +56,24 @@
   }
 </script>
   
-<style lang='less' scoped>
+<style lang='less'>
   @prefix-cls: ~'@{namespace}-basic-modal-close';
 
   .@{prefix-cls} {
-    display: flex;
-    align-items: center;
+    // display: flex;
+    // align-items: center;
+    height: 95%;
+
+    > span {
+      
+    }
+
+    &--can-full {
+      > span {
+        margin-left: 12px;
+      }
+    }
+
+
   }
 </style>

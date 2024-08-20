@@ -45,12 +45,12 @@ useTitle()
 
 // 梳理Persistent逻辑
 
+
 // 图片裁剪
-// tabs操作
-// 操作权限问题
-// upload
-// form
+
 // 表单设计
+// 操作权限问题
+// form
 // TODO: useRequest
 // 基础组件样式调整
 </script>

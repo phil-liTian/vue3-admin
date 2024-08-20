@@ -3,7 +3,9 @@
  * @LastEditors: phil_litian
 -->
 <template>
-  <div></div>
+  <PageWrapper title='图片裁剪'>
+    
+  </PageWrapper>
 </template>
   
 <script lang='ts' setup>

@@ -6,7 +6,7 @@
 import axios from 'axios';
 import type { AxiosInstance, AxiosRequestConfig, AxiosResponse, AxiosError, InternalAxiosRequestConfig } from 'axios'
 import type { CreateAxiosOptions } from './axiosTransform'
-import type { RequestOptions } from '#/axios'
+import type { RequestOptions, UploadFileParams } from '#/axios'
 import { isFunction } from '@u/is'
 import { AxiosCancel } from './axiosCancel';
 export class PAxios {
@@ -67,6 +67,29 @@ export class PAxios {
       }
     })
 
+  }
+
+  /**
+   * file upload
+   * @param config 
+   * @param params 
+   */
+  uploadFile<T = any>(config: AxiosRequestConfig, params?: UploadFileParams) {
+    const formData = new FormData()
+    const customFilename = params.fileName || 'file'
+    if ( params.fileName ) {
+      formData.append(customFilename, params.file, params.fileName)
+    } else {
+      formData.append(customFilename, params.file)
+    }
+    
+    return this.axiosInstance.request<T>({
+      ...config,
+      method: 'POST',
+      data: formData,
+      headers: { 'Content-Type': 'multipart/form-data' },
+      // ...(params || {})
+    })
   }
   
   get<T = any>( config: AxiosRequestConfig, options?: RequestOptions ): Promise<T> {

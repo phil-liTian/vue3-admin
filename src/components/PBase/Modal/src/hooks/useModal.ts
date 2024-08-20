@@ -56,11 +56,22 @@ export function useModal(): any {
 export function useModalInner(callbackFn?: Fn) {
   const uidRef = ref<number>(0)
   const modalInstanceRef = ref<Nullable<ModalMethods>>(null)
+  const getInstance = () => {
+    const instance = unref(modalInstanceRef)
+    if ( !instance ) return
+    return instance
+  }
 
 
   function register(modalInstance: ModalMethods, uuid: number) {
     uidRef.value = uuid
     modalInstanceRef.value = modalInstance
+  }
+
+  const methods = {
+    closeModal: () => {
+      getInstance()?.setModalProps({ open: false })
+    }
   }
 
   watchEffect(() => {
@@ -70,5 +81,5 @@ export function useModalInner(callbackFn?: Fn) {
     callbackFn(data)
   })
 
-  return [register]
+  return [register, methods]
 }

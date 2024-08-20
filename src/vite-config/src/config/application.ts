@@ -42,10 +42,17 @@ export const defineApplicationConfig = async () => {
         //   target: 'http://localhost:3000',
         //   changeOrigin: true,
         //   ws: true,
-        //   rewrite: (path) => path.replace(new RegExp(`^/basic-api`), ''),
+        //   // rewrite: (path) => path.replace(new RegExp(`^/basic-api`), ''),
         //   // only https
         //   // secure: false
         // },
+        '/upload': {
+          target: 'http://localhost:3000/upload',
+          changeOrigin: true,
+          rewrite: (path) => path.replace(new RegExp(`^/upload`), ''),
+          // only https
+          // secure: false
+        }
       }
     },
     define: definData,

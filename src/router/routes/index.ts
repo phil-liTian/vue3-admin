@@ -20,7 +20,6 @@ Object.keys(modules).forEach(key => {
 
 // 亮点: 与之前处理方式不同的 可有效避免角色权限不足仍可访问无权限页面的问题, routes根据role动态渲染
 export const asyncRoutes = [ ...routeModuleList, PAGE_NOT_FOUND_ROUTE ]
-console.log('asyncRoutes', asyncRoutes);
 
 // 根页面
 const RootRoute: AppRouteRecordRaw = {
@@ -50,7 +49,4 @@ export const basicRoutes = [
   PAGE_NOT_FOUND_ROUTE,
   REDIRECT_ROUTE
 ]
-
-console.log('basicRoutes', basicRoutes);
-
 

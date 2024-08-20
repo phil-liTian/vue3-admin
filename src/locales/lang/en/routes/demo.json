@@ -32,7 +32,8 @@
     "verify": "Verify",
     "verifyDrag": "Drag",
     "verifyRotateDrag": "Picture Restore",
-    "upload": "Upload"
+    "upload": "Upload",
+    "cropper": "Cropper"
   },
   "table": {
     "table": "Table",

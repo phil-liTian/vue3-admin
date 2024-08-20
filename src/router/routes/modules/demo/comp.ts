@@ -355,6 +355,14 @@ const comp: AppRouteRecordRaw = {
       }
     },
     {
+      path: 'cropper',
+      name: 'cropperDemo',
+      component: () => import('@/views/demo/comp/cropper/index.vue'),
+      meta: {
+        title: t('routes.demo.comp.cropper')
+      }
+    },
+    {
       path: 'description',
       name: 'descriptionDemo',
       component: () => import('@/views/demo/comp/description/index.vue'),

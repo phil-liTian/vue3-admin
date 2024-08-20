@@ -11,10 +11,27 @@
   },
   "upload": {
     "upload": "Upload",
+    "uploaded": "Uploaded",
     "save": "Save",
     "uploading": "uploading...",
     "startUpload": "Start upload",
-    "choose": "Select the file"
+    "choose": "Select the file",
+    "accept": "Support {0} format",
+    "maxSize": "A single file cannot exceed {0}MB",
+    "maxNumber": "The number of files cannot exceed {0}",
+    "maxSizeMultiple": "Only upload files up to {0}MB!",
+    "legend": "Legend",
+    "fileName": "File name",
+    "size": "File Size",
+    "fileStatus": "File Status",
+    "action": "operating",
+    "pending": "Pending",
+    "uploadSuccess": "Upload Success",
+    "uploadFail": "Upload Failed",
+    "del": "Del",
+    "download": "Download",
+    "saveWarn": "Please wait uploaded to Save",
+    "saveError": "Three is no file upload successfully and cannot save!"
   },
   "time": {
     "just": "just now",

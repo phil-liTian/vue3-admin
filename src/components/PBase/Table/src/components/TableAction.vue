@@ -8,7 +8,7 @@
     <template v-for="(action, index) in getActions" :key="`${action.label}-${index}`">
       <Tooltip v-if="action.tooltip" v-bind="getTooltip(action.tooltip)">
         <PPopConfirmButton v-bind="action">
-          <PIcon :icon="action.icon"></PIcon>
+          <PIcon v-if="action.icon" :icon="action.icon"></PIcon>
           <template v-if="action.label">{{ action.label }}</template>
         </PPopConfirmButton>
       </Tooltip>
@@ -54,7 +54,14 @@
     }
   })
 
-  const getActions = computed(() => props.actions || [])
+  const getActions = computed(() => (props.actions || []).map(action => {
+    const { popConfirm } = action
+    return {
+      type: 'link',
+      ...action,
+      enable: !!popConfirm
+    }
+  }))
 
   const getDropdownList = computed(() => {
     return props.dropDownActions || []

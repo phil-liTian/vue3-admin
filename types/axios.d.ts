@@ -25,4 +25,12 @@ export interface Result<T = any>  {
   result: T
 }
 
+export interface UploadFileParams {
+  name?: string;
+  file: File | Blob;
+  fileName?: string;
+  data?: Recordable;
+  [key: string]: any
+}
+
 
