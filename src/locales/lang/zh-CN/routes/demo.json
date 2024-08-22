@@ -33,7 +33,8 @@
     "verifyDrag": "拖拽校验",
     "verifyRotateDrag": "照片还原",
     "upload": "上传组件",
-    "cropper": "图片裁剪"
+    "cropper": "图片裁剪",
+    "strengthMeter": "密码强度"
   },
   "table": {
     "table": "表格",

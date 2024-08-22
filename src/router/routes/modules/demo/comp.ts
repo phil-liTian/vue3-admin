@@ -363,6 +363,14 @@ const comp: AppRouteRecordRaw = {
       }
     },
     {
+      path: 'strength-meter',
+      name: 'StrengthMeterDemo',
+      component: () => import('@/views/demo/comp/strength-meter/index.vue'),
+      meta: {
+        title: t('routes.demo.comp.strengthMeter')
+      }
+    },
+    {
       path: 'description',
       name: 'descriptionDemo',
       component: () => import('@/views/demo/comp/description/index.vue'),

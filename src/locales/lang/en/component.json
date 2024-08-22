@@ -33,6 +33,21 @@
     "saveWarn": "Please wait uploaded to Save",
     "saveError": "Three is no file upload successfully and cannot save!"
   },
+  "cropper": {
+    "modalTitle": "Upload Avatar",
+    "selectImage": "Select Image",
+    "imageTooBig": "Image Too big!",
+    "uploadSuccess": "Upload Success!",
+    "btn_reset": "Reset",
+    "btn_rotate_left": "Counterclockwise rotation",
+    "btn_rotate_right": "Clockwise rotation",
+    "btn_scale_x": "Flip horizontal",
+    "btn_scale_y": "Flip vertical",
+    "btn_zoom_in": "Zoom in",
+    "btn_zoom_out": "Zoom out",
+    "preview": "Preivew",
+    "okText": "Confirm and Upload"
+  },
   "time": {
     "just": "just now",
     "before": "before",

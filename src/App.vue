@@ -46,7 +46,7 @@ useTitle()
 // 梳理Persistent逻辑
 
 
-// 图片裁剪
+// cropper组件（background、base64转file文件格式）
 
 // 表单设计
 // 操作权限问题

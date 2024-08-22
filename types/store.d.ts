@@ -12,6 +12,7 @@ export interface UserInfo {
   token: string,
   homePath: string,
   desc?: string,
+  avatar?: string,
   roles: RoleInfo[]
 }
 

@@ -12,6 +12,7 @@ interface userParams {
   token: string,
   desc: string,
   homePath: string,
+  avatar?: string,
   roles: any[]
 }
 
@@ -23,6 +24,7 @@ const FakerUserList: userParams[] = [
     token: 'phil-token',
     desc: 'manager',
     homePath: '/dashboard/analysis',
+    avatar: '',
     roles: [
       { roleName: 'Super Admin', value: 'super' }
     ]
@@ -33,6 +35,7 @@ const FakerUserList: userParams[] = [
     password: '123456',
     token: 'test-token',
     desc: 'tester',
+    avatar: "",
     homePath: '/dashboard/workbench',
     roles: [
       { roleName: 'Tester', value: 'test' }

@@ -33,7 +33,8 @@
     "verifyDrag": "Drag",
     "verifyRotateDrag": "Picture Restore",
     "upload": "Upload",
-    "cropper": "Cropper"
+    "cropper": "Cropper",
+    "strengthMeter": "Strength Meter"
   },
   "table": {
     "table": "Table",

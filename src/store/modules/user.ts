@@ -55,7 +55,6 @@ export const useUserStore = defineStore({
 
     setRoleList(roles: RoleEnum[]) {
       this.roleList = roles
-      console.log('roles', roles);
       
       setAuthCache(ROLES_KEY, roles)
     },
