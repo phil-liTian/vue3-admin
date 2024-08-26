@@ -4,7 +4,8 @@
  */
 import { getViewportOffset } from '@/utils/domUtils';
 import type { Ref, ComputedRef } from 'vue'
-import { nextTick, ref, unref } from 'vue'
+import { nextTick, ref, unref, watch } from 'vue'
+import { useLayoutHeight } from '@/layout/default/content/useContentViewHeight'
 
 type Upward = undefined | null | number | string;
 type Direction = 'all' | 'top' | 'bottom'
@@ -29,6 +30,7 @@ export const useContentHeight = (
   offsetHeightRef: Ref<number> = ref(0)
   ) => {
   const contentHeight: Ref<Nullable<number>> = ref(null)
+  const { footerHeightRef: layoutFooterHeightRef } = useLayoutHeight()
 
   // 计算组件的空闲空间 margin、padding
   const calcSubtractSpace = (el: Element, direction: Direction = 'all'): number => {
@@ -69,14 +71,14 @@ export const useContentHeight = (
 
   // 动态计算高度
   const calcContentHeight = async () => {
-    // if(!flag.value) return
+    if(!flag.value) return
     await nextTick()
     const anchorEl = getEl(unref(anchorRef))
     if ( !anchorEl ) return
 
     const { bottomIncludeBody } = getViewportOffset(anchorEl)
+    console.log('bottomIncludeBody', bottomIncludeBody);
     
-
     // 需要减去的高度
     let subtractHeight = 0
     subtractHeightRefs.map(item => {
@@ -89,12 +91,24 @@ export const useContentHeight = (
     subtractSpaceRefs.map(item => {
       subtractSpaceHeight += calcSubtractSpace(getEl(unref(item)))
     })
+
+    console.log('subtractSpaceHeight', subtractSpaceHeight);
+    
     
     // 内容高度
-    let height = bottomIncludeBody - subtractSpaceHeight - subtractHeight - 50
+    // console.log('layoutFooterHeightRef', layoutFooterHeightRef);
+    console.log('bottomIncludeBody', bottomIncludeBody);
+    let height = bottomIncludeBody - unref(layoutFooterHeightRef) - subtractSpaceHeight - subtractHeight
+
+    console.log('height', height);
+    
 
     contentHeight.value = height
   }
+
+  watch(() => [layoutFooterHeightRef.value], () => {
+    calcContentHeight()
+  }, { immediate: true })
 
   calcContentHeight()
 

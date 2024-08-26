@@ -36,7 +36,6 @@ useTitle()
 // 增加多层级菜单
 // 增加引导页功能
 
-// 全面拥抱vue3 和 TypeScript的项目实践
 // 缓存
 // axios 封装
 // 对路由的处理 listenRouteChange, 可实现在页面渲染之前监听路由变化； permissionGuard实现权限守卫，可实现路由routes根据权限动态处理
@@ -47,6 +46,9 @@ useTitle()
 
 
 // cropper组件（background、base64转file文件格式）
+
+// 编辑器组件 editor/json
+// tree tree/basic
 
 // 表单设计
 // 操作权限问题

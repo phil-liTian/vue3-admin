@@ -283,6 +283,24 @@ const comp: AppRouteRecordRaw = {
       ]
     },
     {
+      path: 'tree',
+      name: 'TreeDemo',
+      redirect: '/comp/tree/basic',
+      meta: {
+        title: t('routes.demo.comp.tree')
+      },
+      children: [
+        {
+          path: 'basic',
+          name: 'TreeBasicDemo',
+          component: () => import('@/views/demo/tree/index.vue'),
+          meta: {
+            title: t('routes.demo.comp.treeBasic')
+          }
+        }
+      ]
+    },
+    {
       path: 'cardList',
       name: 'CardListDemo',
       component: () => import('@/views/demo/comp/cardList/index.vue'),

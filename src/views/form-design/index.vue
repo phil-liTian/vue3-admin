@@ -3,7 +3,7 @@
  * @LastEditors: phil_litian
 -->
 <template>
-  <PageWrapper contentFullHeight>
+  <PageWrapper contentFullHeight dense>
     <VFormDesign />
   </PageWrapper>
 </template>
@@ -11,7 +11,3 @@
 <script lang='ts' setup>
   import VFormDesign from './components/VFormDesign/index.vue'
 </script>
-  
-<style lang='less' scoped>
-  
-</style>

@@ -42,6 +42,8 @@ const props = defineProps({
   content: propTypes.string,
   // conten是否全屏
   contentFullHeight: propTypes.bool.def(false),
+  // 去除content的margin边距
+  dense: propTypes.bool.def(false),
   fixedHeight: propTypes.bool.def(false)
 })
 
@@ -54,7 +56,10 @@ const contentRef = ref(null)
 
 const getClass = computed(() => {
   return [
-    prefixCls
+    prefixCls,
+    {
+      [`${prefixCls}--dense`]: props.dense
+    }
   ]
 })
 
@@ -72,7 +77,6 @@ const { contentHeight } = useContentHeight(
 const getContentStyle = computed((): CSSProperties => {
   
   return {
-    width: 'calc(100% - 32px)',
     height: `${unref(contentHeight)}px`
   }
 })
@@ -100,15 +104,19 @@ const getContentClass = computed(() => {
 </script>
   
 <style lang='less' scoped>
-  @prefix-cls-wrapper: ~'@{namespace}-page-wrapper';
+  @prefixCls: ~'@{namespace}-page-wrapper';
   @prefix-cls-content: ~'@{namespace}-page-wrapper-content';
-  
-
-  .@{prefix-cls-wrapper} {
+  .@{prefixCls} {
     width: 100%;
 
     .@{prefix-cls-content} { 
       margin: 16px;
+    }
+
+    &--dense {
+      .@{prefix-cls-content} {
+        margin: 0;
+      }
     }
 
     &-content-bg {

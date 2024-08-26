@@ -11,7 +11,7 @@ import { MenuModeEnum, MenuTypeEnum } from '@/enums/menuEnum'
 const setting: ProjectConfig = {
   showBreadCrumb: true,
   showBreadCrumbIcon: true,
-  showFooter: true,
+  showFooter: false,
   fullContent: false,
   // mourning dates
   grayMode: false,

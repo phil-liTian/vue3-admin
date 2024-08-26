@@ -32,5 +32,6 @@ const content = ref()
     height: 0;
     min-height: 0;
     overflow-y: auto;
+    
   }
 </style>

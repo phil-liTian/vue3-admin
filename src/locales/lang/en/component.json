@@ -64,6 +64,9 @@
     "error": "verification failed!",
     "redoTip": "Click the picture to refresh"
   },
+  "treeBasic": {
+
+  },
   "countdown": {
     "normalText": "get SMS code",
     "sendText": "Require in {0}s"

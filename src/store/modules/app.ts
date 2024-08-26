@@ -17,7 +17,6 @@ interface AppState {
   // 项目配置
   projectConfig?: Nullable<ProjectConfig>,
 }
-console.log('a-->', Persistent.getLocal(PROJ_CFG_KEY));
 
 export const useAppStore = defineStore({
   id: 'app',

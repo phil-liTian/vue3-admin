@@ -34,7 +34,9 @@
     "verifyRotateDrag": "Picture Restore",
     "upload": "Upload",
     "cropper": "Cropper",
-    "strengthMeter": "Strength Meter"
+    "strengthMeter": "Strength Meter",
+    "tree": "Tree",
+    "treeBasic": "Tree Basic"
   },
   "table": {
     "table": "Table",

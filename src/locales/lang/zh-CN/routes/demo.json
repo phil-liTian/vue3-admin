@@ -34,7 +34,9 @@
     "verifyRotateDrag": "照片还原",
     "upload": "上传组件",
     "cropper": "图片裁剪",
-    "strengthMeter": "密码强度"
+    "strengthMeter": "密码强度",
+    "tree": "树",
+    "treeBasic": "基础树"
   },
   "table": {
     "table": "表格",
