@@ -1,8 +1,12 @@
 /**
  * 当前组件属性设置
  */
-
+import { Input, RadioGroup } from 'ant-design-vue'
 import { IBaseFormAttrs } from "./formItemPropsConfig"
+
+interface IBaseComponentProps {
+  [key: string]: IBaseFormAttrs[]
+}
 
 export const baseComponentControlAttrs: IBaseFormAttrs[] = [
   {
@@ -38,7 +42,7 @@ export const baseComponentCommonAttrs: IBaseFormAttrs[] = [
   {
     label: '尺寸',
     name: 'size',
-    component: 'RadioGroup',
+    component: RadioGroup,
     componentProps: {
       options: [
         { label: '大', value: 'large' },
@@ -50,9 +54,46 @@ export const baseComponentCommonAttrs: IBaseFormAttrs[] = [
   {
     label: '占位符',
     name: 'placeholder',
+    component: Input,
     componentProps: {
       placeholder: '请输入占位符'
     },
     includes: [ 'Input' ]
+  },
+  {
+    label: '样式',
+    name: 'style',
+    component: Input,
+    componentProps: {
+      placeholder: '请输入样式'
+    }
+  },
+  {
+    name: 'open',
+    label: '一直展开下拉菜单',
+    component: RadioGroup,
+    componentProps: {
+      options: [
+        { label: '默认', value: undefined },
+        { label: '是', value: true },
+        { label: '否', value: false }
+      ]
+    },
+    includes: [ 'Select' ]
   }
 ]
+
+const componentAttrs: IBaseComponentProps = {
+  Input: [
+    {
+      name: 'defaultValue',
+      label: '默认值',
+      component: Input,
+      componentProps: {
+        placeholder: '请输入默认值'
+      }
+    }
+  ]
+}
+
+export const baseComponentAttrs: IBaseComponentProps = componentAttrs

@@ -9,12 +9,3 @@ export * from './src/types/form'
 export { useForm } from './src/hooks/useForm'
 
 export const PBasicForm = withInstall(BasicForm)
-
-// advancedForm
-// useForm
-// label helpMessage
-// InputCountDown
-// upload
-// components: 
-// - ApiCascader
-// - radioButtonGroup

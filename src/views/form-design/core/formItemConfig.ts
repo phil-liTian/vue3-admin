@@ -1,5 +1,6 @@
 import { Component } from "vue";
 import { ComponentMap as PhilCmp, add } from '@c/PBase/Form/src/componentMap'
+import { componentMap as Cmp } from '../components/index'
 import { IVFormComponent } from "../typings/v-form-component";
 
 
@@ -9,9 +10,18 @@ PhilCmp.forEach((value, key)=>{
   componentMap.set(key, value)
 })
 
+Cmp.forEach((value, key)=>{
+  componentMap.set(key, value)
+  // 如果Cmp中有，但是PhilComp中没有的组件, 则添加到PhilComp中 共享组件
+  if ( !componentMap.has(key) ) {
+    add(key, value)
+  }
+})
+
 export { componentMap }
 
-
+// 表单和控件设置
+// 栅格布局
 
 // 左侧控件列表
 const baseComponent: IVFormComponent[] = [
@@ -20,10 +30,11 @@ const baseComponent: IVFormComponent[] = [
     label: '倒计时输入',
     icon: 'line-md:iconify2',
     field: '',
-    componentProps: {}
+    componentProps: {},
+    colProps: {}
   },
   {
-    component: 'IconPicker',
+    component: 'PIconPicker',
     label: '图标选择器',
     icon: 'line-md:iconify2',
     colProps: { span: 24 },
@@ -35,12 +46,14 @@ const baseComponent: IVFormComponent[] = [
     label: "密码强度",
     icon: 'wpf:password1',
     field: '',
-    componentProps: {}
+    componentProps: {},
+    colProps: {}
   },
   {
     component: 'AutoComplete',
     label: '自动完成',
     icon: 'wpf:password1',
+    colProps: {},
     componentProps: {
       placeholder: '请输入正则表达式',
     }
@@ -58,6 +71,7 @@ const baseComponent: IVFormComponent[] = [
     label: '复选框',
     icon: 'mdi:checkbox-outline',
     field: '',
+    colProps: {},
     componentProps: {}
   },
   {
@@ -65,6 +79,7 @@ const baseComponent: IVFormComponent[] = [
     label: '复选框组',
     icon: 'ant-design:check-circle-filled',
     field: '',
+    colProps: {},
     componentProps: {
       options: [
         { label: '选项一', value: '1' },
@@ -77,41 +92,52 @@ const baseComponent: IVFormComponent[] = [
     label: '输入框',
     icon: 'bi:input-cursor-text',
     field: '',
-    componentProps: {}
+    componentProps: {},
+    colProps: {}
   },
   {
     component: "InputNumber",
     label: "数字输入框",
     icon: "ant-design:field-number-outlined",
     field: '',
-    componentProps: {}
+    componentProps: {},
+    colProps: {}
   },
   {
     component: 'InputTextArea',
     label: '文本域',
     icon: 'ant-design:file-text-filled',
     field: '',
-    componentProps: {}
+    componentProps: {},
+    colProps: {}
   },
   {
     component: 'Select',
     label: '下拉选择',
     icon: 'gg:select',
     field: '',
-    componentProps: {}
+    colProps: {},
+    componentProps: {
+      options: [
+        { label: '选项一', value: '1' },
+        { label: '选项二', value: '2' },
+      ]
+    }
   },
   {
     component: "Radio",
     label: '单选框',
     icon: 'ri:radio-button-line',
     field: '',
-    componentProps: {}
+    componentProps: {},
+    colProps: {}
   },
   {
     component: 'RadioGroup',
     label: '单选框组',
     icon: 'carbon:radio-button-checked',
     field: '',
+    colProps: {},
     componentProps: {
       options: [
         { label: '选项一', value: '1' },
@@ -123,65 +149,114 @@ const baseComponent: IVFormComponent[] = [
     component: 'DatePicker',
     label: '日期选择',
     icon: 'healthicons:i-schedule-school-date-time-outline',
-    componentProps: {}
+    componentProps: {},
+    colProps: {}
   },
   {
     component: 'RangePicker',
     label: '日期范围',
     icon: 'healthicons:i-schedule-school-date-time-outline',
-    componentProps: {}
+    componentProps: {},
+    colProps: {}
   },
   {
     component: 'MonthPicker',
     label: '月份选择',
     icon: 'healthicons:i-schedule-school-date-time-outline',
-    componentProps: {}
+    componentProps: {},
+    colProps: {}
   },
   {
     component: 'TimePicker',
     label: '时间选择',
     field: '',
     icon: 'healthicons:i-schedule-school-date-time-outline',
-    componentProps: {}
+    componentProps: {},
+    colProps: {}
   },
   {
     component: 'Slider',
     label: '滑动输入条',
     icon: 'vaadin:slide',
     field: '',
-    componentProps: {}
+    componentProps: {},
+    colProps: {}
   },
   {
     component: 'Rate',
     label: '评分',
     icon: 'ic:outline-star-rate',
     field: '',
-    componentProps: {}
+    componentProps: {},
+    colProps: {}
   },
   {
     component: "Switch",
     label: '开关',
     icon: 'entypo:switch',
     field: '',
-    componentProps: {}
+    componentProps: {},
+    colProps: {}
   },
   {
-    component: 'tree',
+    component: 'TreeSelect',
     label: '树形选择',
-    icon: 'clarity:tree-view-lin',
-    field: ''
+    icon: 'clarity:tree-view-line',
+    field: '',
+    colProps: {},
+    componentProps: {
+      treeData: [
+        {
+          label: '选项一',
+          value: 1,
+          children: [
+            {
+              label: '选项三',
+              value: 3
+            }
+          ]
+        },
+        {
+          label: '选项二',
+          value: 2
+        }
+      ]
+    }
   },
   {
     component: 'Upload',
     label: '上传',
     icon: 'ant-design:upload-outlined',
     field: '',
+    colProps: {},
+    componentProps: {}
   },
   {
     label: '级联选择',
     field: '',
     component: 'Cascader',
     icon: 'ant-design:check-outlined',
+    colProps: {},
+    componentProps: {
+      options: [
+        {
+          value: 'zhejiang',
+          label: 'Zhejiang',
+          children: [
+            {
+              value: 'hangzhou',
+              label: 'Hangzhou',
+              children: [
+                {
+                  value: 'xihu',
+                  label: 'West Lake',
+                },
+              ],
+           },
+          ]
+        }
+      ]
+    }
   },
   {
     label: '插槽',
@@ -191,11 +266,38 @@ const baseComponent: IVFormComponent[] = [
   },
   {
     label: '穿梭框',
-    component: 'transfer',
+    component: 'Transfer',
     icon: 'bx:bx-transfer-alt',
-    field: ''
+    field: '',
+    colProps: {},
+    componentProps: {
+      render: item => item.label,
+      dataSource: [
+        {
+          key: 'a',
+          label: 'content-a',
+          disabled: false,
+        },
+        {
+          key: 'b',
+          label: 'content-b',
+          disabled: true,
+        },
+        {
+          key: 'c',
+          label: 'content-c',
+          disabled: false,
+        },
+        {
+          key: 'd',
+          label: 'content-d',
+          disabled: false,
+        }
+      ]
+    }
   }
 ]
+
 export default baseComponent;
 
 // 栅格布局

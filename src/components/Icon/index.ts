@@ -3,9 +3,11 @@
  * @LastEditors: phil_litian
  */
 import SvgIcon from './src/SvgIcon.vue'
+import IconPicker from './src/IconPicker.vue'
 import pIcon from './Icon.vue'
 import { withInstall } from '@/utils'
 
 const PIcon = withInstall(pIcon)
+const PIconPicker = withInstall(IconPicker)
 
-export { SvgIcon, PIcon }
+export { SvgIcon, PIcon, PIconPicker }

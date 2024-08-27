@@ -29,6 +29,7 @@ import ApiTransfer from './components/ApiTransfer.vue'
 import { PBasicTitle } from '@c/Basic/index'
 import { InputCountDown } from '@c/CountDown/index'
 import { StrengthMeter } from '@c/StrengthMeter/index'
+import { PIconPicker } from '@c/Icon/index'
 
 export const ComponentMap = new Map<ComponentType | string, Component>();
 
@@ -60,6 +61,7 @@ ComponentMap.set('ApiRadioGroup', ApiRadioGroup)
 ComponentMap.set('ApiTreeSelect', ApiTreeSelect)
 ComponentMap.set('ApiTransfer', ApiTransfer)
 ComponentMap.set('StrengthMeter', StrengthMeter)
+ComponentMap.set('PIconPicker', PIconPicker)
 
 export function add<T extends string>(compName, component) {
   ComponentMap.set(compName, component)

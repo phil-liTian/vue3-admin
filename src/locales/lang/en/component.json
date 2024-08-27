@@ -92,5 +92,8 @@
   "form": {
     "putAway": "Put Away",
     "unfold": "Unfold"
+  },
+  "icon": {
+    "search": "Seacrh Icon"
   }
 }

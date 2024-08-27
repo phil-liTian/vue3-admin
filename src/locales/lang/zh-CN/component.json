@@ -89,5 +89,8 @@
   "form": {
     "putAway": "收起",
     "unfold": "展开"
+  },
+  "icon": {
+    "search": "搜索图标"
   }
 }

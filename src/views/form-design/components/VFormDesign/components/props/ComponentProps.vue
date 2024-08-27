@@ -6,32 +6,36 @@
     <div class="properties-body">
       <Empty description="未选择组件" v-if='!formConfig.currentItem.key'/>
 
-      <Form>  
+      <Form layout="vertical">  
         <!-- 可以设置自定义属性 -->
         <div v-if="formConfig.currentItem && formConfig.currentItem.componentProps">
           <FormItem v-for="item in inputOptions" :key="item.name" :label="item.label">
-            <component :is="item.component" />
+            <component 
+              v-if="item.component"
+              v-bind="item.componentProps"
+              v-model:value="formConfig.currentItem.componentProps[item.name]"
+              :is="item.component" />
           </FormItem>
 
           <FormItem label="控制属性">
             <Col v-for="item in controlOptions" :key="item.name">
-              <Checkbox>
+              <Checkbox 
+                v-model:checked="formConfig.currentItem.componentProps[item.name]">
                 {{ item.label }}
               </Checkbox>
             </Col>
           </FormItem>
         </div>
         
-
         <FormItem label='关联字段'>
-          <Select 
+          <Select
+            :options="linkOptions"
             mode="multiple" />
         </FormItem>
         
-
         <!-- 选项 -->
-        <FormItem label="选项">
-          
+        <FormItem label="选项" v-if="['Select'].includes(formConfig.currentItem.component)">
+          <FormOptions />
         </FormItem>
       </Form>
     </div>
@@ -40,12 +44,14 @@
   
 <script lang='ts' setup>
   import { computed, ref, watch } from 'vue'
-  import { Form, FormItem, Select, Empty, Col, Checkbox } from 'ant-design-vue'
+  import { Form, FormItem, Select, Empty, Col, Checkbox, RadioGroup } from 'ant-design-vue'
   import { IBaseFormAttrs } from '../../config/formItemPropsConfig';
   import { useFormDesignState } from '../../../../hooks/useFormDesignState'
   import { 
     baseComponentControlAttrs, 
-    baseComponentCommonAttrs } from '../../config/componentPropsConfig';
+    baseComponentCommonAttrs,
+    baseComponentAttrs } from '../../config/componentPropsConfig';
+  import FormOptions from './FormOptions.vue';
 
   const { formConfig } = useFormDesignState()
   const allOptions = ref([] as IBaseFormAttrs[])
@@ -79,14 +85,37 @@
       }
     })
 
+    if ( baseComponentAttrs[component] ) {
+      baseComponentAttrs[component].map(item => {
+        if ( [ 'Checkbox', 'Radio', 'Switch' ].includes(item.component as string) ) {
+          item.category = 'control'
+          allOptions.value.push(item)
+        } else {
+          item.category = 'input'
+          allOptions.value.push(item)
+        }
+      })
+    }
+
     console.log('allOptions', allOptions);
-  })
+    
+  }, { immediate: true, deep: true })
 
   // 控制选项
   const controlOptions = computed(() => allOptions.value.filter(v => v.category === 'control'))
+  console.log('controlOptions', controlOptions);
+  
 
   // input配置项
   const inputOptions = computed(() => allOptions.value.filter(v => v.category === 'input'))
+
+  // 关联选项
+  const linkOptions = computed(() => {
+    const { schemas, currentItem } = formConfig.value
+    return schemas.filter(item => item.key !== currentItem.key).map(item => {
+      return { label: item.label, value: item.key }
+    })
+  })
 
 </script>
   

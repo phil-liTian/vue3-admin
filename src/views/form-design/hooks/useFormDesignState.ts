@@ -8,3 +8,10 @@ export function useFormDesignState()  {
 
   return { formConfig, formDesignMethods }
 }
+
+export function useFormModelState() {
+  const formModel = inject('formModel') as Ref<any>
+  const setFormModel = inject('setFormModel') as (key: string, value: any) => void
+
+  return { formModel, setFormModel }
+}

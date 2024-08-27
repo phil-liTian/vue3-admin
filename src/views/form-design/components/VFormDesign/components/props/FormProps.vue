@@ -3,7 +3,7 @@
 -->
 <template>
   <div class='properties-content'>
-    <Form layout='vertical'>
+    <Form class="properties-body" layout='vertical'>
       <FormItem label='表单布局'>
         <RadioGroup v-model:value="formConfig.layout" button-style="solid">
           <RadioButton value='horizontal'>水平</RadioButton>

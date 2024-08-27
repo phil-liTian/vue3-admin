@@ -1,26 +1,33 @@
 <template>
-  <!-- <div>formItem</div> -->
-   <!-- <Col>
-   
-   </Col> -->
-   <FormItem v-bind='formItemProps'>
-    <template #label>
-      <span>{{ schema.label }}</span>
-    </template>
-    
-     <component 
-      v-bind="{ ...cmpProps }"
-      :schema='schema'
-      :is="componentItem">
-    </component>
-   </FormItem>
+  <Col v-bind="colPropsComputed">
+    <FormItem v-bind='formItemProps'>
+      <template #label v-if="!formItemProps.hideLabel">
+        <Tooltip>
+          <span>{{ schema.label }}</span>
+
+          <template #title v-if="schema.helpMessage">
+            {{ schema.helpMessage }}
+          </template>
+          <PIcon v-if="schema.helpMessage" icon="solar:question-circle-outline" />
+        </Tooltip>
+      </template>
+      
+      <component 
+        v-bind="{ ...cmpProps }"
+        :schema='schema'
+        :is="componentItem">
+      </component>
+    </FormItem>
+  </Col>
 </template>
   
 <script lang='ts' setup>
-  import { FormItem } from 'ant-design-vue'
+  import { FormItem, Divider, Tooltip, Col } from 'ant-design-vue'
   import { computed, PropType } from 'vue'
   import { componentMap } from '../../core/formItemConfig'
   import { IVFormComponent } from '../../typings/v-form-component'
+  import { useFormModelState, useFormDesignState } from '../../hooks/useFormDesignState';
+  
   defineOptions({ name: 'VFormItem' })
   const props = defineProps({
     schema: {
@@ -29,22 +36,37 @@
     }
   })
 
+  const { formConfig } = useFormDesignState()
+  const { formModel, setFormModel } = useFormModelState()
+
   const componentItem = computed(() => componentMap.get(props.schema.component) )
 
+  const colPropsComputed = computed(() => {
+    return props.schema.colProps || {}
+  })
+
   const formItemProps = computed(() => {
+    const { itemProps, colProps } = props.schema
 
     let labelCol = {
-      style: { width: '120px' }
+      style: { width: `${formConfig.value.labelWidth || 100}px` }
     }
 
-    return {
-      labelCol,
-    }
+    const newConfig = Object.assign({}, {
+      labelCol
+    }, itemProps)
+
+    return newConfig
   })
 
   const cmpProps = computed(() => {
-    return {
+    const { component, field } = props.schema
+    const isCheck = props.schema.component && ['Switch', 'Checkbox'].includes(component)
 
+
+    return {
+      ...props.schema.componentProps,
+      [ isCheck ? 'checked' : 'value' ]: formModel[field]
     }
   })
 </script>

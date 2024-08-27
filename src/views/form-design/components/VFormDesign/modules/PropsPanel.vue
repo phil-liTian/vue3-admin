@@ -34,10 +34,13 @@
   :deep(.ant-tabs) {
     form {
       width: 100%;
+      height: 80vh;
+      overflow: hidden auto;
 
       .ant-form-item {
         margin-left: 10px;
         margin-right: 20px;
+        margin-bottom: 0;
       }
     }
   }

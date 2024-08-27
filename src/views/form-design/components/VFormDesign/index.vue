@@ -66,11 +66,13 @@
   import { IFormDesignMethods } from '../../typings/form-type'
   import baseComponent, { layoutComponents } from '../../core/formItemConfig'
   import { generateKey } from '../../utils/index'
+  import { globalConfigState } from '../../components/VFormDesign/config/formItemPropsConfig'
 
   const { prefixCls } = useDesign('form-design')
 
   const jsonModal = ref('')
   const importJsonModal = ref('')
+  const formModel = ref({})
   const formConfig = ref<IFormConfig>({
     /**
      * @description 当前激活的表单组件属性设置面板
@@ -87,7 +89,8 @@
      */
     currentItem: {
       component: '',
-      label: ''
+      label: '',
+      itemProps: {}
     },
 
     // 整体form布局
@@ -101,6 +104,13 @@
 
     colon: true
   })
+
+  const setGlobalConfigState = (item: IVFormComponent) => {
+    console.log('item', item);
+    
+    item.itemProps = item.itemProps || {}
+    item.colProps.span = globalConfigState.span
+  }
 
   const historyReturn = useRefHistory(formConfig, {
     deep: true
@@ -126,6 +136,8 @@
     
     const formItem = cloneDeep(element)
     generateKey(formItem)
+    // 设置全局上下文属性
+    setGlobalConfigState(formItem)
     
     if ( !formConfig.value.currentItem?.key ) {
       handleSetSelectItem(formItem)
@@ -170,6 +182,17 @@
     handleSetSelectItem({ component: '' })
   }
 
+  const setFormModel = (key, value) => formModel[key] = value
+
+  /**
+   * 表单数据
+   */
+  provide('formModel', formModel)
+  /**
+   * 往外抛出设置表单数据方法
+   */
+  provide<(key: string, value: any) => void>('setFormModelMethod', setFormModel)
+
   /**
    * 将表单配置项传递到子组件中, 在子组件中可以用inject接受
    */
@@ -188,6 +211,11 @@
     handleCopy,
     handleSetSelectItem
   })
+
+  // 属性配置
+  // IconPicker
+  // modal
+  // grid
   
 </script>
   

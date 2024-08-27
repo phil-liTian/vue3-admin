@@ -1,8 +1,8 @@
 import { FormProps } from 'ant-design-vue/lib/form/Form';
 import { ColEx } from '@c/PBase/Form/src/types/index'
+import { FormItem } from '@c/PBase/Form/src/types/formItem'
 
 export type PickntAntFormProps = Pick<FormProps, 'layout' | 'labelAlign' | 'labelCol' | 'wrapperCol' | 'colon' | 'size' | 'hideRequiredMark' | 'disabled'>
-
 
 export interface IVFormComponent {
   // 唯一标识
@@ -25,6 +25,11 @@ export interface IVFormComponent {
 
   // 栅格属性
   colProps?: Partial<ColEx>;
+
+  //
+  itemProps?: Partial<FormItem>;
+
+  helpMessage?: string;
 
 }
 
