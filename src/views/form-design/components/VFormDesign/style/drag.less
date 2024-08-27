@@ -32,6 +32,30 @@
           }
         }
       }
+
+      .copy-delete-box {
+        > .copy,
+        > .delete {
+          position: absolute;
+          top: 0;
+          width: 30px;
+          height: 30px;
+          color: #fff;
+          line-height: 30px;
+          text-align: center;
+        }
+
+        > .copy {
+          right: 30px;
+          border-radius: 0 0 0 8px;
+          background-color: @layout-color;
+        }
+
+        > .delete {
+          right: 0;
+          background-color: @layout-color;
+        }
+      }
     }
 
     // 非栅格布局

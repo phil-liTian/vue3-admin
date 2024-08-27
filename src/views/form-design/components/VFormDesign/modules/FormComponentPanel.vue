@@ -40,6 +40,7 @@
   .form-panel {
     position: relative;
     height: calc(100% - @operating-area-height);
+    overflow: hidden auto;
     .empty-text {
       position: absolute;
       margin: auto;
@@ -49,6 +50,8 @@
     }
 
     .draggable-box {
+      // height: calc(100vh - 120px);
+      // overflow: auto;
       .drag-move {
         cursor: move;
       }
