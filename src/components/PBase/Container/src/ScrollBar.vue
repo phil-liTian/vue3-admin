@@ -47,16 +47,11 @@
       moveY.value = unref(wrap).scrollTop * 100 / unref(wrap).clientHeight
 
     }
-
-    console.log('handleScroll', moveY.value);
   }
 
   function update() {
     if ( !unref(wrap) ) return
-    console.log('unref(wrap).clientHeight', unref(wrap).clientHeight);
-    
     const heightPercentage = (unref(wrap).clientHeight * 100) / unref(wrap).scrollHeight
-    console.log('heightPercentage', heightPercentage);
     
     sizeHeight.value = heightPercentage < 100 ? `${heightPercentage}%` : ''
     

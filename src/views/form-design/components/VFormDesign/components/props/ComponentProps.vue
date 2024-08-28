@@ -34,7 +34,7 @@
         </FormItem>
         
         <!-- 选项 -->
-        <FormItem label="选项" v-if="['Select'].includes(formConfig.currentItem.component)">
+        <FormItem label="选项" v-if="showFormOptions">
           <FormOptions />
         </FormItem>
       </Form>
@@ -96,15 +96,13 @@
         }
       })
     }
-
-    console.log('allOptions', allOptions);
     
   }, { immediate: true, deep: true })
+  // 可设置选项
+  const showFormOptions = computed(() => ['Select', 'CheckboxGroup', 'RadioGroup', 'TreeSelect', 'Cascader', 'AutoComplete'].includes(formConfig.value.currentItem.component))
 
   // 控制选项
   const controlOptions = computed(() => allOptions.value.filter(v => v.category === 'control'))
-  console.log('controlOptions', controlOptions);
-  
 
   // input配置项
   const inputOptions = computed(() => allOptions.value.filter(v => v.category === 'input'))

@@ -39,7 +39,6 @@
   })
 
   useMutationObserver(spinRef, () => {
-    console.log('useMutationObserver actived');
   }, { attributes: true, subtree: true })
 
   function scrollTop() {
@@ -53,8 +52,6 @@
     if ( !wrapperRefDom ) return
 
     const bodyDom = wrapperRefDom.$el.parentElement // body
-    console.log('bodyDom', bodyDom);
-    
     if ( !bodyDom ) return
     bodyDom.style.padding = '0'
     await nextTick() // 等页面渲染完
@@ -63,7 +60,6 @@
       const modalDom = bodyDom.parentElement && bodyDom.parentElement.parentElement
       if( !modalDom ) return
       const modalRect = getComputedStyle(modalDom).top
-      console.log('modalDom', modalRect, modalDom);
       const modalTop = Number.parseInt(modalRect)
 
       // 最大高度为视口高度 - header高度 - footer高度 - 距离顶部高度的二倍(确保上下间距相同)

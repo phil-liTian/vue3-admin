@@ -24,7 +24,6 @@ export const createBreakpointListen = (fn?: () => void) => {
   
   function getWindowWidth() {
     const width = document.body.clientWidth
-    console.log('width===>', width);
   }
   globalScreenRef = computed(() => unref(screenRef))
   globalRealWidthRef = computed(() => realWidthRef.value)

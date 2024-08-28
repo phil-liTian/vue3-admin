@@ -32,6 +32,7 @@
     const { key } = props.currentItem
     const traverse = (schemas: IVFormComponent[]) => {
       schemas.map((schema: IVFormComponent, index: number) => {
+        
         if ( key === schema.key ) {
           remove(schemas, index)
 

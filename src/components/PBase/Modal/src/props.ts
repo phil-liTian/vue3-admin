@@ -27,5 +27,6 @@ export const basicProps = Object.assign({}, modalProps, {
   okButtonProps: Object,
   cancelButtonProps: Object,
   loading: propTypes.bool.def(false),
-  loadingTip: propTypes.string.def('')
+  loadingTip: propTypes.string.def(''),
+  width: propTypes.number.def(520)
 })

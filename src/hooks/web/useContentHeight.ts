@@ -77,7 +77,6 @@ export const useContentHeight = (
     if ( !anchorEl ) return
 
     const { bottomIncludeBody } = getViewportOffset(anchorEl)
-    console.log('bottomIncludeBody', bottomIncludeBody);
     
     // 需要减去的高度
     let subtractHeight = 0
@@ -92,15 +91,10 @@ export const useContentHeight = (
       subtractSpaceHeight += calcSubtractSpace(getEl(unref(item)))
     })
 
-    console.log('subtractSpaceHeight', subtractSpaceHeight);
-    
-    
     // 内容高度
     // console.log('layoutFooterHeightRef', layoutFooterHeightRef);
-    console.log('bottomIncludeBody', bottomIncludeBody);
     let height = bottomIncludeBody - unref(layoutFooterHeightRef) - subtractSpaceHeight - subtractHeight
 
-    console.log('height', height);
     
 
     contentHeight.value = height

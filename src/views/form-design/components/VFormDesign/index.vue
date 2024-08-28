@@ -25,7 +25,10 @@
     <!-- 设计样式 -->
     <LayoutContent>
       <Toolbar 
+        @handle-preview="handleOpenModal(previewModal)"
+        @handle-preview2="handleOpenModal(previewModal2)"
         @handle-open-json-modal="handleOpenModal(jsonModal)"
+        @handle-open-code-modal="handleOpenModal(codeModal)"
         @handle-open-import-json-modal= handleOpenModal(importJsonModal)
         @handle-clear-form-items='handleClearFormItems' />
       <FormComponentPanel />
@@ -42,6 +45,9 @@
 
     <JsonModal ref="jsonModal" />
     <ImportJsonModal ref='importJsonModal' />
+    <VFormPreview ref='previewModal' />
+    <VFormPreview2 ref="previewModal2" />
+    <CodeModal ref="codeModal" />
   </Layout>
 </template>
   
@@ -55,8 +61,11 @@
   // modal
   import JsonModal from './components/modals/JsonModal.vue'
   import ImportJsonModal from './components/modals/ImportJsonModal.vue'
+  import VFormPreview from '../VFormPreview/index.vue'
+  import VFormPreview2 from '../VFormPreview/useForm.vue'
+  import CodeModal from './components/modals/CodeModal.vue'
 
-
+  // 主页面分布组件
   import CollapseItem from './modules/CollapseItem.vue'
   import PropsPanel from './modules/PropsPanel.vue'
   import FormComponentPanel from './modules/FormComponentPanel.vue'
@@ -72,6 +81,9 @@
 
   const jsonModal = ref('')
   const importJsonModal = ref('')
+  const previewModal = ref('')
+  const previewModal2 = ref('')
+  const codeModal = ref('')
   const formModel = ref({})
   const formConfig = ref<IFormConfig>({
     /**
@@ -106,8 +118,6 @@
   })
 
   const setGlobalConfigState = (item: IVFormComponent) => {
-    console.log('item', item);
-    
     item.itemProps = item.itemProps || {}
     item.colProps.span = globalConfigState.span
   }
@@ -115,6 +125,18 @@
   const historyReturn = useRefHistory(formConfig, {
     deep: true
   })
+
+  // 设置fromConfig的值
+  const setFormConfig = (config: IFormConfig) => {
+    config.schemas = config.schemas || [];
+    
+    config.schemas.map(item => {
+      item.colProps = item.colProps || {}
+      item.componentProps = item.componentProps || {}
+      item.itemProps = item.itemProps || {}
+    })
+    formConfig.value = config
+  }
 
   // 设置当前选中项
   const handleSetSelectItem = (schema: IVFormComponent) => {
@@ -172,9 +194,8 @@
   }
   // 展示modal
   const handleOpenModal = (Modal) => {
-    console.log('Modal', Modal);
-    
-    Modal.showModal(true)
+    const config = cloneDeep(formConfig.value)
+    Modal?.showModal(config)
   }
 
   const handleClearFormItems = () => {
@@ -209,14 +230,10 @@
    */
   provide<IFormDesignMethods>('formDesignMethods', {
     handleCopy,
-    handleSetSelectItem
+    handleSetSelectItem,
+    setFormConfig
   })
 
-  // 属性配置
-  // IconPicker
-  // modal
-  // grid
-  
 </script>
   
 <style lang='less'>
@@ -234,4 +251,3 @@
     }
   }
 </style>
-

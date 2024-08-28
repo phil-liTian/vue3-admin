@@ -57,6 +57,10 @@ export function useForm(props?: Props): UseFormReturnType {
       const form = await getForm()
       return form.validateFields(nameList)
     },
+    validate: async (nameList?: string | string[]) => {
+      const form = await getForm()
+      return form.validate(nameList)
+    },
     clearValidate: (nameList: string | string[] ) => {
       return unref(formRef).clearValidate(nameList)
     },

@@ -1,18 +1,21 @@
 <template>
   <Col v-bind="colPropsComputed">
     <FormItem v-bind='formItemProps'>
-      <template #label v-if="!formItemProps.hideLabel">
+      <template #label v-if="!formItemProps.hideLabel && schema.component !== 'Divider'" >
         <Tooltip>
           <span>{{ schema.label }}</span>
 
           <template #title v-if="schema.helpMessage">
             {{ schema.helpMessage }}
           </template>
-          <PIcon v-if="schema.helpMessage" icon="solar:question-circle-outline" />
+          <PIcon v-if="schema.helpMessage" class="ml-5" icon="solar:question-circle-outline" />
         </Tooltip>
       </template>
+
+      <Divider v-if="schema.component === 'Divider' && schema.label && !formItemProps.hideLabel">{{ schema.label }}</Divider>
       
       <component 
+        v-else
         v-bind="{ ...cmpProps }"
         :schema='schema'
         :is="componentItem">

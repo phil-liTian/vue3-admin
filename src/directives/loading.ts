@@ -12,7 +12,6 @@ const loadingDirective: ObjectDirective = {
     const size = el.getAttribute('loading-size')
     const background = el.getAttribute('loading-background')
     const fullScreen = !!binding.modifiers.fullScreen
-    console.log('binding.value', binding.value);
     
     const instance = createLoading({
       tip,
@@ -28,7 +27,6 @@ const loadingDirective: ObjectDirective = {
     const instance = el.instance
     if ( !instance ) return
     instance.setTip(el.getAttribute('loading-tip'));
-    console.log('binding.value', binding.value);
     
     if ( binding.oldValue !== binding.value ) {
       instance.setLoading(binding.value)

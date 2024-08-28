@@ -24,7 +24,6 @@ export function useDragMove(context: UseModalDragMoveContext) {
     wrap.setAttribute('data-drag', unref(context.draggable))
     const dialogHeaderEl: HTMLElement = document.querySelector('.ant-modal-header')
     const dragDom: HTMLElement = document.querySelector('.ant-modal')
-    console.log('dialogHeaderEl', dialogHeaderEl);
 
     // 鼠标变成move
     dialogHeaderEl.style.cursor = 'move'

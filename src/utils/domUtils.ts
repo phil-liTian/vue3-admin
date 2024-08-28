@@ -89,23 +89,16 @@ export function getViewportOffset(element: Element): ViewportOffsetResult {
   const pageYOffset = window.pageYOffset 
 
   const box = getBoundingClientRect(element)
-  console.log('box', box);
-  
   
   const { left: rectLeft, top: rectTop, width: rectWidth, height: rectHeight } = box
 
 
   // 当前el 距离顶部偏移的高度
   const offsetTop = rectTop + pageYOffset
-  console.log('offsetTop', rectTop, pageYOffset);
-  
-
 
   // console.log('getViewportOffset', box );
 
   const top = offsetTop - 0
-  
-  console.log('clientHeight', clientHeight, top);
   
   return {
     bottomIncludeBody: clientHeight - top

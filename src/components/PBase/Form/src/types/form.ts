@@ -68,6 +68,7 @@ export interface FormActionType {
   appendSchemaByField: ( schema: FormSchema | FormSchema[], prefixField?: string, first?: boolean ) => void;
   removeSchemaByField: (field: string | string[]) => void;
   validateFields: (nameList?: string | string[]) => Promise<any>;
+  validate?: (nameList?: string | string[]) => Promise<any>;
   clearValidate: (nameList?: undefined | string | string[]) => Promise<any>;
   updateSchema: (data: Partial<FormSchemaInner> | Partial<FormSchemaInner>[]) => Promise<void>
 }

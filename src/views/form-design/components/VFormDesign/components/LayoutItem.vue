@@ -15,7 +15,8 @@
           </Col>
         </Row>
         
-        <FormNodeOperate />
+        <FormNodeOperate 
+          :current-item="formConfig.currentItem" />
       </div>
     </template>
 
@@ -45,6 +46,8 @@
     }
   })
   const { formConfig, formDesignMethods: { handleSetSelectItem } } = useFormDesignState()
+  console.log('formConfig', formConfig);
+  
 
   const colPropsComputed = computed(() => {
     return props.schema.colProps || {}

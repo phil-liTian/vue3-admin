@@ -9,13 +9,13 @@
       <Divider type='vertical' />
       <Tooltip title='撤销'>
         <a :class="{ disabled: !canUndo }" :disabled="!canUndo" @click="undo">
-          <PIcon :size='20' icon='material-symbols:undo' />
+          <PIcon :size='20' icon='ant-design:undo-outlined' />
         </a>
       </Tooltip>
 
       <Tooltip title='重做'>
         <a :class="{ disabled: !canUndo }" :disabled="!canRedo" @click="redo">
-          <PIcon icon='uil:redo' />
+          <PIcon :size='20' icon='ant-design:redo-outlined' />
         </a>
       </Tooltip>
     </div>
@@ -35,12 +35,12 @@
   }
 
   const toolbarsConfigs: IToolbarConfig[] = [
-    {
-      title: '预览-支持布局',
-      type: 'preview',
-      icon: 'ant-design:chrome-filled',
-      event: 'handlePreview'
-    },
+    // {
+    //   title: '预览-支持布局',
+    //   type: 'preview',
+    //   icon: 'ant-design:chrome-filled',
+    //   event: 'handlePreview'
+    // },
     {
       title: '预览-不支持布局',
       type: 'preview',

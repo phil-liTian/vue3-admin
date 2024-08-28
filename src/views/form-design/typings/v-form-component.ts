@@ -31,6 +31,8 @@ export interface IVFormComponent {
 
   helpMessage?: string;
 
+  hidden?: boolean
+
 }
 
 export type LabelLayout = 'flex' | 'Grid'

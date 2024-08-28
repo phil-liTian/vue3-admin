@@ -35,6 +35,7 @@ export const ComponentMap = new Map<ComponentType | string, Component>();
 
 // ant
 ComponentMap.set('Input', Input)
+ComponentMap.set('InputTextArea', Input.TextArea)
 ComponentMap.set('Select', Select)
 ComponentMap.set('DatePicker', DatePicker)
 ComponentMap.set('RangePicker', DatePicker.RangePicker)
