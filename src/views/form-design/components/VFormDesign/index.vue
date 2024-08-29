@@ -31,7 +31,8 @@
         @handle-open-code-modal="handleOpenModal(codeModal)"
         @handle-open-import-json-modal= handleOpenModal(importJsonModal)
         @handle-clear-form-items='handleClearFormItems' />
-      <FormComponentPanel />
+      <FormComponentPanel 
+        @handle-set-select-item="handleSetSelectItem" />
     </LayoutContent>
 
     <!-- 控件样式自定义 -->
@@ -185,6 +186,10 @@
 
           handleBeforeColAdd(index + 1, schemas, isCopy)
         }
+
+        if ( ['Grid'].includes(formItem.component)) {
+          formItem.columns.forEach(item => traverse(item.children))
+        }
       })
     }
 
@@ -203,7 +208,12 @@
     handleSetSelectItem({ component: '' })
   }
 
-  const setFormModel = (key, value) => formModel[key] = value
+  const setFormModel = (key, value) => {
+    formModel.value[key] = value
+    console.log('formModel--->', formModel);
+
+  }
+  
 
   /**
    * 表单数据
@@ -233,7 +243,11 @@
     handleSetSelectItem,
     setFormConfig
   })
+  
+  // IconPicker
+  // 组件专属属性配置 
 
+  // 跟baseForm组件打通(测试环节)
 </script>
   
 <style lang='less'>

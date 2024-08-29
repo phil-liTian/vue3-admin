@@ -36,7 +36,7 @@
     }
     copyText(props.editorJson)
   }
-
+  // 导出一个json文件
   const exportData = (data: string, fileName = `file.${props.fileFormat}`) => {
     let content = 'data:text/csv;charset=utf-8,'
     content += data

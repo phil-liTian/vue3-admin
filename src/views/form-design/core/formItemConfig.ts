@@ -13,7 +13,7 @@ PhilCmp.forEach((value, key)=>{
 Cmp.forEach((value, key)=>{
   componentMap.set(key, value)
   // 如果Cmp中有，但是PhilComp中没有的组件, 则添加到PhilComp中 共享组件
-  if ( !componentMap.has(key) ) {
+  if ( !PhilCmp.has(key) ) {
     add(key, value)
   }
 })
@@ -56,6 +56,10 @@ const baseComponent: IVFormComponent[] = [
     colProps: {},
     componentProps: {
       placeholder: '请输入正则表达式',
+      options: [
+        { label: '手机号码', value: '/^(?:(?:\\+|00)86)?1[3-9]\\d{9}$/' },
+        { label: '网址带端口号', value: '/^((ht|f)tps?:\\/\\/)?[\\w-]+(\\.[\\w-]+)+:\\d{1,5}\\/?$/' },
+      ]
     }
   },
   {
@@ -100,8 +104,10 @@ const baseComponent: IVFormComponent[] = [
     label: "数字输入框",
     icon: "ant-design:field-number-outlined",
     field: '',
-    componentProps: {},
-    colProps: {}
+    componentProps: {
+      style: { width: '200px' }
+    },
+    colProps: { span: 24 }
   },
   {
     component: 'InputTextArea',
@@ -149,21 +155,27 @@ const baseComponent: IVFormComponent[] = [
     component: 'DatePicker',
     label: '日期选择',
     icon: 'healthicons:i-schedule-school-date-time-outline',
-    componentProps: {},
+    componentProps: {
+      placeholder: '请选择日期'
+    },
     colProps: {}
   },
   {
     component: 'RangePicker',
     label: '日期范围',
     icon: 'healthicons:i-schedule-school-date-time-outline',
-    componentProps: {},
+    componentProps: {
+      placeholder: ['开始日期', '结束日期']
+    },
     colProps: {}
   },
   {
     component: 'MonthPicker',
     label: '月份选择',
     icon: 'healthicons:i-schedule-school-date-time-outline',
-    componentProps: {},
+    componentProps: {
+      placeholder: '请选择月份'
+    },
     colProps: {}
   },
   {
@@ -309,8 +321,15 @@ export const layoutComponents: IVFormComponent[] = [
     field: '',
     componentProps: {},
     colProps: { span: 24 },
-    // columns: [
-
-    // ]
+    columns: [
+      {
+        span: 12,
+        children: []
+      },
+      {
+        span: 12,
+        children: []
+      }
+    ]
   }
 ]

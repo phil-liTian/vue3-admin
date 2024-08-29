@@ -6,7 +6,6 @@
     :open="visible">
 
     <PreviewCode :editorJson="editorJson" />
-    <!-- <PCodeEditor v-model:value=""/> -->
   </PBasicModal>
 </template>
   

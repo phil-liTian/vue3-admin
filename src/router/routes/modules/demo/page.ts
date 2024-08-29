@@ -16,24 +16,24 @@ const page: AppRouteModule = {
     title: t('routes.demo.page.page')
   },
   children: [
-    {
-      path: 'form',
-      name: 'FormPage',
-      // component: getParentLayout(''),
-      meta: {
-        title: t('routes.demo.page.form'),
-        icon: 'ion:document-text-outline'
-      },
-      children: [
-        {
-          path: 'basic',
-          component: () => import('@/views/demo/page/form/basic/index.vue'),
-          meta: {
-            title: t('routes.demo.page.formBasic')
-          }
-        }
-      ]
-    },
+    // {
+    //   path: 'form',
+    //   name: 'FormPage',
+    //   // component: getParentLayout(''),
+    //   meta: {
+    //     title: t('routes.demo.page.form'),
+    //     icon: 'ion:document-text-outline'
+    //   },
+    //   children: [
+    //     {
+    //       path: 'basic',
+    //       component: () => import('@/views/demo/page/form/basic/index.vue'),
+    //       meta: {
+    //         title: t('routes.demo.page.formBasic')
+    //       }
+    //     }
+    //   ]
+    // },
     // // account
     // {
     //   path: 'account',

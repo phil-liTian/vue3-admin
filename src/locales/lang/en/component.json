@@ -94,6 +94,7 @@
     "unfold": "Unfold"
   },
   "icon": {
-    "search": "Seacrh Icon"
+    "search": "Seacrh Icon",
+    "placeholder": "Click to Select Icon"
   }
 }

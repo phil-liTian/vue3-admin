@@ -1,12 +1,12 @@
 <template>
   <div>
-    <div v-if="!['Grid'].includes(formConfig.currentItem.component)">grid</div>
+    <div v-if="['Grid'].includes(formConfig.currentItem.component)">grid</div>
 
     <div v-else>
       <div v-for="(item, index) in formConfig.currentItem.componentProps[key]" :key="index">
-        <div class="option-box">
+        <div class="options-box">
           <Input v-model:value="item.label" />
-          <Input v-model:value="item.value" />
+          <Input v-model:value="item.value" class="options-value" />
           <a class="options-delete" @click="removeOptions(index)">
             <PIcon icon="ant-design:delete-outlined" />
           </a>
@@ -33,8 +33,8 @@
     }
     const len = formConfig.value.currentItem.componentProps[key].length + 1
     formConfig.value.currentItem.componentProps[key].push({
-      label: `选项-${len}`,
-      value: `-${len}`
+      label: `选项${len}`,
+      value: `${len}`
     })
   }
 
@@ -44,5 +44,26 @@
 </script>
   
 <style lang='less' scoped>
-  
+  .options-box {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+
+    .options-value {
+      margin: 0 5px;
+    }
+    .options-delete {
+      flex-shrink: 0; // 不参与收缩
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: #f5f5f5;
+      text-align: center;
+      line-height: 30px;
+      color: #666;
+      &:hover {
+        color: #ff4d4f;
+      }
+    }
+  }
 </style>

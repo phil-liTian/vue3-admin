@@ -7,5 +7,5 @@ export interface IFormDesignMethods {
 }
 
 export interface IToolbarMethods {
-  showModal?: (formConfig: IFormConfig) => void
+  showModal?: (formConfig?: IFormConfig) => void
 }

@@ -1,4 +1,4 @@
-
+// 将base64转化成Blob 二进制大对象，一般用来存储图像、音频、视频等各种类型的数据
 export function dataURLtoBlob(base64Buf: string): Blob {
   const arr = base64Buf.split(',');
   const typeItem = arr[0]

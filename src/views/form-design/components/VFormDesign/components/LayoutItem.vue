@@ -5,11 +5,23 @@
       <div :class="['grid-box', { 'active': schema.key === formConfig.currentItem.key }]"
         @click='handleSetSelectItem(schema)'>
         <Row class='grid-row'>
-          <Col class='grid-col'>
-            <draggable class='draggable-box'>
+          <Col class='grid-col' 
+            v-for="(colItem, index) in schema.columns" 
+            :key="index" 
+            :span="colItem.span">
+            <draggable 
+              v-bind="{
+                group: 'form-draggable',
+                handle: '.drag-move',
+                animation: 180
+              }"
+              item-key="key"
+              v-model="colItem.children"
+              class='draggable-box'>
               <template #item="{ element }">
-                <!-- <div>{{ element }}</div> -->
-                 <LayoutItem :schema="element" />
+                 <LayoutItem 
+                  class="drag-move"
+                  :schema="element" />
               </template>
             </draggable>
           </Col>

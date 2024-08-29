@@ -18,6 +18,7 @@
         v-else
         v-bind="{ ...cmpProps }"
         :schema='schema'
+        @change="handleChange"
         :is="componentItem">
       </component>
     </FormItem>
@@ -32,6 +33,7 @@
   import { useFormModelState, useFormDesignState } from '../../hooks/useFormDesignState';
   
   defineOptions({ name: 'VFormItem' })
+  const emits = defineEmits(['change'])
   const props = defineProps({
     schema: {
       type: Object as PropType<IVFormComponent>,
@@ -64,14 +66,31 @@
 
   const cmpProps = computed(() => {
     const { component, field } = props.schema
-    const isCheck = props.schema.component && ['Switch', 'Checkbox'].includes(component)
-
+    const isCheck = props.schema.component && ['Switch', 'Checkbox', 'Radio'].includes(component)
+    console.log('formModel', formModel);
+    
 
     return {
       ...props.schema.componentProps,
-      [ isCheck ? 'checked' : 'value' ]: formModel[field]
+      [ isCheck ? 'checked' : 'value' ]: formModel.value[field]
     }
   })
+
+  console.log('cmpProps', cmpProps);
+  
+
+  const handleChange = (e) => {
+    const { component, field } = props.schema
+    console.log('e-->', e, field);
+    
+    const isCheck = ['Switch', 'Checkbox', 'Radio'].includes(component)
+    const target = e ? e.target : null
+    const value = target ? (isCheck ? target.checked : target.value) : e
+    console.log('value', value);
+    
+    setFormModel(field, value)
+    emits('change', value)
+  }
 </script>
   
 <style lang='less' scoped>

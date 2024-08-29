@@ -31,8 +31,10 @@ export interface IVFormComponent {
 
   helpMessage?: string;
 
-  hidden?: boolean
+  hidden?: boolean;
 
+  // 栅格布局columns
+  columns?: Array<{ span: number, children: any[] }>
 }
 
 export type LabelLayout = 'flex' | 'Grid'

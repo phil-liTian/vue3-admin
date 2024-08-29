@@ -44,7 +44,7 @@
   
 <script lang='ts' setup>
   import { computed, ref, watch } from 'vue'
-  import { Form, FormItem, Select, Empty, Col, Checkbox, RadioGroup } from 'ant-design-vue'
+  import { Form, FormItem, Select, Empty, Col, Checkbox, RadioGroup, Input, InputNumber } from 'ant-design-vue'
   import { IBaseFormAttrs } from '../../config/formItemPropsConfig';
   import { useFormDesignState } from '../../../../hooks/useFormDesignState'
   import { 

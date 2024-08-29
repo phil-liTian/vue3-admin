@@ -1,6 +1,6 @@
 <template>
   <PBasicModal
-    title="预览(不支持布局)"
+    title="预览(不支持栅格布局)"
     @close="handleClose"
     @ok="handleGetData"
     okText="获取数据"

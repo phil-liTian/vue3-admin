@@ -1,4 +1,4 @@
-import { Input, DatePicker, Rate, Transfer, Cascader, TreeSelect, TimePicker, AutoComplete } from 'ant-design-vue'
+import { Input, DatePicker, Rate, Transfer, Cascader, TreeSelect, TimePicker, AutoComplete, Radio } from 'ant-design-vue'
 import { Component } from 'vue'
 
 const componentMap = new Map<string, Component>()
@@ -11,5 +11,6 @@ componentMap.set('Cascader', Cascader)
 componentMap.set('TreeSelect', TreeSelect)
 componentMap.set('TimePicker', TimePicker)
 componentMap.set('AutoComplete', AutoComplete)
+componentMap.set('Radio', Radio)
 
 export { componentMap }

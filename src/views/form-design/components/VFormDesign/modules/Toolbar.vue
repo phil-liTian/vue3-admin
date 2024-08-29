@@ -35,12 +35,12 @@
   }
 
   const toolbarsConfigs: IToolbarConfig[] = [
-    // {
-    //   title: '预览-支持布局',
-    //   type: 'preview',
-    //   icon: 'ant-design:chrome-filled',
-    //   event: 'handlePreview'
-    // },
+    {
+      title: '预览-支持布局',
+      type: 'preview',
+      icon: 'ant-design:chrome-filled',
+      event: 'handlePreview'
+    },
     {
       title: '预览-不支持布局',
       type: 'preview',

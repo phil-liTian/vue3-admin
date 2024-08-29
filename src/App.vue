@@ -41,20 +41,22 @@ useTitle()
 // 对路由的处理 listenRouteChange, 可实现在页面渲染之前监听路由变化； permissionGuard实现权限守卫，可实现路由routes根据权限动态处理
 // 使用vue-i18n做国际化配置; 使用iconify来处理部分图标; 使用unocss来处理常规样式。
 // simpleMenu、modal、drawer、Form、loading等基础组件封装
-
 // 梳理Persistent逻辑
-
-
-// cropper组件（background、base64转file文件格式）
 
 // 编辑器组件 editor/json
 // tree tree/basic
 
-// 表单设计
 // 操作权限问题
-// form
-// TODO: useRequest
 // 基础组件样式调整
+
+// form
+// 0830: useRequest
+// 文件下载
+// excel导入导出
+// 权限
+// 测试 (清除bug后稳定版本)
+
+// 目标 9月9号完成
 </script>
   
 <style lang='less' scoped>

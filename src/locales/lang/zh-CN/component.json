@@ -91,6 +91,7 @@
     "unfold": "展开"
   },
   "icon": {
-    "search": "搜索图标"
+    "search": "搜索图标",
+    "placeholder": "点击选择图标"
   }
 }
