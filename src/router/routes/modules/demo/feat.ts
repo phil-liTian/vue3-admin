@@ -97,6 +97,14 @@ const feat: AppRouteModule = {
       }
     },
     {
+      path: 'download',
+      name: 'DownloadDemo',
+      component: () => import('@/views/demo/feat/download/index.vue'),
+      meta: {
+        title: t('routes.demo.feat.download')
+      }
+    },
+    {
       path: "excel",
       name: "Excel",
       redirect: "",
@@ -110,6 +118,30 @@ const feat: AppRouteModule = {
           component: () => import('@/views/demo/excel/ImportExcel.vue'),
           meta: {
             title: t('routes.demo.excel.importExcel')
+          }
+        },
+        {
+          path: 'arrayExport',
+          name: 'ArrayExportDemo',
+          component: () => import('@/views/demo/excel/ArrayExport.vue'),
+          meta: {
+            title: t('routes.demo.excel.arrayExport')
+          }
+        },
+        {
+          path: 'jsonExport',
+          name: 'JsonExportDemo',
+          component: () => import('@/views/demo/excel/JsonExport.vue'),
+          meta: {
+            title: t('routes.demo.excel.jsonExport')
+          }
+        },
+        {
+          path: 'customExport',
+          name: 'CustomExportDemo',
+          component: () => import('@/views/demo/excel/CustomExport.vue'),
+          meta: {
+            title: t('routes.demo.excel.customExport')
           }
         }
       ]

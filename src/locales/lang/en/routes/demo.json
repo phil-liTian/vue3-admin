@@ -81,6 +81,7 @@
     "feat": "Page Function",
     "ws": "WebSocket test",
     "copy": "Copy",
+    "download": "Download",
     "clickOutSide": "ClickOutSide",
     "contextMenu": "Context Menu",
     "fullScreen": "Full Screen",
@@ -93,6 +94,10 @@
   },
   "excel": {
     "excel": "Excel",
-    "importExcel": "Import Excel"
-  }
+    "importExcel": "Import Excel",
+    "arrayExport": "Array Export",
+    "jsonExport": "Json Export",
+    "customExport": "Custom Export"
+  },
+
 }

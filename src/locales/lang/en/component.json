@@ -96,5 +96,11 @@
   "icon": {
     "search": "Seacrh Icon",
     "placeholder": "Click to Select Icon"
+  },
+  "excel": {
+    "exportModalTitle": "Export Data",
+    "fileName": "File name",
+    "filenamePlaceholder": "Please enter File name",
+    "bookType": "File Type"
   }
 }

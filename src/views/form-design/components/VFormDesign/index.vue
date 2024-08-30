@@ -244,9 +244,6 @@
     setFormConfig
   })
   
-  // IconPicker
-  // 组件专属属性配置 
-
   // 跟baseForm组件打通(测试环节)
 </script>
   

@@ -1,4 +1,6 @@
 
 export interface ExcelData<T = any> {
-  header: string[]
+  header?: string[];
+  results?: T[];
+  meta?: { sheetName: string }
 }

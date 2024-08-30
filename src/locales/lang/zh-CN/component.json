@@ -93,5 +93,11 @@
   "icon": {
     "search": "搜索图标",
     "placeholder": "点击选择图标"
+  },
+  "excel": {
+    "exportModalTitle": "导出数据",
+    "fileName": "文件名",
+    "filenamePlaceholder": "请输入文件名",
+    "bookType": "文件类别"
   }
 }

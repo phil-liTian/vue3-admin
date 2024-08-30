@@ -12,6 +12,7 @@ import { PaginationProps } from "./types/pagination";
 
 export const basicProps = {
   loading: propTypes.bool.def(false),
+  dataSource: propTypes.array.def([]),
   title: {
     type: [String, Function] as PropType<string | ((data: Recordable) => string)>,
     default: null,

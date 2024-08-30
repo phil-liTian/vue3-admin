@@ -81,6 +81,7 @@
     "feat": "功能",
     "ws": "WebSocket测试",
     "copy": "剪切板",
+    "download": "下载",
     "clickOutSide": "ClickOutSide组件",
     "contextMenu": "右键菜单",
     "fullScreen": "全屏",
@@ -93,6 +94,9 @@
   },
   "excel": {
     "excel": "表格",
-    "importExcel": "导入表格"
+    "importExcel": "导入表格",
+    "arrayExport": "Array数据导出",
+    "jsonExport": "Json数据导出",
+    "customExport": "自定义导出格式"
   }
 }
