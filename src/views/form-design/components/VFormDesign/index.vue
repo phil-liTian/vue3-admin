@@ -8,6 +8,7 @@
       <PCollapseContainer title='基础控件'>
         <CollapseItem 
           :list="baseComponent"
+          :listDragPush="handleListPushDrag"
           @handle-list-push='handleListPush' />
       </PCollapseContainer>
 
@@ -18,6 +19,7 @@
       <PCollapseContainer title='布局控件'>
         <CollapseItem 
           :list="layoutComponents"
+          :listDragPush="handleListPushDrag"
           @handle-list-push='handleListPush' />
       </PCollapseContainer>
     </LayoutSider>
@@ -169,6 +171,15 @@
     }
     
     handleCopy(formItem, false)
+  }
+
+  const handleListPushDrag = (element: IVFormComponent) => {
+    const formItem = cloneDeep(element)
+    generateKey(formItem)
+    // 设置全局上下文属性
+    setGlobalConfigState(formItem)
+
+    return formItem
   }
 
   const copyFormItem = (formItem: IVFormComponent) => {

@@ -1,7 +1,7 @@
 <template>
   <div 
     :class="['drag-move-box', { active: schema.key === formConfig.currentItem?.key }]"
-    @click="handleSelectItem">
+    @click.stop="handleSelectItem">
     <div class="form-item-box">
       <VFormItem :schema='schema' />
     </div>
@@ -11,7 +11,9 @@
     </div>
 
     <!-- formItem的操作区域 删除和拷贝 -->
-    <FormNodeOperate :currentItem="formConfig.currentItem" />
+    <FormNodeOperate 
+      :schema="schema"
+      :currentItem="formConfig.currentItem" />
   </div>
 </template>
   
@@ -33,6 +35,8 @@
 
   // 选择当前编辑的组件
   const handleSelectItem = () => {
+    console.log('handleSelectItem', props.schema);
+    
     formDesignMethods.handleSetSelectItem(props.schema)
   }
 </script>

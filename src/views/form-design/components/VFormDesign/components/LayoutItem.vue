@@ -27,7 +27,8 @@
           </Col>
         </Row>
         
-        <FormNodeOperate 
+        <FormNodeOperate
+          :schema="schema"
           :current-item="formConfig.currentItem" />
       </div>
     </template>

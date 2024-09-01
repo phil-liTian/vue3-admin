@@ -43,5 +43,9 @@
         margin-bottom: 0;
       }
     }
+
+    .ant-input-number {
+      width: 100%;
+    }
   }
 </style>

@@ -3,6 +3,8 @@
 .draggable-box {
 
   .list-main {
+    overflow: hidden;
+    // 栅格布局
     .grid-box {
       position: relative;
       padding: 5px;
@@ -36,7 +38,7 @@
         }
       }
 
-      .copy-delete-box {
+      >.copy-delete-box {
         > .copy,
         > .delete {
           position: absolute;
@@ -46,6 +48,14 @@
           color: #fff;
           line-height: 30px;
           text-align: center;
+
+          &.active {
+            opacity: 1 !important;
+          }
+
+          &.unactivated {
+            opacity: 0 !important;
+          }
         }
 
         > .copy {
@@ -66,6 +76,7 @@
       position: relative;
       min-height: 60px;
       padding: 8px;
+      overflow: hidden;
 
       &:hover {
         background-color: @primary-hover-bg-color;
@@ -112,6 +123,13 @@
         text-align: center;
         line-height: 30px;
         color: #fff;
+
+        &.active {
+          opacity: 1;
+        }
+        &.unactivated {
+          opacity: 0;
+        }
       }
 
       .delete {

@@ -3,12 +3,19 @@
     <draggable
       tag="ul"
       itemKey="type"
+      v-bind="{
+
+        group: { name: 'form-draggable', pull: 'clone', put: false },
+        handle: '.drag-move',
+        animation: 180,
+        clone: cloneItem
+      }"
       :model-value="list"
       @add="handleAdd">
       <template #item="{ element, index }">
         <li 
           @click="$emit('handle-list-push', element)"
-          class="text-ellipsis">
+          class="text-ellipsis drag-move">
           <PIcon :icon="element.icon"></PIcon>
           {{ element.label }}
         </li>
@@ -27,11 +34,23 @@
     list: {
       type: Array as PropType<IVFormComponent[]>,
       default: () => []
+    },
+    listDragPush: {
+      type: Function,
+      default: null
     }
   })
+  const emits = defineEmits(['handle-list-push'])
   const { prefixCls } = useDesign('form-design-collapse-item')
   const handleAdd = () => {
     console.log('handleAdd')
+  }
+
+  const cloneItem = (one) => {
+    // 不能使用当前方法，需要拖动到指定位置 需要想别的方法
+    // emits('handle-list-push', one)
+    // 注: 这里需要return处理后的数据结构
+    return props.listDragPush && props.listDragPush(one)
   }
 </script>
   

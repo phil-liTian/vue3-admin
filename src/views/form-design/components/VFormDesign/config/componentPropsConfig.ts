@@ -528,14 +528,15 @@ const componentAttrs: IBaseComponentProps = {
       label: '星星个数',
       component: InputNumber,
       componentProps: {
-        placeholder: '请输入星星个数'
+        placeholder: '请输入星星个数',
+        wrapCol: { span: 24 }
       }
     },
-    {
-      name: 'allowHalf',
-      label: '是否允许半选',
-      component: 'Checkbox'
-    }
+    // {
+    //   name: 'allowHalf',
+    //   label: '是否允许半选',
+    //   component: 'Checkbox'
+    // }
   ],
 
   Switch: [

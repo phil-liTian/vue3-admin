@@ -1,22 +1,27 @@
 <template>
   <div class='copy-delete-box'>
-    <a class='copy' @click.stop="handleCopy">
+    <a class='copy' :class="activeClass" @click.stop="handleCopy">
       <PIcon icon='ph:copy-bold' /> 
     </a>
 
-    <a class='delete' @click.stop="handleDelete">
+    <a class='delete' :class="activeClass" @click.stop="handleDelete">
       <PIcon icon='fluent:delete-32-filled' />
     </a>
   </div>
 </template>
   
 <script lang='ts' setup>
+  import { computed, PropType } from 'vue'
   import { IVFormComponent } from '@/views/form-design/typings/v-form-component';
   import { useFormDesignState } from '../../../hooks/useFormDesignState'
   import { remove } from '../../../utils/index'
   const props = defineProps({
     currentItem: {
       type: Object,
+      default: () => ({})
+    },
+    schema: {
+      type: Object as PropType<IVFormComponent>,
       default: () => ({})
     }
   })
@@ -26,6 +31,8 @@
   const handleCopy = () => {
     formDesignMethods.handleCopy()
   }
+
+  const activeClass = computed(() => props.schema.key === props.currentItem.key ? 'active' : 'unactivated')
 
   // 删除当前项
   const handleDelete = () => {
