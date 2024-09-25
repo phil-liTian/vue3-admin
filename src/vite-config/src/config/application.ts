@@ -86,5 +86,18 @@ export const defineApplicationConfig = async () => {
 				},
 			},
 		},
+
+		build: {
+			rollupOptions: {
+				output: {
+					// 分包优化, 将第三方包放到指定文件中
+					manualChunks(id) {
+						if (id.includes('node_modules')) {
+							return 'vendors';
+						}
+					},
+				},
+			},
+		},
 	});
 };
