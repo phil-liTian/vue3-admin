@@ -98,6 +98,5 @@
     "arrayExport": "Array Export",
     "jsonExport": "Json Export",
     "customExport": "Custom Export"
-  },
-
+  }
 }

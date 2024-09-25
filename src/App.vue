@@ -40,18 +40,11 @@ useTitle()
 // axios 封装
 // 对路由的处理 listenRouteChange, 可实现在页面渲染之前监听路由变化； permissionGuard实现权限守卫，可实现路由routes根据权限动态处理
 // 使用vue-i18n做国际化配置; 使用iconify来处理部分图标; 使用unocss来处理常规样式。
-// simpleMenu、modal、drawer、Form、loading等基础组件封装
 // 梳理Persistent逻辑
 
-// 编辑器组件 editor/json
-// tree tree/basic
-
 // 操作权限问题
-// 基础组件样式调整
-
 
 // useRequest
-// form
 // 权限
 // 测试 (清除bug后稳定版本)
 

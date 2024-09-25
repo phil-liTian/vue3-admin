@@ -44,6 +44,10 @@ export interface UseRequestOptions<TData, TParams extends any[]> {
   refreshOnWindowFocus?: boolean;
   focusTimespan?: number; // 重新请求 间隔时间
 
+  // 错误重试
+  retryCount?: number;
+  retryInterval?: number; // 重试的时间间隔
+
   staleTime?: number; // 过期时间
   cacheTime?: number;
   setCache?: (data) => void;

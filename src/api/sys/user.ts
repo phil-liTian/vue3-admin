@@ -3,36 +3,35 @@
  * @LastEditors: phil_litian
  */
 
-import { defHttp } from '@u/http/axios/index'
-import { LoginResultModel, LoginParams, GetUserInfoModel } from './models/userModel'
+import { defHttp } from '@u/http/axios/index';
+import {
+	LoginResultModel,
+	LoginParams,
+	GetUserInfoModel,
+} from './models/userModel';
 
 enum Api {
-  Login = '/login',
-  Logout = '/logout',
-  GetUserInfo = '/getUserInfo'
+	Login = '/login',
+	Logout = '/logout',
+	GetUserInfo = '/getUserInfo',
 }
 
 // 登录
 export const loginApi = (params?: LoginParams) => {
-  return defHttp.post<LoginResultModel>(
-    {
-      url: Api.Login,
-      params,
-    })
-}
+	return defHttp.post<LoginResultModel>({
+		url: Api.Login,
+		params,
+	});
+};
 
 // 退出登录
 export const doLogout = () => {
-  return defHttp.get({ url: Api.Logout })
-}
+	return defHttp.get({ url: Api.Logout });
+};
 
 // 获取用户信息
 export const getUserInfo = () => {
-  return defHttp.get<GetUserInfoModel>(
-    {
-      url: Api.GetUserInfo,
-    }
-  )
-}
-
-
+	return defHttp.get<GetUserInfoModel>({
+		url: Api.GetUserInfo,
+	});
+};

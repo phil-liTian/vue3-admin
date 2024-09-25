@@ -31,6 +31,9 @@ const usePollingPlugin: UseRequestPlugin<any, any[]> = (
   if ( !pollingInterval ) return {}
 
   return {
+    onBefore: () => {
+      stopPolling()
+    },
     onError: () => {
       countRef.value++
     },
@@ -54,6 +57,10 @@ const usePollingPlugin: UseRequestPlugin<any, any[]> = (
       } else {
         countRef.value = 0
       }
+    },
+
+    onCancel() {
+      stopPolling()
     }
   }
 }

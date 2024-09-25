@@ -61,7 +61,6 @@
   const { login } = useUserStore()
 
 
-  login({ username: 'phil', password: '123456' })
   // setTimeout(() => {
   //   login({ username: 'phil', password: '12345' })
   // }, 500);

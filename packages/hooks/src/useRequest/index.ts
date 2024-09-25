@@ -11,6 +11,7 @@ import usePollingPlugin from './plugins/usePollingPlugin'
 import useLoadingDelayPlugin from './plugins/useLoadingDelay'
 import useRefreshOnWindowFocusPlugin from './plugins/useRefreshOnWindowFocusPlugin'
 import { useRequestImplement } from './useRequestImplement'
+import useRetryPlugin from './plugins/useRetryPlugin'
 
 export function useReqest<TData, TParams extends any[]>(
   service: Service<TData, TParams>, 
@@ -22,12 +23,13 @@ export function useReqest<TData, TParams extends any[]>(
     options,
     [
       ...(plugins || []),
+      usePollingPlugin,
       useCachePlugin,
       useAutoRunPlugin,
       useDebouncePlugin,
       useThrottlePlugin,
-      usePollingPlugin,
       useLoadingDelayPlugin,
+      useRetryPlugin,
       useRefreshOnWindowFocusPlugin
     ] as UseRequestPlugin<TData, TParams>[]
   )

@@ -44,9 +44,6 @@ export default class Fetch<TData, TParams extends any[]> {
     if ( stopNow ) {
       return new Promise(() => {})
     }
-
-    console.log('state', state);
-    
     this.setState({
       loading: true,
       params,
@@ -69,8 +66,14 @@ export default class Fetch<TData, TParams extends any[]> {
       }
 
       const res = await servicePromise
+      // 只有直接执行run的时候, 才会执行后续逻辑, 比如说在此之前执行了cancel
+      if ( this.count !== currentCount ) {
+        return new Promise(() => {})
+      }
+
       this.setState({ data: res, error: undefined, loading: false });
       // options中可配置onSuccess方法
+
       this.options?.onSuccess?.(res, params);
 
       this.runPluginHandler('onSuccess', res, params)
@@ -99,7 +102,8 @@ export default class Fetch<TData, TParams extends any[]> {
   }
 
   cancel() {
-    
+    this.count += 1
+    this.setState({ loading: false })
   }
 
   refresh() {
