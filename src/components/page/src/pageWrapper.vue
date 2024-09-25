@@ -3,7 +3,7 @@
  * @LastEditors: phil_litian
 -->
 <template>
-  <div :class="getClass" ref="wrapperRef">
+  <div :class="getClass" class='font-size-12px' ref="wrapperRef">
     <PageHeader 
       ref="headerRef"
       :title="title"

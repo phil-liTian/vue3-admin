@@ -8,7 +8,7 @@
     :dropMenuList="getDropMenuList"
     @menuEvent="handleMenuEvent">
     <div v-if="getIsTabs">
-      <span class="ml-1">{{ getTitle }}</span>
+      <span class="ml-1 font-size-12px">{{ getTitle }}</span>
     </div>
     <span v-else :class="`${prefixCls}__extra-quick`">
       <p-icon icon="mdi:chevron-down"></p-icon>

@@ -8,11 +8,11 @@
       <template #itemRender="{ route, routes: routesMatched, paths }">
         <p-icon v-if="getIcon(route) && getShowBreadcrumbIcon" :icon="getIcon(route)"></p-icon>
         <!-- 当前展示的路由 -->
-        <span v-if="!hasRedirect(routesMatched, route)">
+        <span class='font-size-12px' v-if="!hasRedirect(routesMatched, route)">
           {{ t( route.name || route.meta.title) }}
         </span>
 
-        <router-link v-else to="" @click="handleClick(route, paths, $event)">
+        <router-link class='font-size-12px' v-else to="" @click="handleClick(route, paths, $event)">
           {{ t(route.meta.title) }}
         </router-link>
       </template>
@@ -128,7 +128,8 @@
     display: flex;
     align-items: center;
     padding: 0 8px;
-
+    font-size: 12px;
+    
     .ant-breadcrumb-link {
       .anticon {
         margin-right: 4px;

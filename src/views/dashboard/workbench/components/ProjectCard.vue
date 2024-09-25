@@ -29,5 +29,7 @@ import { GroupList } from './data'
 </script>
   
 <style lang='less' scoped>
-  
+  .ant-card-grid {
+    font-size: 80%;
+  }
 </style>
