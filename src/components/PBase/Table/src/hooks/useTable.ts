@@ -3,123 +3,126 @@
  * @LastEditors: phil
  */
 
-import { ref, unref } from "vue";
-import { getDynamicProps } from '@u/index'
-import { error } from '@u/log'
-import { BasicColumn, BasicTableProps, FetchParams, TableActionType } from "../types/table";
-import { Key } from "ant-design-vue/es/table/interface";
-import { PaginationProps } from "../types/pagination";
+import { ref, unref } from 'vue';
+import { getDynamicProps } from '@u/index';
+import { error } from '@u/log';
+import {
+	BasicColumn,
+	BasicTableProps,
+	FetchParams,
+	TableActionType,
+} from '../types/table';
+import { Key } from 'ant-design-vue/es/table/interface';
+import { PaginationProps } from '../types/pagination';
 
-export function useTable(tableProps: Partial<BasicTableProps>): [
-  (instance) => void,
-  TableActionType
-] {
-  const tableRef = ref<Nullable<TableActionType>>(null)
+export function useTable(
+	tableProps: Partial<BasicTableProps>
+): [(instance) => void, TableActionType] {
+	const tableRef = ref<Nullable<TableActionType>>(null);
 
-  function register(instance: TableActionType) {
-    tableRef.value = instance
-    console.log('instance', instance);
-    
+	function register(instance: TableActionType) {
+		tableRef.value = instance;
+		console.log('instance', instance);
 
-    tableProps && instance.setProps(tableProps)
-  }
+		tableProps && instance.setProps(tableProps);
+	}
 
-  function getTableInstance() {
-    const table = unref(tableRef)
-    
-    if ( !table ) {
-      error('The table instance is not exist')
-    }
+	function getTableInstance() {
+		const table = unref(tableRef);
 
-    return table as TableActionType
-  }
+		if (!table) {
+			error('The table instance is not exist');
+		}
 
-  const methods: TableActionType = {
-    reload: async (opt?: FetchParams) => {
-      await getTableInstance().reload(opt)
-    },
+		return table as TableActionType;
+	}
 
-    setProps: (props: BasicTableProps) => {
-      getTableInstance().setProps(props)
-    },
+	const methods: TableActionType = {
+		reload: async (opt?: FetchParams) => {
+			await getTableInstance().reload(opt);
+		},
 
-    getSize: () => {
-      return getTableInstance().getSize()
-    },
+		setProps: (props: BasicTableProps) => {
+			getTableInstance().setProps(props);
+		},
 
-    getColumns: () => {
-      return getTableInstance().getColumns()
-    },
+		getSize: () => {
+			return getTableInstance().getSize();
+		},
 
-    setColumns: (columns: BasicColumn[]) => {
-      return getTableInstance().setColumns(columns)
-    },
+		getColumns: () => {
+			return getTableInstance().getColumns();
+		},
 
-    /**
-     * 设置表格中的数据
-     * @returns 
-     */
-    setTableData: (dataList: Recordable[]) => {
-      console.log('getTableInstance()', getTableInstance());
-      
-      return getTableInstance()?.setTableData(dataList)
-    },
-    
-    /**
-     * 获取表格中的数据
-     */
-    getDataSource: () => {
-      return getTableInstance().getDataSource()
-    },
+		setColumns: (columns: BasicColumn[]) => {
+			return getTableInstance().setColumns(columns);
+		},
 
-    getRawDataSource: () => {
-      return getTableInstance().getRawDataSource()
-    },
+		/**
+		 * 设置表格中的数据
+		 * @returns
+		 */
+		setTableData: (dataList: Recordable[]) => {
+			console.log('getTableInstance()', getTableInstance());
 
-    collapseAll: () => {
-      return getTableInstance().collapseAll()
-    },
+			return getTableInstance()?.setTableData(dataList);
+		},
 
-    expandAll: () => {
-      return getTableInstance().expandAll()
-    },
-    
-    collapseRows: (keyValues: Key[]) => {
-      return getTableInstance().collapseRows(keyValues)
-    },
+		/**
+		 * 获取表格中的数据
+		 */
+		getDataSource: () => {
+			return getTableInstance().getDataSource();
+		},
 
-    expandRows: (keyValues: Key[]) => {
-      return getTableInstance().expandRows(keyValues)
-    },
+		getRawDataSource: () => {
+			return getTableInstance().getRawDataSource();
+		},
 
-    setLoading: (loading: boolean) => {
-      getTableInstance().setLoading(loading)
-    },
+		collapseAll: () => {
+			return getTableInstance().collapseAll();
+		},
 
-    setPagination: (info: Partial<PaginationProps>) => {
-      getTableInstance().setPagination(info)
-    },
+		expandAll: () => {
+			return getTableInstance().expandAll();
+		},
 
-    getPaginationRef: () => {
-      return getTableInstance().getPaginationRef()
-    },
+		collapseRows: (keyValues: Key[]) => {
+			return getTableInstance().collapseRows(keyValues);
+		},
 
-    getSelectRowKeys: () => {
-      return getTableInstance().getSelectRowKeys()
-    },
+		expandRows: (keyValues: Key[]) => {
+			return getTableInstance().expandRows(keyValues);
+		},
 
-    getSelectRows: () => {
-      return getTableInstance().getSelectRows()
-    },
+		setLoading: (loading: boolean) => {
+			getTableInstance().setLoading(loading);
+		},
 
-    setSelectedRowKeys: (data) => {
-      getTableInstance().setSelectedRowKeys(data)
-    },
+		setPagination: (info: Partial<PaginationProps>) => {
+			getTableInstance().setPagination(info);
+		},
 
-    clearSelectedRowKeys: () => {
-      getTableInstance().clearSelectedRowKeys()
-    }
-  }
+		getPaginationRef: () => {
+			return getTableInstance().getPaginationRef();
+		},
 
-  return [register, methods]
+		getSelectRowKeys: () => {
+			return getTableInstance().getSelectRowKeys();
+		},
+
+		getSelectRows: () => {
+			return getTableInstance().getSelectRows();
+		},
+
+		setSelectedRowKeys: (data) => {
+			getTableInstance().setSelectedRowKeys(data);
+		},
+
+		clearSelectedRowKeys: () => {
+			getTableInstance().clearSelectedRowKeys();
+		},
+	};
+
+	return [register, methods];
 }

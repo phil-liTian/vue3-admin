@@ -37,6 +37,7 @@ export const defineApplicationConfig = async () => {
 		base: './',
 		server: {
 			port: 8888,
+			open: true,
 			proxy: {
 				// '/basic-api': {
 				//   target: 'http://localhost:3000',

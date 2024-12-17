@@ -4,13 +4,13 @@
  * 用于处理样式类
  */
 
-import { useAppProviderContext } from "@/components/Application"
+import { useAppProviderContext } from '@/components/Application';
 
 export const useDesign = (scope: string) => {
-  const value = useAppProviderContext()
-  
-  return {
-    prefixCls: `${value.prefixCls}-${scope}`,
-    prefixVar: value.prefixCls
-  }
-}
+	const value = useAppProviderContext();
+
+	return {
+		prefixCls: `${value.prefixCls}-${scope}`,
+		prefixVar: value.prefixCls,
+	};
+};

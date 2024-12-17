@@ -42,7 +42,7 @@ const transform: AxiosTransform = {
 
 		const params = config.params || {};
 		let data = config.data || false;
-		data && formatDate && !isString(data) && formatRequestDate(data);
+		data && formatDate && !isString(data) && formatRequestDate(d);
 		if (config.method?.toUpperCase() === RequestEnum.GET) {
 			if (isString(params)) {
 				// 兼容restful

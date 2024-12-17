@@ -3,9 +3,9 @@
  * @LastEditors: phil_litian
  */
 
-import { withInstall } from '@/utils'
-import BasicForm from './src/BasicForm.vue'
-export * from './src/types/form'
-export { useForm } from './src/hooks/useForm'
+import { withInstall } from '@/utils';
+import BasicForm from './src/BasicForm.vue';
+export * from './src/types/form';
+export { useForm } from './src/hooks/useForm';
 
-export const PBasicForm = withInstall(BasicForm)
+export const PBasicForm = withInstall(BasicForm);

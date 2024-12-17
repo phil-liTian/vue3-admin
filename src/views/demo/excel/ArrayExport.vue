@@ -17,6 +17,8 @@
   console.log('data', data);
 
   const aoaToExcel = () => {
+    console.log('arrData', arrData);
+    
     aoaToSheetXlsx({ 
       data: arrData, 
       header: arrHeader, 

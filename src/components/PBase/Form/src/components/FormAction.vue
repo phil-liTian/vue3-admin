@@ -3,106 +3,119 @@
  * @LastEditors: phil_litian
 -->
 <template>
-  <Col v-bind="actionColOpt" v-if="showActionButtonGroup">
-    <div style="width: 100%;" :style="{ textAlign: actionColOpt.style.textAlign }">
-      <Form.Item>
-        <slot name="resetBefore"></slot>
-        <PButton 
-          v-if='showResetButton'
-          v-bind="getResetBtnOptions"
-          @click="resetAction"
-          class="mr-2">
-          {{ getResetBtnOptions.text }}
-        </PButton>
-        
-        <slot name="submitBefore"></slot>
-        <PButton
-          v-if='showSubmitButton'
-          v-bind="getSubmitBtnOptions"
-          type='primary'
-          @click="submitAction"
-          class="mr-2">
-          {{ getSubmitBtnOptions.text }}
-        </PButton>
+	<Col v-bind="actionColOpt" v-if="showActionButtonGroup">
+		<div
+			style="width: 100%"
+			:style="{ textAlign: actionColOpt.style.textAlign }"
+		>
+			<Form.Item>
+				<slot name="resetBefore"></slot>
+				<PButton
+					v-if="showResetButton"
+					v-bind="getResetBtnOptions"
+					@click="resetAction"
+					class="mr-2"
+				>
+					{{ getResetBtnOptions.text }}
+				</PButton>
 
-        <slot name="advanceBefore"></slot>
-        <PButton 
-          type="link" 
-          size="small"
-          @click="toggleAdvanced"
-          v-if="showAdvancedButton">
-          {{ isAdvanced ? t('component.form.putAway') : t('component.form.unfold') }}
-          <PBasicArrow class="ml-1" :expand="!isAdvanced" director="up" />
-        </PButton>
-        <slot name="advanceAfter"></slot>
-      </Form.Item>
-    </div>
-  </Col>  
+				<slot name="submitBefore"></slot>
+				<PButton
+					v-if="showSubmitButton"
+					v-bind="getSubmitBtnOptions"
+					type="primary"
+					@click="submitAction"
+					class="mr-2"
+				>
+					{{ getSubmitBtnOptions.text }}
+				</PButton>
+
+				<slot name="advanceBefore"></slot>
+				<PButton
+					type="link"
+					size="small"
+					@click="toggleAdvanced"
+					v-if="showAdvancedButton"
+				>
+					{{
+						isAdvanced
+							? t('component.form.putAway')
+							: t('component.form.unfold')
+					}}
+					<PBasicArrow class="ml-1" :expand="!isAdvanced" director="up" />
+				</PButton>
+				<slot name="advanceAfter"></slot>
+			</Form.Item>
+		</div>
+	</Col>
 </template>
-  
-<script lang='ts' setup>
-  import { PropType, computed } from 'vue';
-  import { Col, Form } from 'ant-design-vue'
-  import { useI18n } from '@h/web/useI18n'
-  import { ButtonProps } from '@/components/Button';
-  import { PBasicArrow } from '@c/Basic/index'
-  import { propTypes } from '@/utils/propTypes';
-  import { useFormContext } from '../hooks/useFormContext'
-  import { ColEx } from '../types/index'
-  const { t } = useI18n()
-  const props = defineProps({
-    showAdvancedButton: propTypes.bool.def(true),
-    showActionButtonGroup: propTypes.bool.def(true),
-    showSubmitButton: propTypes.bool.def(true),
-    showResetButton: propTypes.bool.def(true),
-    resetButtonOptions: {
-      type: Object as PropType<ButtonProps>,
-      default: () => ({})
-    },
-    submitButtonOptions: {
-      type: Object as PropType<ButtonProps>,
-      default: () => ({})
-    },
-    actionColOptions: {
-      type: Object as PropType<Partial<ColEx>>,
-      default: () => ({})
-    },
-    isAdvanced: propTypes.bool
-  })
 
-  const emits = defineEmits(['toggle-advanced'])
+<script lang="ts" setup>
+import { PropType, computed } from 'vue';
+import { Col, Form } from 'ant-design-vue';
+import { useI18n } from '@h/web/useI18n';
+import { ButtonProps } from '@/components/Button';
+import { PBasicArrow } from '@c/Basic/index';
+import { propTypes } from '@/utils/propTypes';
+import { useFormContext } from '../hooks/useFormContext';
+import { ColEx } from '../types/index';
+const { t } = useI18n();
+const props = defineProps({
+	showAdvancedButton: propTypes.bool.def(true),
+	showActionButtonGroup: propTypes.bool.def(true),
+	showSubmitButton: propTypes.bool.def(true),
+	showResetButton: propTypes.bool.def(true),
+	resetButtonOptions: {
+		type: Object as PropType<ButtonProps>,
+		default: () => ({}),
+	},
+	submitButtonOptions: {
+		type: Object as PropType<ButtonProps>,
+		default: () => ({}),
+	},
+	actionColOptions: {
+		type: Object as PropType<Partial<ColEx>>,
+		default: () => ({}),
+	},
+	isAdvanced: propTypes.bool,
+});
 
-  const { submitAction, resetAction } = useFormContext()
+const emits = defineEmits(['toggle-advanced']);
 
-  const actionColOpt = computed(() => {
-    const { actionColOptions } = props
-    const actionColOpt: Partial<ColEx> = {
-      style: { textAlign: 'right' },
-      ...actionColOptions
-    }
+const { submitAction, resetAction } = useFormContext();
 
-    return actionColOpt
-  })
+const actionColOpt = computed(() => {
+	const { actionColOptions } = props;
+	const actionColOpt: Partial<ColEx> = {
+		style: { textAlign: 'right' },
+		...actionColOptions,
+	};
 
-  const getResetBtnOptions = computed(() => {
-    return Object.assign({
-      text: t('common.resetText')
-    }, props.resetButtonOptions )
-  })
+	return actionColOpt;
+});
 
-  const getSubmitBtnOptions = computed(() => {
-    return Object.assign({
-      text: t('common.queryText')
-    }, props.submitButtonOptions)
-  })
+const getResetBtnOptions = computed(() => {
+	return Object.assign(
+		{
+			text: t('common.resetText'),
+		},
+		props.resetButtonOptions
+	);
+});
 
-  // 切换
-  const toggleAdvanced = () => {
-    emits('toggle-advanced')
-  }
+const getSubmitBtnOptions = computed(() => {
+	return Object.assign(
+		{
+			text: t('common.queryText'),
+		},
+		props.submitButtonOptions
+	);
+});
 
+// 切换
+const toggleAdvanced = () => {
+	emits('toggle-advanced');
+};
 </script>
-  
-<style lang='less' scoped>
-  
-</style>
+
+<style lang="less" scoped></style>

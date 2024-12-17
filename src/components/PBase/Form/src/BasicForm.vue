@@ -3,199 +3,213 @@
  * @LastEditors: phil_litian
 -->
 <template>
-  <Form
-    ref="formElRef"
-    :class="getFormClass"
-    :model="formModel">
-    <Row v-bind="getRow">
-      <slot name="formHeader"></slot>
-      <template v-for="schema in getSchema" :key="schema.field">
-        <FormItem 
-          :isAdvanced="fieldsIsAdvancedMap[schema.field]"
-          :formModel="formModel"
-          :formProps="getProps"
-          :formActionType="formActionType"
-          :schema="schema"
-          :setFormModel="setFormModel"
-          :allDefaultValues="defaultValueRef">
-          <template #[item]="data" v-for="item in Object.keys($slots)">
-            <slot :name="item" v-bind="data || {}"></slot>
-          </template>
-        </FormItem>
-      </template>
-      <FormAction v-bind="getFormActionBindProps" @toggle-advanced="handleToggleAdvanced">
-        <template #[item]="data" v-for="item in ['resetBefore', 'submitBefore', 'advanceBefore', 'advanceAfter']">
-          <slot :name="item" v-bind="data || {}"></slot>
-        </template>
-      </FormAction>
-      <slot name="formFooter"></slot>
-    </Row>
-  </Form>
+	<Form ref="formElRef" :class="getFormClass" :model="formModel">
+		<Row v-bind="getRow">
+			<slot name="formHeader"></slot>
+			<template v-for="schema in getSchema" :key="schema.field">
+				<FormItem
+					:isAdvanced="fieldsIsAdvancedMap[schema.field]"
+					:formModel="formModel"
+					:formProps="getProps"
+					:formActionType="formActionType"
+					:schema="schema"
+					:setFormModel="setFormModel"
+					:allDefaultValues="defaultValueRef"
+				>
+					<template #[item]="data" v-for="item in Object.keys($slots)">
+						<slot :name="item" v-bind="data || {}"></slot>
+					</template>
+				</FormItem>
+			</template>
+			<FormAction
+				v-bind="getFormActionBindProps"
+				@toggle-advanced="handleToggleAdvanced"
+			>
+				<template
+					#[item]="data"
+					v-for="item in [
+						'resetBefore',
+						'submitBefore',
+						'advanceBefore',
+						'advanceAfter',
+					]"
+				>
+					<slot :name="item" v-bind="data || {}"></slot>
+				</template>
+			</FormAction>
+			<slot name="formFooter"></slot>
+		</Row>
+	</Form>
 </template>
-  
-<script lang='ts' setup>
-  import type { Ref } from 'vue'
-  import { computed, unref, reactive, watch, onMounted, ref } from 'vue';
-  import { Form, Row } from 'ant-design-vue'
-  import { useDesign } from '@h/web/useDesign'
-  import { cloneDeep } from 'lodash-es'
-  import FormItem from './components/FormItem.vue'
-  import FormAction from './components/FormAction.vue'
-  import { basicProps } from './props'
-  import { useFormEvents } from './hooks/useFormEvents'
-  import { createFormContext } from './hooks/useFormContext'
-  import { useFormValues } from './hooks/useFormValues';
-  import { useAdvanced } from './hooks/useAdvanced'
-  import { FormActionType, FormProps, FormSchema } from './types/form'
-  import { deepMerge } from '@/utils';
-  import { AdvanceState } from './types/hooks';
 
-  defineOptions({ name: 'PBasicForm' })
-  const props = defineProps(basicProps)
-  const emits = defineEmits(['submit', 'reset', 'register'])
-  const defaultValueRef = ref({})
-  const formModel = reactive({})
-  const advancedState = reactive<AdvanceState>({
-    isAdvanced: true
-  })
-  const propsRef = ref<Partial<FormProps>>({})
-  const schemaRef = ref<Nullable<FormSchema[]>>(null)
-  const formElRef: Ref<Nullable<FormActionType>> = ref(null)
+<script lang="ts" setup>
+import type { Ref } from 'vue';
+import { computed, unref, reactive, watch, onMounted, ref } from 'vue';
+import { Form, Row } from 'ant-design-vue';
+import { useDesign } from '@h/web/useDesign';
+import { cloneDeep } from 'lodash-es';
+import FormItem from './components/FormItem.vue';
+import FormAction from './components/FormAction.vue';
+import { basicProps } from './props';
+import { useFormEvents } from './hooks/useFormEvents';
+import { createFormContext } from './hooks/useFormContext';
+import { useFormValues } from './hooks/useFormValues';
+import { useAdvanced } from './hooks/useAdvanced';
+import { FormActionType, FormProps, FormSchema } from './types/form';
+import { deepMerge } from '@/utils';
+import { AdvanceState } from './types/hooks';
 
-  const { prefixCls } = useDesign('basic-form')
-  
-  const getProps = computed(() => { return { ...props, ...unref(propsRef) } })
+defineOptions({ name: 'PBasicForm' });
+const props = defineProps(basicProps);
+const emits = defineEmits(['submit', 'reset', 'register']);
+const defaultValueRef = ref({});
+const formModel = reactive({});
+const advancedState = reactive<AdvanceState>({
+	isAdvanced: true,
+});
+const propsRef = ref<Partial<FormProps>>({});
+const schemaRef = ref<Nullable<FormSchema[]>>(null);
+const formElRef: Ref<Nullable<FormActionType>> = ref(null);
 
-  const getRow = computed(() => {
-    const { rowProps } = unref(getProps)
+const { prefixCls } = useDesign('basic-form');
 
-    return {
-      ...rowProps
-    }
-  })
+const getProps = computed(() => {
+	return { ...props, ...unref(propsRef) };
+});
 
-  const getSchema = computed(() => {
-    const schemas = schemaRef.value || unref(getProps).schemas;
+const getRow = computed(() => {
+	const { rowProps } = unref(getProps);
 
-    return cloneDeep(schemas)
-  })
+	return {
+		...rowProps,
+	};
+});
 
-  const { handleFormValues, initDefault } = useFormValues({
-    defaultValueRef,
-    getSchema,
-    formModel
-  })
+const getSchema = computed(() => {
+	const schemas = schemaRef.value || unref(getProps).schemas;
 
-  const { 
-    handleSubmit, 
-    resetFields, 
-    setFieldsValue,
-    getFieldsValue,
-    appendSchemaByField,
-    removeSchemaByField,
-    validateFields,
-    clearValidate,
-    updateSchema } = useFormEvents({
-    emits,
-    defaultValueRef,
-    formElRef,
-    getSchema,
-    formModel,
-    schemaRef,
-    handleFormValues
-  })
+	return cloneDeep(schemas);
+});
 
-  const { handleToggleAdvanced, fieldsIsAdvancedMap } = useAdvanced({
-    advancedState,
-    getProps,
-    getSchema
-  })
+const { handleFormValues, initDefault } = useFormValues({
+	defaultValueRef,
+	getSchema,
+	formModel,
+});
 
-  const setProps = async (formProps: FormProps) => {
-    propsRef.value = deepMerge(unref(propsRef) || {}, formProps)
-  }
+const {
+	handleSubmit,
+	resetFields,
+	setFieldsValue,
+	getFieldsValue,
+	appendSchemaByField,
+	removeSchemaByField,
+	validateFields,
+	clearValidate,
+	updateSchema,
+} = useFormEvents({
+	emits,
+	defaultValueRef,
+	formElRef,
+	getSchema,
+	formModel,
+	schemaRef,
+	handleFormValues,
+});
 
-  const setFormModel = (key, value) => {
-    // formModel.value = { ...formModel.value, ...values }
-    formModel[key] = value
-  }
+const { handleToggleAdvanced, fieldsIsAdvancedMap } = useAdvanced({
+	advancedState,
+	getProps,
+	getSchema,
+});
 
-  watch(() => getSchema.value, (schema) => {
-    if ( schema.length ) {
-      initDefault()
-    }
-  })
+const setProps = async (formProps: FormProps) => {
+	propsRef.value = deepMerge(unref(propsRef) || {}, formProps);
+};
 
-  createFormContext({
-    submitAction: handleSubmit,
-    resetAction: resetFields
-  })
-  
-  const getFormClass = computed(() => {
-    return [
-      prefixCls,
-      {
-        [`${prefixCls}--compact`]: unref(getProps).compact
-      }
-    ]
-  })
+const setFormModel = (key, value) => {
+	// formModel.value = { ...formModel.value, ...values }
+	formModel[key] = value;
+};
 
-  const formActionType: FormActionType = {
-    setProps,
-    submit: handleSubmit,
-    setFieldsValue,
-    getFieldsValue,
-    resetFields,
-    appendSchemaByField,
-    removeSchemaByField,
-    validateFields,
-    clearValidate,
-    updateSchema
-  }
-  
-  const getFormActionBindProps = computed(() => {
-    return { ...getProps.value, ...advancedState  }
-  })
-  
-  defineExpose({
-    ...formActionType
-  })
+watch(
+	() => getSchema.value,
+	(schema) => {
+		if (schema.length) {
+			initDefault();
+		}
+	}
+);
 
-  onMounted(() => {
-    initDefault()
-    emits('register', formActionType)
-  })
+createFormContext({
+	submitAction: handleSubmit,
+	resetAction: resetFields,
+});
+
+const getFormClass = computed(() => {
+	return [
+		prefixCls,
+		{
+			[`${prefixCls}--compact`]: unref(getProps).compact,
+		},
+	];
+});
+
+const formActionType: FormActionType = {
+	setProps,
+	submit: handleSubmit,
+	setFieldsValue,
+	getFieldsValue,
+	resetFields,
+	appendSchemaByField,
+	removeSchemaByField,
+	validateFields,
+	clearValidate,
+	updateSchema,
+};
+
+const getFormActionBindProps = computed(() => {
+	return { ...getProps.value, ...advancedState };
+});
+
+defineExpose({
+	...formActionType,
+});
+
+onMounted(() => {
+	initDefault();
+	emits('register', formActionType);
+});
 </script>
-  
-<style lang='less'>
-  @prefix-cls: ~'@{namespace}-basic-form';
 
-  .@{prefix-cls} {
-    &--compact {
-      .ant-form-item {
-        margin-bottom: 8px !important;
-      }
-    }
+<style lang="less">
+@prefix-cls: ~'@{namespace}-basic-form';
 
-    .ant-form-item {
+.@{prefix-cls} {
+	&--compact {
+		.ant-form-item {
+			margin-bottom: 8px !important;
+		}
+	}
 
-      &-label {
-        label {
-          &::after {
-            margin: 0 6px 0 2px;
-          }
-        }
-      }
+	.ant-form-item {
+		&-label {
+			label {
+				&::after {
+					margin: 0 6px 0 2px;
+				}
+			}
+		}
 
-      &.suffix-item {
-        .suffix {
-          display: inline-flex;
-          align-items: center;
-          margin-top: 1px;
-          padding-left: 6px;
-          line-height: 1;
-        }
-      }
-    }
-  }
+		&.suffix-item {
+			.suffix {
+				display: inline-flex;
+				align-items: center;
+				margin-top: 1px;
+				padding-left: 6px;
+				line-height: 1;
+			}
+		}
+	}
+}
 </style>

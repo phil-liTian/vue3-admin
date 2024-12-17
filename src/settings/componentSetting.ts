@@ -4,26 +4,26 @@
  */
 
 export default {
-  scrollbar: {
-    // 开启后会将modal的弹出式滚动条更改成本地滚动条
-    native: false
-  },
+	scrollbar: {
+		// 开启后会将modal的弹出式滚动条更改成本地滚动条
+		native: false,
+	},
 
-  table: {
-    defaultSize: 'middle',
+	table: {
+		defaultSize: 'middle',
 
-    fetchSetting: {
-      pageField: 'page',
-      
-      sizeField: 'pageSize',
+		fetchSetting: {
+			pageField: 'page',
 
-      listField: 'items',
-      
-      totalField: 'total'
-    },
+			sizeField: 'pageSize',
 
-    defaultPageSize: 10,
+			listField: 'items',
 
-    pageSizeOptions: ['10', '50', '80', '100']
-  }
-}
+			totalField: 'total',
+		},
+
+		defaultPageSize: 10,
+
+		pageSizeOptions: ['10', '50', '80', '100'],
+	},
+};
