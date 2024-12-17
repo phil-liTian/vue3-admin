@@ -12,8 +12,8 @@ import {
 import { basicRoutes } from './routes';
 
 export const router = createRouter({
-	// history: createWebHashHistory(import.meta.env.VITE_PUBLIC_PATH),
-	history: createWebHistory(import.meta.env.VITE_PUBLIC_PATH),
+	history: createWebHashHistory(import.meta.env.VITE_PUBLIC_PATH),
+	// history: createWebHistory(import.meta.env.VITE_PUBLIC_PATH),
 	routes: basicRoutes as RouteRecordRaw[],
 	// 是否禁止尾部斜线。
 	strict: true,
